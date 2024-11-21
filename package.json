@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@fontsource/roboto": "latest",
+    "@mui/icons-material": "latest",
+    "@mui/material": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "typescript": "latest"
+  },
+  "devDependencies": {
+    "@eslint/js": "latest",
+    "cypress": "latest",
+    "eslint": "latest",
+    "eslint-plugin-react": "latest",
+    "globals": "latest",
+    "jest": "latest",
+    "typescript-eslint": "latest"
+  }
+}
