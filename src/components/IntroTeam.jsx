@@ -1,0 +1,81 @@
+import Typography from "@mui/material/Typography";
+import { flexbox, width } from "@mui/system";
+import { ThemeProvider } from "@mui/material/styles";
+import Divider from "@mui/material/Divider";
+import ColorTheme from "./ColorTheme";
+import ContactCardsY1 from "./ContactCardsY1";
+
+function IntroTeam() {
+  return (
+    <ThemeProvider theme={ColorTheme}>
+      <box
+        id="teamSection"
+        style={{
+          border: "70px solid transparent",
+          margin: "-70px 0px 0px 0px",
+        }}
+        // sx={{ flexWrap: "wrap", padding: "15vh", maxWidth: "80%" }}
+      >
+        <box>
+          <Typography
+            variant="h4"
+            sx={{
+              textAlign: "center",
+              maxWidth: "80%",
+              paddingLeft: "10%",
+              paddingRight: "10%",
+            }}
+            color="#D73F09"
+          >
+            Meet the team
+          </Typography>
+          <Typography
+            variant="h6"
+            sx={{
+              textAlign: "center",
+              maxWidth: "80%",
+              paddingLeft: "10%",
+              paddingRight: "10%",
+              paddingBottom: "50px",
+            }}
+          >
+            Record Books was initially developed as a senior capstone project in
+            2024 by a group of students at Oregon State University, and
+            development is being continued as a senior capstone project in 2025.
+            Meet each year's team.
+          </Typography>
+        </box>
+        <box>
+          <Typography
+            variant="h5"
+            color="#D73F09"
+            sx={{
+              textAlign: "center",
+              maxWidth: "80%",
+              paddingLeft: "10%",
+              paddingRight: "10%",
+              paddingBottom: "50px",
+            }}
+          >
+            First Year Team (2023-2024)
+            <ContactCardsY1 />
+          </Typography>
+          <Typography
+            variant="h5"
+            color="#D73F09"
+            sx={{
+              textAlign: "center",
+              maxWidth: "80%",
+              paddingLeft: "10%",
+              paddingRight: "10%",
+              paddingBottom: "50px",
+            }}
+          >
+            Second Year Team (2023-2024)
+          </Typography>
+        </box>
+      </box>
+    </ThemeProvider>
+  );
+}
+export default IntroTeam;

@@ -8,6 +8,8 @@ function Resume() {
   return (
     <div className="App">
       <NavBarSignedIn />
+      <div style={{ height: "75px" }}></div>
+
       <h1>Note: To be implemented later. (12/3/2024)</h1>
     </div>
   );

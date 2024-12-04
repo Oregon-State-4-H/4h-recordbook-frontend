@@ -1,5 +1,11 @@
 import React from "react";
 import NavBarLanding from "../components/NavbarLanding";
+import IntroBanner from "../components/IntroBanner";
+import IntroAbout from "../components/IntroAbout";
+import IntroTeam from "../components/IntroTeam";
+import IntroContact from "../components/IntroContact";
+import TableRow from "@mui/material/TableRow";
+import TableCell from "@mui/material/TableCell";
 import { ThemeProvider } from "@mui/material/styles";
 import ColorTheme from "../components/ColorTheme";
 
@@ -8,6 +14,10 @@ function Landing() {
   return (
     <div className="App">
       <NavBarLanding />
+      <IntroBanner />
+      <IntroAbout />
+      <IntroTeam />
+      <IntroContact />
     </div>
   );
 }

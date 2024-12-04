@@ -11,6 +11,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
+import Divider from "@mui/material/Divider";
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -29,7 +30,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed" top="0">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -62,6 +63,7 @@ function ResponsiveAppBar() {
               <MenuIcon />
             </IconButton>
             <Menu
+              style={{ background: "" }}
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -81,52 +83,59 @@ function ResponsiveAppBar() {
                 <a
                   style={{
                     width: "100%",
-                    height: "2.25em",
                     padding: "0px .5em 0px .5em",
+                    textDecoration: "none",
                   }}
                   href="/Dashboard"
                   sx={{ textAlign: "center" }}
                 >
-                  Home
+                  <Typography sx={{ textAlign: "center" }}>Home</Typography>
                 </a>
               </MenuItem>
+              <Divider variant="middle" />
               <MenuItem style={{ padding: "0px" }}>
                 <a
                   style={{
                     width: "100%",
-                    height: "2.25em",
                     padding: "0px .5em 0px .5em",
+                    textDecoration: "none",
                   }}
                   href="/Resume"
                   sx={{ textAlign: "center" }}
                 >
-                  4-H Resume
+                  <Typography sx={{ textAlign: "center" }}>
+                    4-H Resume
+                  </Typography>
                 </a>
               </MenuItem>
+              <Divider variant="middle" />
               <MenuItem style={{ padding: "0px" }}>
                 <a
                   style={{
                     width: "100%",
-                    height: "2.25em",
                     padding: "0px .5em 0px .5em",
+                    textDecoration: "none",
                   }}
                   href="/Projects"
                   sx={{ textAlign: "center" }}
                 >
-                  My Projects
+                  <Typography sx={{ textAlign: "center" }}>
+                    My Projects
+                  </Typography>
                 </a>
               </MenuItem>
+              <Divider variant="middle" />
               <MenuItem style={{ padding: "0px" }}>
                 <a
                   style={{
                     width: "100%",
-                    height: "2.25em",
                     padding: "0px .5em 0px .5em",
+                    textDecoration: "none",
                   }}
                   href="/Account"
                   sx={{ textAlign: "center" }}
                 >
-                  Account
+                  <Typography sx={{ textAlign: "center" }}>Account</Typography>
                 </a>
               </MenuItem>
             </Menu>
@@ -203,4 +212,5 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
+
 export default ResponsiveAppBar;

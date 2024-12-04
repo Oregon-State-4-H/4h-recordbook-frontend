@@ -8,6 +8,7 @@ function Dashboard() {
   return (
     <div className="App">
       <NavBarSignedIn />
+      <div style={{ height: "75px" }}></div>
     </div>
   );
 }

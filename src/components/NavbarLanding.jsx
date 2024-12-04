@@ -11,6 +11,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
+import Divider from "@mui/material/Divider";
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -29,7 +30,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed" top="0">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -81,65 +82,75 @@ function ResponsiveAppBar() {
                 <a
                   style={{
                     width: "100%",
-                    height: "2.25em",
                     padding: "0px .5em 0px .5em",
+                    textDecoration: "none",
                   }}
-                  href="#id"
+                  href="#aboutSection"
                   sx={{ textAlign: "center" }}
                 >
-                  About
+                  <Typography sx={{ textAlign: "center" }}>About</Typography>
                 </a>
               </MenuItem>
+              <Divider variant="middle" />
               <MenuItem style={{ padding: "0px" }}>
                 <a
                   style={{
                     width: "100%",
-                    height: "2.25em",
                     padding: "0px .5em 0px .5em",
+                    textDecoration: "none",
                   }}
-                  href="#id"
+                  href="#teamSection"
                   sx={{ textAlign: "center" }}
                 >
-                  Meet the Team
+                  <Typography sx={{ textAlign: "center" }}>
+                    Meet the Team
+                  </Typography>
                 </a>
               </MenuItem>
+              <Divider variant="middle" />
               <MenuItem style={{ padding: "0px" }}>
                 <a
                   style={{
                     width: "100%",
-                    height: "2.25em",
                     padding: "0px .5em 0px .5em",
+                    textDecoration: "none",
                   }}
-                  href="#id"
+                  href="#contactSection"
                   sx={{ textAlign: "center" }}
                 >
-                  Contact Us
+                  <Typography sx={{ textAlign: "center" }}>
+                    Contact Us
+                  </Typography>
                 </a>
               </MenuItem>
+              <Divider variant="middle" />
               <MenuItem style={{ padding: "0px" }}>
                 <a
                   style={{
                     width: "100%",
-                    height: "2.25em",
                     padding: "0px .5em 0px .5em",
+                    textDecoration: "none",
                   }}
                   href="https://record-books-docs.vercel.app/"
                   sx={{ textAlign: "center" }}
                 >
-                  Docs
+                  <Typography sx={{ textAlign: "center" }}>Docs</Typography>
                 </a>
               </MenuItem>
+              <Divider variant="middle" />
               <MenuItem style={{ padding: "0px" }}>
                 <a
                   style={{
                     width: "100%",
-                    height: "2.25em",
                     padding: "0px .5em 0px .5em",
+                    textDecoration: "none",
                   }}
                   href="/Dashboard"
                   sx={{ textAlign: "center" }}
                 >
-                  Sign Up/Sign In
+                  <Typography sx={{ textAlign: "center" }}>
+                    Sign Up/Sign In
+                  </Typography>
                 </a>
               </MenuItem>
             </Menu>
@@ -180,13 +191,22 @@ function ResponsiveAppBar() {
             >
               Docs
             </Button>
-            <Button href="#id" sx={{ my: 2, color: "white", display: "block" }}>
+            <Button
+              href="#contactSection"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
               Contact Us
             </Button>
-            <Button href="#id" sx={{ my: 2, color: "white", display: "block" }}>
+            <Button
+              href="#teamSection"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
               Meet the Team
             </Button>
-            <Button href="#id" sx={{ my: 2, color: "white", display: "block" }}>
+            <Button
+              href="#aboutSection"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
               About
             </Button>
           </Box>
