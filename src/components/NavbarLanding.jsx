@@ -12,14 +12,6 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const pages = [
-  "Sign up/Sign in",
-  "Docs",
-  "Contact Us",
-  "Meet the team",
-  "About",
-];
-
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -85,11 +77,71 @@ function ResponsiveAppBar() {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: "block", md: "none" } }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: "center" }}>{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem style={{ padding: "0px" }}>
+                <a
+                  style={{
+                    width: "100%",
+                    height: "2.25em",
+                    padding: "0px .5em 0px .5em",
+                  }}
+                  href="#id"
+                  sx={{ textAlign: "center" }}
+                >
+                  About
+                </a>
+              </MenuItem>
+              <MenuItem style={{ padding: "0px" }}>
+                <a
+                  style={{
+                    width: "100%",
+                    height: "2.25em",
+                    padding: "0px .5em 0px .5em",
+                  }}
+                  href="#id"
+                  sx={{ textAlign: "center" }}
+                >
+                  Meet the Team
+                </a>
+              </MenuItem>
+              <MenuItem style={{ padding: "0px" }}>
+                <a
+                  style={{
+                    width: "100%",
+                    height: "2.25em",
+                    padding: "0px .5em 0px .5em",
+                  }}
+                  href="#id"
+                  sx={{ textAlign: "center" }}
+                >
+                  Contact Us
+                </a>
+              </MenuItem>
+              <MenuItem style={{ padding: "0px" }}>
+                <a
+                  style={{
+                    width: "100%",
+                    height: "2.25em",
+                    padding: "0px .5em 0px .5em",
+                  }}
+                  href="https://record-books-docs.vercel.app/"
+                  sx={{ textAlign: "center" }}
+                >
+                  Docs
+                </a>
+              </MenuItem>
+              <MenuItem style={{ padding: "0px" }}>
+                <a
+                  style={{
+                    width: "100%",
+                    height: "2.25em",
+                    padding: "0px .5em 0px .5em",
+                  }}
+                  href="/Dashboard"
+                  sx={{ textAlign: "center" }}
+                >
+                  Sign Up/Sign In
+                </a>
+              </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -116,15 +168,27 @@ function ResponsiveAppBar() {
               display: { xs: "none", flexDirection: "row-reverse", md: "flex" },
             }}
           >
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button
+              href="/Dashboard"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Sign Up/Sign In
+            </Button>
+            <Button
+              href="https://record-books-docs.vercel.app/"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Docs
+            </Button>
+            <Button href="#id" sx={{ my: 2, color: "white", display: "block" }}>
+              Contact Us
+            </Button>
+            <Button href="#id" sx={{ my: 2, color: "white", display: "block" }}>
+              Meet the Team
+            </Button>
+            <Button href="#id" sx={{ my: 2, color: "white", display: "block" }}>
+              About
+            </Button>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Menu

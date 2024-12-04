@@ -6,19 +6,25 @@ import Dashboard from "./pages/Dashboard";
 import Account from "./pages/Account";
 import Landing from "./pages/Landing";
 import Projects from "./pages/Projects";
+import Resume from "./pages/Resume";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
+import { ThemeProvider } from "@mui/material/styles";
+import ColorTheme from "./components/ColorTheme";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Landing />}></Route>
-        <Route path="/Dashboard" element={<Dashboard />}></Route>
-        <Route path="/Account" element={<Account />}></Route>
-        <Route path="/Projects" element={<Projects />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider theme={ColorTheme}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />}></Route>
+          <Route path="/Dashboard" element={<Dashboard />}></Route>
+          <Route path="/Account" element={<Account />}></Route>
+          <Route path="/Projects" element={<Projects />}></Route>
+          <Route path="/Resume" element={<Resume />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

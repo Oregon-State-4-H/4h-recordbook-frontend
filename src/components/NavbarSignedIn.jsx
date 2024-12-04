@@ -12,8 +12,6 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const pages = ["My Projects", "4-H Resume", "Home", "Account"];
-
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -38,7 +36,7 @@ function ResponsiveAppBar() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/Dashboard"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -79,18 +77,65 @@ function ResponsiveAppBar() {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: "block", md: "none" } }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: "center" }}>{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem style={{ padding: "0px" }}>
+                <a
+                  style={{
+                    width: "100%",
+                    height: "2.25em",
+                    padding: "0px .5em 0px .5em",
+                  }}
+                  href="/Dashboard"
+                  sx={{ textAlign: "center" }}
+                >
+                  Home
+                </a>
+              </MenuItem>
+              <MenuItem style={{ padding: "0px" }}>
+                <a
+                  style={{
+                    width: "100%",
+                    height: "2.25em",
+                    padding: "0px .5em 0px .5em",
+                  }}
+                  href="/Resume"
+                  sx={{ textAlign: "center" }}
+                >
+                  4-H Resume
+                </a>
+              </MenuItem>
+              <MenuItem style={{ padding: "0px" }}>
+                <a
+                  style={{
+                    width: "100%",
+                    height: "2.25em",
+                    padding: "0px .5em 0px .5em",
+                  }}
+                  href="/Projects"
+                  sx={{ textAlign: "center" }}
+                >
+                  My Projects
+                </a>
+              </MenuItem>
+              <MenuItem style={{ padding: "0px" }}>
+                <a
+                  style={{
+                    width: "100%",
+                    height: "2.25em",
+                    padding: "0px .5em 0px .5em",
+                  }}
+                  href="/Account"
+                  sx={{ textAlign: "center" }}
+                >
+                  Account
+                </a>
+              </MenuItem>
             </Menu>
           </Box>
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            href="/Dashboard"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -110,15 +155,30 @@ function ResponsiveAppBar() {
               display: { xs: "none", flexDirection: "row-reverse", md: "flex" },
             }}
           >
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button
+              href="/Account"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Account
+            </Button>
+            <Button
+              href="/Projects"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              My Projects
+            </Button>
+            <Button
+              href="/Resume"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              4-H Resume
+            </Button>
+            <Button
+              href="/Dashboard"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Home
+            </Button>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Menu
