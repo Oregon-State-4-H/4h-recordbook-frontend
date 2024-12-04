@@ -29,21 +29,19 @@ function IntroBanner() {
         >
           <Typography
             variant="h2"
-            sx={{ textAlign: "center" }}
+            sx={{ textAlign: "center", backgroundSize: "cover" }}
             style={{
               paddingTop: "90px",
-              maxWidth: "100%",
             }}
           >
             4-H Record Books
           </Typography>
           <Typography
             variant="h6"
-            sx={{ textAlign: "center" }}
+            sx={{ textAlign: "center", backgroundSize: "cover" }}
             width="70vw"
             style={{
               paddingBottom: "50px",
-              maxWidth: "100%",
             }}
           >
             4-H recordkeeping just got a new look! We are excited to announce
@@ -58,29 +56,33 @@ function IntroBanner() {
           position: "absolute",
           top: "0",
           padding: "80px",
-          maxWidth: "80%",
+          maxWidth: "100%",
         }}
       >
-        <Typography
-          variant="h2"
-          sx={{ textAlign: "center" }}
-          color="#D73F09"
-          style={{
-            paddingTop: "90px",
-            maxWidth: "100%",
-          }}
-        >
-          4-H Record Books
-        </Typography>
         <Typography
           variant="h6"
           sx={{ textAlign: "center" }}
           width="70vw"
           style={{
             paddingBottom: "50px",
-            maxWidth: "100%",
+            Width: "80%",
+            paddingLeft: "10%",
+            paddingRight: "10%",
           }}
         >
+          <Typography
+            variant="h2"
+            sx={{ textAlign: "center" }}
+            color="#D73F09"
+            style={{
+              paddingTop: "90px",
+              Width: "80%",
+              paddingLeft: "10%",
+              paddingRight: "10%",
+            }}
+          >
+            4-H Record Books
+          </Typography>
           4-H recordkeeping just got a new look! We are excited to announce the
           launch of our new 4-H Record Book platform. This new platform will
           allow 4-H members to complete their record books online.
