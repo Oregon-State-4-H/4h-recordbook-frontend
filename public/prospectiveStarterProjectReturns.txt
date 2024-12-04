@@ -1,0 +1,92 @@
+
+prospective sample returns for a single project:
+[
+  {
+    ID: 1,
+    Year: "2024",
+    ProjectName: "State Fair Pigs 2024",
+    UserID: "507f1f77bcf86cd799439011",
+  },
+][
+  {
+    ID: 2,
+    Year: "2024",
+    ProjectName: "Sadie the Horse 2024",
+    UserID: "507f1f77bcf86cd799439011",
+  }
+][
+  {
+    ID: 3,
+    Year: "2021",
+    ProjectName: "State Fair Pigs 2021",
+    UserID: "507f1f77bcf86cd799439011",
+  }
+][
+  {
+    ID: 4,
+    Year: "2020",
+    ProjectName: "Sadie the Horse 2020",
+    UserID: "507f1f77bcf86cd799439011",
+  }
+][
+  {
+    ID: 5,
+    Year: "2019",
+    ProjectName: "State Fair Pigs 2019",
+    UserID: "507f1f77bcf86cd799439011",
+  }
+];
+
+prospective sample return for all current projects:
+{
+    "CurrentProjects": [
+        {
+            "ID": 1,
+            "Year": "2024",
+            "ProjectName": "State Fair Pigs 2024",
+            "UserID": "507f1f77bcf86cd799439011"
+        },
+        {
+            "ID": 2,
+            "Year": "2024",
+            "ProjectName": "Sadie the Horse 2024",
+            "UserID": "507f1f77bcf86cd799439011"
+        }
+    ]
+}
+
+prospective sample return for all projects:
+{
+    "allProjects": [
+        {
+            "ID": 1,
+            "Year": "2024",
+            "ProjectName": "State Fair Pigs 2024",
+            "UserID": "507f1f77bcf86cd799439011"
+        },
+        {
+            "ID": 2,
+            "Year": "2024",
+            "ProjectName": "Sadie the Horse 2024",
+            "UserID": "507f1f77bcf86cd799439011"
+        },
+        {
+            "ID": 3,
+            "Year": "2021",
+            "ProjectName": "State Fair Pigs 2021",
+            "UserID": "507f1f77bcf86cd799439011"
+        },
+        {
+            "ID": 4,
+            "Year": "2020",
+            "ProjectName": "Sadie the Horse 2020",
+            "UserID": "507f1f77bcf86cd799439011"
+        },
+        {
+            "ID": 5,
+            "Year": "2019",
+            "ProjectName": "State Fair Pigs 2019",
+            "UserID": "507f1f77bcf86cd799439011"
+        }
+    ]
+}
