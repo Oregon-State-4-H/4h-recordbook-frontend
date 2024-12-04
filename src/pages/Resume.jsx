@@ -1,5 +1,6 @@
 import React from "react";
 import NavBarSignedIn from "../components/NavbarSignedIn";
+import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@mui/material/styles";
 import ColorTheme from "../components/ColorTheme";
 
@@ -8,9 +9,30 @@ function Resume() {
   return (
     <div className="App">
       <NavBarSignedIn />
-      <div style={{ height: "75px" }}></div>
-
-      <h1>Note: To be implemented later. (12/3/2024)</h1>
+      <div style={{ height: "85px" }}></div>
+      <div>
+        <Typography
+          variant="h4"
+          style={{
+            Width: "100%",
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
+        >
+          Resume
+        </Typography>
+      </div>
+      <div>
+        <Typography
+          variant="h6"
+          style={{
+            textAlign: "center",
+            Width: "100%",
+          }}
+        >
+          Note: To be implemented later. (12/3/2024)
+        </Typography>
+      </div>
     </div>
   );
 }
