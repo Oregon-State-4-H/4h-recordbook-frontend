@@ -1,6 +1,9 @@
 import React from "react";
 import NavBarSignedIn from "../components/NavbarSignedIn";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
 import ColorTheme from "../components/ColorTheme";
 
@@ -22,6 +25,81 @@ function Account() {
           Account
         </Typography>
       </div>
+      <Toolbar
+        disableGutters
+        sx={{
+          display: { xs: "flex" },
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: { xs: "flex", md: "none" },
+            width: "100%",
+          }}
+        >
+          <Box
+            sx={{
+              width: "100%",
+            }}
+          >
+            <div
+              style={{
+                flex: 1,
+                position: "relative",
+                padding: "20px",
+                Width: "80%",
+                paddingLeft: "10%",
+                paddingRight: "10%",
+                paddingBottom: "50px",
+              }}
+            >
+              <Button
+                style={{
+                  width: "40%",
+                  marginRight: "30%",
+                  marginLeft: "30%",
+                }}
+                href="/"
+                variant="contained"
+              >
+                Logout
+              </Button>
+            </div>
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: { xs: "none", md: "flex" },
+            width: "100%",
+          }}
+        >
+          <div
+            style={{
+              flex: 1,
+              position: "relative",
+              paddingLeft: "5%",
+              paddingRight: "5%",
+              paddingTop: "15px",
+            }}
+          >
+            <Button
+              style={{
+                width: "40%",
+                marginRight: "30%",
+                marginLeft: "30%",
+              }}
+              href="/"
+              variant="contained"
+            >
+              Logout
+            </Button>
+          </div>
+        </Box>
+      </Toolbar>
     </div>
   );
 }

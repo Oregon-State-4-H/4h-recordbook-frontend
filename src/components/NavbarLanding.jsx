@@ -145,7 +145,7 @@ function ResponsiveAppBar() {
                     padding: "0px .5em 0px .5em",
                     textDecoration: "none",
                   }}
-                  href="/Dashboard"
+                  href="/Auth"
                   sx={{ textAlign: "center" }}
                 >
                   <Typography sx={{ textAlign: "center" }}>
@@ -180,7 +180,7 @@ function ResponsiveAppBar() {
             }}
           >
             <Button
-              href="/Dashboard"
+              href="/Auth"
               sx={{ my: 2, color: "white", display: "block" }}
             >
               Sign Up/Sign In

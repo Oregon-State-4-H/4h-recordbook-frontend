@@ -7,6 +7,7 @@ import Account from "./pages/Account";
 import Landing from "./pages/Landing";
 import Projects from "./pages/Projects";
 import Resume from "./pages/Resume";
+import Auth from "./pages/Auth";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "@mui/material/styles";
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/Account" element={<Account />}></Route>
           <Route path="/Projects" element={<Projects />}></Route>
           <Route path="/Resume" element={<Resume />}></Route>
+          <Route path="/Auth" element={<Auth />}></Route>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
