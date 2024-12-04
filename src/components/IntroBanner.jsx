@@ -60,28 +60,28 @@ function IntroBanner() {
         }}
       >
         <Typography
-          variant="h6"
+          variant="h2"
           sx={{ textAlign: "center" }}
           width="70vw"
+          color="#D73F09"
           style={{
-            paddingBottom: "50px",
             Width: "80%",
             paddingLeft: "10%",
             paddingRight: "10%",
+            paddingTop: "90px",
           }}
         >
           4-H Record Books
         </Typography>
 
         <Typography
-          variant="h2"
+          variant="h6"
           sx={{ textAlign: "center" }}
-          color="#D73F09"
           style={{
-            paddingTop: "90px",
             Width: "80%",
             paddingLeft: "10%",
             paddingRight: "10%",
+            paddingBottom: "50px",
           }}
         >
           4-H Record Books 4-H recordkeeping just got a new look! We are excited
