@@ -1,12 +1,11 @@
 import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import ColorTheme from "./ColorTheme";
 
 function ContactCards() {
   return (
     <ThemeProvider theme={ColorTheme}>
-      <Box
+      <div
         styles={{
           display: "flex",
           flexDirection: "row",
@@ -43,7 +42,7 @@ function ContactCards() {
             position: "relative",
           }}
         />
-      </Box>
+      </div>
     </ThemeProvider>
   );
 }

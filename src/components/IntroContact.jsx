@@ -1,12 +1,11 @@
 import Typography from "@mui/material/Typography";
-import { flexbox, width } from "@mui/system";
 import { ThemeProvider } from "@mui/material/styles";
 import ColorTheme from "./ColorTheme";
 
 function IntroContact() {
   return (
     <ThemeProvider theme={ColorTheme}>
-      <box
+      <div
         id="contactSection"
         style={{
           border: "70px solid transparent",
@@ -14,7 +13,7 @@ function IntroContact() {
         }}
         // sx={{ flexWrap: "wrap", padding: "15vh", maxWidth: "80%" }}
       >
-        <box>
+        <div>
           <Typography
             variant="h4"
             sx={{
@@ -51,8 +50,8 @@ function IntroContact() {
           >
             <a href="https://github.com/Oregon-State-4-H">View on Github</a>
           </Typography>
-        </box>
-      </box>
+        </div>
+      </div>
     </ThemeProvider>
   );
 }

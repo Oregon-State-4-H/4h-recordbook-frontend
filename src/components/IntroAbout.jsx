@@ -1,12 +1,11 @@
 import Typography from "@mui/material/Typography";
-import { flexbox, width } from "@mui/system";
 import { ThemeProvider } from "@mui/material/styles";
 import ColorTheme from "./ColorTheme";
 
 function IntroAbout() {
   return (
     <ThemeProvider theme={ColorTheme}>
-      <box
+      <div
         id="aboutSection"
         style={{
           border: "70px solid transparent",
@@ -24,7 +23,7 @@ function IntroAbout() {
             Width: "40vw",
           }}
         ></video> */}
-        <box>
+        <div>
           <Typography
             variant="h4"
             sx={{
@@ -55,8 +54,8 @@ function IntroAbout() {
             allows users to track their 4-H resume and General Animal Science
             projects.
           </Typography>
-        </box>
-        <box>
+        </div>
+        <div>
           <Typography
             variant="h4"
             sx={{
@@ -88,8 +87,8 @@ function IntroAbout() {
             manage and can often lead to losses of records and valuable project
             information.
           </Typography>
-        </box>
-        <box>
+        </div>
+        <div>
           <Typography
             variant="h4"
             sx={{
@@ -117,8 +116,8 @@ function IntroAbout() {
             all major 4-H projects categories. Currently, we working to support
             the 4-H Resume and General Animal Science projects.
           </Typography>
-        </box>
-      </box>
+        </div>
+      </div>
     </ThemeProvider>
   );
 }

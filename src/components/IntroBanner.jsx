@@ -70,22 +70,23 @@ function IntroBanner() {
             paddingRight: "10%",
           }}
         >
-          <Typography
-            variant="h2"
-            sx={{ textAlign: "center" }}
-            color="#D73F09"
-            style={{
-              paddingTop: "90px",
-              Width: "80%",
-              paddingLeft: "10%",
-              paddingRight: "10%",
-            }}
-          >
-            4-H Record Books
-          </Typography>
-          4-H recordkeeping just got a new look! We are excited to announce the
-          launch of our new 4-H Record Book platform. This new platform will
-          allow 4-H members to complete their record books online.
+          4-H Record Books
+        </Typography>
+
+        <Typography
+          variant="h2"
+          sx={{ textAlign: "center" }}
+          color="#D73F09"
+          style={{
+            paddingTop: "90px",
+            Width: "80%",
+            paddingLeft: "10%",
+            paddingRight: "10%",
+          }}
+        >
+          4-H Record Books 4-H recordkeeping just got a new look! We are excited
+          to announce the launch of our new 4-H Record Book platform. This new
+          platform will allow 4-H members to complete their record books online.
         </Typography>
       </div>
     </ThemeProvider>

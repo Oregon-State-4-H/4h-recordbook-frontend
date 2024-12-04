@@ -1,5 +1,4 @@
 import Typography from "@mui/material/Typography";
-import { flexbox, width } from "@mui/system";
 import { ThemeProvider } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
 import ColorTheme from "./ColorTheme";
@@ -8,7 +7,7 @@ import ContactCardsY1 from "./ContactCardsY1";
 function IntroTeam() {
   return (
     <ThemeProvider theme={ColorTheme}>
-      <box
+      <div
         id="teamSection"
         style={{
           border: "70px solid transparent",
@@ -16,7 +15,7 @@ function IntroTeam() {
         }}
         // sx={{ flexWrap: "wrap", padding: "15vh", maxWidth: "80%" }}
       >
-        <box>
+        <div>
           <Typography
             variant="h4"
             sx={{
@@ -44,8 +43,8 @@ function IntroTeam() {
             development is being continued as a senior capstone project in 2025.
             Meet each year's team.
           </Typography>
-        </box>
-        <box>
+        </div>
+        <div>
           <Typography
             variant="h5"
             color="#D73F09"
@@ -73,8 +72,8 @@ function IntroTeam() {
           >
             Second Year Team (2023-2024)
           </Typography>
-        </box>
-      </box>
+        </div>
+      </div>
     </ThemeProvider>
   );
 }
