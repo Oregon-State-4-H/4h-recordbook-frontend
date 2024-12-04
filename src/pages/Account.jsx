@@ -1,5 +1,6 @@
 import React from "react";
 import NavBarSignedIn from "../components/NavbarSignedIn";
+import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@mui/material/styles";
 import ColorTheme from "../components/ColorTheme";
 
@@ -8,7 +9,19 @@ function Account() {
   return (
     <div className="App">
       <NavBarSignedIn />
-      <div style={{ height: "75px" }}></div>
+      <div style={{ height: "85px" }}></div>
+      <div>
+        <Typography
+          variant="h4"
+          style={{
+            Width: "100%",
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
+        >
+          Account
+        </Typography>
+      </div>
     </div>
   );
 }
