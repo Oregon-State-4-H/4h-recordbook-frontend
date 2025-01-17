@@ -1,3 +1,5 @@
+// Component adapted from: https://mui.com/material-ui/react-app-bar/#system-ResponsiveAppBar.js
+
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -5,27 +7,18 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import MenuIcon from "@mui/icons-material/Menu";
 import Divider from "@mui/material/Divider";
 
 function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
@@ -37,21 +30,14 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar
-      position="sticky"
-      sx={
-        {
-          // zIndex: 99999,
-        }
-      }
-    >
+    <AppBar position="fixed" top="0">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/Dashboard"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -77,6 +63,7 @@ function ResponsiveAppBar() {
               <MenuIcon />
             </IconButton>
             <Menu
+              style={{ background: "" }}
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -99,10 +86,10 @@ function ResponsiveAppBar() {
                     padding: "0px .5em 0px .5em",
                     textDecoration: "none",
                   }}
-                  href="#aboutSection"
-                  // sx={{ textAlign: "center" }}
+                  href="/Dashboard"
+                  sx={{ textAlign: "center" }}
                 >
-                  <Typography sx={{ textAlign: "center" }}>About</Typography>
+                  <Typography sx={{ textAlign: "center" }}>Home</Typography>
                 </a>
               </MenuItem>
               <Divider variant="middle" />
@@ -113,11 +100,11 @@ function ResponsiveAppBar() {
                     padding: "0px .5em 0px .5em",
                     textDecoration: "none",
                   }}
-                  href="#teamSection"
-                  // sx={{ textAlign: "center" }}
+                  href="/Resume"
+                  sx={{ textAlign: "center" }}
                 >
                   <Typography sx={{ textAlign: "center" }}>
-                    Meet the Team
+                    4-H Resume
                   </Typography>
                 </a>
               </MenuItem>
@@ -129,11 +116,11 @@ function ResponsiveAppBar() {
                     padding: "0px .5em 0px .5em",
                     textDecoration: "none",
                   }}
-                  href="#contactSection"
-                  // sx={{ textAlign: "center" }}
+                  href="/Projects"
+                  sx={{ textAlign: "center" }}
                 >
                   <Typography sx={{ textAlign: "center" }}>
-                    Contact Us
+                    My Projects
                   </Typography>
                 </a>
               </MenuItem>
@@ -145,26 +132,10 @@ function ResponsiveAppBar() {
                     padding: "0px .5em 0px .5em",
                     textDecoration: "none",
                   }}
-                  href="https://record-books-docs.vercel.app/"
-                  // sx={{ textAlign: "center" }}
+                  href="/Account"
+                  sx={{ textAlign: "center" }}
                 >
-                  <Typography sx={{ textAlign: "center" }}>Docs</Typography>
-                </a>
-              </MenuItem>
-              <Divider variant="middle" />
-              <MenuItem style={{ padding: "0px" }}>
-                <a
-                  style={{
-                    width: "100%",
-                    padding: "0px .5em 0px .5em",
-                    textDecoration: "none",
-                  }}
-                  href="/Auth"
-                  // sx={{ textAlign: "center" }}
-                >
-                  <Typography sx={{ textAlign: "center" }}>
-                    Sign Up/Sign In
-                  </Typography>
+                  <Typography sx={{ textAlign: "center" }}>Account</Typography>
                 </a>
               </MenuItem>
             </Menu>
@@ -173,7 +144,7 @@ function ResponsiveAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            href="/Dashboard"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -187,41 +158,59 @@ function ResponsiveAppBar() {
           >
             4-H Record Books
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", flexDirection: "row-reverse", md: "flex" },
+            }}
+          >
             <Button
-              href="/Auth"
+              href="/Account"
               sx={{ my: 2, color: "white", display: "block" }}
             >
-              Sign Up/Sign In
+              Account
             </Button>
             <Button
-              href="https://record-books-docs.vercel.app/"
+              href="/Projects"
               sx={{ my: 2, color: "white", display: "block" }}
             >
-              Docs
+              My Projects
             </Button>
             <Button
-              href="#contactSection"
+              href="/Resume"
               sx={{ my: 2, color: "white", display: "block" }}
             >
-              Contact Us
+              4-H Resume
             </Button>
             <Button
-              href="#teamSection"
+              href="/Dashboard"
               sx={{ my: 2, color: "white", display: "block" }}
             >
-              Meet the Team
+              Home
             </Button>
-            <Button
-              href="#aboutSection"
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              About
-            </Button>
+          </Box>
+          <Box sx={{ flexGrow: 0 }}>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            ></Menu>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
+
 export default ResponsiveAppBar;
