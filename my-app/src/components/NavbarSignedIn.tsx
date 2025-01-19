@@ -92,15 +92,15 @@ function ResponsiveAppBar() {
             >
               <MenuItem style={{ padding: "0px" }}>
                 <a
+                  href="/dashboard"
                   style={{
+                    textAlign: "center",
                     width: "100%",
                     padding: "0px .5em 0px .5em",
                     textDecoration: "none",
                   }}
-                  href="#aboutSection"
-                  // sx={{ textAlign: "center" }}
                 >
-                  <Typography sx={{ textAlign: "center" }}>About</Typography>
+                  <Typography sx={{ textAlign: "center" }}>Home</Typography>
                 </a>
               </MenuItem>
               <Divider variant="middle" />
@@ -110,12 +110,12 @@ function ResponsiveAppBar() {
                     width: "100%",
                     padding: "0px .5em 0px .5em",
                     textDecoration: "none",
+                    textAlign: "center",
                   }}
-                  href="#teamSection"
-                  // sx={{ textAlign: "center" }}
+                  href="/resume"
                 >
                   <Typography sx={{ textAlign: "center" }}>
-                    Meet the Team
+                    4-H Resume
                   </Typography>
                 </a>
               </MenuItem>
@@ -126,12 +126,12 @@ function ResponsiveAppBar() {
                     width: "100%",
                     padding: "0px .5em 0px .5em",
                     textDecoration: "none",
+                    textAlign: "center",
                   }}
-                  href="#contactSection"
-                  // sx={{ textAlign: "center" }}
+                  href="/projects"
                 >
                   <Typography sx={{ textAlign: "center" }}>
-                    Contact Us
+                    My Projects
                   </Typography>
                 </a>
               </MenuItem>
@@ -142,27 +142,11 @@ function ResponsiveAppBar() {
                     width: "100%",
                     padding: "0px .5em 0px .5em",
                     textDecoration: "none",
+                    textAlign: "center",
                   }}
-                  href="https://record-books-docs.vercel.app/"
-                  // sx={{ textAlign: "center" }}
+                  href="/account"
                 >
-                  <Typography sx={{ textAlign: "center" }}>Docs</Typography>
-                </a>
-              </MenuItem>
-              <Divider variant="middle" />
-              <MenuItem style={{ padding: "0px" }}>
-                <a
-                  style={{
-                    width: "100%",
-                    padding: "0px .5em 0px .5em",
-                    textDecoration: "none",
-                  }}
-                  href="/Auth"
-                  // sx={{ textAlign: "center" }}
-                >
-                  <Typography sx={{ textAlign: "center" }}>
-                    Sign Up/Sign In
-                  </Typography>
+                  <Typography sx={{ textAlign: "center" }}>Account</Typography>
                 </a>
               </MenuItem>
             </Menu>
@@ -188,38 +172,32 @@ function ResponsiveAppBar() {
           <Box
             sx={{
               flexGrow: 1,
-              display: { xs: "none", md: "flex", flexDirection: "row-reverse" },
+              display: { xs: "none", flexDirection: "row-reverse", md: "flex" },
             }}
           >
             <Button
-              href="/Auth"
+              href="/account"
               sx={{ my: 2, color: "white", display: "block" }}
             >
-              Sign Up/Sign In
+              Account
             </Button>
             <Button
-              href="https://record-books-docs.vercel.app/"
+              href="/projects"
               sx={{ my: 2, color: "white", display: "block" }}
             >
-              Docs
+              My Projects
             </Button>
             <Button
-              href="#contactSection"
+              href="/resume"
               sx={{ my: 2, color: "white", display: "block" }}
             >
-              Contact Us
+              4-H Resume
             </Button>
             <Button
-              href="#teamSection"
+              href="/dashboard"
               sx={{ my: 2, color: "white", display: "block" }}
             >
-              Meet the Team
-            </Button>
-            <Button
-              href="#aboutSection"
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              About
+              Home
             </Button>
           </Box>
         </Toolbar>
