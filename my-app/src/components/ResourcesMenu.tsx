@@ -43,6 +43,7 @@ function ResourcesMenu() {
                   width: "100%",
                   padding: ".5em 1.5em .5em 1.5em",
                   textDecoration: "none",
+                  textAlign: "center",
                 }}
                 href="https://extension.oregonstate.edu/4h"
               >
@@ -62,6 +63,7 @@ function ResourcesMenu() {
                   width: "100%",
                   padding: ".5em 1.5em .5em 1.5em",
                   textDecoration: "none",
+                  textAlign: "center",
                 }}
                 href="https://extension.oregonstate.edu/program/all/4h/events"
               >
@@ -81,6 +83,7 @@ function ResourcesMenu() {
                   width: "100%",
                   padding: ".5em 1.5em .5em 1.5em",
                   textDecoration: "none",
+                  textAlign: "center",
                 }}
                 href="https://extension.oregonstate.edu/program/all/4h/local-programs"
               >
@@ -100,6 +103,7 @@ function ResourcesMenu() {
                   width: "100%",
                   padding: ".5em 1.5em .5em 1.5em",
                   textDecoration: "none",
+                  textAlign: "center",
                 }}
                 href="https://extension.oregonstate.edu/4h/about-4-h"
               >
@@ -119,6 +123,7 @@ function ResourcesMenu() {
                   width: "100%",
                   padding: ".5em 1.5em .5em 1.5em",
                   textDecoration: "none",
+                  textAlign: "center",
                 }}
                 href="https://extension.oregonstate.edu/4h/summer-camps"
               >
@@ -138,6 +143,7 @@ function ResourcesMenu() {
                   width: "100%",
                   padding: ".5em 1.5em .5em 1.5em",
                   textDecoration: "none",
+                  textAlign: "center",
                 }}
                 href="https://extension.oregonstate.edu/4h/projects"
               >
@@ -157,6 +163,7 @@ function ResourcesMenu() {
                   width: "100%",
                   padding: ".5em 1.5em .5em 1.5em",
                   textDecoration: "none",
+                  textAlign: "center",
                 }}
                 href="https://extension.oregonstate.edu/4h/volunteer-training-manuals"
               >
@@ -176,6 +183,7 @@ function ResourcesMenu() {
                   width: "100%",
                   padding: ".5em 1.5em .5em 1.5em",
                   textDecoration: "none",
+                  textAlign: "center",
                 }}
                 href="https://extension.oregonstate.edu/4h/support-4-h"
               >

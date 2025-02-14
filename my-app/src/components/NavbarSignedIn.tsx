@@ -85,6 +85,7 @@ function ResponsiveAppBar() {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              fontSize: "7vw",
             }}
           >
             {pathname}
