@@ -1,4 +1,4 @@
-import NavBarSignedIn from "../components/NavbarSignedIn";
+import NavBarSignedIn from "../../components/NavbarSignedIn";
 import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import ToggleButton from "@mui/material/ToggleButton";

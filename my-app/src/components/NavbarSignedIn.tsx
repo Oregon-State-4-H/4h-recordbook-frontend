@@ -139,7 +139,7 @@ function ResponsiveAppBar() {
                     textDecoration: "none",
                     textAlign: "center",
                   }}
-                  href="/resume"
+                  href="/Dashboard/Resume"
                 >
                   <Typography sx={{ textAlign: "center" }}>
                     4-H Resume
@@ -155,7 +155,7 @@ function ResponsiveAppBar() {
                     textDecoration: "none",
                     textAlign: "center",
                   }}
-                  href="/Projects"
+                  href="/Dashboard/Projects"
                 >
                   <Typography sx={{ textAlign: "center" }}>
                     My Projects
@@ -171,7 +171,7 @@ function ResponsiveAppBar() {
                     textDecoration: "none",
                     textAlign: "center",
                   }}
-                  href="/account"
+                  href="/Dashboard/Account"
                 >
                   <Typography sx={{ textAlign: "center" }}>Account</Typography>
                 </a>
@@ -185,19 +185,19 @@ function ResponsiveAppBar() {
             }}
           >
             <Button
-              href="/account"
+              href="/Dashboard/Account"
               sx={{ my: 2, color: "white", display: "block" }}
             >
               Account
             </Button>
             <Button
-              href="/Projects"
+              href="/Dashboard/Projects"
               sx={{ my: 2, color: "white", display: "block" }}
             >
               My Projects
             </Button>
             <Button
-              href="/resume"
+              href="/Dashboard/Resume"
               sx={{ my: 2, color: "white", display: "block" }}
             >
               4-H Resume
