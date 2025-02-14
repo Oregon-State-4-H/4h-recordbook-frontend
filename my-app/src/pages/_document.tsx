@@ -19,7 +19,13 @@ export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
       <Head>
         <DocumentHeadTags {...props} />
       </Head>
-      <body className="antialiased">
+      <body
+        className="antialiased"
+        style={{
+          padding: 0,
+          margin: 0,
+        }}
+      >
         <Main />
         <NextScript />
       </body>

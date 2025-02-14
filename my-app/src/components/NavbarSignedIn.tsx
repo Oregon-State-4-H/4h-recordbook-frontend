@@ -10,8 +10,13 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Divider from "@mui/material/Divider";
+import BackButton from "./BackButton";
+import { useRouter } from "next/router";
 
 function ResponsiveAppBar() {
+  const router = useRouter();
+  const pathname = router.pathname.replace("/", "");
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -64,6 +69,27 @@ function ResponsiveAppBar() {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <BackButton />
+          </Box>
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "none" },
+              flexGrow: 1,
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            {pathname}
+          </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -92,7 +118,7 @@ function ResponsiveAppBar() {
             >
               <MenuItem style={{ padding: "0px" }}>
                 <a
-                  href="/dashboard"
+                  href="/Dashboard"
                   style={{
                     textAlign: "center",
                     width: "100%",
@@ -128,7 +154,7 @@ function ResponsiveAppBar() {
                     textDecoration: "none",
                     textAlign: "center",
                   }}
-                  href="/projects"
+                  href="/Projects"
                 >
                   <Typography sx={{ textAlign: "center" }}>
                     My Projects
@@ -151,24 +177,6 @@ function ResponsiveAppBar() {
               </MenuItem>
             </Menu>
           </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            4-H Record Books
-          </Typography>
           <Box
             sx={{
               flexGrow: 1,
@@ -182,7 +190,7 @@ function ResponsiveAppBar() {
               Account
             </Button>
             <Button
-              href="/projects"
+              href="/Projects"
               sx={{ my: 2, color: "white", display: "block" }}
             >
               My Projects
@@ -194,7 +202,7 @@ function ResponsiveAppBar() {
               4-H Resume
             </Button>
             <Button
-              href="/dashboard"
+              href="/Dashboard"
               sx={{ my: 2, color: "white", display: "block" }}
             >
               Home
