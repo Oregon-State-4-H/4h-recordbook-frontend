@@ -6,6 +6,7 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
+import MobileBottomNav from "../../components/MobileBottomNav";
 
 function Projects() {
   // const [typeProjects, setTypeProjects] = React.useState("Current Projects");
@@ -150,6 +151,7 @@ function Projects() {
             ))}
         </Stack>
       </Container>
+      <MobileBottomNav />
     </Box>
   );
 }

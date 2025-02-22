@@ -1,5 +1,6 @@
 import React from "react";
 import NavBarSignedIn from "../../components/NavbarSignedIn";
+import MobileBottomNav from "../../components/MobileBottomNav";
 import ResourcesMenu from "../../components/ResourcesMenu";
 import BookmarksMenu from "../../components/BookmarksMenu";
 import Box from "@mui/material/Box";
@@ -104,6 +105,7 @@ function Dashboard() {
           </Box>
         </Box>
       </Toolbar>
+      <MobileBottomNav />
     </Box>
   );
 }
