@@ -83,7 +83,7 @@ function Section() {
           fontWeight: "bold",
         }}
       >
-        Section 1: 4-H Involvement
+        Section 2: 4-H Project/Program Summary
       </Typography>
       <Paper
         sx={{
