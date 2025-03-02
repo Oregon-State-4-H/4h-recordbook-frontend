@@ -28,11 +28,13 @@ const theme = createTheme({
     // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
     background: {
+      default: "#f1f4f8",
       paper: "#339966",
     },
     text: {
       secondary: "rgba(255,255,255,0.87)",
       primary: "rgba(0,0,0,0.87)",
+      disabled: "rgba(0, 0, 0, 0.6)",
     },
   },
 });

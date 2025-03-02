@@ -81,6 +81,7 @@ function Projects() {
       <Typography
         variant="h4"
         sx={{
+          display: { xs: "none", md: "block" },
           Width: "100%",
           textAlign: "center",
           fontWeight: "bold",

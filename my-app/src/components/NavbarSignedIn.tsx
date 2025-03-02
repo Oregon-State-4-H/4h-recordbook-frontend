@@ -15,7 +15,11 @@ import { useRouter } from "next/router";
 
 function ResponsiveAppBar() {
   const router = useRouter();
-  const pathname = router.pathname.replace("/Dashboard/", "").replace("/", "");
+  const pathname = router.pathname
+    .replace("/Dashboard/", "")
+    .replace("/", " ")
+    .replace("/", " ")
+    .replace("Resume Section", "Section");
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
