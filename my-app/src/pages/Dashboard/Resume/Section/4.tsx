@@ -97,7 +97,7 @@ function Section() {
           fontWeight: "bold",
         }}
       >
-        Section 3: Participation in 4-H Activities/Events
+        Section 4: Participation in Other Community Activities/Events
       </Typography>
       <Paper
         sx={{
