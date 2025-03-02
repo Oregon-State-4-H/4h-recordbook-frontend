@@ -6,7 +6,10 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import Paper from "@mui/material/Paper";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import CloseIcon from "@mui/icons-material/Close";
 
 const style = {
   position: "absolute",
@@ -98,6 +101,13 @@ export default function Section1Card({
                 p: 4,
               }}
             >
+              <IconButton
+                sx={{ position: "absolute", right: "4%", top: "4%" }}
+                onClick={handleClose}
+                size="small"
+              >
+                <CloseIcon />
+              </IconButton>
               <CardContent sx={{ backgroundColor: "rgba(255,255,255,0.87)" }}>
                 <Typography gutterBottom sx={{ fontSize: 14 }}>
                   {Year}
@@ -123,12 +133,40 @@ export default function Section1Card({
                 <Typography variant="body1" marginBottom="10px">
                   {NumInClub}
                 </Typography>
+                <Typography variant="body2" color="text.disabled">
+                  Club Leader
+                </Typography>
+                <Typography variant="body1" marginBottom="10px">
+                  {ClubLeader}
+                </Typography>
+                <Typography variant="body2" color="text.disabled">
+                  Meetings Held
+                </Typography>
+                <Typography variant="body1" marginBottom="10px">
+                  {MeetingsHeld}
+                </Typography>
+                <Typography variant="body2" color="text.disabled">
+                  Meetings Attended
+                </Typography>
+                <Typography variant="body1" marginBottom="10px">
+                  {MeetingsAttended}
+                </Typography>
               </CardContent>
               <CardActions>
-                <Button onClick={handleClose} size="small">
-                  Close
+                <Button
+                  sx={{ width: "50%" }}
+                  variant="outlined"
+                  startIcon={<EditIcon />}
+                >
+                  Edit
                 </Button>
-                <Button size="small">Edit</Button>
+                <Button
+                  sx={{ width: "50%" }}
+                  variant="outlined"
+                  startIcon={<DeleteIcon />}
+                >
+                  Delete
+                </Button>
               </CardActions>
             </Card>
           </Modal>

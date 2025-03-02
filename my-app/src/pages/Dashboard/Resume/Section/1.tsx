@@ -140,12 +140,24 @@ function Section() {
             <TableBody>
               {Entries.map((item, index) => (
                 <StyledTableRow hover role="checkbox" tabIndex={-1} key={index}>
-                  <TableCell>{item.Year}</TableCell>
-                  <TableCell>{item.Nickname}</TableCell>
-                  <TableCell>{item.Grade}</TableCell>
-                  <TableCell>{item.ClubName}</TableCell>
-                  <TableCell>{item.NumInClub}</TableCell>
-                  <TableCell>{item.ClubLeader}</TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>
+                    {item.Year}
+                  </TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>
+                    {item.Nickname}
+                  </TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>
+                    {item.Grade}
+                  </TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>
+                    {item.ClubName}
+                  </TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>
+                    {item.NumInClub}
+                  </TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>
+                    {item.ClubLeader}
+                  </TableCell>
                   <TableCell>{item.MeetingsHeld}</TableCell>
                   <TableCell>{item.MeetingsAttended}</TableCell>
                   <TableCell>
@@ -180,7 +192,7 @@ function Section() {
               Width: "80%",
               paddingLeft: "10%",
               paddingRight: "10%",
-              paddingBottom: "50px",
+              paddingBottom: "20px",
             }}
           >
             <Section1Card
