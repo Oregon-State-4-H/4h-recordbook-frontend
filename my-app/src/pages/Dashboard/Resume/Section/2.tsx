@@ -145,6 +145,7 @@ function Section() {
           display: { xs: "flex", md: "none" },
           width: "100%",
           flexDirection: "column",
+          paddingBottom: "50px",
         }}
       >
         {Entries.map((item, index) => (
@@ -167,12 +168,6 @@ function Section() {
           </Box>
         ))}
       </Box>
-      <Box
-        sx={{
-          display: { xs: "flex", md: "none" },
-          height: "25px",
-        }}
-      ></Box>
       <MobileBottomNav />
     </Box>
   );
