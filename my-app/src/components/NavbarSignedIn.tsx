@@ -15,7 +15,11 @@ import { useRouter } from "next/router";
 
 function ResponsiveAppBar() {
   const router = useRouter();
-  const pathname = router.pathname.replace("/", "");
+  const pathname = router.pathname
+    .replace("/Dashboard/", "")
+    .replace("/", " ")
+    .replace("/", " ")
+    .replace("Resume Section", "Section");
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -90,94 +94,6 @@ function ResponsiveAppBar() {
           >
             {pathname}
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: "block", md: "none" } }}
-            >
-              <MenuItem style={{ padding: "0px" }}>
-                <a
-                  href="/Dashboard"
-                  style={{
-                    textAlign: "center",
-                    width: "100%",
-                    padding: "0px .5em 0px .5em",
-                    textDecoration: "none",
-                  }}
-                >
-                  <Typography sx={{ textAlign: "center" }}>Home</Typography>
-                </a>
-              </MenuItem>
-              <Divider variant="middle" />
-              <MenuItem style={{ padding: "0px" }}>
-                <a
-                  style={{
-                    width: "100%",
-                    padding: "0px .5em 0px .5em",
-                    textDecoration: "none",
-                    textAlign: "center",
-                  }}
-                  href="/Dashboard/Resume"
-                >
-                  <Typography sx={{ textAlign: "center" }}>
-                    4-H Resume
-                  </Typography>
-                </a>
-              </MenuItem>
-              <Divider variant="middle" />
-              <MenuItem style={{ padding: "0px" }}>
-                <a
-                  style={{
-                    width: "100%",
-                    padding: "0px .5em 0px .5em",
-                    textDecoration: "none",
-                    textAlign: "center",
-                  }}
-                  href="/Dashboard/Projects"
-                >
-                  <Typography sx={{ textAlign: "center" }}>
-                    My Projects
-                  </Typography>
-                </a>
-              </MenuItem>
-              <Divider variant="middle" />
-              <MenuItem style={{ padding: "0px" }}>
-                <a
-                  style={{
-                    width: "100%",
-                    padding: "0px .5em 0px .5em",
-                    textDecoration: "none",
-                    textAlign: "center",
-                  }}
-                  href="/Dashboard/Account"
-                >
-                  <Typography sx={{ textAlign: "center" }}>Account</Typography>
-                </a>
-              </MenuItem>
-            </Menu>
-          </Box>
           <Box
             sx={{
               flexGrow: 1,

@@ -1,5 +1,6 @@
 import React from "react";
 import NavBarSignedIn from "../../components/NavbarSignedIn";
+import MobileBottomNav from "../../components/MobileBottomNav";
 import ResourcesMenu from "../../components/ResourcesMenu";
 import BookmarksMenu from "../../components/BookmarksMenu";
 import Box from "@mui/material/Box";
@@ -11,11 +12,20 @@ function Dashboard() {
   return (
     <Box className="App">
       <NavBarSignedIn />
-      <Box sx={{ height: "85px" }}></Box>
+      <Box
+        sx={(theme) => ({
+          [theme.breakpoints.up("xs")]: { height: "30px" },
+          [theme.breakpoints.up("sm")]: { height: "35px" },
+          [theme.breakpoints.up("md")]: { height: "40px" },
+          [theme.breakpoints.up("lg")]: { height: "45px" },
+          [theme.breakpoints.up("xl")]: { height: "50px" },
+        })}
+      ></Box>
       <Box>
         <Typography
           variant="h4"
           sx={{
+            display: { xs: "none", md: "block" },
             Width: "100%",
             textAlign: "center",
             fontWeight: "bold",
@@ -104,6 +114,7 @@ function Dashboard() {
           </Box>
         </Box>
       </Toolbar>
+      <MobileBottomNav />
     </Box>
   );
 }
