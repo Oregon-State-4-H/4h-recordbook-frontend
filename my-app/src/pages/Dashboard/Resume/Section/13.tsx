@@ -82,7 +82,7 @@ function Section() {
           fontWeight: "bold",
         }}
       >
-        Section 14: Other Recognition
+        Section 13: 4-H Recognition
       </Typography>
       <Paper
         sx={{
