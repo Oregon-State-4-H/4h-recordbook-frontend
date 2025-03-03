@@ -18,6 +18,7 @@ function DummySignOn() {
         "Content-Type": "text/plain", // Or 'application/xml', 'application/octet-stream', etc.
       },
       body: '{"id": "1"}',
+    }).then((response) => {
       console.log("Response status code:", response.status);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
