@@ -49,20 +49,20 @@ const StyledTableRow = styled(TableRow)(({}) => ({
   },
 }));
 
-function Section() {
-
+export default function Section() {
   let [allSections, setSections] = useState<Section9[]>([]);
-                
+
   useEffect(() => {
     const getData = async () => {
       try {
-        const section1Data = await fetchSectionData<Section9>(SectionNumbers.Section9);
+        const section1Data = await fetchSectionData<Section9>(
+          SectionNumbers.Section9
+        );
         setSections(section1Data);
+      } catch (error) {
+        console.error(error);
       }
-      catch (error) {
-        console.error(error)
-      }
-    }
+    };
     getData();
   }, []);
 
@@ -118,41 +118,47 @@ function Section() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {allSections && allSections.map((item, index) => (
-                <StyledTableRow hover role="checkbox" tabIndex={-1} key={index}>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {item.year}
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {item.nickname}
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {item.communication_type}
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {item.topic}
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {item.times_given}
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {item.location}
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {item.audience_size}
-                  </TableCell>
-                  <TableCell>
-                    <IconButton>
-                      <EditIcon />
-                    </IconButton>
-                  </TableCell>
-                  <TableCell>
-                    <IconButton>
-                      <DeleteIcon />
-                    </IconButton>
-                  </TableCell>
-                </StyledTableRow>
-              ))}
+              {allSections &&
+                allSections.map((item, index) => (
+                  <StyledTableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={index}
+                  >
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.year}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.nickname}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.communication_type}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.topic}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.times_given}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.location}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.audience_size}
+                    </TableCell>
+                    <TableCell>
+                      <IconButton>
+                        <EditIcon />
+                      </IconButton>
+                    </TableCell>
+                    <TableCell>
+                      <IconButton>
+                        <DeleteIcon />
+                      </IconButton>
+                    </TableCell>
+                  </StyledTableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
@@ -166,33 +172,34 @@ function Section() {
           paddingBottom: "50px",
         }}
       >
-        {allSections && allSections.map((item, index) => (
-          <Box
-            sx={{
-              flex: 1,
-              position: "relative",
-              Width: "80%",
-              paddingLeft: "10%",
-              paddingRight: "10%",
-              paddingBottom: "20px",
-            }}
-          >
-            <Section9and10Card
-              ID={item.id}
-              Nickname={item.nickname}
-              Year={item.year}
-              CommunicationType={item.communication_type}
-              Topic={item.topic}
-              TimesGiven={item.times_given}
-              Location={item.location}
-              AudienceSize={item.audience_size}
-            />
-          </Box>
-        ))}
+        {allSections &&
+          allSections.map((item, index) => (
+            <Box
+              sx={{
+                flex: 1,
+                position: "relative",
+                Width: "80%",
+                paddingLeft: "10%",
+                paddingRight: "10%",
+                paddingBottom: "20px",
+              }}
+            >
+              <Section9and10Card
+                ID={item.id}
+                Section={item.section}
+                UserID={item.user_id}
+                Nickname={item.nickname}
+                Year={item.year}
+                CommunicationType={item.communication_type}
+                Topic={item.topic}
+                TimesGiven={item.times_given}
+                Location={item.location}
+                AudienceSize={item.audience_size}
+              />
+            </Box>
+          ))}
       </Box>
       <MobileBottomNav />
     </Box>
   );
 }
-
-export default Section;

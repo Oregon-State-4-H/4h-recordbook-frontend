@@ -34,6 +34,7 @@ const bull = (
 
 interface CardProps {
   ID: string;
+  Section: number;
   Nickname: string;
   Year: string;
   LeadershipRole: string;

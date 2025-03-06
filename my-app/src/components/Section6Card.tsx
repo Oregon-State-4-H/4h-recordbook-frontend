@@ -34,6 +34,7 @@ const bull = (
 
 interface CardProps {
   ID: string;
+  Section: number;
   Nickname: string;
   Year: string;
   OrganizationName: string;
@@ -43,7 +44,7 @@ interface CardProps {
   UserID: string;
 }
 
-export default function Section5Card({
+export default function Section6Card({
   ID,
   Nickname,
   Year,

@@ -47,20 +47,20 @@ const StyledTableRow = styled(TableRow)(({}) => ({
   },
 }));
 
-function Section() {
-
+export default function Section() {
   let [allSections, setSections] = useState<Section6[]>([]);
-          
+
   useEffect(() => {
     const getData = async () => {
       try {
-        const section1Data = await fetchSectionData<Section6>(SectionNumbers.Section6);
+        const section1Data = await fetchSectionData<Section6>(
+          SectionNumbers.Section6
+        );
         setSections(section1Data);
+      } catch (error) {
+        console.error(error);
       }
-      catch (error) {
-        console.error(error)
-      }
-    }
+    };
     getData();
   }, []);
 
@@ -116,38 +116,44 @@ function Section() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {allSections && allSections.map((item, index) => (
-                <StyledTableRow hover role="checkbox" tabIndex={-1} key={index}>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {item.year}
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {item.nickname}
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {item.organization_name}
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {item.leadership_role}
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {item.hours_spent}
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {item.num_people_reached}
-                  </TableCell>
-                  <TableCell>
-                    <IconButton>
-                      <EditIcon />
-                    </IconButton>
-                  </TableCell>
-                  <TableCell>
-                    <IconButton>
-                      <DeleteIcon />
-                    </IconButton>
-                  </TableCell>
-                </StyledTableRow>
-              ))}
+              {allSections &&
+                allSections.map((item, index) => (
+                  <StyledTableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={index}
+                  >
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.year}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.nickname}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.organization_name}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.leadership_role}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.hours_spent}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.num_people_reached}
+                    </TableCell>
+                    <TableCell>
+                      <IconButton>
+                        <EditIcon />
+                      </IconButton>
+                    </TableCell>
+                    <TableCell>
+                      <IconButton>
+                        <DeleteIcon />
+                      </IconButton>
+                    </TableCell>
+                  </StyledTableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
@@ -161,32 +167,33 @@ function Section() {
           paddingBottom: "50px",
         }}
       >
-        {allSections && allSections.map((item, index) => (
-          <Box
-            sx={{
-              flex: 1,
-              position: "relative",
-              Width: "80%",
-              paddingLeft: "10%",
-              paddingRight: "10%",
-              paddingBottom: "20px",
-            }}
-          >
-            <Section6Card
-              ID={item.id}
-              Nickname={item.nickname}
-              Year={item.year}
-              OrganizationName={item.organization_name}
-              LeadershipRole={item.leadership_role}
-              HoursSpent={item.hours_spent}
-              NumPeopleReached={item.num_people_reached}
-            />
-          </Box>
-        ))}
+        {allSections &&
+          allSections.map((item, index) => (
+            <Box
+              sx={{
+                flex: 1,
+                position: "relative",
+                Width: "80%",
+                paddingLeft: "10%",
+                paddingRight: "10%",
+                paddingBottom: "20px",
+              }}
+            >
+              <Section6Card
+                ID={item.id}
+                Section={item.section}
+                UserID={item.user_id}
+                Nickname={item.nickname}
+                Year={item.year}
+                OrganizationName={item.organization_name}
+                LeadershipRole={item.leadership_role}
+                HoursSpent={item.hours_spent}
+                NumPeopleReached={item.num_people_reached}
+              />
+            </Box>
+          ))}
       </Box>
       <MobileBottomNav />
     </Box>
   );
 }
-
-export default Section;

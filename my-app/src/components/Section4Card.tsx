@@ -39,10 +39,11 @@ interface CardProps {
   ActivityKind: string;
   Scope: string;
   Level: string;
+  Section: number;
   UserID: string;
 }
 
-export default function Section1Card({
+export default function Section4Card({
   ID,
   Nickname,
   Year,

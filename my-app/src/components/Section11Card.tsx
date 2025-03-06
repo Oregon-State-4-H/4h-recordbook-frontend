@@ -34,6 +34,7 @@ const bull = (
 
 interface CardProps {
   ID: string;
+  Section: number;
   Nickname: string;
   Year: string;
   EventAndLevel: string;
@@ -42,7 +43,7 @@ interface CardProps {
   UserID: string;
 }
 
-export default function Section1Card({
+export default function Section11Card({
   ID,
   Nickname,
   Year,

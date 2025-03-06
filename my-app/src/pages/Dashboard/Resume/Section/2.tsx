@@ -16,7 +16,12 @@ import TableRow from "@mui/material/TableRow";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { deleteSection, fetchSectionData, Section2, SectionNumbers } from "../API/ResumeAPI";
+import {
+  deleteSection,
+  fetchSectionData,
+  Section2,
+  SectionNumbers,
+} from "../API/ResumeAPI";
 
 const Fields = ["Year", "ProjectName", "ProjectScope", "", ""];
 
@@ -39,20 +44,20 @@ const StyledTableRow = styled(TableRow)(({}) => ({
   },
 }));
 
-function Section() {
-
+export default function Section() {
   let [allSections, setSections] = useState<Section2[]>([]);
-  
+
   useEffect(() => {
     const getData = async () => {
       try {
-        const section1Data = await fetchSectionData<Section2>(SectionNumbers.Section2);
+        const section1Data = await fetchSectionData<Section2>(
+          SectionNumbers.Section2
+        );
         setSections(section1Data);
+      } catch (error) {
+        console.error(error);
       }
-      catch (error) {
-        console.error(error)
-      }
-    }
+    };
     getData();
   }, []);
 
@@ -108,29 +113,35 @@ function Section() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {allSections && allSections.map((item, index) => (
-                <StyledTableRow hover role="checkbox" tabIndex={-1} key={index}>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {item.year}
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {item.project_name}
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
-                    {item.project_scope}
-                  </TableCell>
-                  <TableCell>
-                    <IconButton>
-                      <EditIcon />
-                    </IconButton>
-                  </TableCell>
-                  <TableCell>
-                    <IconButton>
-                      <DeleteIcon />
-                    </IconButton>
-                  </TableCell>
-                </StyledTableRow>
-              ))}
+              {allSections &&
+                allSections.map((item, index) => (
+                  <StyledTableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={index}
+                  >
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.year}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.project_name}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.project_scope}
+                    </TableCell>
+                    <TableCell>
+                      <IconButton>
+                        <EditIcon />
+                      </IconButton>
+                    </TableCell>
+                    <TableCell>
+                      <IconButton>
+                        <DeleteIcon />
+                      </IconButton>
+                    </TableCell>
+                  </StyledTableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
@@ -144,29 +155,30 @@ function Section() {
           paddingBottom: "50px",
         }}
       >
-        {allSections && allSections.map((item, index) => (
-          <Box
-            sx={{
-              flex: 1,
-              position: "relative",
-              Width: "80%",
-              paddingLeft: "10%",
-              paddingRight: "10%",
-              paddingBottom: "20px",
-            }}
-          >
-            <Section2Card
-              ID={item.id}
-              ProjectName={item.project_name}
-              Year={item.year}
-              ProjectScope={item.project_scope}
-            />
-          </Box>
-        ))}
+        {allSections &&
+          allSections.map((item, index) => (
+            <Box
+              sx={{
+                flex: 1,
+                position: "relative",
+                Width: "80%",
+                paddingLeft: "10%",
+                paddingRight: "10%",
+                paddingBottom: "20px",
+              }}
+            >
+              <Section2Card
+                ID={item.id}
+                Section={item.section}
+                UserID={item.user_id}
+                ProjectName={item.project_name}
+                Year={item.year}
+                ProjectScope={item.project_scope}
+              />
+            </Box>
+          ))}
       </Box>
       <MobileBottomNav />
     </Box>
   );
 }
-
-export default Section;

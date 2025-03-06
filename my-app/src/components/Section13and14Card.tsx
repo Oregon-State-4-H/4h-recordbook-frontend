@@ -34,13 +34,14 @@ const bull = (
 
 interface CardProps {
   ID: string;
+  Section: number;
   Nickname: string;
   Year: string;
   RecognitionType: string;
   UserID: string;
 }
 
-export default function Section1Card({
+export default function Section13and14Card({
   ID,
   Nickname,
   Year,
