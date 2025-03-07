@@ -14,9 +14,13 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
+import ResumeDeleteButton from "../../../../components/ResumeTableDeleteButton";
 import EditIcon from "@mui/icons-material/Edit";
-import { fetchSectionData, Section10, SectionNumbers } from "../API/ResumeAPI";
+import {
+  fetchSectionData,
+  Section10,
+  SectionNumbers,
+} from "../../../../components/API/ResumeAPI";
 
 const Fields = [
   "Year",
@@ -153,9 +157,7 @@ export default function Section() {
                       </IconButton>
                     </TableCell>
                     <TableCell>
-                      <IconButton>
-                        <DeleteIcon />
-                      </IconButton>
+                      <ResumeDeleteButton id={item.id} />
                     </TableCell>
                   </StyledTableRow>
                 ))}

@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
+import ResumeCardDeleteButton from "./ResumeCardDeleteButton";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -160,13 +160,7 @@ export default function Section1Card({
                 >
                   Edit
                 </Button>
-                <Button
-                  sx={{ width: "50%" }}
-                  variant="outlined"
-                  startIcon={<DeleteIcon />}
-                >
-                  Delete
-                </Button>
+                <ResumeCardDeleteButton id={ID} />
               </CardActions>
             </Card>
           </Modal>
