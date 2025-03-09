@@ -178,11 +178,13 @@ export default function Section() {
               }}
             >
               <Section5Card
-                ID={item.id}
-                Section={item.section}
-                UserID={item.user_id}
-                Nickname={item.nickname}
-                Year={item.year}
+                id={item.id}
+                section={item.section}
+                user_id={item.user_id}
+                nickname={item.nickname}
+                year={item.year}
+                created={item.created}
+                updated={item.updated}
                 LeadershipRole={item.leadership_role}
                 HoursSpent={item.hours_spent}
                 NumPeopleReached={item.num_people_reached}

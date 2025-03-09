@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 
 function ResponsiveAppBar() {
   const router = useRouter();
-  const pathname = router.pathname
+  const pathname = router.asPath
     .replace("/Dashboard/", "")
     .replace("/", " ")
     .replace("/", " ")

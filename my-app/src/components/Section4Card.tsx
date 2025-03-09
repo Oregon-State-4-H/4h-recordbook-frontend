@@ -10,6 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import ResumeCardDeleteButton from "./ResumeCardDeleteButton";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
+import { Section4 } from "../components/API/ResumeAPI";
 
 const style = {
   position: "absolute",
@@ -32,25 +33,14 @@ const bull = (
   </Box>
 );
 
-interface CardProps {
-  ID: string;
-  Nickname: string;
-  Year: string;
-  ActivityKind: string;
-  Scope: string;
-  Level: string;
-  Section: number;
-  UserID: string;
-}
-
 export default function Section4Card({
-  ID,
-  Nickname,
-  Year,
-  ActivityKind,
-  Scope,
-  Level,
-}: CardProps) {
+  id,
+  nickname,
+  year,
+  activity_kind,
+  scope,
+  level,
+}: Section4) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -67,10 +57,10 @@ export default function Section4Card({
       >
         <CardContent>
           <Typography gutterBottom sx={{ fontSize: 14 }}>
-            {Year}
+            {year}
           </Typography>
           <Typography variant="h5" component="div">
-            {Nickname}
+            {nickname}
           </Typography>
         </CardContent>
         <CardActions>
@@ -104,28 +94,28 @@ export default function Section4Card({
               </IconButton>
               <CardContent sx={{ backgroundColor: "rgba(255,255,255,0.87)" }}>
                 <Typography gutterBottom sx={{ fontSize: 14 }}>
-                  {Year}
+                  {year}
                 </Typography>
                 <Typography variant="h5" component="div" marginBottom="20px">
-                  {Nickname}
+                  {nickname}
                 </Typography>
                 <Typography variant="body2" color="text.disabled">
                   Kind of Activity:
                 </Typography>
                 <Typography variant="body1" marginBottom="10px">
-                  {ActivityKind}
+                  {activity_kind}
                 </Typography>
                 <Typography variant="body2" color="text.disabled">
                   Scope:
                 </Typography>
                 <Typography variant="body1" marginBottom="10px">
-                  {Scope}
+                  {scope}
                 </Typography>
                 <Typography variant="body2" color="text.disabled">
                   Level:
                 </Typography>
                 <Typography variant="body1" marginBottom="10px">
-                  {Level}
+                  {level}
                 </Typography>
               </CardContent>
               <CardActions>
@@ -136,7 +126,7 @@ export default function Section4Card({
                 >
                   Edit
                 </Button>
-                <ResumeCardDeleteButton id={ID} />
+                <ResumeCardDeleteButton id={id} />
               </CardActions>
             </Card>
           </Modal>

@@ -10,6 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import ResumeCardDeleteButton from "./ResumeCardDeleteButton";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
+import { Section1 } from "../components/API/ResumeAPI";
 
 const style = {
   position: "absolute",
@@ -32,31 +33,17 @@ const bull = (
   </Box>
 );
 
-interface CardProps {
-  ID: string;
-  Nickname: string;
-  Section: number;
-  Year: string;
-  Grade: number;
-  ClubName: string;
-  NumInClub: number;
-  ClubLeader: string;
-  MeetingsHeld: number;
-  MeetingsAttended: number;
-  UserID: string;
-}
-
 export default function Section1Card({
-  ID,
-  Nickname,
-  Year,
-  Grade,
-  ClubName,
-  NumInClub,
-  ClubLeader,
-  MeetingsHeld,
-  MeetingsAttended,
-}: CardProps) {
+  id,
+  nickname,
+  year,
+  grade,
+  club_name,
+  num_in_club,
+  club_leader,
+  meetings_held,
+  meetings_attended,
+}: Section1) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -73,10 +60,10 @@ export default function Section1Card({
       >
         <CardContent>
           <Typography gutterBottom sx={{ fontSize: 14 }}>
-            {Year}
+            {year}
           </Typography>
           <Typography variant="h5" component="div">
-            {Nickname}
+            {nickname}
           </Typography>
         </CardContent>
         <CardActions>
@@ -110,46 +97,46 @@ export default function Section1Card({
               </IconButton>
               <CardContent sx={{ backgroundColor: "rgba(255,255,255,0.87)" }}>
                 <Typography gutterBottom sx={{ fontSize: 14 }}>
-                  {Year}
+                  {year}
                 </Typography>
                 <Typography variant="h5" component="div" marginBottom="20px">
-                  {Nickname}
+                  {nickname}
                 </Typography>
                 <Typography variant="body2" color="text.disabled">
                   Grade:
                 </Typography>
                 <Typography variant="body1" marginBottom="10px">
-                  {Grade}
+                  {grade}
                 </Typography>
                 <Typography variant="body2" color="text.disabled">
                   Name of Club/Group
                 </Typography>
                 <Typography variant="body1" marginBottom="10px">
-                  {ClubName}
+                  {club_name}
                 </Typography>
                 <Typography variant="body2" color="text.disabled">
                   Number in Club/Group
                 </Typography>
                 <Typography variant="body1" marginBottom="10px">
-                  {NumInClub}
+                  {num_in_club}
                 </Typography>
                 <Typography variant="body2" color="text.disabled">
                   Club Leader
                 </Typography>
                 <Typography variant="body1" marginBottom="10px">
-                  {ClubLeader}
+                  {club_leader}
                 </Typography>
                 <Typography variant="body2" color="text.disabled">
                   Meetings Held
                 </Typography>
                 <Typography variant="body1" marginBottom="10px">
-                  {MeetingsHeld}
+                  {meetings_held}
                 </Typography>
                 <Typography variant="body2" color="text.disabled">
                   Meetings Attended
                 </Typography>
                 <Typography variant="body1" marginBottom="10px">
-                  {MeetingsAttended}
+                  {meetings_attended}
                 </Typography>
               </CardContent>
               <CardActions>
@@ -160,7 +147,7 @@ export default function Section1Card({
                 >
                   Edit
                 </Button>
-                <ResumeCardDeleteButton id={ID} />
+                <ResumeCardDeleteButton id={id} />
               </CardActions>
             </Card>
           </Modal>

@@ -199,6 +199,21 @@ export interface Section14 {
     updated: string,
 }
 
+export type SectionAny = (Section1  | 
+    Section2  | 
+    Section3  | 
+    Section4  | 
+    Section5  |
+    Section6  | 
+    Section7  |
+    Section8  |
+    Section9  |
+    Section10 |
+    Section11 |
+    Section12 |
+    Section13 |
+    Section14)
+
 export type SectionData = (Section1  | 
                            Section2  | 
                            Section3  | 
@@ -271,6 +286,30 @@ export const deleteSection = async (sectionID: string) => {
                 return true;
             case 404:
                 throw new Error('Entry not found');
+            default:
+                throw new Error(`Error: status ${response.status}`)
+        }
+
+    }
+    catch (error) {
+        throw error;
+    }
+
+}
+
+export const createSection1 = async (section: string) => {
+
+    try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/section1`, {
+            method: 'POST',
+            credentials: 'include',
+            body: '{  "club_leader": "string","club_name": "string","grade": 0,"meetings_attended": 0,"meetings_held": 0,"nickname": "string","num_in_club": 0,"year": "string"}',
+        });
+        switch (response.status) {
+            case 204:
+                return true;
+            case 400:
+                throw new Error('Bad Request');
             default:
                 throw new Error(`Error: status ${response.status}`)
         }

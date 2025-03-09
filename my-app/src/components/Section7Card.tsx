@@ -10,6 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import ResumeCardDeleteButton from "./ResumeCardDeleteButton";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
+import { Section7 } from "../components/API/ResumeAPI";
 
 const style = {
   position: "absolute",

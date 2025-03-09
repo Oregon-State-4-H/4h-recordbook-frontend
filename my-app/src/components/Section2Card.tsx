@@ -10,6 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import ResumeCardDeleteButton from "./ResumeCardDeleteButton";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
+import { Section2 } from "../components/API/ResumeAPI";
 
 const style = {
   position: "absolute",
@@ -32,21 +33,12 @@ const bull = (
   </Box>
 );
 
-interface CardProps {
-  ID: string;
-  ProjectName: string;
-  Section: number;
-  Year: string;
-  ProjectScope: string;
-  UserID: string;
-}
-
 export default function Section2Card({
-  ID,
-  ProjectName,
-  Year,
-  ProjectScope,
-}: CardProps) {
+  id,
+  project_name,
+  year,
+  project_scope,
+}: Section2) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -63,10 +55,10 @@ export default function Section2Card({
       >
         <CardContent>
           <Typography gutterBottom sx={{ fontSize: 14 }}>
-            {Year}
+            {year}
           </Typography>
           <Typography variant="h5" component="div">
-            {ProjectName}
+            {project_name}
           </Typography>
         </CardContent>
         <CardActions>
@@ -100,19 +92,19 @@ export default function Section2Card({
               </IconButton>
               <CardContent sx={{ backgroundColor: "rgba(255,255,255,0.87)" }}>
                 <Typography gutterBottom sx={{ fontSize: 14 }}>
-                  {Year}
+                  {year}
                 </Typography>
                 <Typography variant="body2" color="text.disabled">
                   Project Name:
                 </Typography>
                 <Typography variant="h5" component="div" marginBottom="20px">
-                  {ProjectName}
+                  {project_name}
                 </Typography>
                 <Typography variant="body2" color="text.disabled">
                   Project Scope:
                 </Typography>
                 <Typography variant="body1" marginBottom="10px">
-                  {ProjectScope}
+                  {project_scope}
                 </Typography>
               </CardContent>
               <CardActions>
@@ -123,7 +115,7 @@ export default function Section2Card({
                 >
                   Edit
                 </Button>
-                <ResumeCardDeleteButton id={ID} />
+                <ResumeCardDeleteButton id={id} />
               </CardActions>
             </Card>
           </Modal>

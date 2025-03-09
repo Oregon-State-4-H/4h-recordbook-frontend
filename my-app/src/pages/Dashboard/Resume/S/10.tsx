@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import NavBarSignedIn from "../../../../components/NavbarSignedIn";
 import MobileBottomNav from "../../../../components/MobileBottomNav";
-import Section13and14Card from "../../../../components/Section13and14Card";
+import Section9and10Card from "../../../../components/Section9and10Card";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -11,17 +11,28 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import IconButton from "@mui/material/IconButton";
 import ResumeDeleteButton from "../../../../components/ResumeTableDeleteButton";
 import EditIcon from "@mui/icons-material/Edit";
 import {
   fetchSectionData,
-  Section13,
+  Section10,
   SectionNumbers,
 } from "../../../../components/API/ResumeAPI";
 
-const Fields = ["Year", "Nickname", "Recognition Type", "", ""];
+const Fields = [
+  "Year",
+  "Nickname",
+  "CommunicationType",
+  "Topic",
+  "TimesGiven",
+  "Location",
+  "AudienceSize",
+  "",
+  "",
+];
 
 const StyledTableRow = styled(TableRow)(({}) => ({
   "&:nth-of-type(odd)": {
@@ -43,13 +54,13 @@ const StyledTableRow = styled(TableRow)(({}) => ({
 }));
 
 export default function Section() {
-  let [allSections, setSections] = useState<Section13[]>([]);
+  let [allSections, setSections] = useState<Section10[]>([]);
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const section1Data = await fetchSectionData<Section13>(
-          SectionNumbers.Section13
+        const section1Data = await fetchSectionData<Section10>(
+          SectionNumbers.Section10
         );
         setSections(section1Data);
       } catch (error) {
@@ -82,7 +93,7 @@ export default function Section() {
           fontWeight: "bold",
         }}
       >
-        Section 13: 4-H Recognition
+        Section 10: Communications in Other Organizations
       </Typography>
       <Paper
         sx={{
@@ -126,7 +137,19 @@ export default function Section() {
                       {item.nickname}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {item.recognition_type}
+                      {item.communication_type}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.topic}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.times_given}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.location}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.audience_size}
                     </TableCell>
                     <TableCell>
                       <IconButton>
@@ -163,13 +186,19 @@ export default function Section() {
                 paddingBottom: "20px",
               }}
             >
-              <Section13and14Card
-                ID={item.id}
-                Section={item.section}
-                UserID={item.user_id}
-                Nickname={item.nickname}
-                Year={item.year}
-                RecognitionType={item.recognition_type}
+              <Section9and10Card
+                id={item.id}
+                section={item.section}
+                user_id={item.user_id}
+                nickname={item.nickname}
+                year={item.year}
+                created={item.created}
+                updated={item.updated}
+                CommunicationType={item.communication_type}
+                Topic={item.topic}
+                TimesGiven={item.times_given}
+                Location={item.location}
+                AudienceSize={item.audience_size}
               />
             </Box>
           ))}

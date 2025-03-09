@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import NavBarSignedIn from "../../../../components/NavbarSignedIn";
 import MobileBottomNav from "../../../../components/MobileBottomNav";
-import Section9and10Card from "../../../../components/Section9and10Card";
+import Section2Card from "../../../../components/Section2Card";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -17,22 +17,13 @@ import IconButton from "@mui/material/IconButton";
 import ResumeDeleteButton from "../../../../components/ResumeTableDeleteButton";
 import EditIcon from "@mui/icons-material/Edit";
 import {
+  deleteSection,
   fetchSectionData,
-  Section10,
+  Section2,
   SectionNumbers,
 } from "../../../../components/API/ResumeAPI";
 
-const Fields = [
-  "Year",
-  "Nickname",
-  "CommunicationType",
-  "Topic",
-  "TimesGiven",
-  "Location",
-  "AudienceSize",
-  "",
-  "",
-];
+const Fields = ["Year", "ProjectName", "ProjectScope", "", ""];
 
 const StyledTableRow = styled(TableRow)(({}) => ({
   "&:nth-of-type(odd)": {
@@ -54,13 +45,13 @@ const StyledTableRow = styled(TableRow)(({}) => ({
 }));
 
 export default function Section() {
-  let [allSections, setSections] = useState<Section10[]>([]);
+  let [allSections, setSections] = useState<Section2[]>([]);
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const section1Data = await fetchSectionData<Section10>(
-          SectionNumbers.Section10
+        const section1Data = await fetchSectionData<Section2>(
+          SectionNumbers.Section2
         );
         setSections(section1Data);
       } catch (error) {
@@ -93,7 +84,7 @@ export default function Section() {
           fontWeight: "bold",
         }}
       >
-        Section 10: Communications in Other Organizations
+        Section 2: 4-H Project/Program Summary
       </Typography>
       <Paper
         sx={{
@@ -134,22 +125,10 @@ export default function Section() {
                       {item.year}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {item.nickname}
+                      {item.project_name}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {item.communication_type}
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      {item.topic}
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      {item.times_given}
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      {item.location}
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      {item.audience_size}
+                      {item.project_scope}
                     </TableCell>
                     <TableCell>
                       <IconButton>
@@ -186,17 +165,15 @@ export default function Section() {
                 paddingBottom: "20px",
               }}
             >
-              <Section9and10Card
-                ID={item.id}
-                Section={item.section}
-                UserID={item.user_id}
-                Nickname={item.nickname}
-                Year={item.year}
-                CommunicationType={item.communication_type}
-                Topic={item.topic}
-                TimesGiven={item.times_given}
-                Location={item.location}
-                AudienceSize={item.audience_size}
+              <Section2Card
+                id={item.id}
+                section={item.section}
+                user_id={item.user_id}
+                project_name={item.project_name}
+                year={item.year}
+                project_scope={item.project_scope}
+                created={item.created}
+                updated={item.updated}
               />
             </Box>
           ))}

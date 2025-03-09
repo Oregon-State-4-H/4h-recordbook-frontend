@@ -179,14 +179,16 @@ export default function Section() {
               }}
             >
               <Section4Card
-                ID={item.id}
-                Section={item.section}
-                UserID={item.user_id}
-                Nickname={item.nickname}
-                Year={item.year}
-                ActivityKind={item.activity_kind}
-                Scope={item.scope}
-                Level={item.level}
+                id={item.id}
+                section={item.section}
+                user_id={item.user_id}
+                nickname={item.nickname}
+                year={item.year}
+                activity_kind={item.activity_kind}
+                scope={item.scope}
+                level={item.level}
+                created={item.created}
+                updated={item.updated}
               />
             </Box>
           ))}

@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import NavBarSignedIn from "../../../../components/NavbarSignedIn";
 import MobileBottomNav from "../../../../components/MobileBottomNav";
-import Section12Card from "../../../../components/Section12Card";
+import Section11Card from "../../../../components/Section11Card";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -18,16 +18,16 @@ import ResumeDeleteButton from "../../../../components/ResumeTableDeleteButton";
 import EditIcon from "@mui/icons-material/Edit";
 import {
   fetchSectionData,
-  Section12,
+  Section11,
   SectionNumbers,
 } from "../../../../components/API/ResumeAPI";
 
 const Fields = [
   "Year",
   "Nickname",
-  "Contest or Event",
-  "Recognition Received",
-  "Level",
+  "Event and Level",
+  "Exhibits or Division",
+  "Ribbon or Placings",
   "",
   "",
 ];
@@ -52,13 +52,13 @@ const StyledTableRow = styled(TableRow)(({}) => ({
 }));
 
 export default function Section() {
-  let [allSections, setSections] = useState<Section12[]>([]);
+  let [allSections, setSections] = useState<Section11[]>([]);
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const section1Data = await fetchSectionData<Section12>(
-          SectionNumbers.Section12
+        const section1Data = await fetchSectionData<Section11>(
+          SectionNumbers.Section11
         );
         setSections(section1Data);
       } catch (error) {
@@ -91,7 +91,7 @@ export default function Section() {
           fontWeight: "bold",
         }}
       >
-        Section 12: Participation in Other Contests/Competitions
+        Section 11: Participation in 4-H Contests/Competitions
       </Typography>
       <Paper
         sx={{
@@ -135,13 +135,13 @@ export default function Section() {
                       {item.nickname}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {item.contest_or_event}
+                      {item.event_and_level}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {item.recognition_received}
+                      {item.exhibits_or_division}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {item.level}
+                      {item.ribbon_or_placings}
                     </TableCell>
                     <TableCell>
                       <IconButton>
@@ -178,15 +178,17 @@ export default function Section() {
                 paddingBottom: "20px",
               }}
             >
-              <Section12Card
-                ID={item.id}
-                Section={item.section}
-                UserID={item.user_id}
-                Nickname={item.nickname}
-                Year={item.year}
-                ContestOrEvent={item.contest_or_event}
-                RecognitionReceived={item.recognition_received}
-                Level={item.level}
+              <Section11Card
+                id={item.id}
+                section={item.section}
+                user_id={item.user_id}
+                nickname={item.nickname}
+                year={item.year}
+                created={item.created}
+                updated={item.updated}
+                EventAndLevel={item.event_and_level}
+                ExhibitsOrDivision={item.exhibits_or_division}
+                RibbonOrPlacings={item.ribbon_or_placings}
               />
             </Box>
           ))}

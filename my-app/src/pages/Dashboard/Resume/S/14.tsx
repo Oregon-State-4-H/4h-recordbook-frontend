@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import NavBarSignedIn from "../../../../components/NavbarSignedIn";
 import MobileBottomNav from "../../../../components/MobileBottomNav";
-import Section11Card from "../../../../components/Section11Card";
+import Section13and14Card from "../../../../components/Section13and14Card";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -11,26 +11,17 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import IconButton from "@mui/material/IconButton";
 import ResumeDeleteButton from "../../../../components/ResumeTableDeleteButton";
 import EditIcon from "@mui/icons-material/Edit";
 import {
   fetchSectionData,
-  Section11,
+  Section14,
   SectionNumbers,
 } from "../../../../components/API/ResumeAPI";
 
-const Fields = [
-  "Year",
-  "Nickname",
-  "Event and Level",
-  "Exhibits or Division",
-  "Ribbon or Placings",
-  "",
-  "",
-];
+const Fields = ["Year", "Nickname", "Recognition Type", "", ""];
 
 const StyledTableRow = styled(TableRow)(({}) => ({
   "&:nth-of-type(odd)": {
@@ -52,13 +43,13 @@ const StyledTableRow = styled(TableRow)(({}) => ({
 }));
 
 export default function Section() {
-  let [allSections, setSections] = useState<Section11[]>([]);
+  let [allSections, setSections] = useState<Section14[]>([]);
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const section1Data = await fetchSectionData<Section11>(
-          SectionNumbers.Section11
+        const section1Data = await fetchSectionData<Section14>(
+          SectionNumbers.Section14
         );
         setSections(section1Data);
       } catch (error) {
@@ -91,7 +82,7 @@ export default function Section() {
           fontWeight: "bold",
         }}
       >
-        Section 11: Participation in 4-H Contests/Competitions
+        Section 14: Other Recognition
       </Typography>
       <Paper
         sx={{
@@ -135,13 +126,7 @@ export default function Section() {
                       {item.nickname}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {item.event_and_level}
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      {item.exhibits_or_division}
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      {item.ribbon_or_placings}
+                      {item.recognition_type}
                     </TableCell>
                     <TableCell>
                       <IconButton>
@@ -178,15 +163,15 @@ export default function Section() {
                 paddingBottom: "20px",
               }}
             >
-              <Section11Card
-                ID={item.id}
-                Section={item.section}
-                UserID={item.user_id}
-                Nickname={item.nickname}
-                Year={item.year}
-                EventAndLevel={item.event_and_level}
-                ExhibitsOrDivision={item.exhibits_or_division}
-                RibbonOrPlacings={item.ribbon_or_placings}
+              <Section13and14Card
+                id={item.id}
+                section={item.section}
+                user_id={item.user_id}
+                nickname={item.nickname}
+                year={item.year}
+                created={item.created}
+                updated={item.updated}
+                RecognitionType={item.recognition_type}
               />
             </Box>
           ))}

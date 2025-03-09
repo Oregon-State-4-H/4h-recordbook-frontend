@@ -12,7 +12,7 @@ interface DeleteButtonProps {
   id: string;
 }
 
-export default function DeleteResumeMobile({ id }: DeleteButtonProps) {
+export default function ResumeCardDeleteButton({ id }: DeleteButtonProps) {
   let [allSections, setSections] = useState<Section1[]>([]);
 
   const handleDelete = async (sectionID: string) => {

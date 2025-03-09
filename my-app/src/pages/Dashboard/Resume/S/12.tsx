@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import NavBarSignedIn from "../../../../components/NavbarSignedIn";
 import MobileBottomNav from "../../../../components/MobileBottomNav";
-import Section2Card from "../../../../components/Section2Card";
+import Section12Card from "../../../../components/Section12Card";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -17,13 +17,20 @@ import IconButton from "@mui/material/IconButton";
 import ResumeDeleteButton from "../../../../components/ResumeTableDeleteButton";
 import EditIcon from "@mui/icons-material/Edit";
 import {
-  deleteSection,
   fetchSectionData,
-  Section2,
+  Section12,
   SectionNumbers,
 } from "../../../../components/API/ResumeAPI";
 
-const Fields = ["Year", "ProjectName", "ProjectScope", "", ""];
+const Fields = [
+  "Year",
+  "Nickname",
+  "Contest or Event",
+  "Recognition Received",
+  "Level",
+  "",
+  "",
+];
 
 const StyledTableRow = styled(TableRow)(({}) => ({
   "&:nth-of-type(odd)": {
@@ -45,13 +52,13 @@ const StyledTableRow = styled(TableRow)(({}) => ({
 }));
 
 export default function Section() {
-  let [allSections, setSections] = useState<Section2[]>([]);
+  let [allSections, setSections] = useState<Section12[]>([]);
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const section1Data = await fetchSectionData<Section2>(
-          SectionNumbers.Section2
+        const section1Data = await fetchSectionData<Section12>(
+          SectionNumbers.Section12
         );
         setSections(section1Data);
       } catch (error) {
@@ -84,7 +91,7 @@ export default function Section() {
           fontWeight: "bold",
         }}
       >
-        Section 2: 4-H Project/Program Summary
+        Section 12: Participation in Other Contests/Competitions
       </Typography>
       <Paper
         sx={{
@@ -125,10 +132,16 @@ export default function Section() {
                       {item.year}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {item.project_name}
+                      {item.nickname}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {item.project_scope}
+                      {item.contest_or_event}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.recognition_received}
+                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.level}
                     </TableCell>
                     <TableCell>
                       <IconButton>
@@ -165,13 +178,17 @@ export default function Section() {
                 paddingBottom: "20px",
               }}
             >
-              <Section2Card
-                ID={item.id}
-                Section={item.section}
-                UserID={item.user_id}
-                ProjectName={item.project_name}
-                Year={item.year}
-                ProjectScope={item.project_scope}
+              <Section12Card
+                id={item.id}
+                section={item.section}
+                user_id={item.user_id}
+                nickname={item.nickname}
+                year={item.year}
+                created={item.created}
+                updated={item.updated}
+                ContestOrEvent={item.contest_or_event}
+                RecognitionReceived={item.recognition_received}
+                Level={item.level}
               />
             </Box>
           ))}

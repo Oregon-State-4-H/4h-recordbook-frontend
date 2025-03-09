@@ -1,0 +1,288 @@
+{
+    "section1": {
+        "title": "4-H Involvement",
+        "headers": [
+            { "name": "Year", "key": "year"}, 
+            { "name": "Nickname", "key": "nickname"}, 
+            { "name": "Grade", "key": "grade"}, 
+            { "name": "Name of Club/Group", "key": "clubName"}, 
+            { "name": "Number in Club/Group", "key": "numInClub"}, 
+            { "name": "Club/Group Leader or Advisor", "key": "clubLeader"}, 
+            { "name": "Meetings Held", "key": "meetingsHeld"}, 
+            { "name": "Meetings Attended", "key": "meetingsAttended"},
+            { "name" : "Edit", "key": "edit" },
+            { "name" : "Delete", "key": "delete" }
+        ],
+        "form": [
+            { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
+            { "type": "number", "label": "Grade", "name": "grade", "placeholder": "Ex. 9" },
+            { "type": "text", "label": "Name of Club/Group", "name": "clubName", "placeholder": "Ex. Oak Grove Clothing Club" },
+            { "type": "number", "label": "Number in Club/Group", "name": "numInClub", "placeholder": "Ex. 9" },
+            { "type": "text", "label": "Club/Group Leader or Advisor", "name": "clubLeader", "placeholder": "Ex. Mrs. L Jones" },
+            { "type": "number", "label": "Meetings Held", "name": "meetingsHeld", "placeholder": "Ex. 15" },
+            { "type": "number", "label": "Meetings Attended", "name": "meetingsAttended", "placeholder": "Ex. 12" }
+        ]
+    },
+    "section2": {
+        "title": "4-H Project/Program Summary",
+        "headers": [
+            { "name": "Year", "key": "year" },
+            { "name": "Name of Project/Unit", "key": "projectName" },
+            { "name": "Project Size or Scope", "key": "projectScope" },
+            { "name" : "Edit", "key": "edit" },
+            { "name" : "Delete", "key": "delete" }
+        ],
+        "form": [
+            { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
+            { "type": "text", "label": "Name of Project/Unit", "name": "projectName", "placeholder": "Ex. Clothing" },
+            { "type": "text", "label": "Project Size or Scope", "name": "projectScope", "placeholder": "Ex. 1 Apron, 2 dresses" }
+        ]
+    },
+    "section3": {
+        "title": "Participation in 4-H Activities/Events",
+        "headers": [
+            { "name" : "Year", "key": "year" },
+            { "name": "Nickname", "key": "nickname"}, 
+            { "name" : "Kind of Activity", "key": "activityKind" },
+            { "name" : "Things Learned", "key": "thingsLearned" },
+            { "name" : "Activity Level", "key": "level" },
+            { "name" : "Edit", "key": "edit" },
+            { "name" : "Delete", "key": "delete" }
+        ],
+        "form": [
+            { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
+            { "type": "text", "label": "Kind of Activity", "name": "activityKind", "placeholder": "Ex. Photography Clinic" },
+            { "type": "text", "label": "Things Learned", "name": "thingsLearned", "placeholder": "Ex. How to take better close-ups" },
+            { "type": "select", "label": "Activity Level", "name": "level", "options": [
+                { "label": "Local/Club", "value": "Local/Club" },
+                { "label": "County", "value": "County" },
+                { "label": "Regional", "value": "Regional" },
+                { "label": "State", "value": "State" },
+                { "label": "National", "value": "National" },
+                { "label": "International", "value": "International" }
+              ]
+            }
+        ]
+    },
+    "section4": {
+        "title": "Participation in Other Community Activities/Events",
+        "headers": [
+            { "name" : "Year", "key": "year" },
+            { "name": "Nickname", "key": "nickname"}, 
+            { "name" : "Kind of Activity", "key": "activityKind" },
+            { "name" : "What I did and Time Spent", "key": "scope" },
+            { "name" : "Activity Level", "key": "level" },
+            { "name" : "Edit", "key": "edit" },
+            { "name" : "Delete", "key": "delete" }
+        ],
+        "form": [
+            { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
+            { "type": "text", "label": "Kind of Activity", "name": "activityKind", "placeholder": "Ex. Soccer Team" },
+            { "type": "text", "label": "What I did and Time Spent", "name": "scope", "placeholder": "Ex. 80 practices, 20 games, 300 hourse" },
+            { "type": "select", "label": "Activity Level", "name": "level", "options": [
+                { "label": "Local/Club", "value": "Local/Club" },
+                { "label": "County", "value": "County" },
+                { "label": "Regional", "value": "Regional" },
+                { "label": "State", "value": "State" },
+                { "label": "National", "value": "National" },
+                { "label": "International", "value": "International" }
+              ]
+            }
+        ]
+    },
+    "section5": {
+        "title": "Leadership in 4-H",
+        "headers": [
+            { "name" : "Year", "key": "year" },
+            { "name": "Nickname", "key": "nickname"}, 
+            { "name" : "Leadership Title and Responsibilities", "key": "leadershipRole" },
+            { "name" : "Hours Spent", "key": "hoursSpent" },
+            { "name" : "Number of People Reached", "key": "numPeopleReached" },
+            { "name" : "Edit", "key": "edit" },
+            { "name" : "Delete", "key": "delete" }
+        ],
+        "form": [
+            { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
+            { "type": "text", "label": "Leadership Title and Responsibilities", "name": "leadershipRole", "placeholder": "Ex. Club President" },
+            { "type": "number", "label": "Hours Spent", "name": "hoursSpent", "placeholder": "Ex. 50" },
+            { "type": "number", "label": "Number of People Reached", "name": "numPeopleReached", "placeholder": "Ex. 100" }
+        ]
+    },
+    "section6": {
+        "title": "Leadership in Other Organizations",
+        "headers": [
+            { "name" : "Year", "key": "year" },
+            { "name": "Nickname", "key": "nickname"}, 
+            { "name" : "Name of Organization", "key": "organizationName" },
+            { "name" : "Leadership Title and Responsibilities", "key": "leadershipRole" },
+            { "name" : "Hours Spent", "key": "hoursSpent" },
+            { "name" : "Number of People Reached", "key": "numPeopleReached" },
+            { "name" : "Edit", "key": "edit" },
+            { "name" : "Delete", "key": "delete" }
+        ],
+        "form": [
+            { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
+            { "type": "text", "label": "Name of Organization", "name": "organizationName", "placeholder": "Ex. Student Council" },
+            { "type": "text", "label": "Leadership Title and Responsibilities", "name": "leadershipRole", "placeholder": "Ex. President" },
+            { "type": "number", "label": "Hours Spent", "name": "hoursSpent", "placeholder": "Ex. 50" },
+            { "type": "number", "label": "Number of People Reached", "name": "numPeopleReached", "placeholder": "Ex. 100" }
+        ]
+    },
+    "section7": {
+        "title": "Citizenship/Community Service in 4-H",
+        "headers": [
+            { "name" : "Year", "key": "year" },
+            { "name": "Nickname", "key": "nickname"}, 
+            { "name" : "What I Did as a Club Member and/or Individual", "key": "clubMemberActivities" },
+            { "name" : "Hours Spent", "key": "hoursSpent" },
+            { "name" : "Number of People Reached", "key": "numPeopleReached" },
+            { "name" : "Edit", "key": "edit" },
+            { "name" : "Delete", "key": "delete" }
+        ],
+        "form": [
+            { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
+            { "type": "text", "label": "What I Did as a Club Member and/or Individual", "name": "clubMemberActivities", "placeholder": "Ex. Collected 100 cans of food" },
+            { "type": "number", "label": "Hours Spent", "name": "hoursSpent", "placeholder": "Ex. 10" },
+            { "type": "number", "label": "Number of People Reached", "name": "numPeopleReached", "placeholder": "Ex. 100" }
+        ]
+    },
+    "section8": {
+        "title": "Other Citizenship/Community Service Participation",
+        "headers": [
+            { "name" : "Year", "key": "year" },
+            { "name": "Nickname", "key": "nickname"}, 
+            { "name" : "What I Did as an Individual or with Another Group", "key": "individualGroupActivities" },
+            { "name" : "Hours Spent", "key": "hoursSpent" },
+            { "name" : "Number of People Reached", "key": "numPeopleReached" },
+            { "name" : "Edit", "key": "edit" },
+            { "name" : "Delete", "key": "delete" }
+        ],
+        "form": [
+            { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
+            { "type": "text", "label": "What I Did as an Individual or with Another Group", "name": "individualGroupActivities", "placeholder": "Ex. Collected 100 cans of food" },
+            { "type": "number", "label": "Hours Spent", "name": "hoursSpent", "placeholder": "Ex. 10" },
+            { "type": "number", "label": "Number of People Reached", "name": "numPeopleReached", "placeholder": "Ex. 100" }
+        ]
+    },
+    "section9": {
+        "title": "Communications in 4-H",
+        "headers": [
+            { "name" : "Year", "key": "year" },
+            { "name": "Nickname", "key": "nickname"}, 
+            { "name" : "Type of Communication", "key": "communicationType" },
+            { "name" : "Topic", "key": "topic" },
+            { "name" : "Times Given", "key": "timesGiven" },
+            { "name" : "Location", "key": "location" },
+            { "name" : "Size of Audience", "key": "audienceSize" },
+            { "name" : "Edit", "key": "edit" },
+            { "name" : "Delete", "key": "delete" }
+        ],
+        "form": [
+            { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
+            { "type": "text", "label": "Type of Communication", "name": "communicationType", "placeholder": "Ex. Demonstration" },
+            { "type": "text", "label": "Topic", "name": "topic", "placeholder": "Ex. How to make a pie" },
+            { "type": "number", "label": "Times Given", "name": "timesGiven", "placeholder": "Ex. 3" },
+            { "type": "text", "label": "Location", "name": "location", "placeholder": "Ex. County Fair" },
+            { "type": "number", "label": "Size of Audience", "name": "audienceSize", "placeholder": "Ex. 50" }
+        ]
+    },
+    "section10": {
+        "title": "Communications in Other Organizations",
+        "headers": [
+            { "name" : "Year", "key": "year" },
+            { "name": "Nickname", "key": "nickname"}, 
+            { "name" : "Type of Communication", "key": "communicationType" },
+            { "name" : "Topic", "key": "topic" },
+            { "name" : "Times Given", "key": "timesGiven" },
+            { "name" : "Location", "key": "location" },
+            { "name" : "Size of Audience", "key": "audienceSize" },
+            { "name" : "Edit", "key": "edit" },
+            { "name" : "Delete", "key": "delete" }
+        ],
+        "form": [
+            { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
+            { "type": "text", "label": "Type of Communication", "name": "communicationType", "placeholder": "Ex. Speech" },
+            { "type": "text", "label": "Topic", "name": "topic", "placeholder": "Ex. Why we need a new playground" },
+            { "type": "number", "label": "Times Given", "name": "timesGiven", "placeholder": "Ex. 3" },
+            { "type": "text", "label": "Location", "name": "location", "placeholder": "Ex. School Assembly" },
+            { "type": "number", "label": "Size of Audience", "name": "audienceSize", "placeholder": "Ex. 500" }
+        ]
+    },
+    "section11": {
+        "title": "Participation in 4-H Contests/Competitions",
+        "headers": [
+            { "name" : "Year", "key": "year" },
+            { "name": "Nickname", "key": "nickname"}, 
+            { "name" : "Event and Level", "key": "eventAndLevel" },
+            { "name" : "Exhibits or Division Shown", "key": "exhibitsOrDivision" },
+            { "name" : "Ribbon(s) Received or Placings", "key": "ribbonOrPlacings" },
+            { "name" : "Edit", "key": "edit" },
+            { "name" : "Delete", "key": "delete" }
+        ],
+        "form": [
+            { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
+            { "type": "text", "label": "Event and Level", "name": "eventAndLevel", "placeholder": "Ex. County Fair" },
+            { "type": "text", "label": "Exhibits or Division Shown", "name": "exhibitsOrDivision", "placeholder": "Ex. 4-H Poster" },
+            { "type": "text", "label": "Ribbon(s) Received or Placings", "name": "ribbonOrPlacings", "placeholder": "Ex. Blue" }
+        ]
+    },
+    "section12": {
+        "title": "Participation in Other Contests/Competitions",
+        "headers": [
+            { "name" : "Year", "key": "year" },
+            { "name": "Nickname", "key": "nickname"}, 
+            { "name" : "Contest/Event", "key": "contestOrEvent" },
+            { "name" : "Recognition Received (if any)", "key": "recognitionReceived" },
+            { "name" : "Level of Contest/Event", "key": "level" },
+            { "name" : "Edit", "key": "edit" },
+            { "name" : "Delete", "key": "delete" }
+        ],
+        "form": [
+            { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
+            { "type": "text", "label": "Contest/Event", "name": "contestOrEvent", "placeholder": "Ex. Science Fair" },
+            { "type": "text", "label": "Recognition Received (if any)", "name": "recognitionReceived", "placeholder": "Ex. 1st Place" },
+            { "type": "select", "label": "Level of Contest/Event", "name": "level", "options": [
+                { "label": "Local/Club", "value": "Local/Club" },
+                { "label": "County", "value": "County" },
+                { "label": "Regional", "value": "Regional" },
+                { "label": "State", "value": "State" },
+                { "label": "National", "value": "National" },
+                { "label": "International", "value": "International" }
+              ]
+            }
+        ]
+    },
+    "section13": {
+        "title": "4-H Recognition",
+        "headers": [
+            { "name" : "Year", "key": "year" },
+            { "name": "Nickname", "key": "nickname"}, 
+            { "name" : "Type of Recognition", "key": "recognitionType" },
+            { "name" : "Edit", "key": "edit" },
+            { "name" : "Delete", "key": "delete" }
+        ],
+        "form": [
+            { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
+            { "type": "text", "label": "Type of Recognition", "name": "recognitionType", "placeholder": "Ex. 4-H Record Book" }
+        ]
+    },
+    "section14": {
+        "title": "Other Recognition",
+        "headers": [
+            { "name" : "Year", "key": "year" },
+            { "name": "Nickname", "key": "nickname"}, 
+            { "name" : "Type of Recognition", "key": "recognitionType" },
+            { "name" : "Edit", "key": "edit" },
+            { "name" : "Delete", "key": "delete" }
+        ],
+        "form": [
+            { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
+            { "type": "text", "label": "Type of Recognition", "name": "recognitionType", "placeholder": "Ex. Honor Roll" }
+        ]
+    },
+    "error": {
+        "title": "Error, No Such Section",
+        "headers": [],
+        "form": []
+    }
+}
