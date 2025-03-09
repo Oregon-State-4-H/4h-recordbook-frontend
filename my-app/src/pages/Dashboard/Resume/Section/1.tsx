@@ -81,7 +81,7 @@ export default function Section() {
         );
       }
     } catch (error) {
-      throw error;
+      console.error(error);
     }
   };
 
