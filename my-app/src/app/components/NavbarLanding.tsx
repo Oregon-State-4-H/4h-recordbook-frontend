@@ -1,3 +1,4 @@
+"use client"
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -10,8 +11,11 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Divider from "@mui/material/Divider";
+import { useUser } from "@auth0/nextjs-auth0"
 
-function ResponsiveAppBar() {
+export default function ResponsiveAppBar() {
+  const { user } = useUser();
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -33,6 +37,15 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Render nothing until after hydration to avoid mismatch
+  if (!mounted) return null;
 
   return (
     <AppBar
@@ -150,21 +163,39 @@ function ResponsiveAppBar() {
                 </a>
               </MenuItem>
               <Divider variant="middle" />
-              <MenuItem style={{ padding: "0px" }}>
-                <a
-                  style={{
-                    width: "100%",
-                    padding: "0px .5em 0px .5em",
-                    textDecoration: "none",
-                  }}
-                  href="/Auth"
-                  // sx={{ textAlign: "center" }}
-                >
-                  <Typography sx={{ textAlign: "center" }}>
-                    Sign Up/Sign In
-                  </Typography>
-                </a>
-              </MenuItem>
+              if(!user){
+                  <MenuItem style={{ padding: "0px" }}>
+                    <a
+                      style={{
+                        width: "100%",
+                        padding: "0px .5em 0px .5em",
+                        textDecoration: "none",
+                      }}
+                      href="/auth/login"
+                      // sx={{ textAlign: "center" }}
+                    >
+                      <Typography sx={{ textAlign: "center" }}>
+                        Sign Up/Sign In
+                      </Typography>
+                    </a>
+                  </MenuItem>
+              } else {
+                  <MenuItem style={{ padding: "0px" }}>
+                    <a
+                      style={{
+                        width: "100%",
+                        padding: "0px .5em 0px .5em",
+                        textDecoration: "none",
+                      }}
+                      href="/auth/logout"
+                    >
+                      <Typography sx={{ textAlign: "center" }}>
+                        Log Out
+                      </Typography>
+                    </a>
+                  </MenuItem>
+
+              }
             </Menu>
           </Box>
           <Typography
@@ -191,12 +222,27 @@ function ResponsiveAppBar() {
               display: { xs: "none", md: "flex", flexDirection: "row-reverse" },
             }}
           >
-            <Button
-              href="/Auth"
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              Sign Up/Sign In
-            </Button>
+            { user ? (
+              <>
+                <Button
+                  href="/auth/logout"
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  Log out, {user.name}
+                </Button>
+              </>
+
+            ) : (
+              <>
+                <Button
+                  href="/auth/login"
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  Sign Up/Sign In
+                </Button>
+              </>
+            )
+            }
             <Button
               href="https://record-books-docs.vercel.app/"
               sx={{ my: 2, color: "white", display: "block" }}
@@ -227,4 +273,3 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
