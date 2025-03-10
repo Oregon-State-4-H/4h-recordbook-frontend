@@ -15,12 +15,13 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
+            { "type": "text", "label": "Nickname", "name": "nickname", "placeholder": "Ex. Clothing Club" },
             { "type": "number", "label": "Grade", "name": "grade", "placeholder": "Ex. 9" },
-            { "type": "text", "label": "Name of Club/Group", "name": "clubName", "placeholder": "Ex. Oak Grove Clothing Club" },
-            { "type": "number", "label": "Number in Club/Group", "name": "numInClub", "placeholder": "Ex. 9" },
-            { "type": "text", "label": "Club/Group Leader or Advisor", "name": "clubLeader", "placeholder": "Ex. Mrs. L Jones" },
-            { "type": "number", "label": "Meetings Held", "name": "meetingsHeld", "placeholder": "Ex. 15" },
-            { "type": "number", "label": "Meetings Attended", "name": "meetingsAttended", "placeholder": "Ex. 12" }
+            { "type": "text", "label": "Name of Club/Group", "name": "club_name", "placeholder": "Ex. Oak Grove Clothing Club" },
+            { "type": "number", "label": "Number in Club/Group", "name": "num_in_club", "placeholder": "Ex. 9" },
+            { "type": "text", "label": "Club/Group Leader or Advisor", "name": "club_leader", "placeholder": "Ex. Mrs. L Jones" },
+            { "type": "number", "label": "Meetings Held", "name": "meetings_held", "placeholder": "Ex. 15" },
+            { "type": "number", "label": "Meetings Attended", "name": "meetings_attended", "placeholder": "Ex. 12" }
         ]
     },
     "section2": {
@@ -34,8 +35,9 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text", "label": "Name of Project/Unit", "name": "projectName", "placeholder": "Ex. Clothing" },
-            { "type": "text-long", "label": "Project Size or Scope", "name": "projectScope", "placeholder": "Ex. 1 Apron, 2 dresses" }
+            { "type": "text", "label": "Nickname", "name": "nickname", "placeholder": "Ex. Rabiit Project" },
+            { "type": "text", "label": "Name of Project/Unit", "name": "project_name", "placeholder": "Ex. Clothing" },
+            { "type": "text-long", "label": "Project Size or Scope", "name": "project_scope", "placeholder": "Ex. 1 Apron, 2 dresses" }
         ]
     },
     "section3": {
@@ -51,8 +53,9 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text", "label": "Kind of Activity", "name": "activityKind", "placeholder": "Ex. Photography Clinic" },
-            { "type": "text-long", "label": "Things Learned", "name": "thingsLearned", "placeholder": "Ex. How to take better close-ups" },
+            { "type": "text", "label": "Nickname", "name": "nickname", "placeholder": "Ex. Participation in 4H Summer Camp" },
+            { "type": "text", "label": "Kind of Activity", "name": "activity_kind", "placeholder": "Ex. Photography Clinic" },
+            { "type": "text-long", "label": "Things Learned", "name": "things_learned", "placeholder": "Ex. How to take better close-ups" },
             { "type": "select", "label": "Activity Level", "name": "level", "options": [
                 { "label": "Local/Club", "value": "Local/Club" },
                 { "label": "County", "value": "County" },
@@ -77,7 +80,8 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text", "label": "Kind of Activity", "name": "activityKind", "placeholder": "Ex. Soccer Team" },
+            { "type": "text", "label": "Nickname", "name": "nickname", "placeholder": "Ex. Book Club Participation" },
+            { "type": "text", "label": "Kind of Activity", "name": "activity_kind", "placeholder": "Ex. Soccer Team" },
             { "type": "text-long", "label": "What I did and Time Spent", "name": "scope", "placeholder": "Ex. 80 practices, 20 games, 300 hourse" },
             { "type": "select", "label": "Activity Level", "name": "level", "options": [
                 { "label": "Local/Club", "value": "Local/Club" },
@@ -103,9 +107,10 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text-long", "label": "Leadership Title and Responsibilities", "name": "leadershipRole", "placeholder": "Ex. Club President" },
-            { "type": "number", "label": "Hours Spent", "name": "hoursSpent", "placeholder": "Ex. 50" },
-            { "type": "number", "label": "Number of People Reached", "name": "numPeopleReached", "placeholder": "Ex. 100" }
+            { "type": "text", "label": "Nickname", "name": "nickname", "placeholder": "Ex. Mentoring Younger 4H Members" },
+            { "type": "text-long", "label": "Leadership Title and Responsibilities", "name": "leadership_role", "placeholder": "Ex. Club President" },
+            { "type": "number", "label": "Hours Spent", "name": "hours_spent", "placeholder": "Ex. 50" },
+            { "type": "number", "label": "Number of People Reached", "name": "num_people_reached", "placeholder": "Ex. 100" }
         ]
     },
     "section6": {
@@ -122,10 +127,11 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text", "label": "Name of Organization", "name": "organizationName", "placeholder": "Ex. Student Council" },
-            { "type": "text-long", "label": "Leadership Title and Responsibilities", "name": "leadershipRole", "placeholder": "Ex. President" },
-            { "type": "number", "label": "Hours Spent", "name": "hoursSpent", "placeholder": "Ex. 50" },
-            { "type": "number", "label": "Number of People Reached", "name": "numPeopleReached", "placeholder": "Ex. 100" }
+            { "type": "text", "label": "Nickname", "name": "nickname", "placeholder": "Ex. Project Manager in Student Council" },
+            { "type": "text", "label": "Name of Organization", "name": "organization_name", "placeholder": "Ex. Student Council" },
+            { "type": "text-long", "label": "Leadership Title and Responsibilities", "name": "leadership_role", "placeholder": "Ex. President" },
+            { "type": "number", "label": "Hours Spent", "name": "hours_spent", "placeholder": "Ex. 50" },
+            { "type": "number", "label": "Number of People Reached", "name": "num_people_reached", "placeholder": "Ex. 100" }
         ]
     },
     "section7": {
@@ -141,9 +147,10 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text-long", "label": "What I Did as a Club Member and/or Individual", "name": "clubMemberActivities", "placeholder": "Ex. Collected 100 cans of food" },
-            { "type": "number", "label": "Hours Spent", "name": "hoursSpent", "placeholder": "Ex. 10" },
-            { "type": "number", "label": "Number of People Reached", "name": "numPeopleReached", "placeholder": "Ex. 100" }
+            { "type": "text", "label": "Nickname", "name": "nickname", "placeholder": "Ex. Volunteering for 4H Event" },
+            { "type": "text-long", "label": "What I Did as a Club Member and/or Individual", "name": "club_member_activities", "placeholder": "Ex. Collected 100 cans of food" },
+            { "type": "number", "label": "Hours Spent", "name": "hours_spent", "placeholder": "Ex. 10" },
+            { "type": "number", "label": "Number of People Reached", "name": "num_people_reached", "placeholder": "Ex. 100" }
         ]
     },
     "section8": {
@@ -159,9 +166,10 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text-long", "label": "What I Did as an Individual or with Another Group", "name": "individualGroupActivities", "placeholder": "Ex. Collected 100 cans of food" },
-            { "type": "number", "label": "Hours Spent", "name": "hoursSpent", "placeholder": "Ex. 10" },
-            { "type": "number", "label": "Number of People Reached", "name": "numPeopleReached", "placeholder": "Ex. 100" }
+            { "type": "text", "label": "Nickname", "name": "nickname", "placeholder": "Ex. Volunteering at Community Garden" },
+            { "type": "text-long", "label": "What I Did as an Individual or with Another Group", "name": "individual_group_activities", "placeholder": "Ex. Collected 100 cans of food" },
+            { "type": "number", "label": "Hours Spent", "name": "hours_spent", "placeholder": "Ex. 10" },
+            { "type": "number", "label": "Number of People Reached", "name": "num_people_reached", "placeholder": "Ex. 100" }
         ]
     },
     "section9": {
@@ -179,11 +187,12 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text", "label": "Type of Communication", "name": "communicationType", "placeholder": "Ex. Demonstration" },
+            { "type": "text", "label": "Nickname", "name": "nickname", "placeholder": "Ex. Speech for Competition" },
+            { "type": "text", "label": "Type of Communication", "name": "communication_type", "placeholder": "Ex. Demonstration" },
             { "type": "text-long", "label": "Topic", "name": "topic", "placeholder": "Ex. How to make a pie" },
-            { "type": "number", "label": "Times Given", "name": "timesGiven", "placeholder": "Ex. 3" },
+            { "type": "number", "label": "Times Given", "name": "times_given", "placeholder": "Ex. 3" },
             { "type": "text-long", "label": "Location", "name": "location", "placeholder": "Ex. County Fair" },
-            { "type": "number", "label": "Size of Audience", "name": "audienceSize", "placeholder": "Ex. 50" }
+            { "type": "number", "label": "Size of Audience", "name": "audience_size", "placeholder": "Ex. 50" }
         ]
     },
     "section10": {
@@ -201,11 +210,12 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text", "label": "Type of Communication", "name": "communicationType", "placeholder": "Ex. Speech" },
+            { "type": "text", "label": "Nickname", "name": "nickname", "placeholder": "Ex. Speech for History Class" },
+            { "type": "text", "label": "Type of Communication", "name": "communication_type", "placeholder": "Ex. Speech" },
             { "type": "text-long", "label": "Topic", "name": "topic", "placeholder": "Ex. Why we need a new playground" },
-            { "type": "number", "label": "Times Given", "name": "timesGiven", "placeholder": "Ex. 3" },
+            { "type": "number", "label": "Times Given", "name": "times_given", "placeholder": "Ex. 3" },
             { "type": "text-long", "label": "Location", "name": "location", "placeholder": "Ex. School Assembly" },
-            { "type": "number", "label": "Size of Audience", "name": "audienceSize", "placeholder": "Ex. 500" }
+            { "type": "number", "label": "Size of Audience", "name": "audience_size", "placeholder": "Ex. 500" }
         ]
     },
     "section11": {
@@ -221,9 +231,10 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text-long", "label": "Event and Level", "name": "eventAndLevel", "placeholder": "Ex. County Fair" },
-            { "type": "text-long", "label": "Exhibits or Division Shown", "name": "exhibitsOrDivision", "placeholder": "Ex. 4-H Poster" },
-            { "type": "text-long", "label": "Ribbon(s) Received or Placings", "name": "ribbonOrPlacings", "placeholder": "Ex. Blue" }
+            { "type": "text", "label": "Nickname", "name": "nickname", "placeholder": "Ex. Food Preparation Contest, Pie Submission" },
+            { "type": "text-long", "label": "Event and Level", "name": "event_and_level", "placeholder": "Ex. County Fair" },
+            { "type": "text-long", "label": "Exhibits or Division Shown", "name": "exhibits_or_division", "placeholder": "Ex. 4-H Poster" },
+            { "type": "text-long", "label": "Ribbon(s) Received or Placings", "name": "ribbon_or_placings", "placeholder": "Ex. Blue" }
         ]
     },
     "section12": {
@@ -239,8 +250,9 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text", "label": "Contest/Event", "name": "contestOrEvent", "placeholder": "Ex. Science Fair" },
-            { "type": "text-long", "label": "Recognition Received (if any)", "name": "recognitionReceived", "placeholder": "Ex. 1st Place" },
+            { "type": "text", "label": "Nickname", "name": "nickname", "placeholder": "Ex. School Talent Show" },
+            { "type": "text", "label": "Contest/Event", "name": "contest_or_event", "placeholder": "Ex. Science Fair" },
+            { "type": "text-long", "label": "Recognition Received (if any)", "name": "recognition_received", "placeholder": "Ex. 1st Place" },
             { "type": "select", "label": "Level of Contest/Event", "name": "level", "options": [
                 { "label": "Local/Club", "value": "Local/Club" },
                 { "label": "County", "value": "County" },
@@ -263,7 +275,8 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text-long", "label": "Type of Recognition", "name": "recognitionType", "placeholder": "Ex. 4-H Record Book" }
+            { "type": "text", "label": "Nickname", "name": "nickname", "placeholder": "Ex. Citizenship Award from Volunteering" },
+            { "type": "text-long", "label": "Type of Recognition", "name": "recognition_type", "placeholder": "Ex. 4-H Record Book" }
         ]
     },
     "section14": {
@@ -277,7 +290,8 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text-long", "label": "Type of Recognition", "name": "recognitionType", "placeholder": "Ex. Honor Roll" }
+            { "type": "text", "label": "Nickname", "name": "nickname", "placeholder": "Ex. Honor Roll in 6th Grade" },
+            { "type": "text-long", "label": "Type of Recognition", "name": "recognition_type", "placeholder": "Ex. Honor Roll" }
         ]
     }
 }

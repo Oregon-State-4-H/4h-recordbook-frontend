@@ -6,10 +6,12 @@ import DynamicInput from "../DynamicInput";
 
 interface ResumeCreateModalProps {
   sectionNumber: string;
+  updateMap: (key: string, value: any) => void;
 }
 
 export default function ResumeCreateModalContent({
   sectionNumber,
+  updateMap,
 }: ResumeCreateModalProps) {
   var Fields: { [key: string]: any }[] = [];
 
@@ -21,7 +23,11 @@ export default function ResumeCreateModalContent({
           sx={{ backgroundColor: "rgba(255,255,255,0.87)", margin: "20px" }}
         >
           {Fields.map((item) => (
-            <DynamicInput inputFieldJSON={item} sectionNumber={sectionNumber} />
+            <DynamicInput
+              updateMap={updateMap}
+              inputFieldJSON={item}
+              sectionNumber={sectionNumber}
+            />
           ))}
         </CardContent>
       );
@@ -33,7 +39,11 @@ export default function ResumeCreateModalContent({
           sx={{ backgroundColor: "rgba(255,255,255,0.87)", margin: "20px" }}
         >
           {Fields.map((item) => (
-            <DynamicInput inputFieldJSON={item} sectionNumber={sectionNumber} />
+            <DynamicInput
+              updateMap={updateMap}
+              inputFieldJSON={item}
+              sectionNumber={sectionNumber}
+            />
           ))}
         </CardContent>
       );
@@ -45,7 +55,11 @@ export default function ResumeCreateModalContent({
           sx={{ backgroundColor: "rgba(255,255,255,0.87)", margin: "20px" }}
         >
           {Fields.map((item) => (
-            <DynamicInput inputFieldJSON={item} sectionNumber={sectionNumber} />
+            <DynamicInput
+              updateMap={updateMap}
+              inputFieldJSON={item}
+              sectionNumber={sectionNumber}
+            />
           ))}
         </CardContent>
       );
@@ -57,7 +71,11 @@ export default function ResumeCreateModalContent({
           sx={{ backgroundColor: "rgba(255,255,255,0.87)", margin: "20px" }}
         >
           {Fields.map((item) => (
-            <DynamicInput inputFieldJSON={item} sectionNumber={sectionNumber} />
+            <DynamicInput
+              updateMap={updateMap}
+              inputFieldJSON={item}
+              sectionNumber={sectionNumber}
+            />
           ))}
         </CardContent>
       );
@@ -69,7 +87,11 @@ export default function ResumeCreateModalContent({
           sx={{ backgroundColor: "rgba(255,255,255,0.87)", margin: "20px" }}
         >
           {Fields.map((item) => (
-            <DynamicInput inputFieldJSON={item} sectionNumber={sectionNumber} />
+            <DynamicInput
+              updateMap={updateMap}
+              inputFieldJSON={item}
+              sectionNumber={sectionNumber}
+            />
           ))}
         </CardContent>
       );
@@ -81,7 +103,11 @@ export default function ResumeCreateModalContent({
           sx={{ backgroundColor: "rgba(255,255,255,0.87)", margin: "20px" }}
         >
           {Fields.map((item) => (
-            <DynamicInput inputFieldJSON={item} sectionNumber={sectionNumber} />
+            <DynamicInput
+              updateMap={updateMap}
+              inputFieldJSON={item}
+              sectionNumber={sectionNumber}
+            />
           ))}
         </CardContent>
       );
@@ -93,7 +119,11 @@ export default function ResumeCreateModalContent({
           sx={{ backgroundColor: "rgba(255,255,255,0.87)", margin: "20px" }}
         >
           {Fields.map((item) => (
-            <DynamicInput inputFieldJSON={item} sectionNumber={sectionNumber} />
+            <DynamicInput
+              updateMap={updateMap}
+              inputFieldJSON={item}
+              sectionNumber={sectionNumber}
+            />
           ))}
         </CardContent>
       );
@@ -105,7 +135,11 @@ export default function ResumeCreateModalContent({
           sx={{ backgroundColor: "rgba(255,255,255,0.87)", margin: "20px" }}
         >
           {Fields.map((item) => (
-            <DynamicInput inputFieldJSON={item} sectionNumber={sectionNumber} />
+            <DynamicInput
+              updateMap={updateMap}
+              inputFieldJSON={item}
+              sectionNumber={sectionNumber}
+            />
           ))}
         </CardContent>
       );
@@ -117,7 +151,11 @@ export default function ResumeCreateModalContent({
           sx={{ backgroundColor: "rgba(255,255,255,0.87)", margin: "20px" }}
         >
           {Fields.map((item) => (
-            <DynamicInput inputFieldJSON={item} sectionNumber={sectionNumber} />
+            <DynamicInput
+              updateMap={updateMap}
+              inputFieldJSON={item}
+              sectionNumber={sectionNumber}
+            />
           ))}
         </CardContent>
       );
@@ -129,7 +167,11 @@ export default function ResumeCreateModalContent({
           sx={{ backgroundColor: "rgba(255,255,255,0.87)", margin: "20px" }}
         >
           {Fields.map((item) => (
-            <DynamicInput inputFieldJSON={item} sectionNumber={sectionNumber} />
+            <DynamicInput
+              updateMap={updateMap}
+              inputFieldJSON={item}
+              sectionNumber={sectionNumber}
+            />
           ))}
         </CardContent>
       );
@@ -141,7 +183,11 @@ export default function ResumeCreateModalContent({
           sx={{ backgroundColor: "rgba(255,255,255,0.87)", margin: "20px" }}
         >
           {Fields.map((item) => (
-            <DynamicInput inputFieldJSON={item} sectionNumber={sectionNumber} />
+            <DynamicInput
+              updateMap={updateMap}
+              inputFieldJSON={item}
+              sectionNumber={sectionNumber}
+            />
           ))}
         </CardContent>
       );
@@ -153,7 +199,11 @@ export default function ResumeCreateModalContent({
           sx={{ backgroundColor: "rgba(255,255,255,0.87)", margin: "20px" }}
         >
           {Fields.map((item) => (
-            <DynamicInput inputFieldJSON={item} sectionNumber={sectionNumber} />
+            <DynamicInput
+              updateMap={updateMap}
+              inputFieldJSON={item}
+              sectionNumber={sectionNumber}
+            />
           ))}
         </CardContent>
       );
@@ -165,7 +215,11 @@ export default function ResumeCreateModalContent({
           sx={{ backgroundColor: "rgba(255,255,255,0.87)", margin: "20px" }}
         >
           {Fields.map((item) => (
-            <DynamicInput inputFieldJSON={item} sectionNumber={sectionNumber} />
+            <DynamicInput
+              updateMap={updateMap}
+              inputFieldJSON={item}
+              sectionNumber={sectionNumber}
+            />
           ))}
         </CardContent>
       );
@@ -177,7 +231,11 @@ export default function ResumeCreateModalContent({
           sx={{ backgroundColor: "rgba(255,255,255,0.87)", margin: "20px" }}
         >
           {Fields.map((item) => (
-            <DynamicInput inputFieldJSON={item} sectionNumber={sectionNumber} />
+            <DynamicInput
+              updateMap={updateMap}
+              inputFieldJSON={item}
+              sectionNumber={sectionNumber}
+            />
           ))}
         </CardContent>
       );

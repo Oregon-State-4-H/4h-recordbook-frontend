@@ -9,16 +9,29 @@ import TextField from "@mui/material/TextField";
 interface DynamicInputProps {
   inputFieldJSON: { [key: string]: any };
   sectionNumber: string;
+  updateMap: (key: string, value: any) => void;
 }
 
 export default function ResumeCreateModalContent({
   inputFieldJSON,
   sectionNumber,
+  updateMap,
 }: DynamicInputProps) {
   const [selected, setSelected] = React.useState("");
 
   const handleSelect = (event: SelectChangeEvent) => {
     setSelected(event.target.value as string);
+    const { name, value } = event.target;
+    updateMap(name, value);
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type } = event.target;
+    if (type == "number") {
+      updateMap(name, parseFloat(value));
+    } else {
+      updateMap(name, value);
+    }
   };
 
   switch (inputFieldJSON.type) {
@@ -32,12 +45,14 @@ export default function ResumeCreateModalContent({
             autoComplete="off"
           >
             <TextField
+              className="formInput"
               fullWidth
+              name={inputFieldJSON.name}
               id={inputFieldJSON.label + "InputSection" + sectionNumber}
               label={inputFieldJSON.label}
               helperText={inputFieldJSON.placeholder}
               margin="normal"
-              onChange={(e) => setInputValue(e.target.value)}
+              onChange={handleInputChange}
             />
           </Box>
         );
@@ -53,13 +68,16 @@ export default function ResumeCreateModalContent({
             autoComplete="off"
           >
             <TextField
+              className="formInput"
               fullWidth
+              name={inputFieldJSON.name}
               id={inputFieldJSON.label + "InputSection" + sectionNumber}
               label={inputFieldJSON.label}
               multiline
               rows={6}
               helperText={inputFieldJSON.placeholder}
               margin="normal"
+              onChange={handleInputChange}
             />
           </Box>
         );
@@ -75,7 +93,9 @@ export default function ResumeCreateModalContent({
             autoComplete="off"
           >
             <TextField
+              className="formInput"
               fullWidth
+              name={inputFieldJSON.name}
               id={inputFieldJSON.label + "InputSection" + sectionNumber}
               label={inputFieldJSON.label}
               type="number"
@@ -86,6 +106,7 @@ export default function ResumeCreateModalContent({
                   shrink: true,
                 },
               }}
+              onChange={handleInputChange}
             />
           </Box>
         );
@@ -99,10 +120,14 @@ export default function ResumeCreateModalContent({
               {inputFieldJSON.label}
             </InputLabel>
             <Select
+              className="formInput"
               fullWidth
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={inputFieldJSON.label}
+              labelId={
+                inputFieldJSON.label + "InputSection" + sectionNumber + "Label"
+              }
+              name={inputFieldJSON.name}
+              id={inputFieldJSON.label + "InputSection" + sectionNumber}
+              value={selected}
               label={inputFieldJSON.label}
               onChange={handleSelect}
             >
