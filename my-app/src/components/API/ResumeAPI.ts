@@ -229,6 +229,63 @@ export type SectionData = (Section1  |
                            Section13 |
                            Section14)[]
 
+export function isS1(sectionData: SectionAny):sectionData is Section1 {
+    return (sectionData as Section1).section == 1;
+}
+
+export function isS2(sectionData: SectionAny):sectionData is Section2 {
+    return (sectionData as Section2).section == 2;
+}
+
+export function isS3(sectionData: SectionAny):sectionData is Section3 {
+    return (sectionData as Section3).section == 3;
+}
+
+export function isS4(sectionData: SectionAny):sectionData is Section4 {
+    return (sectionData as Section4).section == 4;
+}
+
+export function isS5(sectionData: SectionAny):sectionData is Section5 {
+    return (sectionData as Section5).section == 5;
+}
+
+export function isS6(sectionData: SectionAny):sectionData is Section6 {
+    return (sectionData as Section6).section == 6;
+}
+
+export function isS7(sectionData: SectionAny):sectionData is Section7 {
+    return (sectionData as Section7).section == 7;
+}
+
+export function isS8(sectionData: SectionAny):sectionData is Section8 {
+    return (sectionData as Section8).section == 8;
+}
+
+export function isS9(sectionData: SectionAny):sectionData is Section9 {
+    return (sectionData as Section9).section == 9;
+}
+
+export function isS10(sectionData: SectionAny):sectionData is Section10 {
+    return (sectionData as Section10).section == 10;
+}
+
+export function isS11(sectionData: SectionAny):sectionData is Section11 {
+    return (sectionData as Section11).section == 11;
+}
+
+export function isS12(sectionData: SectionAny):sectionData is Section12 {
+    return (sectionData as Section12).section == 12;
+}
+
+export function isS13(sectionData: SectionAny):sectionData is Section13 {
+    return (sectionData as Section13).section == 13;
+}
+
+export function isS14(sectionData: SectionAny):sectionData is Section14 {
+    return (sectionData as Section14).section == 14;
+}
+
+
 export const fetchSectionData = async <T> (section: string): Promise<T[]> => {
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${section}`, {

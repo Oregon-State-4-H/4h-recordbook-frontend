@@ -10,8 +10,8 @@
             { "name": "Club/Group Leader or Advisor", "key": "clubLeader"}, 
             { "name": "Meetings Held", "key": "meetingsHeld"}, 
             { "name": "Meetings Attended", "key": "meetingsAttended"},
-            { "name" : "Edit", "key": "edit" },
-            { "name" : "Delete", "key": "delete" }
+            { "name" : "", "key": "" },
+            { "name" : "", "key": "" }
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
@@ -29,8 +29,8 @@
             { "name": "Year", "key": "year" },
             { "name": "Name of Project/Unit", "key": "projectName" },
             { "name": "Project Size or Scope", "key": "projectScope" },
-            { "name" : "Edit", "key": "edit" },
-            { "name" : "Delete", "key": "delete" }
+            { "name" : "", "key": "" },
+            { "name" : "", "key": "" }
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
@@ -46,8 +46,8 @@
             { "name" : "Kind of Activity", "key": "activityKind" },
             { "name" : "Things Learned", "key": "thingsLearned" },
             { "name" : "Activity Level", "key": "level" },
-            { "name" : "Edit", "key": "edit" },
-            { "name" : "Delete", "key": "delete" }
+            { "name" : "", "key": "" },
+            { "name" : "", "key": "" }
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
@@ -72,8 +72,8 @@
             { "name" : "Kind of Activity", "key": "activityKind" },
             { "name" : "What I did and Time Spent", "key": "scope" },
             { "name" : "Activity Level", "key": "level" },
-            { "name" : "Edit", "key": "edit" },
-            { "name" : "Delete", "key": "delete" }
+            { "name" : "", "key": "" },
+            { "name" : "", "key": "" }
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
@@ -98,8 +98,8 @@
             { "name" : "Leadership Title and Responsibilities", "key": "leadershipRole" },
             { "name" : "Hours Spent", "key": "hoursSpent" },
             { "name" : "Number of People Reached", "key": "numPeopleReached" },
-            { "name" : "Edit", "key": "edit" },
-            { "name" : "Delete", "key": "delete" }
+            { "name" : "", "key": "" },
+            { "name" : "", "key": "" }
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
@@ -117,8 +117,8 @@
             { "name" : "Leadership Title and Responsibilities", "key": "leadershipRole" },
             { "name" : "Hours Spent", "key": "hoursSpent" },
             { "name" : "Number of People Reached", "key": "numPeopleReached" },
-            { "name" : "Edit", "key": "edit" },
-            { "name" : "Delete", "key": "delete" }
+            { "name" : "", "key": "" },
+            { "name" : "", "key": "" }
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
@@ -136,8 +136,8 @@
             { "name" : "What I Did as a Club Member and/or Individual", "key": "clubMemberActivities" },
             { "name" : "Hours Spent", "key": "hoursSpent" },
             { "name" : "Number of People Reached", "key": "numPeopleReached" },
-            { "name" : "Edit", "key": "edit" },
-            { "name" : "Delete", "key": "delete" }
+            { "name" : "", "key": "" },
+            { "name" : "", "key": "" }
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
@@ -154,8 +154,8 @@
             { "name" : "What I Did as an Individual or with Another Group", "key": "individualGroupActivities" },
             { "name" : "Hours Spent", "key": "hoursSpent" },
             { "name" : "Number of People Reached", "key": "numPeopleReached" },
-            { "name" : "Edit", "key": "edit" },
-            { "name" : "Delete", "key": "delete" }
+            { "name" : "", "key": "" },
+            { "name" : "", "key": "" }
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
@@ -174,8 +174,8 @@
             { "name" : "Times Given", "key": "timesGiven" },
             { "name" : "Location", "key": "location" },
             { "name" : "Size of Audience", "key": "audienceSize" },
-            { "name" : "Edit", "key": "edit" },
-            { "name" : "Delete", "key": "delete" }
+            { "name" : "", "key": "" },
+            { "name" : "", "key": "" }
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
@@ -196,8 +196,8 @@
             { "name" : "Times Given", "key": "timesGiven" },
             { "name" : "Location", "key": "location" },
             { "name" : "Size of Audience", "key": "audienceSize" },
-            { "name" : "Edit", "key": "edit" },
-            { "name" : "Delete", "key": "delete" }
+            { "name" : "", "key": "" },
+            { "name" : "", "key": "" }
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
@@ -216,8 +216,8 @@
             { "name" : "Event and Level", "key": "eventAndLevel" },
             { "name" : "Exhibits or Division Shown", "key": "exhibitsOrDivision" },
             { "name" : "Ribbon(s) Received or Placings", "key": "ribbonOrPlacings" },
-            { "name" : "Edit", "key": "edit" },
-            { "name" : "Delete", "key": "delete" }
+            { "name" : "", "key": "" },
+            { "name" : "", "key": "" }
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
@@ -234,8 +234,8 @@
             { "name" : "Contest/Event", "key": "contestOrEvent" },
             { "name" : "Recognition Received (if any)", "key": "recognitionReceived" },
             { "name" : "Level of Contest/Event", "key": "level" },
-            { "name" : "Edit", "key": "edit" },
-            { "name" : "Delete", "key": "delete" }
+            { "name" : "", "key": "" },
+            { "name" : "", "key": "" }
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
@@ -258,8 +258,8 @@
             { "name" : "Year", "key": "year" },
             { "name": "Nickname", "key": "nickname"}, 
             { "name" : "Type of Recognition", "key": "recognitionType" },
-            { "name" : "Edit", "key": "edit" },
-            { "name" : "Delete", "key": "delete" }
+            { "name" : "", "key": "" },
+            { "name" : "", "key": "" }
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
@@ -272,8 +272,8 @@
             { "name" : "Year", "key": "year" },
             { "name": "Nickname", "key": "nickname"}, 
             { "name" : "Type of Recognition", "key": "recognitionType" },
-            { "name" : "Edit", "key": "edit" },
-            { "name" : "Delete", "key": "delete" }
+            { "name" : "", "key": "" },
+            { "name" : "", "key": "" }
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
