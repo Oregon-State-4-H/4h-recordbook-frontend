@@ -20,7 +20,7 @@ import {
   isS12,
   isS13,
   isS14,
-} from "../API/ResumeAPI";
+} from "../../API/ResumeAPI";
 
 interface ResumeRowProps {
   index: number;

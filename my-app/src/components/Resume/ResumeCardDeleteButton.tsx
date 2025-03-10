@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
-import {
-  deleteSection,
-  fetchSectionData,
-  Section1,
-  SectionNumbers,
-} from "./API/ResumeAPI";
+import { deleteSection, Section1 } from "../../API/ResumeAPI";
 
 interface DeleteButtonProps {
   id: string;

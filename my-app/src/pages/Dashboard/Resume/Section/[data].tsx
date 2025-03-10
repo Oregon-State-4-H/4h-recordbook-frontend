@@ -13,11 +13,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import ResumeTableRow from "../../../../components/Resume/ResumeTableRow";
+import ResumeCard from "../../../../components/Resume/ResumeCard";
 import sectionOutline from "./sectionOutline.json";
-import {
-  fetchSectionData,
-  SectionAny,
-} from "../../../../components/API/ResumeAPI";
+import { fetchSectionData, SectionAny } from "../../../../API/ResumeAPI";
 
 export default function Section() {
   const router = useRouter();
@@ -206,7 +204,24 @@ export default function Section() {
           flexDirection: "column",
           paddingBottom: "50px",
         }}
-      ></Box>
+      >
+        {allSections &&
+          allSections.length > 0 &&
+          allSections.map((item, index) => (
+            <Box
+              sx={{
+                flex: 1,
+                position: "relative",
+                Width: "80%",
+                paddingLeft: "10%",
+                paddingRight: "10%",
+                paddingBottom: "20px",
+              }}
+            >
+              <ResumeCard resumeEntry={item} />
+            </Box>
+          ))}
+      </Box>
       <MobileBottomNav />
     </Box>
   );

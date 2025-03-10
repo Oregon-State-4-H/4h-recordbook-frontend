@@ -12,7 +12,7 @@ import {
   fetchSectionData,
   Section1,
   SectionNumbers,
-} from "./API/ResumeAPI";
+} from "../API/ResumeAPI";
 
 interface SectionProps {
   ID: string;

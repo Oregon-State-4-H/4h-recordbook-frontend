@@ -2,45 +2,21 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import IconButton from "@mui/material/IconButton";
 import ResumeCardDeleteButton from "./ResumeCardDeleteButton";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
-import { Section3 } from "../components/API/ResumeAPI";
+import { SectionAny } from "../../API/ResumeAPI";
+import ResumeCardPreviewContent from "./ResumeCardPreviewContent";
+import ResumeCardModalContent from "./ResumeCardModalContent";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+interface ResumeCardProps {
+  resumeEntry: SectionAny;
+}
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
-
-export default function Section3Card({
-  id,
-  nickname,
-  year,
-  activity_kind,
-  things_learned,
-  level,
-}: Section3) {
+export default function ResumeCard({ resumeEntry }: ResumeCardProps) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -55,14 +31,7 @@ export default function Section3Card({
           p: 4,
         }}
       >
-        <CardContent>
-          <Typography gutterBottom sx={{ fontSize: 14 }}>
-            {year}
-          </Typography>
-          <Typography variant="h5" component="div">
-            {nickname}
-          </Typography>
-        </CardContent>
+        <ResumeCardPreviewContent resumeEntry={resumeEntry} />
         <CardActions>
           <Button onClick={handleOpen}>View Details</Button>
           <Modal
@@ -92,32 +61,7 @@ export default function Section3Card({
               >
                 <CloseIcon />
               </IconButton>
-              <CardContent sx={{ backgroundColor: "rgba(255,255,255,0.87)" }}>
-                <Typography gutterBottom sx={{ fontSize: 14 }}>
-                  {year}
-                </Typography>
-                <Typography variant="h5" component="div" marginBottom="20px">
-                  {nickname}
-                </Typography>
-                <Typography variant="body2" color="text.disabled">
-                  Kind of Activity:
-                </Typography>
-                <Typography variant="body1" marginBottom="10px">
-                  {activity_kind}
-                </Typography>
-                <Typography variant="body2" color="text.disabled">
-                  Things Learned:
-                </Typography>
-                <Typography variant="body1" marginBottom="10px">
-                  {things_learned}
-                </Typography>
-                <Typography variant="body2" color="text.disabled">
-                  Level:
-                </Typography>
-                <Typography variant="body1" marginBottom="10px">
-                  {level}
-                </Typography>
-              </CardContent>
+              <ResumeCardModalContent resumeEntry={resumeEntry} />
               <CardActions>
                 <Button
                   sx={{ width: "50%" }}
@@ -126,7 +70,7 @@ export default function Section3Card({
                 >
                   Edit
                 </Button>
-                <ResumeCardDeleteButton id={id} />
+                <ResumeCardDeleteButton id={resumeEntry.id} />
               </CardActions>
             </Card>
           </Modal>
