@@ -32,7 +32,7 @@ const theme = createTheme({
       paper: "#339966",
     },
     text: {
-      secondary: "rgba(255,255,255,0.87)",
+      secondary: "rgba(0,0,0,1)",
       primary: "rgba(0,0,0,0.87)",
       disabled: "rgba(0, 0, 0, 0.6)",
     },

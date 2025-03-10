@@ -23,7 +23,9 @@ interface ResumeRowProps {
   resumeEntry: SectionAny;
 }
 
-export default function ResumeTableCells({ resumeEntry }: ResumeRowProps) {
+export default function ResumeCardModalContent({
+  resumeEntry,
+}: ResumeRowProps) {
   switch (resumeEntry.section) {
     case 1:
       if (isS1(resumeEntry)) {

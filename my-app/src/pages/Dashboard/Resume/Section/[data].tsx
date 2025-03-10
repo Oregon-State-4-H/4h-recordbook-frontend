@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Box from "@mui/material/Box";
 import NavBarSignedIn from "../../../../components/NavbarSignedIn";
 import MobileBottomNav from "../../../../components/MobileBottomNav";
-import ResumeCreate1 from "../../../../components/Resume/ResumeCreate1";
+import ResumeCreate from "../../../../components/Resume/ResumeCreate";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -14,7 +14,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import ResumeTableRow from "../../../../components/Resume/ResumeTableRow";
 import ResumeCard from "../../../../components/Resume/ResumeCard";
-import sectionOutline from "./sectionOutline.json";
+import sectionOutline from "./SectionOutline.json";
 import { fetchSectionData, SectionAny } from "../../../../API/ResumeAPI";
 
 export default function Section() {
@@ -158,7 +158,25 @@ export default function Section() {
       >
         {Title}
       </Typography>
-      <ResumeCreate1 />
+      <Box
+        sx={{
+          width: "90%",
+          marginLeft: "5%",
+          marginRight: "5%",
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
+        {/* first box is placeholder for component that will have preview and download resume pdf */}
+        <Box
+          sx={{
+            width: "50%",
+            margin: "0px",
+            padding: "0px",
+          }}
+        ></Box>
+        <ResumeCreate sectionNumber={sectionnumber} />
+      </Box>
       <Paper
         sx={{
           width: "90%",
@@ -178,8 +196,7 @@ export default function Section() {
                   <TableCell
                     key={index}
                     align="right"
-                    style={{ minWidth: 0.5 / Fields.length }}
-                    sx={{ textAlign: "center" }}
+                    sx={{ textAlign: "center", minWidth: 0.5 / Fields.length }}
                   >
                     {item.name}
                   </TableCell>

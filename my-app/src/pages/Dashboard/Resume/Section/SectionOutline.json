@@ -35,7 +35,7 @@
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
             { "type": "text", "label": "Name of Project/Unit", "name": "projectName", "placeholder": "Ex. Clothing" },
-            { "type": "text", "label": "Project Size or Scope", "name": "projectScope", "placeholder": "Ex. 1 Apron, 2 dresses" }
+            { "type": "text-long", "label": "Project Size or Scope", "name": "projectScope", "placeholder": "Ex. 1 Apron, 2 dresses" }
         ]
     },
     "section3": {
@@ -52,7 +52,7 @@
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
             { "type": "text", "label": "Kind of Activity", "name": "activityKind", "placeholder": "Ex. Photography Clinic" },
-            { "type": "text", "label": "Things Learned", "name": "thingsLearned", "placeholder": "Ex. How to take better close-ups" },
+            { "type": "text-long", "label": "Things Learned", "name": "thingsLearned", "placeholder": "Ex. How to take better close-ups" },
             { "type": "select", "label": "Activity Level", "name": "level", "options": [
                 { "label": "Local/Club", "value": "Local/Club" },
                 { "label": "County", "value": "County" },
@@ -78,7 +78,7 @@
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
             { "type": "text", "label": "Kind of Activity", "name": "activityKind", "placeholder": "Ex. Soccer Team" },
-            { "type": "text", "label": "What I did and Time Spent", "name": "scope", "placeholder": "Ex. 80 practices, 20 games, 300 hourse" },
+            { "type": "text-long", "label": "What I did and Time Spent", "name": "scope", "placeholder": "Ex. 80 practices, 20 games, 300 hourse" },
             { "type": "select", "label": "Activity Level", "name": "level", "options": [
                 { "label": "Local/Club", "value": "Local/Club" },
                 { "label": "County", "value": "County" },
@@ -103,7 +103,7 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text", "label": "Leadership Title and Responsibilities", "name": "leadershipRole", "placeholder": "Ex. Club President" },
+            { "type": "text-long", "label": "Leadership Title and Responsibilities", "name": "leadershipRole", "placeholder": "Ex. Club President" },
             { "type": "number", "label": "Hours Spent", "name": "hoursSpent", "placeholder": "Ex. 50" },
             { "type": "number", "label": "Number of People Reached", "name": "numPeopleReached", "placeholder": "Ex. 100" }
         ]
@@ -123,7 +123,7 @@
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
             { "type": "text", "label": "Name of Organization", "name": "organizationName", "placeholder": "Ex. Student Council" },
-            { "type": "text", "label": "Leadership Title and Responsibilities", "name": "leadershipRole", "placeholder": "Ex. President" },
+            { "type": "text-long", "label": "Leadership Title and Responsibilities", "name": "leadershipRole", "placeholder": "Ex. President" },
             { "type": "number", "label": "Hours Spent", "name": "hoursSpent", "placeholder": "Ex. 50" },
             { "type": "number", "label": "Number of People Reached", "name": "numPeopleReached", "placeholder": "Ex. 100" }
         ]
@@ -141,7 +141,7 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text", "label": "What I Did as a Club Member and/or Individual", "name": "clubMemberActivities", "placeholder": "Ex. Collected 100 cans of food" },
+            { "type": "text-long", "label": "What I Did as a Club Member and/or Individual", "name": "clubMemberActivities", "placeholder": "Ex. Collected 100 cans of food" },
             { "type": "number", "label": "Hours Spent", "name": "hoursSpent", "placeholder": "Ex. 10" },
             { "type": "number", "label": "Number of People Reached", "name": "numPeopleReached", "placeholder": "Ex. 100" }
         ]
@@ -159,7 +159,7 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text", "label": "What I Did as an Individual or with Another Group", "name": "individualGroupActivities", "placeholder": "Ex. Collected 100 cans of food" },
+            { "type": "text-long", "label": "What I Did as an Individual or with Another Group", "name": "individualGroupActivities", "placeholder": "Ex. Collected 100 cans of food" },
             { "type": "number", "label": "Hours Spent", "name": "hoursSpent", "placeholder": "Ex. 10" },
             { "type": "number", "label": "Number of People Reached", "name": "numPeopleReached", "placeholder": "Ex. 100" }
         ]
@@ -180,9 +180,9 @@
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
             { "type": "text", "label": "Type of Communication", "name": "communicationType", "placeholder": "Ex. Demonstration" },
-            { "type": "text", "label": "Topic", "name": "topic", "placeholder": "Ex. How to make a pie" },
+            { "type": "text-long", "label": "Topic", "name": "topic", "placeholder": "Ex. How to make a pie" },
             { "type": "number", "label": "Times Given", "name": "timesGiven", "placeholder": "Ex. 3" },
-            { "type": "text", "label": "Location", "name": "location", "placeholder": "Ex. County Fair" },
+            { "type": "text-long", "label": "Location", "name": "location", "placeholder": "Ex. County Fair" },
             { "type": "number", "label": "Size of Audience", "name": "audienceSize", "placeholder": "Ex. 50" }
         ]
     },
@@ -202,9 +202,9 @@
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
             { "type": "text", "label": "Type of Communication", "name": "communicationType", "placeholder": "Ex. Speech" },
-            { "type": "text", "label": "Topic", "name": "topic", "placeholder": "Ex. Why we need a new playground" },
+            { "type": "text-long", "label": "Topic", "name": "topic", "placeholder": "Ex. Why we need a new playground" },
             { "type": "number", "label": "Times Given", "name": "timesGiven", "placeholder": "Ex. 3" },
-            { "type": "text", "label": "Location", "name": "location", "placeholder": "Ex. School Assembly" },
+            { "type": "text-long", "label": "Location", "name": "location", "placeholder": "Ex. School Assembly" },
             { "type": "number", "label": "Size of Audience", "name": "audienceSize", "placeholder": "Ex. 500" }
         ]
     },
@@ -221,9 +221,9 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text", "label": "Event and Level", "name": "eventAndLevel", "placeholder": "Ex. County Fair" },
-            { "type": "text", "label": "Exhibits or Division Shown", "name": "exhibitsOrDivision", "placeholder": "Ex. 4-H Poster" },
-            { "type": "text", "label": "Ribbon(s) Received or Placings", "name": "ribbonOrPlacings", "placeholder": "Ex. Blue" }
+            { "type": "text-long", "label": "Event and Level", "name": "eventAndLevel", "placeholder": "Ex. County Fair" },
+            { "type": "text-long", "label": "Exhibits or Division Shown", "name": "exhibitsOrDivision", "placeholder": "Ex. 4-H Poster" },
+            { "type": "text-long", "label": "Ribbon(s) Received or Placings", "name": "ribbonOrPlacings", "placeholder": "Ex. Blue" }
         ]
     },
     "section12": {
@@ -240,7 +240,7 @@
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
             { "type": "text", "label": "Contest/Event", "name": "contestOrEvent", "placeholder": "Ex. Science Fair" },
-            { "type": "text", "label": "Recognition Received (if any)", "name": "recognitionReceived", "placeholder": "Ex. 1st Place" },
+            { "type": "text-long", "label": "Recognition Received (if any)", "name": "recognitionReceived", "placeholder": "Ex. 1st Place" },
             { "type": "select", "label": "Level of Contest/Event", "name": "level", "options": [
                 { "label": "Local/Club", "value": "Local/Club" },
                 { "label": "County", "value": "County" },
@@ -263,7 +263,7 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text", "label": "Type of Recognition", "name": "recognitionType", "placeholder": "Ex. 4-H Record Book" }
+            { "type": "text-long", "label": "Type of Recognition", "name": "recognitionType", "placeholder": "Ex. 4-H Record Book" }
         ]
     },
     "section14": {
@@ -277,12 +277,7 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "placeholder": "Ex. 2016-17" },
-            { "type": "text", "label": "Type of Recognition", "name": "recognitionType", "placeholder": "Ex. Honor Roll" }
+            { "type": "text-long", "label": "Type of Recognition", "name": "recognitionType", "placeholder": "Ex. Honor Roll" }
         ]
-    },
-    "error": {
-        "title": "Error, No Such Section",
-        "headers": [],
-        "form": []
     }
 }

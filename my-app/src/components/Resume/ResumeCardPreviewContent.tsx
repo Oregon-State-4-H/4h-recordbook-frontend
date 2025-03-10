@@ -7,7 +7,9 @@ interface ResumeRowProps {
   resumeEntry: SectionAny;
 }
 
-export default function ResumeTableCells({ resumeEntry }: ResumeRowProps) {
+export default function ResumeCardPreviewContent({
+  resumeEntry,
+}: ResumeRowProps) {
   if (isS2(resumeEntry)) {
     return (
       <CardContent>
