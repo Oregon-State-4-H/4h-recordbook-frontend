@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import NavBarLanding from "../components/NavbarLanding";
-import IntroBanner from "../components/IntroBanner";
-import IntroAbout from "../components/IntroAbout";
-import IntroTeam from "../components/IntroTeam";
-import IntroContact from "../components/IntroContact";
+import IntroBanner from "../components/Landing/IntroBanner";
+import IntroAbout from "../components/Landing/IntroAbout";
+import IntroTeam from "../components/Landing/IntroTeam";
+import IntroContact from "../components/Landing/IntroContact";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

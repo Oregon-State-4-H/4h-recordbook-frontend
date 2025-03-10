@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Box from "@mui/material/Box";
 import NavBarSignedIn from "../../../../components/NavbarSignedIn";
 import MobileBottomNav from "../../../../components/MobileBottomNav";
-import ResumeCreate1 from "../../../../components/ResumeCreate1";
+import ResumeCreate1 from "../../../../components/Resume/ResumeCreate1";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
