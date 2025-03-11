@@ -15,9 +15,15 @@ export enum SectionNumbers {
     Section14 = 'section14',
 }
 
-export interface Section1 {
+type GenericSectionFields = {
     id: string,
     section: number,
+    user_id: string,
+    created: string,
+    updated: string,
+}
+
+export interface CustomSection1Fields {
     nickname: string,
     year: string,
     grade: number,
@@ -26,104 +32,64 @@ export interface Section1 {
     club_leader: string,
     meetings_held: number,
     meetings_attended: number,
-    user_id: string,
-    created: string,
-    updated: string,
 }
 
-export interface Section2 {
-    id: string,
-    section: number,
+export interface CustomSection2Fields {
     year: string,
     project_name: string,
     project_scope: string,
-    user_id: string,
-    created: string,
-    updated: string,
 }
 
-export interface Section3 {
-    id: string,
-    section: number,
+export interface CustomSection3Fields {
     nickname: string,
     year: string,
     activity_kind: string,
     things_learned: string,
     level: string,
-    user_id: string,
-    created: string,
-    updated: string,
 }
 
-export interface Section4 {
-    id: string,
-    section: number,
+export interface CustomSection4Fields {
     nickname: string,
     year: string,
     activity_kind: string,
     scope: string,
     level: string,
-    user_id: string,
-    created: string,
-    updated: string,
 }
 
-export interface Section5 {
-    id: string,
-    section: number,
+export interface CustomSection5Fields {
     nickname: string,
     year: string,
     leadership_role: string,
     hours_spent: number,
     num_people_reached: number,
-    user_id: string,
-    created: string,
-    updated: string,
 }
 
-export interface Section6 {
-    id: string,
-    section: number,
+export interface CustomSection6Fields {
     nickname: string,
     year: string,
     organization_name: string,
     leadership_role: string,
     hours_spent: number,
     num_people_reached: number,
-    user_id: string,
-    created: string,
-    updated: string,
 }
 
-export interface Section7 {
-    id: string,
-    section: number,
+export interface CustomSection7Fields {
     nickname: string,
     year: string,
     club_member_activities: string,
     hours_spent: number,
     num_people_reached: number,
-    user_id: string,
-    created: string,
-    updated: string,
 }
 
-export interface Section8 {
-    id: string,
-    section: number,
+export interface CustomSection8Fields {
     nickname: string,
     year: string,
     individual_group_activities: string,
     hours_spent: number,
     num_people_reached: number
-    user_id: string,
-    created: string,
-    updated: string,
 }
 
-export interface Section9 {
-    id: string,
-    section: number,
+export interface CustomSection9Fields {
     nickname: string,
     year: string,
     communication_type: string,
@@ -131,14 +97,9 @@ export interface Section9 {
     times_given: number,
     location: string,
     audience_size: number,
-    user_id: string,
-    created: string,
-    updated: string,
 }
 
-export interface Section10 {
-    id: string,
-    section: number,
+export interface CustomSection10Fields {
     nickname: string,
     year: string,
     communication_type: string,
@@ -146,60 +107,70 @@ export interface Section10 {
     times_given: number,
     location: string,
     audience_size: number,
-    user_id: string,
-    created: string,
-    updated: string,
 }
 
-export interface Section11 {
-    id: string,
-    section: number,
+export interface CustomSection11Fields {
     nickname: string,
     year: string,
     event_and_level: string,
     exhibits_or_division: string,
     ribbon_or_placings: string,
-    user_id: string,
-    created: string,
-    updated: string,
 }
 
-export interface Section12 {
-    id: string,
-    section: number,
+export interface CustomSection12Fields {
     nickname: string,
     year: string,
     contest_or_event: string,
     recognition_received: string,
     level: string,
-    user_id: string,
-    created: string,
-    updated: string,
 }
 
-export interface Section13 {
-    id: string,
-    section: number,
+export interface CustomSection13Fields {
     nickname: string,
     year: string,
     recognition_type: string,
-    user_id: string,
-    created: string,
-    updated: string,
 }
 
-export interface Section14 {
-    id: string,
-    section: number,
+export interface CustomSection14Fields {
     nickname: string,
     year: string,
     recognition_type: string,
-    user_id: string,
-    created: string,
-    updated: string,
 }
 
-export type SectionAny = (Section1  | 
+export type CustomSectionFields = (
+    CustomSection1Fields  |
+    CustomSection2Fields  |
+    CustomSection3Fields  |
+    CustomSection4Fields  |
+    CustomSection5Fields  |
+    CustomSection6Fields  |
+    CustomSection7Fields  |
+    CustomSection8Fields  |
+    CustomSection9Fields  |
+    CustomSection10Fields |
+    CustomSection11Fields |
+    CustomSection12Fields |
+    CustomSection13Fields |
+    CustomSection14Fields 
+)
+
+export type Section1 = CustomSection1Fields & GenericSectionFields;
+export type Section2 = CustomSection2Fields & GenericSectionFields;
+export type Section3 = CustomSection3Fields & GenericSectionFields;
+export type Section4 = CustomSection4Fields & GenericSectionFields;
+export type Section5 = CustomSection5Fields & GenericSectionFields;
+export type Section6 = CustomSection6Fields & GenericSectionFields;
+export type Section7 = CustomSection7Fields & GenericSectionFields;
+export type Section8 = CustomSection8Fields & GenericSectionFields;
+export type Section9 = CustomSection9Fields & GenericSectionFields;
+export type Section10 = CustomSection10Fields & GenericSectionFields;
+export type Section11 = CustomSection11Fields & GenericSectionFields;
+export type Section12 = CustomSection12Fields & GenericSectionFields;
+export type Section13 = CustomSection13Fields & GenericSectionFields;
+export type Section14 = CustomSection14Fields & GenericSectionFields;
+
+export type SectionData = (
+    Section1  | 
     Section2  | 
     Section3  | 
     Section4  | 
@@ -212,22 +183,25 @@ export type SectionAny = (Section1  |
     Section11 |
     Section12 |
     Section13 |
-    Section14)
+    Section14
+)[]
 
-export type SectionData = (Section1  | 
-                           Section2  | 
-                           Section3  | 
-                           Section4  | 
-                           Section5  |
-                           Section6  | 
-                           Section7  |
-                           Section8  |
-                           Section9  |
-                           Section10 |
-                           Section11 |
-                           Section12 |
-                           Section13 |
-                           Section14)[]
+export type SectionAny = (
+    Section1  | 
+    Section2  | 
+    Section3  | 
+    Section4  | 
+    Section5  |
+    Section6  | 
+    Section7  |
+    Section8  |
+    Section9  |
+    Section10 |
+    Section11 |
+    Section12 |
+    Section13 |
+    Section14
+)
 
 export function isS1(sectionData: SectionAny):sectionData is Section1 {
     return (sectionData as Section1).section == 1;
@@ -293,6 +267,9 @@ export const fetchSectionData = async <T> (section: string): Promise<T[]> => {
             credentials: 'include'
         });
         const data = await response.json();
+        if(!response.ok){
+            throw new Error(data.message || "Unexpected error occurred");
+        }
         switch(section) {
             case SectionNumbers.Section1:
                 return data.section_1_data as T[];
@@ -331,6 +308,27 @@ export const fetchSectionData = async <T> (section: string): Promise<T[]> => {
     }
 }
 
+export const postSection = async <T> (section: string, input: T) => {
+    
+    try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${section}`, {
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify(input),
+        });
+
+        const data = await response.json();
+        if(!response.ok){
+            throw new Error(data.message || "Unexpected error occurred");
+        }
+        return true;
+
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
 export const deleteSection = async (sectionID: string) => {
 
     try {
@@ -338,14 +336,12 @@ export const deleteSection = async (sectionID: string) => {
             method: 'DELETE',
             credentials: 'include'
         });
-        switch (response.status) {
-            case 204:
-                return true;
-            case 404:
-                throw new Error('Entry not found');
-            default:
-                throw new Error(`Error: status ${response.status}`)
+
+        const data = await response.json();
+        if(!response.ok){
+            throw new Error(data.message || "Unexpected error occurred");
         }
+        return true;
 
     }
     catch (error) {
