@@ -5,6 +5,7 @@ import IntroBanner from "../components/Landing/IntroBanner";
 import IntroAbout from "../components/Landing/IntroAbout";
 import IntroTeam from "../components/Landing/IntroTeam";
 import IntroContact from "../components/Landing/IntroContact";
+import Box from "@mui/material/Box";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,12 +19,12 @@ const geistMono = Geist_Mono({
 
 export default function Home() {
   return (
-    <div>
+    <Box className="App">
       <NavBarLanding />
       <IntroBanner />
       <IntroAbout />
       <IntroTeam />
       <IntroContact />
-    </div>
+    </Box>
   );
 }
