@@ -118,46 +118,236 @@ export default function ResumeCreateModalContent({
       break;
     case "4":
       if (isS4(originalToUpdate)) {
+        switch (originalValueKey) {
+          case "year":
+            originalValue = originalToUpdate.year;
+            break;
+          case "nickname":
+            originalValue = originalToUpdate.nickname;
+            break;
+          case "activity_kind":
+            originalValue = originalToUpdate.activity_kind;
+            break;
+          case "scope":
+            originalValue = originalToUpdate.scope;
+            break;
+          case "level":
+            originalValue = originalToUpdate.level;
+            break;
+        }
       }
       break;
     case "5":
       if (isS5(originalToUpdate)) {
+        switch (originalValueKey) {
+          case "year":
+            originalValue = originalToUpdate.year;
+            break;
+          case "nickname":
+            originalValue = originalToUpdate.nickname;
+            break;
+          case "leadership_role":
+            originalValue = originalToUpdate.leadership_role;
+            break;
+          case "hours_spent":
+            originalValue = originalToUpdate.hours_spent.toString();
+            break;
+          case "num_people_reached":
+            originalValue = originalToUpdate.num_people_reached.toString();
+            break;
+        }
       }
       break;
     case "6":
       if (isS6(originalToUpdate)) {
+        switch (originalValueKey) {
+          case "year":
+            originalValue = originalToUpdate.year;
+            break;
+          case "nickname":
+            originalValue = originalToUpdate.nickname;
+            break;
+          case "organization_name":
+            originalValue = originalToUpdate.organization_name;
+            break;
+          case "leadership_role":
+            originalValue = originalToUpdate.leadership_role;
+            break;
+          case "hours_spent":
+            originalValue = originalToUpdate.hours_spent.toString();
+            break;
+          case "num_people_reached":
+            originalValue = originalToUpdate.num_people_reached.toString();
+            break;
+        }
       }
       break;
     case "7":
       if (isS7(originalToUpdate)) {
+        switch (originalValueKey) {
+          case "year":
+            originalValue = originalToUpdate.year;
+            break;
+          case "nickname":
+            originalValue = originalToUpdate.nickname;
+            break;
+          case "club_member_activities":
+            originalValue = originalToUpdate.club_member_activities;
+            break;
+          case "hours_spent":
+            originalValue = originalToUpdate.hours_spent.toString();
+            break;
+          case "num_people_reached":
+            originalValue = originalToUpdate.num_people_reached.toString();
+            break;
+        }
       }
       break;
     case "8":
       if (isS8(originalToUpdate)) {
+        switch (originalValueKey) {
+          case "year":
+            originalValue = originalToUpdate.year;
+            break;
+          case "nickname":
+            originalValue = originalToUpdate.nickname;
+            break;
+          case "individual_group_activities":
+            originalValue = originalToUpdate.individual_group_activities;
+            break;
+          case "hours_spent":
+            originalValue = originalToUpdate.hours_spent.toString();
+            break;
+          case "num_people_reached":
+            originalValue = originalToUpdate.num_people_reached.toString();
+            break;
+        }
       }
       break;
     case "9":
       if (isS9(originalToUpdate)) {
+        switch (originalValueKey) {
+          case "year":
+            originalValue = originalToUpdate.year;
+            break;
+          case "nickname":
+            originalValue = originalToUpdate.nickname;
+            break;
+          case "communication_type":
+            originalValue = originalToUpdate.communication_type;
+            break;
+          case "topic":
+            originalValue = originalToUpdate.topic;
+            break;
+          case "times_given":
+            originalValue = originalToUpdate.times_given.toString();
+            break;
+          case "location":
+            originalValue = originalToUpdate.location;
+            break;
+          case "audience_size":
+            originalValue = originalToUpdate.audience_size.toString();
+            break;
+        }
       }
       break;
     case "10":
       if (isS10(originalToUpdate)) {
+        switch (originalValueKey) {
+          case "year":
+            originalValue = originalToUpdate.year;
+            break;
+          case "nickname":
+            originalValue = originalToUpdate.nickname;
+            break;
+          case "communication_type":
+            originalValue = originalToUpdate.communication_type;
+            break;
+          case "topic":
+            originalValue = originalToUpdate.topic;
+            break;
+          case "times_given":
+            originalValue = originalToUpdate.times_given.toString();
+            break;
+          case "location":
+            originalValue = originalToUpdate.location;
+            break;
+          case "audience_size":
+            originalValue = originalToUpdate.audience_size.toString();
+            break;
+        }
       }
       break;
     case "11":
       if (isS11(originalToUpdate)) {
+        switch (originalValueKey) {
+          case "year":
+            originalValue = originalToUpdate.year;
+            break;
+          case "nickname":
+            originalValue = originalToUpdate.nickname;
+            break;
+          case "event_and_level":
+            originalValue = originalToUpdate.event_and_level;
+            break;
+          case "exhibits_or_division":
+            originalValue = originalToUpdate.exhibits_or_division;
+            break;
+          case "ribbon_or_placings":
+            originalValue = originalToUpdate.ribbon_or_placings;
+            break;
+        }
       }
       break;
     case "12":
       if (isS12(originalToUpdate)) {
+        switch (originalValueKey) {
+          case "year":
+            originalValue = originalToUpdate.year;
+            break;
+          case "nickname":
+            originalValue = originalToUpdate.nickname;
+            break;
+          case "level":
+            originalValue = originalToUpdate.level;
+            break;
+          case "contest_or_event":
+            originalValue = originalToUpdate.contest_or_event;
+            break;
+          case "recognition_received":
+            originalValue = originalToUpdate.recognition_received;
+            break;
+        }
       }
       break;
     case "13":
       if (isS13(originalToUpdate)) {
+        switch (originalValueKey) {
+          case "year":
+            originalValue = originalToUpdate.year;
+            break;
+          case "nickname":
+            originalValue = originalToUpdate.nickname;
+            break;
+          case "recognition_type":
+            originalValue = originalToUpdate.recognition_type;
+            break;
+        }
       }
       break;
     case "14":
       if (isS14(originalToUpdate)) {
+        switch (originalValueKey) {
+          case "year":
+            originalValue = originalToUpdate.year;
+            break;
+          case "nickname":
+            originalValue = originalToUpdate.nickname;
+            break;
+          case "recognition_type":
+            originalValue = originalToUpdate.recognition_type;
+            break;
+        }
       }
       break;
     default:

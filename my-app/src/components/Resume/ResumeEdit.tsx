@@ -79,74 +79,124 @@ export default function Section({
           updateMap("project_name", resumeEntry.project_name);
           updateMap("project_scope", resumeEntry.project_scope);
         }
-      //   break;
-      //   // case "3":
-      //   //   if (isS3(resumeEntry)) {
-      //   //     switch (originalValueKey) {
-      //   //       case "year":
-      //   //         updateMap("year",resumeEntry.year;
-      //   //         break;
-      //   //       case "nickname":
-      //   //         updateMap("year",resumeEntry.nickname;
-      //   //         break;
-      //   //       case "activity_kind":
-      //   //         updateMap("year",resumeEntry.activity_kind;
-      //   //         break;
-      //   //       case "things_learned":
-      //   //         updateMap("year",resumeEntry.things_learned;
-      //   //         break;
-      //   //       case "level":
-      //   //         updateMap("year",resumeEntry.level;
-      //   //         break;
-      //   //     }
-      //   //   }
-      //   //   break;
-      //   // case "4":
-      //   //   if (isS4(resumeEntry)) {
-      //   //   }
-      //   //   break;
-      //   case "5":
-      //     if (isS5(resumeEntry)) {
-      //     }
-      //     break;
-      //   case "6":
-      //     if (isS6(resumeEntry)) {
-      //     }
-      //     break;
-      //   case "7":
-      //     if (isS7(resumeEntry)) {
-      //     }
-      //     break;
-      //   case "8":
-      //     if (isS8(resumeEntry)) {
-      //     }
-      //     break;
-      //   case "9":
-      //     if (isS9(resumeEntry)) {
-      //     }
-      //     break;
-      //   case "10":
-      //     if (isS10(resumeEntry)) {
-      //     }
-      //     break;
-      //   case "11":
-      //     if (isS11(resumeEntry)) {
-      //     }
-      //     break;
-      //   case "12":
-      //     if (isS12(resumeEntry)) {
-      //     }
-      //     break;
-      //   case "13":
-      //     if (isS13(resumeEntry)) {
-      //     }
-      //     break;
-      //   case "14":
-      //     if (isS14(resumeEntry)) {
-      //     }
-      //     break;
-      //   default:
-      //     break;
+        break;
+      case "3":
+        if (isS3(resumeEntry)) {
+          updateMap("year", resumeEntry.year);
+          updateMap("nickname", resumeEntry.nickname);
+          updateMap("activity_kind", resumeEntry.activity_kind);
+          updateMap("things_learned", resumeEntry.things_learned);
+          updateMap("level", resumeEntry.level);
+        }
+        break;
+      case "4":
+        if (isS4(resumeEntry)) {
+          updateMap("year", resumeEntry.year);
+          updateMap("nickname", resumeEntry.nickname);
+          updateMap("activity_kind", resumeEntry.activity_kind);
+          updateMap("scope", resumeEntry.scope);
+          updateMap("level", resumeEntry.level);
+        }
+        break;
+      case "5":
+        if (isS5(resumeEntry)) {
+          updateMap("year", resumeEntry.year);
+          updateMap("nickname", resumeEntry.nickname);
+          updateMap("leadership_role", resumeEntry.leadership_role);
+          updateMap("hours_spent", resumeEntry.hours_spent);
+          updateMap("num_people_reached", resumeEntry.num_people_reached);
+        }
+        break;
+      case "6":
+        if (isS6(resumeEntry)) {
+          updateMap("year", resumeEntry.year);
+          updateMap("nickname", resumeEntry.nickname);
+          updateMap("organization_name", resumeEntry.organization_name);
+          updateMap("leadership_role", resumeEntry.leadership_role);
+          updateMap("hours_spent", resumeEntry.hours_spent);
+          updateMap("num_people_reached", resumeEntry.num_people_reached);
+        }
+        break;
+      case "7":
+        if (isS7(resumeEntry)) {
+          updateMap("year", resumeEntry.year);
+          updateMap("nickname", resumeEntry.nickname);
+          updateMap(
+            "club_member_activities",
+            resumeEntry.club_member_activities
+          );
+          updateMap("hours_spent", resumeEntry.hours_spent);
+          updateMap("num_people_reached", resumeEntry.num_people_reached);
+        }
+        break;
+      case "8":
+        if (isS8(resumeEntry)) {
+          updateMap("year", resumeEntry.year);
+          updateMap("nickname", resumeEntry.nickname);
+          updateMap(
+            "individual_group_activities",
+            resumeEntry.individual_group_activities
+          );
+          updateMap("hours_spent", resumeEntry.hours_spent);
+          updateMap("num_people_reached", resumeEntry.num_people_reached);
+        }
+        break;
+      case "9":
+        if (isS9(resumeEntry)) {
+          updateMap("year", resumeEntry.year);
+          updateMap("nickname", resumeEntry.nickname);
+          updateMap("communication_type", resumeEntry.communication_type);
+          updateMap("topic", resumeEntry.topic);
+          updateMap("times_given", resumeEntry.times_given);
+          updateMap("location", resumeEntry.location);
+          updateMap("audience_size", resumeEntry.audience_size);
+        }
+        break;
+      case "10":
+        if (isS10(resumeEntry)) {
+          updateMap("year", resumeEntry.year);
+          updateMap("nickname", resumeEntry.nickname);
+          updateMap("communication_type", resumeEntry.communication_type);
+          updateMap("topic", resumeEntry.topic);
+          updateMap("times_given", resumeEntry.times_given);
+          updateMap("location", resumeEntry.location);
+          updateMap("audience_size", resumeEntry.audience_size);
+        }
+        break;
+      case "11":
+        if (isS11(resumeEntry)) {
+          updateMap("year", resumeEntry.year);
+          updateMap("nickname", resumeEntry.nickname);
+          updateMap("event_and_level", resumeEntry.event_and_level);
+          updateMap("exhibits_or_division", resumeEntry.exhibits_or_division);
+          updateMap("ribbon_or_placings", resumeEntry.ribbon_or_placings);
+        }
+        break;
+      case "12":
+        if (isS12(resumeEntry)) {
+          updateMap("year", resumeEntry.year);
+          updateMap("nickname", resumeEntry.nickname);
+          updateMap("level", resumeEntry.level);
+          updateMap("contest_or_event", resumeEntry.contest_or_event);
+          updateMap("recognition_received", resumeEntry.recognition_received);
+        }
+        break;
+      case "13":
+        if (isS13(resumeEntry)) {
+          updateMap("year", resumeEntry.year);
+          updateMap("nickname", resumeEntry.nickname);
+          updateMap("recognition_type", resumeEntry.recognition_type);
+        }
+        break;
+      case "14":
+        if (isS14(resumeEntry)) {
+          updateMap("year", resumeEntry.year);
+          updateMap("nickname", resumeEntry.nickname);
+          updateMap("recognition_type", resumeEntry.recognition_type);
+        }
+        break;
+      default:
+        break;
     }
   }, []);
 
