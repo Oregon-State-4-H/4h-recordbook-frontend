@@ -49,7 +49,7 @@ export default function Section({ sectionNumber }: ResumeCreateProps) {
         body: JSON.stringify(Object.fromEntries(mapState)),
       });
       switch (response.status) {
-        case 204:
+        case 201:
           handleClose();
           handleNotificationOpen();
           window.location.reload();
