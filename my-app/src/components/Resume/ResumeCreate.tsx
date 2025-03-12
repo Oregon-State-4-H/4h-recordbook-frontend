@@ -57,6 +57,7 @@ export default function Section({
         console.log(sectionData);
         setSections([...priorEntries, sectionData]);
         handleClose();
+        handleNotificationOpen();
       } catch (error) {
         console.error(error);
       }
