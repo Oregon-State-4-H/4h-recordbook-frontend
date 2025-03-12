@@ -208,7 +208,11 @@ export default function Section() {
             <TableBody>
               {!isLoading &&
                 allSections.map((item, index) => (
-                  <ResumeTableRow index={index} resumeEntry={item} />
+                  <ResumeTableRow
+                    index={index}
+                    resumeEntry={item}
+                    sectionNumber={sectionnumber}
+                  />
                 ))}
             </TableBody>
           </Table>

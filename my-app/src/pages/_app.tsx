@@ -8,7 +8,7 @@ const theme = createTheme({
   palette: {
     primary: {
       // light: will be calculated from palette.primary.main,
-      main: "#339966",
+      main: "rgba(51, 153, 102, 1)",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
       // beaverOrange: "#D73F09",

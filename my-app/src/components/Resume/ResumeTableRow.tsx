@@ -2,8 +2,7 @@ import * as React from "react";
 import TableCell from "@mui/material/TableCell";
 import { StyledTableRow } from "../StyledTableRow";
 import ResumeTableDeleteButton from "./ResumeTableDeleteButton";
-import IconButton from "@mui/material/IconButton";
-import EditIcon from "@mui/icons-material/Edit";
+import ResumeEdit from "./ResumeEdit";
 import {
   SectionAny,
   isS1,
@@ -25,11 +24,13 @@ import {
 interface ResumeRowProps {
   index: number;
   resumeEntry: SectionAny;
+  sectionNumber: string;
 }
 
 export default function ResumeTableCells({
   index,
   resumeEntry,
+  sectionNumber,
 }: ResumeRowProps) {
   switch (resumeEntry.section) {
     case 1:
@@ -57,9 +58,10 @@ export default function ResumeTableCells({
             <TableCell>{resumeEntry.meetings_held}</TableCell>
             <TableCell>{resumeEntry.meetings_attended}</TableCell>
             <TableCell>
-              <IconButton>
-                <EditIcon />
-              </IconButton>
+              <ResumeEdit
+                sectionNumber={sectionNumber}
+                resumeEntry={resumeEntry}
+              />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -82,9 +84,10 @@ export default function ResumeTableCells({
               {resumeEntry.project_scope}
             </TableCell>
             <TableCell>
-              <IconButton>
-                <EditIcon />
-              </IconButton>
+              <ResumeEdit
+                sectionNumber={sectionNumber}
+                resumeEntry={resumeEntry}
+              />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -113,9 +116,10 @@ export default function ResumeTableCells({
               {resumeEntry.level}
             </TableCell>
             <TableCell>
-              <IconButton>
-                <EditIcon />
-              </IconButton>
+              <ResumeEdit
+                sectionNumber={sectionNumber}
+                resumeEntry={resumeEntry}
+              />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -144,9 +148,10 @@ export default function ResumeTableCells({
               {resumeEntry.level}
             </TableCell>
             <TableCell>
-              <IconButton>
-                <EditIcon />
-              </IconButton>
+              <ResumeEdit
+                sectionNumber={sectionNumber}
+                resumeEntry={resumeEntry}
+              />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -175,9 +180,10 @@ export default function ResumeTableCells({
               {resumeEntry.num_people_reached}
             </TableCell>
             <TableCell>
-              <IconButton>
-                <EditIcon />
-              </IconButton>
+              <ResumeEdit
+                sectionNumber={sectionNumber}
+                resumeEntry={resumeEntry}
+              />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -209,9 +215,10 @@ export default function ResumeTableCells({
               {resumeEntry.num_people_reached}
             </TableCell>
             <TableCell>
-              <IconButton>
-                <EditIcon />
-              </IconButton>
+              <ResumeEdit
+                sectionNumber={sectionNumber}
+                resumeEntry={resumeEntry}
+              />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -240,9 +247,10 @@ export default function ResumeTableCells({
               {resumeEntry.num_people_reached}
             </TableCell>
             <TableCell>
-              <IconButton>
-                <EditIcon />
-              </IconButton>
+              <ResumeEdit
+                sectionNumber={sectionNumber}
+                resumeEntry={resumeEntry}
+              />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -271,9 +279,10 @@ export default function ResumeTableCells({
               {resumeEntry.num_people_reached}
             </TableCell>
             <TableCell>
-              <IconButton>
-                <EditIcon />
-              </IconButton>
+              <ResumeEdit
+                sectionNumber={sectionNumber}
+                resumeEntry={resumeEntry}
+              />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -308,9 +317,10 @@ export default function ResumeTableCells({
               {resumeEntry.audience_size}
             </TableCell>
             <TableCell>
-              <IconButton>
-                <EditIcon />
-              </IconButton>
+              <ResumeEdit
+                sectionNumber={sectionNumber}
+                resumeEntry={resumeEntry}
+              />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -345,9 +355,10 @@ export default function ResumeTableCells({
               {resumeEntry.audience_size}
             </TableCell>
             <TableCell>
-              <IconButton>
-                <EditIcon />
-              </IconButton>
+              <ResumeEdit
+                sectionNumber={sectionNumber}
+                resumeEntry={resumeEntry}
+              />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -376,9 +387,10 @@ export default function ResumeTableCells({
               {resumeEntry.ribbon_or_placings}
             </TableCell>
             <TableCell>
-              <IconButton>
-                <EditIcon />
-              </IconButton>
+              <ResumeEdit
+                sectionNumber={sectionNumber}
+                resumeEntry={resumeEntry}
+              />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -407,9 +419,10 @@ export default function ResumeTableCells({
               {resumeEntry.level}
             </TableCell>
             <TableCell>
-              <IconButton>
-                <EditIcon />
-              </IconButton>
+              <ResumeEdit
+                sectionNumber={sectionNumber}
+                resumeEntry={resumeEntry}
+              />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -432,9 +445,10 @@ export default function ResumeTableCells({
               {resumeEntry.recognition_type}
             </TableCell>
             <TableCell>
-              <IconButton>
-                <EditIcon />
-              </IconButton>
+              <ResumeEdit
+                sectionNumber={sectionNumber}
+                resumeEntry={resumeEntry}
+              />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -457,9 +471,10 @@ export default function ResumeTableCells({
               {resumeEntry.recognition_type}
             </TableCell>
             <TableCell>
-              <IconButton>
-                <EditIcon />
-              </IconButton>
+              <ResumeEdit
+                sectionNumber={sectionNumber}
+                resumeEntry={resumeEntry}
+              />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />

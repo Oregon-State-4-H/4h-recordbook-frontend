@@ -35,7 +35,6 @@
         ],
         "form": [
             { "type": "text", "label": "Year", "name": "year", "required":"yes","placeholder": "Ex. 2016-17" },
-            { "type": "text", "label": "Nickname", "name": "nickname", "required":"yes","placeholder": "Ex. Rabiit Project" },
             { "type": "text", "label": "Name of Project/Unit", "name": "project_name", "required":"yes","placeholder": "Ex. Clothing" },
             { "type": "text-long", "label": "Project Size or Scope", "name": "project_scope", "required":"yes","placeholder": "Ex. 1 Apron, 2 dresses" }
         ]

@@ -168,6 +168,7 @@ export type Section11 = CustomSection11Fields & GenericSectionFields;
 export type Section12 = CustomSection12Fields & GenericSectionFields;
 export type Section13 = CustomSection13Fields & GenericSectionFields;
 export type Section14 = CustomSection14Fields & GenericSectionFields;
+export type SectionEmpty = GenericSectionFields;
 
 export type SectionData = (
     Section1  | 
@@ -200,7 +201,8 @@ export type SectionAny = (
     Section11 |
     Section12 |
     Section13 |
-    Section14
+    Section14 |
+    SectionEmpty
 )
 
 export function isS1(sectionData: SectionAny):sectionData is Section1 {
@@ -257,6 +259,10 @@ export function isS13(sectionData: SectionAny):sectionData is Section13 {
 
 export function isS14(sectionData: SectionAny):sectionData is Section14 {
     return (sectionData as Section14).section == 14;
+}
+
+export function isSectionEmpty(sectionData: SectionAny):sectionData is SectionEmpty {
+    return (sectionData as SectionEmpty).section == -1;
 }
 
 

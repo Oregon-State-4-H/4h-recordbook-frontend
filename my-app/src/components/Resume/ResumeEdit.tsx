@@ -1,23 +1,44 @@
 import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
+import EditIcon from "@mui/icons-material/Edit";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import Modal from "@mui/material/Modal";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import ResumeCreateModalContent from "./ResumeModalContent";
+import ResumeModalContent from "./ResumeModalContent";
 import Snackbar, { SnackbarCloseReason } from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import { SectionEmpty } from "../../API/ResumeAPI";
 import Typography from "@mui/material/Typography";
+import {
+  SectionAny,
+  SectionEmpty,
+  isS1,
+  isS2,
+  isS3,
+  isS4,
+  isS5,
+  isS6,
+  isS7,
+  isS8,
+  isS9,
+  isS10,
+  isS11,
+  isS12,
+  isS13,
+  isS14,
+} from "../../API/ResumeAPI";
 
 interface ResumeCreateProps {
   sectionNumber: string;
+  resumeEntry: SectionAny;
 }
 
-export default function Section({ sectionNumber }: ResumeCreateProps) {
+export default function Section({
+  sectionNumber,
+  resumeEntry,
+}: ResumeCreateProps) {
   const [open, setOpen] = React.useState(false);
   const [openNotification, setNotificationOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -38,18 +59,112 @@ export default function Section({ sectionNumber }: ResumeCreateProps) {
     setMapState((map) => new Map(map.set(key, value)));
   };
 
-  const handleCreate = async () => {
+  useEffect(() => {
+    switch (sectionNumber) {
+      case "1":
+        if (isS1(resumeEntry)) {
+          updateMap("year", resumeEntry.year);
+          updateMap("nickname", resumeEntry.nickname);
+          updateMap("club_leader", resumeEntry.club_leader);
+          updateMap("club_name", resumeEntry.club_name);
+          updateMap("grade", resumeEntry.grade);
+          updateMap("num_in_club", resumeEntry.num_in_club);
+          updateMap("meetings_held", resumeEntry.meetings_held);
+          updateMap("meetings_attended", resumeEntry.meetings_attended);
+        }
+        break;
+      case "2":
+        if (isS2(resumeEntry)) {
+          updateMap("year", resumeEntry.year);
+          updateMap("project_name", resumeEntry.project_name);
+          updateMap("project_scope", resumeEntry.project_scope);
+        }
+      //   break;
+      //   // case "3":
+      //   //   if (isS3(resumeEntry)) {
+      //   //     switch (originalValueKey) {
+      //   //       case "year":
+      //   //         updateMap("year",resumeEntry.year;
+      //   //         break;
+      //   //       case "nickname":
+      //   //         updateMap("year",resumeEntry.nickname;
+      //   //         break;
+      //   //       case "activity_kind":
+      //   //         updateMap("year",resumeEntry.activity_kind;
+      //   //         break;
+      //   //       case "things_learned":
+      //   //         updateMap("year",resumeEntry.things_learned;
+      //   //         break;
+      //   //       case "level":
+      //   //         updateMap("year",resumeEntry.level;
+      //   //         break;
+      //   //     }
+      //   //   }
+      //   //   break;
+      //   // case "4":
+      //   //   if (isS4(resumeEntry)) {
+      //   //   }
+      //   //   break;
+      //   case "5":
+      //     if (isS5(resumeEntry)) {
+      //     }
+      //     break;
+      //   case "6":
+      //     if (isS6(resumeEntry)) {
+      //     }
+      //     break;
+      //   case "7":
+      //     if (isS7(resumeEntry)) {
+      //     }
+      //     break;
+      //   case "8":
+      //     if (isS8(resumeEntry)) {
+      //     }
+      //     break;
+      //   case "9":
+      //     if (isS9(resumeEntry)) {
+      //     }
+      //     break;
+      //   case "10":
+      //     if (isS10(resumeEntry)) {
+      //     }
+      //     break;
+      //   case "11":
+      //     if (isS11(resumeEntry)) {
+      //     }
+      //     break;
+      //   case "12":
+      //     if (isS12(resumeEntry)) {
+      //     }
+      //     break;
+      //   case "13":
+      //     if (isS13(resumeEntry)) {
+      //     }
+      //     break;
+      //   case "14":
+      //     if (isS14(resumeEntry)) {
+      //     }
+      //     break;
+      //   default:
+      //     break;
+    }
+  }, []);
+
+  const handleUpdate = async () => {
     console.log(JSON.stringify(Object.fromEntries(mapState)));
     try {
       var endPoint: string =
-        `${process.env.NEXT_PUBLIC_API_URL}/section` + sectionNumber;
+        `${process.env.NEXT_PUBLIC_API_URL}/section` +
+        sectionNumber +
+        "/" +
+        resumeEntry.id;
       const response = await fetch(endPoint, {
-        method: "POST",
+        method: "PUT",
         credentials: "include",
         body: JSON.stringify(Object.fromEntries(mapState)),
       });
       switch (response.status) {
-        case 204:
+        case 201:
           handleClose();
           handleNotificationOpen();
           window.location.reload();
@@ -63,14 +178,6 @@ export default function Section({ sectionNumber }: ResumeCreateProps) {
     } catch (error) {
       throw error;
     }
-  };
-
-  const empty: SectionEmpty = {
-    id: "",
-    section: -1,
-    user_id: "",
-    created: "",
-    updated: "",
   };
 
   return (
@@ -89,7 +196,7 @@ export default function Section({ sectionNumber }: ResumeCreateProps) {
           alignSelf: "right",
         }}
       >
-        <AddCircleIcon />
+        <EditIcon />
       </IconButton>
       <Modal
         open={open}
@@ -133,7 +240,7 @@ export default function Section({ sectionNumber }: ResumeCreateProps) {
               }}
               variant="h5"
             >
-              CREATE
+              EDIT
             </Typography>
             <IconButton
               onClick={handleClose}
@@ -147,10 +254,10 @@ export default function Section({ sectionNumber }: ResumeCreateProps) {
               <CloseIcon />
             </IconButton>
           </CardActions>
-          <ResumeCreateModalContent
+          <ResumeModalContent
             updateMap={updateMap}
             sectionNumber={sectionNumber}
-            resumeEntry={empty}
+            resumeEntry={resumeEntry}
           />
           <CardActions
             sx={{
@@ -170,7 +277,7 @@ export default function Section({ sectionNumber }: ResumeCreateProps) {
               }}
               variant="outlined"
               onClick={() => {
-                handleCreate();
+                handleUpdate();
               }}
             >
               Submit
