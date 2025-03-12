@@ -334,33 +334,88 @@ export const postSection = async <T>(
     }
     switch (section) {
       case SectionNumbers.Section1:
-        return data.section_1 as T[];
+        return data.section_1 as T;
       case SectionNumbers.Section2:
-        return data.section_2 as T[];
+        return data.section_2 as T;
       case SectionNumbers.Section3:
-        return data.section_3 as T[];
+        return data.section_3 as T;
       case SectionNumbers.Section4:
-        return data.section_4 as T[];
+        return data.section_4 as T;
       case SectionNumbers.Section5:
-        return data.section_5 as T[];
+        return data.section_5 as T;
       case SectionNumbers.Section6:
-        return data.section_6 as T[];
+        return data.section_6 as T;
       case SectionNumbers.Section7:
-        return data.section_7 as T[];
+        return data.section_7 as T;
       case SectionNumbers.Section8:
-        return data.section_8 as T[];
+        return data.section_8 as T;
       case SectionNumbers.Section9:
-        return data.section_9 as T[];
+        return data.section_9 as T;
       case SectionNumbers.Section10:
-        return data.section_10 as T[];
+        return data.section_10 as T;
       case SectionNumbers.Section11:
-        return data.section_11 as T[];
+        return data.section_11 as T;
       case SectionNumbers.Section12:
-        return data.section_12 as T[];
+        return data.section_12 as T;
       case SectionNumbers.Section13:
-        return data.section_13 as T[];
+        return data.section_13 as T;
       case SectionNumbers.Section14:
-        return data.section_14 as T[];
+        return data.section_14 as T;
+      default:
+        throw new Error("Section number doesn't exist");
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateSection = async <T>(
+  section: string,
+  id: string,
+  input: string
+): Promise<T> => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/${section}/${id}`,
+      {
+        method: "PUT",
+        credentials: "include",
+        body: input,
+      }
+    );
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message || "Unexpected error occurred");
+    }
+    switch (section) {
+      case SectionNumbers.Section1:
+        return data.section_1 as T;
+      case SectionNumbers.Section2:
+        return data.section_2 as T;
+      case SectionNumbers.Section3:
+        return data.section_3 as T;
+      case SectionNumbers.Section4:
+        return data.section_4 as T;
+      case SectionNumbers.Section5:
+        return data.section_5 as T;
+      case SectionNumbers.Section6:
+        return data.section_6 as T;
+      case SectionNumbers.Section7:
+        return data.section_7 as T;
+      case SectionNumbers.Section8:
+        return data.section_8 as T;
+      case SectionNumbers.Section9:
+        return data.section_9 as T;
+      case SectionNumbers.Section10:
+        return data.section_10 as T;
+      case SectionNumbers.Section11:
+        return data.section_11 as T;
+      case SectionNumbers.Section12:
+        return data.section_12 as T;
+      case SectionNumbers.Section13:
+        return data.section_13 as T;
+      case SectionNumbers.Section14:
+        return data.section_14 as T;
       default:
         throw new Error("Section number doesn't exist");
     }

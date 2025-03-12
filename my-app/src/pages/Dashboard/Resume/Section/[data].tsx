@@ -217,6 +217,9 @@ export default function Section() {
                     index={index}
                     resumeEntry={item}
                     sectionNumber={sectionNumber}
+                    sectionPlusNumber={sectionPlusNumber}
+                    setSections={setSections}
+                    priorEntries={allSections}
                   />
                 ))}
             </TableBody>

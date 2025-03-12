@@ -25,12 +25,18 @@ interface ResumeRowProps {
   index: number;
   resumeEntry: SectionAny;
   sectionNumber: string;
+  sectionPlusNumber: string;
+  setSections: (allEntries: SectionAny[]) => void;
+  priorEntries: SectionAny[];
 }
 
 export default function ResumeTableCells({
   index,
   resumeEntry,
   sectionNumber,
+  sectionPlusNumber,
+  setSections,
+  priorEntries,
 }: ResumeRowProps) {
   switch (resumeEntry.section) {
     case 1:
@@ -61,6 +67,9 @@ export default function ResumeTableCells({
               <ResumeEdit
                 sectionNumber={sectionNumber}
                 resumeEntry={resumeEntry}
+                sectionPlusNumber={sectionPlusNumber}
+                setSections={setSections}
+                priorEntries={priorEntries}
               />
             </TableCell>
             <TableCell>
@@ -87,6 +96,9 @@ export default function ResumeTableCells({
               <ResumeEdit
                 sectionNumber={sectionNumber}
                 resumeEntry={resumeEntry}
+                sectionPlusNumber={sectionPlusNumber}
+                setSections={setSections}
+                priorEntries={priorEntries}
               />
             </TableCell>
             <TableCell>
@@ -119,6 +131,9 @@ export default function ResumeTableCells({
               <ResumeEdit
                 sectionNumber={sectionNumber}
                 resumeEntry={resumeEntry}
+                sectionPlusNumber={sectionPlusNumber}
+                setSections={setSections}
+                priorEntries={priorEntries}
               />
             </TableCell>
             <TableCell>
@@ -151,6 +166,9 @@ export default function ResumeTableCells({
               <ResumeEdit
                 sectionNumber={sectionNumber}
                 resumeEntry={resumeEntry}
+                sectionPlusNumber={sectionPlusNumber}
+                setSections={setSections}
+                priorEntries={priorEntries}
               />
             </TableCell>
             <TableCell>
@@ -183,6 +201,9 @@ export default function ResumeTableCells({
               <ResumeEdit
                 sectionNumber={sectionNumber}
                 resumeEntry={resumeEntry}
+                sectionPlusNumber={sectionPlusNumber}
+                setSections={setSections}
+                priorEntries={priorEntries}
               />
             </TableCell>
             <TableCell>
@@ -218,6 +239,9 @@ export default function ResumeTableCells({
               <ResumeEdit
                 sectionNumber={sectionNumber}
                 resumeEntry={resumeEntry}
+                sectionPlusNumber={sectionPlusNumber}
+                setSections={setSections}
+                priorEntries={priorEntries}
               />
             </TableCell>
             <TableCell>
@@ -250,6 +274,9 @@ export default function ResumeTableCells({
               <ResumeEdit
                 sectionNumber={sectionNumber}
                 resumeEntry={resumeEntry}
+                sectionPlusNumber={sectionPlusNumber}
+                setSections={setSections}
+                priorEntries={priorEntries}
               />
             </TableCell>
             <TableCell>
@@ -282,6 +309,9 @@ export default function ResumeTableCells({
               <ResumeEdit
                 sectionNumber={sectionNumber}
                 resumeEntry={resumeEntry}
+                sectionPlusNumber={sectionPlusNumber}
+                setSections={setSections}
+                priorEntries={priorEntries}
               />
             </TableCell>
             <TableCell>
@@ -320,6 +350,9 @@ export default function ResumeTableCells({
               <ResumeEdit
                 sectionNumber={sectionNumber}
                 resumeEntry={resumeEntry}
+                sectionPlusNumber={sectionPlusNumber}
+                setSections={setSections}
+                priorEntries={priorEntries}
               />
             </TableCell>
             <TableCell>
@@ -358,6 +391,9 @@ export default function ResumeTableCells({
               <ResumeEdit
                 sectionNumber={sectionNumber}
                 resumeEntry={resumeEntry}
+                sectionPlusNumber={sectionPlusNumber}
+                setSections={setSections}
+                priorEntries={priorEntries}
               />
             </TableCell>
             <TableCell>
@@ -390,6 +426,9 @@ export default function ResumeTableCells({
               <ResumeEdit
                 sectionNumber={sectionNumber}
                 resumeEntry={resumeEntry}
+                sectionPlusNumber={sectionPlusNumber}
+                setSections={setSections}
+                priorEntries={priorEntries}
               />
             </TableCell>
             <TableCell>
@@ -422,6 +461,9 @@ export default function ResumeTableCells({
               <ResumeEdit
                 sectionNumber={sectionNumber}
                 resumeEntry={resumeEntry}
+                sectionPlusNumber={sectionPlusNumber}
+                setSections={setSections}
+                priorEntries={priorEntries}
               />
             </TableCell>
             <TableCell>
@@ -448,6 +490,9 @@ export default function ResumeTableCells({
               <ResumeEdit
                 sectionNumber={sectionNumber}
                 resumeEntry={resumeEntry}
+                sectionPlusNumber={sectionPlusNumber}
+                setSections={setSections}
+                priorEntries={priorEntries}
               />
             </TableCell>
             <TableCell>
@@ -474,6 +519,9 @@ export default function ResumeTableCells({
               <ResumeEdit
                 sectionNumber={sectionNumber}
                 resumeEntry={resumeEntry}
+                sectionPlusNumber={sectionPlusNumber}
+                setSections={setSections}
+                priorEntries={priorEntries}
               />
             </TableCell>
             <TableCell>

@@ -13,7 +13,7 @@ import Alert from "@mui/material/Alert";
 import Typography from "@mui/material/Typography";
 import {
   SectionAny,
-  SectionEmpty,
+  updateSection,
   isS1,
   isS2,
   isS3,
@@ -32,14 +32,23 @@ import {
 
 interface ResumeCreateProps {
   sectionNumber: string;
+  sectionPlusNumber: string;
+  setSections: (allEntries: SectionAny[]) => void;
+  priorEntries: SectionAny[];
   resumeEntry: SectionAny;
 }
 
 export default function Section({
   sectionNumber,
   resumeEntry,
+  sectionPlusNumber,
+  setSections,
+  priorEntries,
 }: ResumeCreateProps) {
+  // state for edit modal
   const [open, setOpen] = React.useState(false);
+
+  // state for success alert component
   const [openNotification, setNotificationOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -51,14 +60,17 @@ export default function Section({
     if (reason === "clickaway") {
       return;
     }
-
     setNotificationOpen(false);
   };
+
+  // map to store key value pairs for body of PUT request
   const [mapState, setMapState] = useState(new Map());
   const updateMap = (key: string, value: any) => {
     setMapState((map) => new Map(map.set(key, value)));
   };
 
+  // effect to store entry's exsiting key values in map
+  // input fields will override exsisting key values when they are changed
   useEffect(() => {
     switch (sectionNumber) {
       case "1":
@@ -200,34 +212,29 @@ export default function Section({
     }
   }, []);
 
+  // function to send PUT update request to backend
   const handleUpdate = async () => {
     console.log(JSON.stringify(Object.fromEntries(mapState)));
-    try {
-      var endPoint: string =
-        `${process.env.NEXT_PUBLIC_API_URL}/section` +
-        sectionNumber +
-        "/" +
-        resumeEntry.id;
-      const response = await fetch(endPoint, {
-        method: "PUT",
-        credentials: "include",
-        body: JSON.stringify(Object.fromEntries(mapState)),
-      });
-      switch (response.status) {
-        case 201:
-          handleClose();
-          handleNotificationOpen();
-          window.location.reload();
-
-          return true;
-        case 400:
-          throw new Error("Bad Request");
-        default:
-          throw new Error(`Error: status ${response.status}`);
+    const postData = async () => {
+      try {
+        const sectionData = await updateSection<SectionAny>(
+          sectionPlusNumber,
+          resumeEntry.id,
+          JSON.stringify(Object.fromEntries(mapState))
+        );
+        console.log(sectionData);
+        setSections(
+          priorEntries.map((item) =>
+            item.id === sectionData.id ? sectionData : item
+          )
+        );
+        handleClose();
+        handleNotificationOpen();
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      throw error;
-    }
+    };
+    postData();
   };
 
   return (
@@ -346,7 +353,7 @@ export default function Section({
           variant="filled"
           sx={{ width: "100%" }}
         >
-          Your resume entry has been successfully created!
+          Your resume entry has been successfully updated!
         </Alert>
       </Snackbar>
     </Box>
