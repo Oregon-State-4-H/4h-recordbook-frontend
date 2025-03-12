@@ -10,14 +10,22 @@ import CloseIcon from "@mui/icons-material/Close";
 import ResumeCreateModalContent from "./ResumeModalContent";
 import Snackbar, { SnackbarCloseReason } from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import { SectionEmpty } from "../../API/ResumeAPI";
+import { SectionEmpty, postSection, SectionAny } from "../../API/ResumeAPI";
 import Typography from "@mui/material/Typography";
 
 interface ResumeCreateProps {
   sectionNumber: string;
+  sectionPlusNumber: string;
+  setSections: (allEntries: SectionAny[]) => void;
+  priorEntries: SectionAny[];
 }
 
-export default function Section({ sectionNumber }: ResumeCreateProps) {
+export default function Section({
+  sectionNumber,
+  sectionPlusNumber,
+  setSections,
+  priorEntries,
+}: ResumeCreateProps) {
   const [open, setOpen] = React.useState(false);
   const [openNotification, setNotificationOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -40,29 +48,20 @@ export default function Section({ sectionNumber }: ResumeCreateProps) {
 
   const handleCreate = async () => {
     console.log(JSON.stringify(Object.fromEntries(mapState)));
-    try {
-      var endPoint: string =
-        `${process.env.NEXT_PUBLIC_API_URL}/section` + sectionNumber;
-      const response = await fetch(endPoint, {
-        method: "POST",
-        credentials: "include",
-        body: JSON.stringify(Object.fromEntries(mapState)),
-      });
-      switch (response.status) {
-        case 201:
-          handleClose();
-          handleNotificationOpen();
-          window.location.reload();
-
-          return true;
-        case 400:
-          throw new Error("Bad Request");
-        default:
-          throw new Error(`Error: status ${response.status}`);
+    const postData = async () => {
+      try {
+        const sectionData = await postSection<SectionAny>(
+          sectionPlusNumber,
+          JSON.stringify(Object.fromEntries(mapState))
+        );
+        console.log(sectionData);
+        setSections([...priorEntries, sectionData]);
+        handleClose();
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      throw error;
-    }
+    };
+    postData();
   };
 
   const empty: SectionEmpty = {

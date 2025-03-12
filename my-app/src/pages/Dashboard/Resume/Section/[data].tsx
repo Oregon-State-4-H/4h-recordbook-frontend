@@ -25,19 +25,19 @@ export default function Section() {
   var Title: string = "";
   var Fields: { [key: string]: string }[] = [];
 
-  const sectionnumber = router.asPath
+  const sectionNumber = router.asPath
     .replace("/Dashboard/", "")
     .replace("/", " ")
     .replace("/", " ")
     .replace("Resume Section ", "");
 
-  const sectionplusnumber = router.asPath
+  const sectionPlusNumber = router.asPath
     .replace("/Dashboard/", "")
     .replace("/", " ")
     .replace("/", " ")
     .replace("Resume Section ", "section");
 
-  switch (sectionnumber) {
+  switch (sectionNumber) {
     case "1":
       Title = sectionOutline.section1.title;
       Fields = sectionOutline.section1.headers;
@@ -106,7 +106,7 @@ export default function Section() {
     const getData = async () => {
       try {
         const sectionData = await fetchSectionData<SectionAny>(
-          sectionplusnumber
+          sectionPlusNumber
         );
         console.log(sectionData);
         setSections(sectionData);
@@ -144,7 +144,7 @@ export default function Section() {
             fontWeight: "bold",
           }}
         >
-          Section {sectionnumber}:
+          Section {sectionNumber}:
         </Typography>
       )}
       {router.isReady && (
@@ -177,7 +177,12 @@ export default function Section() {
             padding: "0px",
           }}
         ></Box>
-        <ResumeCreate sectionNumber={sectionnumber} />
+        <ResumeCreate
+          sectionNumber={sectionNumber}
+          sectionPlusNumber={sectionPlusNumber}
+          setSections={setSections}
+          priorEntries={allSections}
+        />
       </Box>
       <Paper
         sx={{
@@ -211,7 +216,7 @@ export default function Section() {
                   <ResumeTableRow
                     index={index}
                     resumeEntry={item}
-                    sectionNumber={sectionnumber}
+                    sectionNumber={sectionNumber}
                   />
                 ))}
             </TableBody>
