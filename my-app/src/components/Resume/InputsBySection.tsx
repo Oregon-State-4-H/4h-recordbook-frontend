@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import sectionOutline from "../../pages/Dashboard/Resume/Section/SectionOutline.json";
 import DynamicInput from "../DynamicInput";

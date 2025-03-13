@@ -1,8 +1,8 @@
 import * as React from "react";
 import TableCell from "@mui/material/TableCell";
 import { StyledTableRow } from "../StyledTableRow";
-import ResumeTableDeleteButton from "./ResumeTableDeleteButton";
-import ResumeEdit from "./ResumeEdit";
+import ResumeTableDeleteButton from "./DeleteIconButton";
+import ResumeEdit from "./EditIconButton";
 import {
   SectionAny,
   isS1,
@@ -28,6 +28,7 @@ interface ResumeRowProps {
   sectionPlusNumber: string;
   setSections: (allEntries: SectionAny[]) => void;
   priorEntries: SectionAny[];
+  handleOpen: (currEntry: SectionAny, purpose: string) => void;
 }
 
 export default function ResumeTableCells({
@@ -37,6 +38,7 @@ export default function ResumeTableCells({
   sectionPlusNumber,
   setSections,
   priorEntries,
+  handleOpen,
 }: ResumeRowProps) {
   switch (resumeEntry.section) {
     case 1:
@@ -64,13 +66,7 @@ export default function ResumeTableCells({
             <TableCell>{resumeEntry.meetings_held}</TableCell>
             <TableCell>{resumeEntry.meetings_attended}</TableCell>
             <TableCell>
-              <ResumeEdit
-                sectionNumber={sectionNumber}
-                resumeEntry={resumeEntry}
-                sectionPlusNumber={sectionPlusNumber}
-                setSections={setSections}
-                priorEntries={priorEntries}
-              />
+              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -93,13 +89,7 @@ export default function ResumeTableCells({
               {resumeEntry.project_scope}
             </TableCell>
             <TableCell>
-              <ResumeEdit
-                sectionNumber={sectionNumber}
-                resumeEntry={resumeEntry}
-                sectionPlusNumber={sectionPlusNumber}
-                setSections={setSections}
-                priorEntries={priorEntries}
-              />
+              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -128,13 +118,7 @@ export default function ResumeTableCells({
               {resumeEntry.level}
             </TableCell>
             <TableCell>
-              <ResumeEdit
-                sectionNumber={sectionNumber}
-                resumeEntry={resumeEntry}
-                sectionPlusNumber={sectionPlusNumber}
-                setSections={setSections}
-                priorEntries={priorEntries}
-              />
+              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -163,13 +147,7 @@ export default function ResumeTableCells({
               {resumeEntry.level}
             </TableCell>
             <TableCell>
-              <ResumeEdit
-                sectionNumber={sectionNumber}
-                resumeEntry={resumeEntry}
-                sectionPlusNumber={sectionPlusNumber}
-                setSections={setSections}
-                priorEntries={priorEntries}
-              />
+              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -198,13 +176,7 @@ export default function ResumeTableCells({
               {resumeEntry.num_people_reached}
             </TableCell>
             <TableCell>
-              <ResumeEdit
-                sectionNumber={sectionNumber}
-                resumeEntry={resumeEntry}
-                sectionPlusNumber={sectionPlusNumber}
-                setSections={setSections}
-                priorEntries={priorEntries}
-              />
+              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -236,13 +208,7 @@ export default function ResumeTableCells({
               {resumeEntry.num_people_reached}
             </TableCell>
             <TableCell>
-              <ResumeEdit
-                sectionNumber={sectionNumber}
-                resumeEntry={resumeEntry}
-                sectionPlusNumber={sectionPlusNumber}
-                setSections={setSections}
-                priorEntries={priorEntries}
-              />
+              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -271,13 +237,7 @@ export default function ResumeTableCells({
               {resumeEntry.num_people_reached}
             </TableCell>
             <TableCell>
-              <ResumeEdit
-                sectionNumber={sectionNumber}
-                resumeEntry={resumeEntry}
-                sectionPlusNumber={sectionPlusNumber}
-                setSections={setSections}
-                priorEntries={priorEntries}
-              />
+              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -306,13 +266,7 @@ export default function ResumeTableCells({
               {resumeEntry.num_people_reached}
             </TableCell>
             <TableCell>
-              <ResumeEdit
-                sectionNumber={sectionNumber}
-                resumeEntry={resumeEntry}
-                sectionPlusNumber={sectionPlusNumber}
-                setSections={setSections}
-                priorEntries={priorEntries}
-              />
+              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -347,13 +301,7 @@ export default function ResumeTableCells({
               {resumeEntry.audience_size}
             </TableCell>
             <TableCell>
-              <ResumeEdit
-                sectionNumber={sectionNumber}
-                resumeEntry={resumeEntry}
-                sectionPlusNumber={sectionPlusNumber}
-                setSections={setSections}
-                priorEntries={priorEntries}
-              />
+              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -388,13 +336,7 @@ export default function ResumeTableCells({
               {resumeEntry.audience_size}
             </TableCell>
             <TableCell>
-              <ResumeEdit
-                sectionNumber={sectionNumber}
-                resumeEntry={resumeEntry}
-                sectionPlusNumber={sectionPlusNumber}
-                setSections={setSections}
-                priorEntries={priorEntries}
-              />
+              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -423,13 +365,7 @@ export default function ResumeTableCells({
               {resumeEntry.ribbon_or_placings}
             </TableCell>
             <TableCell>
-              <ResumeEdit
-                sectionNumber={sectionNumber}
-                resumeEntry={resumeEntry}
-                sectionPlusNumber={sectionPlusNumber}
-                setSections={setSections}
-                priorEntries={priorEntries}
-              />
+              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -458,13 +394,7 @@ export default function ResumeTableCells({
               {resumeEntry.level}
             </TableCell>
             <TableCell>
-              <ResumeEdit
-                sectionNumber={sectionNumber}
-                resumeEntry={resumeEntry}
-                sectionPlusNumber={sectionPlusNumber}
-                setSections={setSections}
-                priorEntries={priorEntries}
-              />
+              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -487,13 +417,7 @@ export default function ResumeTableCells({
               {resumeEntry.recognition_type}
             </TableCell>
             <TableCell>
-              <ResumeEdit
-                sectionNumber={sectionNumber}
-                resumeEntry={resumeEntry}
-                sectionPlusNumber={sectionPlusNumber}
-                setSections={setSections}
-                priorEntries={priorEntries}
-              />
+              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
@@ -516,13 +440,7 @@ export default function ResumeTableCells({
               {resumeEntry.recognition_type}
             </TableCell>
             <TableCell>
-              <ResumeEdit
-                sectionNumber={sectionNumber}
-                resumeEntry={resumeEntry}
-                sectionPlusNumber={sectionPlusNumber}
-                setSections={setSections}
-                priorEntries={priorEntries}
-              />
+              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
               <ResumeTableDeleteButton id={resumeEntry.id} />
