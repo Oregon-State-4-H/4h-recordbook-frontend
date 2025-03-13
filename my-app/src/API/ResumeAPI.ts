@@ -203,21 +203,37 @@ export type SectionAny =
   | Section14
   | SectionEmpty;
 
+export type SectionValid =
+  | Section1
+  | Section2
+  | Section3
+  | Section4
+  | Section5
+  | Section6
+  | Section7
+  | Section8
+  | Section9
+  | Section10
+  | Section11
+  | Section12
+  | Section13
+  | Section14;
+
 export type ResumeSections = {
-  section_1_data: Section1[],
-  section_2_data: Section2[],
-  section_3_data: Section3[],
-  section_4_data: Section4[],
-  section_5_data: Section5[],
-  section_6_data: Section6[],
-  section_7_data: Section7[],
-  section_8_data: Section8[],
-  section_9_data: Section9[],
-  section_10_data: Section10[],
-  section_11_data: Section11[],
-  section_12_data: Section12[],
-  section_13_data: Section13[],
-  section_14_data: Section14[],
+  section_1_data: Section1[];
+  section_2_data: Section2[];
+  section_3_data: Section3[];
+  section_4_data: Section4[];
+  section_5_data: Section5[];
+  section_6_data: Section6[];
+  section_7_data: Section7[];
+  section_8_data: Section8[];
+  section_9_data: Section9[];
+  section_10_data: Section10[];
+  section_11_data: Section11[];
+  section_12_data: Section12[];
+  section_13_data: Section13[];
+  section_14_data: Section14[];
 };
 
 export function isS1(sectionData: SectionAny): sectionData is Section1 {
@@ -282,16 +298,18 @@ export function isSectionEmpty(
   return (sectionData as SectionEmpty).section == -1;
 }
 
-export const fetchResume = async(): Promise<ResumeSections> => {
+export function isSectionValid(
+  sectionData: SectionAny
+): sectionData is SectionValid {
+  return (sectionData as SectionEmpty).section > 0;
+}
 
+export const fetchResume = async (): Promise<ResumeSections> => {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/resume`,
-      {
-        method: "GET",
-        credentials: "include",
-      }
-    );
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/resume`, {
+      method: "GET",
+      credentials: "include",
+    });
     const data = await response.json();
     if (!response.ok) {
       throw new Error(data.message || "Unexpected error occurred");
@@ -300,8 +318,7 @@ export const fetchResume = async(): Promise<ResumeSections> => {
   } catch (error) {
     throw error;
   }
-
-}
+};
 
 export const fetchSectionData = async <T>(section: string): Promise<T[]> => {
   try {
