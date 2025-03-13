@@ -3,12 +3,14 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import NavBarSignedIn from "../NavbarSignedIn";
 import MobileBottomNav from "../MobileBottomNav";
+import CloverLoader from "../CloverLoader";
 
 interface TitleOnlyProps {
   title: string;
+  cloverLoader: boolean;
 }
 
-export default function NotFound({ title }: TitleOnlyProps) {
+export default function NotFound({ title, cloverLoader }: TitleOnlyProps) {
   return (
     <Box className="App">
       <NavBarSignedIn />
@@ -33,6 +35,17 @@ export default function NotFound({ title }: TitleOnlyProps) {
       >
         {title}
       </Typography>
+      {cloverLoader && (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+          }}
+        >
+          <CloverLoader />
+        </Box>
+      )}
 
       <MobileBottomNav />
     </Box>
