@@ -7,7 +7,6 @@ function BackButton() {
   const router = useRouter();
 
   const handleGoBack = () => {
-    // navigate(-1);
     router.back();
   };
 

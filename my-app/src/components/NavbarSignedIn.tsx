@@ -10,16 +10,30 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Divider from "@mui/material/Divider";
+import Stack from "@mui/material/Stack";
 import BackButton from "./BackButton";
+import ContentPasteIcon from "@mui/icons-material/ContentPaste";
+import DescriptionIcon from "@mui/icons-material/Description";
 import { useRouter } from "next/router";
 
 function ResponsiveAppBar() {
   const router = useRouter();
-  const pathname = router.asPath
-    .replace("/Dashboard/", "")
-    .replace("/", " ")
-    .replace("/", " ")
-    .replace("Resume Section", "Section");
+
+  var pathname;
+
+  if (router.asPath.includes("/Project/All")) {
+    pathname = "All";
+  } else if (router.asPath.includes("/Project/")) {
+    pathname = "My Project";
+  } else if (router.asPath.includes("/Project")) {
+    pathname = "Current";
+  } else {
+    pathname = router.asPath
+      .replace("/Dashboard/", "")
+      .replace("/", " ")
+      .replace("/", " ")
+      .replace("Resume Section", "Section");
+  }
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -72,28 +86,49 @@ function ResponsiveAppBar() {
             4-H Record Books
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <BackButton />
-          </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
+          <Stack
+            direction="row"
             sx={{
-              mr: 2,
+              width: "100%",
+              justifyContent: "space-between",
+              alignItems: "center",
               display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-              fontSize: "7vw",
             }}
           >
-            {pathname}
-          </Typography>
+            <BackButton />
+            <Stack
+              direction="row"
+              spacing={1}
+              sx={{
+                width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Typography
+                variant="h5"
+                noWrap
+                component="a"
+                sx={{
+                  mr: 2,
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".3rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                  fontSize: "7vw",
+                  textAlign: "center",
+                  padding: "0px",
+                  margin: "0px",
+                }}
+              >
+                {pathname}
+              </Typography>
+              {router.asPath.includes("Project") && <ContentPasteIcon />}
+              {router.asPath.includes("Resume") && <DescriptionIcon />}
+            </Stack>
+          </Stack>
+
           <Box
             sx={{
               flexGrow: 1,
