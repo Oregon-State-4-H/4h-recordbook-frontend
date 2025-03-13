@@ -2,16 +2,43 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import NavBarSignedIn from "../../../../../../components/NavbarSignedIn";
-import MobileBottomNav from "../../../../../../components/MobileBottomNav";
-import TitleOnly from "../../../../../../components/Projects/TitleOnly";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Modal from "@mui/material/Modal";
+import NavBarSignedIn from "../../../../../components/NavbarSignedIn";
+import MobileBottomNav from "../../../../../components/MobileBottomNav";
+import TitleOnly from "../../../../../components/Projects/TitleOnly";
+import ProjectTableRow from "../../../../../components/Projects/TableRow";
 import {
+  Project,
+  isProject,
+  fetchProject,
+  AnimalProjectFields,
+  DailyFeedProjectFields,
+  ExpenseProjectFields,
+  FeedProjectFields,
+  FeedPurchaseProjectFields,
+  SupplyProjectFields,
   Animal,
+  DailyFeed,
+  Expense,
+  ExpenseHeaders,
+  Feed,
+  FeedPurchase,
+  Supply,
+  AutoProjectFields,
+  AnimalProjectTypes,
   AnimalProjectTypeEndpoints,
   fetchSubpageEntriesByProject,
-  emptyAnimal,
-} from "../../../../../../API/ProjectAPI";
-import SubpageCard from "../../../../../../components/Projects/SubpageCard";
+  emptyExpense,
+  Empty,
+} from "../../../../../API/ProjectAPI";
+import SubpageCard from "../../../../../components/Projects/SubpageCard";
 import Grid from "@mui/material/Grid2";
 
 export default function Section() {
@@ -27,7 +54,7 @@ export default function Section() {
   }
 
   // states for all subpage entries
-  let [allSubpageEntries, setAllSubpageEntries] = useState<Animal[]>([]);
+  let [allSubpageEntries, setAllSubpageEntries] = useState<Expense[]>([]);
   const [validSubpage, setValidSubpage] = useState(true);
   const [subpageDataLoaded, setSubpageDataLoaded] = useState(false);
 
@@ -45,15 +72,16 @@ export default function Section() {
 
   // state for multipurpose input modal
   const [inputModal, setinputModal] = React.useState(false);
-  let [inputModalEntry, setinputModalEntry] = useState<Animal>(emptyAnimal);
+  let [inputModalEntry, setinputModalEntry] =
+    useState<AnimalProjectTypes>(emptyExpense);
   let [inputModalPurpose, setinputModalPurpose] = useState<string>("");
   const handleinputModalClose = () => {
     setinputModal(false);
-    setinputModalEntry(emptyAnimal);
+    setinputModalEntry(emptyExpense);
     setinputModalPurpose("");
   };
   const handleinputModalOpen = (
-    currinputModalEntry: Animal,
+    currinputModalEntry: AnimalProjectTypes,
     purpose: string
   ) => {
     setinputModal(true);
@@ -64,12 +92,12 @@ export default function Section() {
 
   // state for mobile read detail modal
   const [readModal, setReadModal] = React.useState(false);
-  let [readModalEntry, setReadModalEntry] = useState<Animal>(emptyAnimal);
+  let [readModalEntry, setReadModalEntry] = useState<Expense>(emptyExpense);
   const handleReadModalClose = () => {
     setReadModal(false);
-    setReadModalEntry(emptyAnimal);
+    setReadModalEntry(emptyExpense);
   };
-  const handleReadModalOpen = (currModalEntry: Animal, purpose: string) => {
+  const handleReadModalOpen = (currModalEntry: Expense, purpose: string) => {
     setReadModal(true);
     setReadModalEntry(currModalEntry);
     handleinputModalClose();
@@ -117,7 +145,7 @@ export default function Section() {
       console.log("subpagePathSuffix: ", subpagePathSuffix);
       console.log("subpageTypeEndpoint: ", subpageTypeEndpoint);
       try {
-        const subpageData = await fetchSubpageEntriesByProject<Animal>(
+        const subpageData = await fetchSubpageEntriesByProject<Expense>(
           subpageTypeEndpoint,
           projectId
         );
@@ -136,7 +164,7 @@ export default function Section() {
       <TitleOnly
         title={
           router.asPath.substring(router.asPath.lastIndexOf("/") + 1) +
-          " Page Not Fpund"
+          " Page Not Found"
         }
         cloverLoader={false}
       />
@@ -144,7 +172,7 @@ export default function Section() {
   } else if (!router.isReady || !subpageDataLoaded) {
     return <TitleOnly title="Loading..." cloverLoader={true} />;
   } else if (subpageDataLoaded && validSubpage) {
-    console.log("allSubpageEntries: ", allSubpageEntries);
+    console.log(allSubpageEntries);
 
     return (
       <Box className="App">
@@ -169,58 +197,49 @@ export default function Section() {
         >
           {router.asPath.substring(router.asPath.lastIndexOf("/") + 1)}
         </Typography>
-        {displayLinks && (
-          <Box>
-            {" "}
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: { xs: "flex", md: "none" },
-                width: "100%",
-                flexDirection: "column",
-                paddingBottom: "50px",
-              }}
-            >
-              {allSubpageEntries &&
-                allSubpageEntries.length > 0 &&
-                allSubpageEntries.map((item) => (
-                  <SubpageCard
-                    label={item.name}
-                    path={router.asPath + "/" + item.id}
+        <Paper
+          sx={{
+            width: "90%",
+            overflow: "hidden",
+            marginLeft: "5%",
+            marginRight: "5%",
+            marginTop: "15px",
+          }}
+        >
+          <TableContainer sx={{ maxHeight: 440 }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                {/* in the first row of the table, make a cell for each collumn, holding the label */}
+                <TableRow>
+                  {ExpenseHeaders.map((item, index) => (
+                    <TableCell
+                      key={index}
+                      align="right"
+                      sx={{
+                        textAlign: "center",
+                        minWidth: 0.5 / allSubpageEntries.length,
+                      }}
+                    >
+                      {item.charAt(0).toUpperCase() + item.slice(1)}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {allSubpageEntries.map((item, index) => (
+                  <ProjectTableRow
+                    index={index}
+                    projectEntry={item}
+                    subpage={router.asPath.substring(
+                      router.asPath.lastIndexOf("/") + 1
+                    )}
+                    handleOpen={handleinputModalOpen}
                   />
                 ))}
-            </Box>
-            <Box
-              sx={{
-                width: "90%",
-                display: { xs: "none", md: "block" },
-                marginLeft: "5%",
-                marginRight: "5%",
-                marginTop: "15px",
-              }}
-            >
-              <Grid
-                container
-                rowSpacing={1}
-                columnSpacing={0}
-                sx={{
-                  width: "100%",
-                }}
-              >
-                {allSubpageEntries &&
-                  allSubpageEntries.length > 0 &&
-                  allSubpageEntries.map((item) => (
-                    <Grid size={6}>
-                      <SubpageCard
-                        label={item.name}
-                        path={router.asPath + "/" + item.id}
-                      />
-                    </Grid>
-                  ))}
-              </Grid>
-            </Box>
-          </Box>
-        )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
         <MobileBottomNav />
       </Box>
     );

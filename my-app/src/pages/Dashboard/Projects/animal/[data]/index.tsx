@@ -45,14 +45,20 @@ export default function Section() {
     getData();
   }, [router.isReady]);
   if (!validId) {
-    return <TitleOnly title="Project Not Found" />;
+    return <TitleOnly title="Project Not Found" cloverLoader={false} />;
   } else if (!router.isReady || !projectLoaded) {
-    return <TitleOnly title="Loading..." />;
+    return <TitleOnly title="Loading..." cloverLoader={true} />;
   } else if (projectLoaded && validId && isProject(currProject)) {
     var Subpages: string[] = [];
     switch (currProject.type) {
       case "animal":
-        Subpages = ["Animals", "Feed", "Expense", "Supplies"];
+        Subpages = [
+          "Animals",
+          "Feed Record",
+          "Feed Inventory",
+          "Expense",
+          "Supplies",
+        ];
         break;
       default:
         break;
