@@ -83,6 +83,7 @@ export type SupplyProjectFields = {
 };
 
 export type Supply = AutoProjectFields & SupplyProjectFields;
+export type Empty = AutoProjectFields;
 
 export type AnimalProjectTypes =
   | Animal
@@ -90,7 +91,8 @@ export type AnimalProjectTypes =
   | Expense
   | Feed
   | FeedPurchase
-  | Supply;
+  | Supply
+  | Empty;
 
 export function isProject(data: Project | undefined): data is Project {
   return typeof (data as Project) != undefined;

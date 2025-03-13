@@ -2,20 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Modal from "@mui/material/Modal";
-import NavBarSignedIn from "../../../../components/NavbarSignedIn";
-import MobileBottomNav from "../../../../components/MobileBottomNav";
-import { Button } from "@mui/material";
-import Card from "@mui/material/Card";
-import { Project, isProject, fetchProject } from "../../../../API/ProjectAPI";
-import SubpageCard from "../../../../components/Projects/SubpageCard";
+import NavBarSignedIn from "../../../../../components/NavbarSignedIn";
+import MobileBottomNav from "../../../../../components/MobileBottomNav";
+import TitleOnly from "../../../../../components/Projects/TitleOnly";
+import {
+  Project,
+  isProject,
+  fetchProject,
+} from "../../../../../API/ProjectAPI";
+import SubpageCard from "../../../../../components/Projects/SubpageCard";
 import Grid from "@mui/material/Grid2";
 
 export default function Section() {
@@ -50,64 +45,9 @@ export default function Section() {
     getData();
   }, [router.isReady]);
   if (!validId) {
-    return (
-      <Box className="App">
-        <NavBarSignedIn />
-
-        <Box
-          sx={(theme) => ({
-            [theme.breakpoints.up("xs")]: { height: "20px" },
-            [theme.breakpoints.up("sm")]: { height: "25px" },
-            [theme.breakpoints.up("md")]: { height: "30px" },
-            [theme.breakpoints.up("lg")]: { height: "35px" },
-            [theme.breakpoints.up("xl")]: { height: "40px" },
-          })}
-        ></Box>
-
-        <Typography
-          variant="h4"
-          sx={{
-            Width: "100%",
-            textAlign: "center",
-            fontWeight: "bold",
-          }}
-        >
-          Project Not Found
-        </Typography>
-
-        <MobileBottomNav />
-      </Box>
-    );
+    return <TitleOnly title="Project Not Found" />;
   } else if (!router.isReady || !projectLoaded) {
-    return (
-      <Box className="App">
-        <NavBarSignedIn />
-
-        <Box
-          sx={(theme) => ({
-            [theme.breakpoints.up("xs")]: { height: "20px" },
-            [theme.breakpoints.up("sm")]: { height: "25px" },
-            [theme.breakpoints.up("md")]: { height: "30px" },
-            [theme.breakpoints.up("lg")]: { height: "35px" },
-            [theme.breakpoints.up("xl")]: { height: "40px" },
-          })}
-        ></Box>
-
-        <Typography
-          variant="h4"
-          sx={{
-            display: { xs: "none", md: "block" },
-            Width: "100%",
-            textAlign: "center",
-            fontWeight: "bold",
-          }}
-        >
-          Loading ...
-        </Typography>
-
-        <MobileBottomNav />
-      </Box>
-    );
+    return <TitleOnly title="Loading..." />;
   } else if (projectLoaded && validId && isProject(currProject)) {
     var Subpages: string[] = [];
     switch (currProject.type) {
@@ -118,7 +58,6 @@ export default function Section() {
         break;
     }
     console.log(currProject);
-    // console.log(Subpages[0].frontend_path_seg);
 
     return (
       <Box className="App">
