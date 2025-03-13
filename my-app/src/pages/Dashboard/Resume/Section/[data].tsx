@@ -19,7 +19,6 @@ import DynamicPopUp from "../../../../components/Resume/DynamicPopUp";
 import MobileReadPopUp from "../../../../components/Resume/MobileReadPopUp";
 import CloverLoader from "../../../../components/CloverLoader";
 import sectionOutline from "./SectionOutline.json";
-import { fetchSectionData, SectionAny } from "../../../../API/ResumeAPI";
 import { Button } from "@mui/material";
 import { PDFDownloadButton } from "@/components/PDFDownloadButton";
 import PDFPreviewModel from "@/components/Models/PDFPreviewModel";
