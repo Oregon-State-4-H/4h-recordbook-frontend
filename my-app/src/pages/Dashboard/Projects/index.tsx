@@ -1,15 +1,16 @@
-import NavBarSignedIn from "../../components/NavbarSignedIn";
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import NavBarSignedIn from "../../../components/NavbarSignedIn";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid2";
-import MobileBottomNav from "../../components/MobileBottomNav";
-import PreviewCard from "../../components/Projects/PreviewCard";
-import { Project, fetchAllProjects } from "../../API/ProjectAPI";
+import MobileBottomNav from "../../../components/MobileBottomNav";
+import PreviewCard from "../../../components/Projects/PreviewCard";
+import { Project, fetchAllProjects } from "../../../API/ProjectAPI";
 
 function Projects() {
+  const router = useRouter();
+
   let [allProjects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
@@ -71,7 +72,12 @@ function Projects() {
         >
           {allProjects &&
             allProjects.length > 0 &&
-            allProjects.map((item) => <PreviewCard project={item} />)}
+            allProjects.map((item) => (
+              <PreviewCard
+                project={item}
+                path={router.asPath + "/" + item.type + "/" + item.id}
+              />
+            ))}
         </Box>
         <Box
           sx={{
@@ -94,7 +100,10 @@ function Projects() {
               allProjects.length > 0 &&
               allProjects.map((item) => (
                 <Grid size={4}>
-                  <PreviewCard project={item} />
+                  <PreviewCard
+                    project={item}
+                    path={router.asPath + "/" + item.type + "/" + item.id}
+                  />
                 </Grid>
               ))}
           </Grid>

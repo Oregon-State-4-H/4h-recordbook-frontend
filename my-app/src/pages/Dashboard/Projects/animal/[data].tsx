@@ -10,19 +10,25 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Modal from "@mui/material/Modal";
-import NavBarSignedIn from "../../../components/NavbarSignedIn";
-import MobileBottomNav from "../../../components/MobileBottomNav";
+import NavBarSignedIn from "../../../../components/NavbarSignedIn";
+import MobileBottomNav from "../../../../components/MobileBottomNav";
 import { Button } from "@mui/material";
 import Card from "@mui/material/Card";
-import { Project, fetchProject } from "../../../API/ProjectAPI";
+import { Project, isProject, fetchProject } from "../../../../API/ProjectAPI";
+import SubpageCard from "../../../../components/Projects/SubpageCard";
+import Grid from "@mui/material/Grid2";
 
 export default function Section() {
   const router = useRouter();
-  const projectId = router.asPath
-    .replace("/Dashboard/", "")
-    .replace("Project/", "");
+  var projectId = "";
+  if (router.isReady) {
+    projectId = router.asPath
+      .replace("/Dashboard/", "")
+      .replace("Projects/animal/", "");
+  }
 
   const [validId, setValidId] = useState(true);
+  const [projectLoaded, setProjectLoaded] = useState(false);
   let [currProject, setProject] = useState<Project>();
 
   useEffect(() => {
@@ -35,6 +41,7 @@ export default function Section() {
           setValidId(false);
         } else {
           setProject(projectData);
+          setProjectLoaded(true);
         }
       } catch (error) {
         console.log(error);
@@ -42,8 +49,36 @@ export default function Section() {
     };
     getData();
   }, [router.isReady]);
+  if (!validId) {
+    return (
+      <Box className="App">
+        <NavBarSignedIn />
 
-  if (!router.isReady) {
+        <Box
+          sx={(theme) => ({
+            [theme.breakpoints.up("xs")]: { height: "20px" },
+            [theme.breakpoints.up("sm")]: { height: "25px" },
+            [theme.breakpoints.up("md")]: { height: "30px" },
+            [theme.breakpoints.up("lg")]: { height: "35px" },
+            [theme.breakpoints.up("xl")]: { height: "40px" },
+          })}
+        ></Box>
+
+        <Typography
+          variant="h4"
+          sx={{
+            Width: "100%",
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
+        >
+          Project Not Found
+        </Typography>
+
+        <MobileBottomNav />
+      </Box>
+    );
+  } else if (!router.isReady || !projectLoaded) {
     return (
       <Box className="App">
         <NavBarSignedIn />
@@ -73,9 +108,18 @@ export default function Section() {
         <MobileBottomNav />
       </Box>
     );
-  }
+  } else if (projectLoaded && validId && isProject(currProject)) {
+    var Subpages: string[] = [];
+    switch (currProject.type) {
+      case "animal":
+        Subpages = ["Animals", "Feed", "Expense", "Supplies"];
+        break;
+      default:
+        break;
+    }
+    console.log(currProject);
+    // console.log(Subpages[0].frontend_path_seg);
 
-  if (validId) {
     return (
       <Box className="App">
         <NavBarSignedIn />
@@ -102,34 +146,54 @@ export default function Section() {
           Project Overview
         </Typography>
 
-        <MobileBottomNav />
-      </Box>
-    );
-  } else {
-    return (
-      <Box className="App">
-        <NavBarSignedIn />
-
+        {/* For every subpage, generate a clickable card */}
         <Box
-          sx={(theme) => ({
-            [theme.breakpoints.up("xs")]: { height: "20px" },
-            [theme.breakpoints.up("sm")]: { height: "25px" },
-            [theme.breakpoints.up("md")]: { height: "30px" },
-            [theme.breakpoints.up("lg")]: { height: "35px" },
-            [theme.breakpoints.up("xl")]: { height: "40px" },
-          })}
-        ></Box>
-
-        <Typography
-          variant="h4"
           sx={{
-            Width: "100%",
-            textAlign: "center",
-            fontWeight: "bold",
+            flexGrow: 1,
+            display: { xs: "flex", md: "none" },
+            width: "100%",
+            flexDirection: "column",
+            paddingBottom: "50px",
           }}
         >
-          Project Not Found
-        </Typography>
+          {Subpages &&
+            Subpages.length > 0 &&
+            Subpages.map((item) => (
+              <SubpageCard
+                label={item}
+                path={router.asPath + "/" + item.replaceAll(" ", "")}
+              />
+            ))}
+        </Box>
+        <Box
+          sx={{
+            width: "90%",
+            display: { xs: "none", md: "block" },
+            marginLeft: "5%",
+            marginRight: "5%",
+            marginTop: "15px",
+          }}
+        >
+          <Grid
+            container
+            rowSpacing={1}
+            columnSpacing={0}
+            sx={{
+              width: "100%",
+            }}
+          >
+            {Subpages &&
+              Subpages.length > 0 &&
+              Subpages.map((item) => (
+                <Grid size={6}>
+                  <SubpageCard
+                    label={item}
+                    path={router.asPath + "/" + item.replaceAll(" ", "")}
+                  />
+                </Grid>
+              ))}
+          </Grid>
+        </Box>
 
         <MobileBottomNav />
       </Box>

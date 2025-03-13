@@ -8,12 +8,12 @@ import Button from "@mui/material/Button";
 import { Project } from "../../API/ProjectAPI";
 
 interface ProjectCardProps {
-  project: Project;
+  label: string;
   path: string;
 }
 
 export default function ResumeCardPreviewContent({
-  project,
+  label,
   path,
 }: ProjectCardProps) {
   return (
@@ -45,25 +45,18 @@ export default function ResumeCardPreviewContent({
             height: "100%",
           }}
         >
-          <CardContent>
-            <Typography gutterBottom sx={{ fontSize: 14, width: "100%" }}>
-              {project.year}
-            </Typography>
-            <Typography
-              gutterBottom
-              variant="h5"
-              sx={{
-                width: "100%",
-                fontWeight: "medium",
-                color: "rgba(51, 153, 102, 1)",
-              }}
-            >
-              {project.name}
-            </Typography>
-            <Typography gutterBottom sx={{ fontSize: 12, width: "100%" }}>
-              {project.description}
-            </Typography>
-          </CardContent>
+          <Typography
+            gutterBottom
+            variant="h5"
+            sx={{
+              width: "100%",
+              fontWeight: "medium",
+              color: "rgba(51, 153, 102, 1)",
+              textAlign: "center",
+            }}
+          >
+            {label}
+          </Typography>
         </Card>
       </Button>
     </Box>
