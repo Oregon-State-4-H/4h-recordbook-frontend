@@ -29,7 +29,26 @@ export const fetchAllBookmarks = async (): Promise<Bookmark[]> => {
     }
 }
 
-export const postBookmark = async (bookmark: CustomBookmarkFields) => {
+export const fetchBookmark = async (url: string): Promise<Bookmark> => {
+    try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/bookmarks/${url}`, {
+            method: 'GET',
+            credentials: 'include'
+        });
+
+        const data = await response.json();
+        if(!response.ok){
+            throw new Error(data.message || "Unexpected error occurred");
+        }
+        return data.bookmark as Bookmark;
+
+    }
+    catch (error) {
+        throw error;
+    }    
+}
+
+export const postBookmark = async (bookmark: CustomBookmarkFields): Promise<Bookmark> => {
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/bookmarks`, {
             method: 'POST',
@@ -41,7 +60,7 @@ export const postBookmark = async (bookmark: CustomBookmarkFields) => {
         if(!response.ok){
             throw new Error(data.message || "Unexpected error occurred");
         }
-        return true;
+        return data.bookmark as Bookmark;
 
     }
     catch (error) {
@@ -57,8 +76,8 @@ export const deleteBookmark = async (bookmarkID: string) => {
             credentials: 'include'
         });
 
-        const data = await response.json();
         if(!response.ok){
+            const data = await response.json();
             throw new Error(data.message || "Unexpected error occurred");
         }
         return true;
