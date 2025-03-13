@@ -10,6 +10,7 @@ import { fetchResume, ResumeSections } from "@/API/ResumeAPI";
 import PDFPreviewModel from "@/components/Models/PDFPreviewModel";
 import PDFFile from "@/components/Reports/Resume/Resume";
 import { fetchUser, User } from "@/API/UserAPI";
+import { PDFDownloadButton } from "@/components/PDFDownloadButton";
 
 const Sections = [
   {
@@ -128,7 +129,7 @@ function Resume() {
         }}
       >
         <Button onClick={() => setShowPreview(true)}>Preview Resume</Button>
-        <Button onClick={() => {}}>Download Resume</Button>
+        <PDFDownloadButton text="Download Resume" document={<PDFFile userData={user} resumeData={resume} />} fileName={"My 4-H Resume.pdf"}/>
       </Box>
 
       {
