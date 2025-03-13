@@ -37,6 +37,8 @@ import Section11Report from "@/components/Reports/Resume/Section11";
 import Section12Report from "@/components/Reports/Resume/Section12";
 import Section13Report from "@/components/Reports/Resume/Section13";
 import Section14Report from "@/components/Reports/Resume/Section14";
+import { BookmarkHeader } from "@/components/BookmarkButton";
+
 import {
   fetchSectionData,
   SectionAny,
@@ -58,24 +60,27 @@ export default function Section() {
     .replace("/", " ")
     .replace("Resume Section ", "");
 
-    const sectionComponents: {[key: string]: (props: any) => React.JSX.Element} = {
-      "1": Section1Report,
-      "2": Section2Report,
-      "3": Section3Report,
-      "4": Section4Report,
-      "5": Section5Report,
-      "6": Section6Report,
-      "7": Section7Report,
-      "8": Section8Report,
-      "9": Section9Report,
-      "10": Section10Report,
-      "11": Section11Report,
-      "12": Section12Report,
-      "13": Section13Report,
-      "14": Section14Report,
-    };
+  const sectionComponents: {
+    [key: string]: (props: any) => React.JSX.Element;
+  } = {
+    "1": Section1Report,
+    "2": Section2Report,
+    "3": Section3Report,
+    "4": Section4Report,
+    "5": Section5Report,
+    "6": Section6Report,
+    "7": Section7Report,
+    "8": Section8Report,
+    "9": Section9Report,
+    "10": Section10Report,
+    "11": Section11Report,
+    "12": Section12Report,
+    "13": Section13Report,
+    "14": Section14Report,
+  };
 
-  const PDFDoc: (props: any) => React.JSX.Element = sectionComponents[sectionNumber];
+  const PDFDoc: (props: any) => React.JSX.Element =
+    sectionComponents[sectionNumber];
 
   const sectionPlusNumber = router.asPath
     .replace("/Dashboard/", "")
@@ -231,6 +236,8 @@ export default function Section() {
           [theme.breakpoints.up("xl")]: { height: "40px" },
         })}
       ></Box>
+      <BookmarkHeader />
+
       {router.isReady && (
         <Typography
           variant="h4"
@@ -257,7 +264,7 @@ export default function Section() {
           {Title}
         </Typography>
       )}
-      
+
       <Box
         sx={{
           display: { md: "block" },
@@ -266,17 +273,20 @@ export default function Section() {
           fontWeight: "bold",
         }}
       >
-        <Button onClick={() => setShowPreview(true)}>Preview Section PDF</Button>
+        <Button onClick={() => setShowPreview(true)}>
+          Preview Section PDF
+        </Button>
       </Box>
-      {
-        showPreview &&
-        <PDFPreviewModel title={"Section " + sectionNumber + " Preview"} handleClose={() => setShowPreview(false)}>
+      {showPreview && (
+        <PDFPreviewModel
+          title={"Section " + sectionNumber + " Preview"}
+          handleClose={() => setShowPreview(false)}
+        >
           <Document>
             <PDFDoc tableData={allSections} />
           </Document>
         </PDFPreviewModel>
-      }
-
+      )}
       <Box
         sx={{
           width: "90%",

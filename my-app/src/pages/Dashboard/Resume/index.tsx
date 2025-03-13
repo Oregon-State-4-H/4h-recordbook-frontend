@@ -11,6 +11,7 @@ import PDFPreviewModel from "@/components/Models/PDFPreviewModel";
 import PDFFile from "@/components/Reports/Resume/Resume";
 import { fetchUser, User } from "@/API/UserAPI";
 import { PDFDownloadButton } from "@/components/PDFDownloadButton";
+import { BookmarkHeader } from "@/components/BookmarkButton";
 
 const Sections = [
   {
@@ -65,7 +66,6 @@ const Sections = [
 ];
 
 function Resume() {
-
   const [showPreview, setShowPreview] = useState(false);
   const [user, setUser] = useState<User>();
   const [resume, setResume] = useState<ResumeSections>();
@@ -107,6 +107,8 @@ function Resume() {
           [theme.breakpoints.up("xl")]: { height: "40px" },
         })}
       ></Box>
+      <BookmarkHeader />
+
       <Box>
         <Typography
           variant="h4"
@@ -129,15 +131,21 @@ function Resume() {
         }}
       >
         <Button onClick={() => setShowPreview(true)}>Preview Resume</Button>
-        <PDFDownloadButton text="Download Resume" document={<PDFFile userData={user} resumeData={resume} />} fileName={"My 4-H Resume.pdf"}/>
+        <PDFDownloadButton
+          text="Download Resume"
+          document={<PDFFile userData={user} resumeData={resume} />}
+          fileName={"My 4-H Resume.pdf"}
+        />
       </Box>
 
-      {
-        showPreview &&
-        <PDFPreviewModel title="My 4-H Resume Preview" handleClose={() => setShowPreview(false)}>
-          <PDFFile userData={user} resumeData={resume}/>
+      {showPreview && (
+        <PDFPreviewModel
+          title="My 4-H Resume Preview"
+          handleClose={() => setShowPreview(false)}
+        >
+          <PDFFile userData={user} resumeData={resume} />
         </PDFPreviewModel>
-      }
+      )}
 
       <Toolbar
         disableGutters

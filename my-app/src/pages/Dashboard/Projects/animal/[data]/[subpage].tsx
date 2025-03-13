@@ -13,6 +13,8 @@ import Modal from "@mui/material/Modal";
 import NavBarSignedIn from "../../../../../components/NavbarSignedIn";
 import MobileBottomNav from "../../../../../components/MobileBottomNav";
 import TitleOnly from "../../../../../components/Projects/TitleOnly";
+import { BookmarkHeader } from "@/components/BookmarkButton";
+
 import {
   Project,
   isProject,
@@ -193,6 +195,7 @@ export default function Section() {
             [theme.breakpoints.up("xl")]: { height: "40px" },
           })}
         ></Box>
+        <BookmarkHeader />
         <Typography
           variant="h4"
           sx={{

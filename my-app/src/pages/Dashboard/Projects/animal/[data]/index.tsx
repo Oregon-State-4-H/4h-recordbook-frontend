@@ -12,6 +12,7 @@ import {
 } from "../../../../../API/ProjectAPI";
 import SubpageCard from "../../../../../components/Projects/SubpageCard";
 import Grid from "@mui/material/Grid2";
+import { BookmarkHeader } from "@/components/BookmarkButton";
 
 export default function Section() {
   const router = useRouter();
@@ -78,7 +79,7 @@ export default function Section() {
             [theme.breakpoints.up("xl")]: { height: "40px" },
           })}
         ></Box>
-
+        <BookmarkHeader />
         <Typography
           variant="h4"
           sx={{

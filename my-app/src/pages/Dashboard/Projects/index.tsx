@@ -7,6 +7,7 @@ import Grid from "@mui/material/Grid2";
 import MobileBottomNav from "../../../components/MobileBottomNav";
 import PreviewCard from "../../../components/Projects/PreviewCard";
 import { Project, fetchAllProjects } from "../../../API/ProjectAPI";
+import { BookmarkHeader } from "@/components/BookmarkButton";
 
 function Projects() {
   const router = useRouter();
@@ -39,7 +40,7 @@ function Projects() {
           [theme.breakpoints.up("xl")]: { height: "40px" },
         })}
       ></Box>
-
+      <BookmarkHeader />
       <Typography
         variant="h4"
         sx={{

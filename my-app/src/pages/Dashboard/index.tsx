@@ -6,11 +6,10 @@ import BookmarksMenu from "../../components/Dashboard/BookmarksMenu";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import PageHeader from "@/components/PageHeader";
+import { BookmarkHeader } from "@/components/BookmarkButton";
 import { Bookmark, fetchAllBookmarks } from "@/API/BookmarkAPI";
 
 function Dashboard() {
-
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
 
   useEffect(() => {
@@ -38,7 +37,8 @@ function Dashboard() {
           [theme.breakpoints.up("xl")]: { height: "50px" },
         })}
       ></Box>
-      <PageHeader />
+      <BookmarkHeader />
+
       <Box>
         <Typography
           variant="h4"
@@ -96,7 +96,7 @@ function Dashboard() {
                 paddingBottom: "50px",
               }}
             >
-              <BookmarksMenu bookmarks={bookmarks}/>
+              <BookmarksMenu bookmarks={bookmarks} />
             </Box>
           </Box>
         </Box>
@@ -128,7 +128,7 @@ function Dashboard() {
               paddingTop: "15px",
             }}
           >
-            <BookmarksMenu bookmarks={bookmarks}/>
+            <BookmarksMenu bookmarks={bookmarks} />
           </Box>
         </Box>
       </Toolbar>
