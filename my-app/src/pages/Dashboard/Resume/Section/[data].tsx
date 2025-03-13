@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Box from "@mui/material/Box";
-import NavBarSignedIn from "../../../../components/NavbarSignedIn";
-import MobileBottomNav from "../../../../components/MobileBottomNav";
-import ResumeCreate from "../../../../components/Resume/ResumeCreate";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -12,11 +9,22 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import ResumeTableRow from "../../../../components/Resume/ResumeTableRow";
-import ResumeCard from "../../../../components/Resume/ResumeCard";
+import Modal from "@mui/material/Modal";
+import NavBarSignedIn from "../../../../components/NavbarSignedIn";
+import MobileBottomNav from "../../../../components/MobileBottomNav";
+import ResumeCreate from "../../../../components/Resume/CreateIconButton";
+import ResumeTableRow from "../../../../components/Resume/TableRow";
+import ResumeCard from "../../../../components/Resume/MobileCard";
+import DynamicPopUp from "../../../../components/Resume/DynamicPopUp";
+import MobileReadPopUp from "../../../../components/Resume/MobileReadPopUp";
 import CloverLoader from "../../../../components/CloverLoader";
 import sectionOutline from "./SectionOutline.json";
-import { fetchSectionData, SectionAny } from "../../../../API/ResumeAPI";
+import {
+  fetchSectionData,
+  SectionAny,
+  SectionEmpty,
+} from "../../../../API/ResumeAPI";
+import Card from "@mui/material/Card";
 
 export default function Section() {
   const router = useRouter();
@@ -100,6 +108,58 @@ export default function Section() {
       break;
   }
 
+  const empty: SectionEmpty = {
+    id: "",
+    section: -1,
+    user_id: "",
+    created: "",
+    updated: "",
+  };
+
+  // state for multipurpose input modal
+  const [inputModal, setinputModal] = React.useState(false);
+  let [inputModalEntry, setinputModalEntry] = useState<SectionAny>(empty);
+  let [inputModalPurpose, setinputModalPurpose] = useState<string>("");
+  const handleinputModalClose = () => {
+    setinputModal(false);
+    setinputModalEntry(empty);
+    setinputModalPurpose("");
+  };
+  const handleinputModalOpen = (
+    currinputModalEntry: SectionAny,
+    purpose: string
+  ) => {
+    setinputModal(true);
+    setinputModalEntry(currinputModalEntry);
+    setinputModalPurpose(purpose);
+    handleReadModalClose();
+  };
+
+  // state for mobile read detail modal
+  const [readModal, setReadModal] = React.useState(false);
+  let [readModalEntry, setReadModalEntry] = useState<SectionAny>(empty);
+  const handleReadModalClose = () => {
+    setReadModal(false);
+    setReadModalEntry(empty);
+  };
+  const handleReadModalOpen = (currModalEntry: SectionAny, purpose: string) => {
+    setReadModal(true);
+    setReadModalEntry(currModalEntry);
+    handleinputModalClose();
+  };
+
+  // state for multipurpose snackbar alert
+  const [alert, setAlert] = React.useState(false);
+  let [alertText, setAlertText] = useState<String>("");
+  const handleAlertClose = () => {
+    setAlert(false);
+    setAlertText("");
+  };
+  const handleAlertOpen = (currAlertText: string) => {
+    setAlert(true);
+    setAlertText(currAlertText);
+  };
+
   useEffect(() => {
     if (!router.isReady) return;
 
@@ -177,12 +237,7 @@ export default function Section() {
             padding: "0px",
           }}
         ></Box>
-        <ResumeCreate
-          sectionNumber={sectionNumber}
-          sectionPlusNumber={sectionPlusNumber}
-          setSections={setSections}
-          priorEntries={allSections}
-        />
+        <ResumeCreate handleOpen={handleinputModalOpen} />
       </Box>
       <Paper
         sx={{
@@ -220,6 +275,7 @@ export default function Section() {
                     sectionPlusNumber={sectionPlusNumber}
                     setSections={setSections}
                     priorEntries={allSections}
+                    handleOpen={handleinputModalOpen}
                   />
                 ))}
             </TableBody>
@@ -249,10 +305,40 @@ export default function Section() {
                 paddingBottom: "20px",
               }}
             >
-              <ResumeCard resumeEntry={item} />
+              <ResumeCard resumeEntry={item} handleOpen={handleReadModalOpen} />
             </Box>
           ))}
       </Box>
+      <Modal
+        open={inputModal}
+        onClose={handleinputModalClose}
+        aria-labelledby="input-modal-title"
+        aria-describedby="input-modal-description"
+      >
+        <DynamicPopUp
+          sectionNumber={sectionNumber}
+          sectionPlusNumber={sectionPlusNumber}
+          setSections={setSections}
+          priorEntries={allSections}
+          resumeEntry={inputModalEntry}
+          handleModalClose={handleinputModalClose}
+          purpose={inputModalPurpose}
+          handleOpen={handleinputModalOpen}
+        />
+      </Modal>
+
+      <Modal
+        open={readModal}
+        onClose={handleReadModalClose}
+        aria-labelledby="read-modal-title"
+        aria-describedby="read-modal-description"
+      >
+        <MobileReadPopUp
+          resumeEntry={readModalEntry}
+          handleModalClose={handleReadModalClose}
+          handleOpen={handleinputModalOpen}
+        />
+      </Modal>
       {isLoading && (
         <Box
           sx={{
