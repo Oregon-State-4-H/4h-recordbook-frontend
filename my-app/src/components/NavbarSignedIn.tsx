@@ -19,16 +19,27 @@ import { useRouter } from "next/router";
 function ResponsiveAppBar() {
   const router = useRouter();
 
-  var pathname;
+  var mobileTitle;
 
-  if (router.asPath.includes("/Project/All")) {
-    pathname = "All";
-  } else if (router.asPath.includes("/Project/")) {
-    pathname = "My Project";
-  } else if (router.asPath.includes("/Project")) {
-    pathname = "Current";
+  if (router.asPath.includes("/Projects/All")) {
+    mobileTitle = "All";
+  } else if (router.asPath.includes("/Projects/")) {
+    if (
+      router.asPath
+        .substring(
+          router.asPath.lastIndexOf("/Projects/") + "/Projects/".length,
+          router.asPath.lastIndexOf("/") - 1
+        )
+        .includes("/")
+    ) {
+      mobileTitle = router.asPath.substring(router.asPath.lastIndexOf("/") + 1);
+    } else {
+      mobileTitle = "My Project";
+    }
+  } else if (router.asPath.includes("/Projects")) {
+    mobileTitle = "Current";
   } else {
-    pathname = router.asPath
+    mobileTitle = router.asPath
       .replace("/Dashboard/", "")
       .replace("/", " ")
       .replace("/", " ")
@@ -41,21 +52,6 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
-
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
 
   return (
     <AppBar
@@ -122,7 +118,7 @@ function ResponsiveAppBar() {
                   margin: "0px",
                 }}
               >
-                {pathname}
+                {mobileTitle}
               </Typography>
               {router.asPath.includes("Project") && <ContentPasteIcon />}
               {router.asPath.includes("Resume") && <DescriptionIcon />}
