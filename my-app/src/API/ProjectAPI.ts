@@ -7,14 +7,16 @@ export interface CustomProjectFields {
   year: string;
 }
 
-export type Project = CustomProjectFields & {
+export type AutoProjectFields = {
   id: string;
   user_id: string;
   created: string;
   updated: string;
 };
 
-export type Animal = {
+export type Project = CustomProjectFields & AutoProjectFields;
+
+export type AnimalProjectFields = {
   animal_cost: string;
   beginning_date: string;
   beginning_weight: number;
@@ -23,7 +25,6 @@ export type Animal = {
   dam_breed: string;
   end_date: string;
   end_weight: number;
-  id: string;
   name: string;
   project_id: string;
   purchase_date: string;
@@ -31,67 +32,65 @@ export type Animal = {
   sale_price: string;
   sire_breed: string;
   species: string;
-  updated: string;
-  user_id: string;
   yield_grade: string;
 };
 
-export type DailyFeed = {
+export type Animal = AutoProjectFields & AnimalProjectFields;
+
+export type DailyFeedProjectFields = {
   animal_id: string;
-  created: string;
   feed_amount: 0;
   feed_date: string;
   feed_id: string;
   feed_purchase_id: string;
-  id: string;
   project_id: string;
-  updated: string;
-  user_id: string;
 };
 
-export type Expense = {
+export type DailyFeed = AutoProjectFields & DailyFeedProjectFields;
+
+export type ExpenseProjectFields = {
   cost: 0;
-  created: string;
   date: string;
-  id: string;
   items: string;
   project_id: string;
   quantity: 0;
-  updated: string;
-  user_id: string;
 };
 
-export type Feed = {
-  created: string;
-  id: string;
+export type Expense = AutoProjectFields & ExpenseProjectFields;
+
+export type FeedProjectFields = {
   name: string;
   project_id: string;
-  updated: string;
-  user_id: string;
 };
 
-export type FeedPurchase = {
+export type Feed = AutoProjectFields & FeedProjectFields;
+
+export type FeedPurchaseProjectFields = {
   amount_purchased: 0;
-  created: string;
   date_purchased: string;
   feed_id: string;
-  id: string;
   project_id: string;
   total_cost: 0;
-  updated: string;
-  user_id: string;
 };
 
-export type Supply = {
-  created: string;
+export type FeedPurchase = AutoProjectFields & FeedPurchaseProjectFields;
+
+export type SupplyProjectFields = {
   description: string;
   end_value: 0;
-  id: string;
   project_id: string;
   start_value: 0;
-  updated: string;
-  user_id: string;
 };
+
+export type Supply = AutoProjectFields & SupplyProjectFields;
+
+export type AnimalProjectTypes =
+  | Animal
+  | DailyFeed
+  | Expense
+  | Feed
+  | FeedPurchase
+  | Supply;
 
 export function isProject(data: Project | undefined): data is Project {
   return typeof (data as Project) != undefined;
