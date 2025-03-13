@@ -122,7 +122,7 @@ function Resume() {
       </Box>
       <Box
         sx={{
-          display: { xs: "none", md: "block" },
+          display: { md: "block" },
           Width: "100%",
           textAlign: "center",
           fontWeight: "bold",

@@ -17,11 +17,30 @@ import ResumeCard from "../../../../components/Resume/ResumeCard";
 import CloverLoader from "../../../../components/CloverLoader";
 import sectionOutline from "./SectionOutline.json";
 import { fetchSectionData, SectionAny } from "../../../../API/ResumeAPI";
+import { Button } from "@mui/material";
+import { PDFDownloadButton } from "@/components/PDFDownloadButton";
+import PDFPreviewModel from "@/components/Models/PDFPreviewModel";
+import { Document } from "@react-pdf/renderer";
+import Section1Report from "@/components/Reports/Resume/Section1";
+import Section2Report from "@/components/Reports/Resume/Section2";
+import Section3Report from "@/components/Reports/Resume/Section3";
+import Section4Report from "@/components/Reports/Resume/Section4";
+import Section5Report from "@/components/Reports/Resume/Section5";
+import Section6Report from "@/components/Reports/Resume/Section6";
+import Section7Report from "@/components/Reports/Resume/Section7";
+import Section8Report from "@/components/Reports/Resume/Section8";
+import Section9Report from "@/components/Reports/Resume/Section9";
+import Section10Report from "@/components/Reports/Resume/Section10";
+import Section11Report from "@/components/Reports/Resume/Section11";
+import Section12Report from "@/components/Reports/Resume/Section12";
+import Section13Report from "@/components/Reports/Resume/Section13";
+import Section14Report from "@/components/Reports/Resume/Section14";
 
 export default function Section() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   let [allSections, setSections] = useState<SectionAny[]>([]);
+  const [showPreview, setShowPreview] = useState(false);
   var Title: string = "";
   var Fields: { [key: string]: string }[] = [];
 
@@ -30,6 +49,25 @@ export default function Section() {
     .replace("/", " ")
     .replace("/", " ")
     .replace("Resume Section ", "");
+
+    const sectionComponents: {[key: string]: (props: any) => React.JSX.Element} = {
+      "1": Section1Report,
+      "2": Section2Report,
+      "3": Section3Report,
+      "4": Section4Report,
+      "5": Section5Report,
+      "6": Section6Report,
+      "7": Section7Report,
+      "8": Section8Report,
+      "9": Section9Report,
+      "10": Section10Report,
+      "11": Section11Report,
+      "12": Section12Report,
+      "13": Section13Report,
+      "14": Section14Report,
+    };
+
+  const PDFDoc: (props: any) => React.JSX.Element = sectionComponents[sectionNumber];
 
   const sectionPlusNumber = router.asPath
     .replace("/Dashboard/", "")
@@ -108,7 +146,6 @@ export default function Section() {
         const sectionData = await fetchSectionData<SectionAny>(
           sectionPlusNumber
         );
-        console.log(sectionData);
         setSections(sectionData);
       } catch (error) {
         console.error(error);
@@ -160,6 +197,26 @@ export default function Section() {
           {Title}
         </Typography>
       )}
+      
+      <Box
+        sx={{
+          display: { md: "block" },
+          Width: "100%",
+          textAlign: "center",
+          fontWeight: "bold",
+        }}
+      >
+        <Button onClick={() => setShowPreview(true)}>Preview Section PDF</Button>
+      </Box>
+      {
+        showPreview &&
+        <PDFPreviewModel title={"Section " + sectionNumber + " Preview"} handleClose={() => setShowPreview(false)}>
+          <Document>
+            <PDFDoc tableData={allSections} />
+          </Document>
+        </PDFPreviewModel>
+      }
+
       <Box
         sx={{
           width: "90%",

@@ -8,7 +8,6 @@ const PDFDownloadLink = dynamic(
   () => import("@react-pdf/renderer").then((mod) => mod. PDFDownloadLink),
   {
     ssr: false,
-    loading: () => <p>Loading...</p>,
   },
 );
 

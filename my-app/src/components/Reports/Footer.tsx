@@ -2,7 +2,7 @@ import React from "react";
 import { Text, Image, StyleSheet, View } from "@react-pdf/renderer";
 //import '../../_fonts/fonts';
 
-var logo = "/assets/photos/logo_osu4h.png";
+var logo = "/photos/logo_osu4h.png";
 
 var footerText = "OSU Extension Service prohibits discrimination in all its programs, services, activities, and materials. This publication will be made available in an accessible alternative format upon request. Please contact the OSU Extension 4-H Office at 541-737-7428. This document was updated in March 2023.";
 var footerMargin = 30;
