@@ -21,11 +21,11 @@ function ResponsiveAppBar() {
 
   var pathname;
 
-  if (router.asPath.includes("/Project/All")) {
+  if (router.asPath.includes("/Projects/All")) {
     pathname = "All";
   } else if (router.asPath.includes("/Project/")) {
     pathname = "My Project";
-  } else if (router.asPath.includes("/Project")) {
+  } else if (router.asPath.includes("/Projects")) {
     pathname = "Current";
   } else {
     pathname = router.asPath
