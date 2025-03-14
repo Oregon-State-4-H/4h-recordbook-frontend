@@ -371,6 +371,48 @@ export const postSubpageEntry = async <T>(endpoint: string, input: string) => {
   }
 };
 
+export const updateSubpageEntry = async <T>(
+  endpoint: string,
+  id: string,
+  input: string
+) => {
+  // return type for after backend is updated to return created entry
+  // ): Promise<T> => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/${endpoint}/${id}`,
+      {
+        method: "PUT",
+        credentials: "include",
+        body: input,
+      }
+    );
+    // code for after backend is updated to return created entry
+    // const data = await response.json();
+    // if (!response.ok) {
+    //   throw new Error(data.message || "Unexpected error occurred");
+    // }
+    // switch (endpoint) {
+    //   case AnimalProjectTypeEndpoints.Animal:
+    //     return data.animals as T[];
+    //   case AnimalProjectTypeEndpoints.Expense:
+    //     return data.expenses as T[];
+    //   case AnimalProjectTypeEndpoints.Feed:
+    //     return data.feeds as T[];
+    //   case AnimalProjectTypeEndpoints.FeedPurchase:
+    //     return data.feed_purchases as T[];
+    //   case AnimalProjectTypeEndpoints.Supply:
+    //     return data.supplies as T[];
+    //   default:
+    //     throw new Error(
+    //       "Type is not supported by fetchSubpageEntriesByProject function"
+    //     );
+    // }
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const deleteSubpageEntry = async <T>(endpoint: string, id: string) => {
   try {
     const response = await fetch(

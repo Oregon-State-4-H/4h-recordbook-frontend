@@ -14,6 +14,7 @@ import {
   isExpense,
   emptyAnimalProjectEntry,
   postSubpageEntry,
+  updateSubpageEntry,
   EndpointByDynamicPathSuffix,
 } from "@/API/ProjectAPI";
 
@@ -67,27 +68,26 @@ export default function DynamicPopUp({
 
       // function to send PUT update request to backend
       const handleUpdate = async () => {
-        // console.log(JSON.stringify(Object.fromEntries(mapState)));
-        // const postData = async () => {
-        //   try {
-        //     const sectionData = await updateSection<AnimalProjectTypes>(
-        //       sectionPlusNumber,
-        //       subpageEntry.id,
-        //       JSON.stringify(Object.fromEntries(mapState))
-        //     );
-        //     console.log(sectionData);
-        //     setSections(
-        //       priorEntries.map((item) =>
-        //         item.id === sectionData.id ? sectionData : item
-        //       )
-        //     );
-        //     handleModalClose();
-        //     // handleNotificationOpen();
-        //   } catch (error) {
-        //     console.error(error);
-        //   }
-        // };
-        // postData();
+        var endpoint: string = EndpointByDynamicPathSuffix(subpage);
+        console.log(JSON.stringify(Object.fromEntries(mapState)));
+        const postData = async () => {
+          try {
+            // const sectionData =
+            await updateSubpageEntry<AnimalProjectTypes>(
+              endpoint,
+              subpageEntry.id,
+              JSON.stringify(Object.fromEntries(mapState))
+            );
+            // console.log(sectionData);
+            // setSections([...priorEntries, sectionData]);
+            handleModalClose();
+            window.location.reload();
+            // handleNotificationOpen();
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        postData();
       };
 
       return (
