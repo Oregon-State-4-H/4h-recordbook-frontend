@@ -49,8 +49,9 @@ export default function DynamicPopUp({
       // effect to store entry's exsiting key values in map
       // input fields will override exsisting key values when they are changed
       useEffect(() => {
+        console.log("subpage for edit: ", subpage);
         switch (subpage) {
-          case "expense":
+          case "Expense":
             if (isExpense(subpageEntry)) {
               updateMap("cost", subpageEntry.cost);
               updateMap("date", subpageEntry.date);

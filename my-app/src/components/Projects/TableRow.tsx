@@ -2,9 +2,11 @@ import * as React from "react";
 import TableCell from "@mui/material/TableCell";
 import { StyledTableRow } from "../StyledTableRow";
 import DeleteIconButton from "./DeleteIconButton";
+import EditIconButton from "./EditIconButton";
 // import ResumeEdit from "./EditIconButton";
 import { AnimalProjectTypes, isExpense } from "../../API/ProjectAPI";
 import { toDDMMYY } from "../../components/Date";
+import Stack from "@mui/material/Stack";
 
 interface ResumeRowProps {
   index: number;
@@ -44,11 +46,21 @@ export default function ResumeTableCells({
             <TableCell sx={{ textAlign: "center" }}>
               {projectEntry.quantity}
             </TableCell>
-            {/* <TableCell>
-              <ResumeEdit projectEntry={projectEntry} handleOpen={handleOpen} />
-            </TableCell> */}
             <TableCell>
-              <DeleteIconButton id={projectEntry.id} subpage={subpage} />
+              <Stack
+                direction="row"
+                spacing={2}
+                sx={{
+                  justifyContent: "space-evenly",
+                  alignItems: "center",
+                }}
+              >
+                <EditIconButton
+                  animalProjectEntry={projectEntry}
+                  handleOpen={handleOpen}
+                />
+                <DeleteIconButton id={projectEntry.id} subpage={subpage} />
+              </Stack>
             </TableCell>
           </StyledTableRow>
         );

@@ -38,7 +38,7 @@ export default function ResumeCreateModalContent({
   var originalValue: string = "";
 
   switch (subpage) {
-    case "expense":
+    case "Expense":
       if (isExpense(originalToUpdate)) {
         switch (originalValueKey) {
           case "cost":

@@ -21,11 +21,14 @@ export function toDateType(str: string) {
 }
 
 export function toDayJSType(str: string) {
-  if (isDateString(str)) {
-    var date = new Date(str);
-    return dayjs().set("day", date.getDay()).set("month", date.getFullYear());
-  }
-  return dayjs();
+  // if (isDateString(str)) {
+  //   var date = new Date(str);
+  //   console.log("datestr: ", str);
+  //   console.log("date ", date);
+  //   return dayjs().set("day", date.getDay()).set("month", date.getFullYear());
+  // }
+  // return dayjs();
+  return dayjs(str);
 }
 
 function isDayJs(dateDayJs: dayjs.Dayjs | null): dateDayJs is dayjs.Dayjs {
