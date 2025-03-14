@@ -9,7 +9,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AnimalProjectTypes, isExpense } from "../../API/ProjectAPI";
-import { toDayJSType, DayJSTypetoRFC3339 } from "@/components/Date";
+import { DayJSTypetoRFC3339 } from "@/components/Date";
 import dayjs from "dayjs";
 
 interface DynamicInputProps {
@@ -46,6 +46,11 @@ export default function ResumeCreateModalContent({
             break;
           case "date":
             originalValue = originalToUpdate.date;
+            console.log("originalToUpdate.date", originalToUpdate.date);
+            console.log(
+              "day js originalToUpdate.date",
+              dayjs(originalToUpdate.date)
+            );
             break;
           case "items":
             originalValue = originalToUpdate.items;
@@ -185,13 +190,27 @@ export default function ResumeCreateModalContent({
       }, []);
 
       if (typeof inputFieldJSON.label == "string") {
+        if (originalValue == "") {
+          return (
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                label={inputFieldJSON.label}
+                sx={{ width: "100%" }}
+                name={inputFieldJSON.name}
+                onChange={(newValue) =>
+                  updateMap(inputFieldJSON.name, DayJSTypetoRFC3339(newValue))
+                }
+              />
+            </LocalizationProvider>
+          );
+        }
         return (
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
               label={inputFieldJSON.label}
               sx={{ width: "100%" }}
               name={inputFieldJSON.name}
-              defaultValue={toDayJSType(originalValue)}
+              defaultValue={dayjs(originalValue)}
               onChange={(newValue) =>
                 updateMap(inputFieldJSON.name, DayJSTypetoRFC3339(newValue))
               }

@@ -8,9 +8,8 @@ export function isDateString(str: string) {
 
 export function toDDMMYY(str: string) {
   if (isDateString(str)) {
-    var date = new Date(str);
-    var datestring =
-      date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear();
+    var date = dayjs(str);
+    var datestring = date.format("MM/DD/YYYY");
     return datestring;
   }
   return str;
@@ -18,17 +17,6 @@ export function toDDMMYY(str: string) {
 
 export function toDateType(str: string) {
   return new Date(str);
-}
-
-export function toDayJSType(str: string) {
-  // if (isDateString(str)) {
-  //   var date = new Date(str);
-  //   console.log("datestr: ", str);
-  //   console.log("date ", date);
-  //   return dayjs().set("day", date.getDay()).set("month", date.getFullYear());
-  // }
-  // return dayjs();
-  return dayjs(str);
 }
 
 function isDayJs(dateDayJs: dayjs.Dayjs | null): dateDayJs is dayjs.Dayjs {
