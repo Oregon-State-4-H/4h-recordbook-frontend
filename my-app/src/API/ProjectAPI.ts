@@ -10,6 +10,20 @@ export enum AnimalProjectTypeEndpoints {
   Empty = "",
 }
 
+export function EndpointByDynamicPathSuffix(subpagePathSuffix: string): string {
+  switch (subpagePathSuffix) {
+    case "Animals":
+      return AnimalProjectTypeEndpoints.Animal;
+    case "Expense":
+      return AnimalProjectTypeEndpoints.Expense;
+    case "Feeds":
+      return AnimalProjectTypeEndpoints.Feed;
+    case "Supplies":
+      return AnimalProjectTypeEndpoints.Supply;
+  }
+  return "";
+}
+
 export const AnimalHeaders: string[] = [];
 export const DailyFeedHeaders: string[] = [];
 export const ExpenseHeaders: string[] = ["Cost", "Date", "Items", "Quantity"];
@@ -36,7 +50,7 @@ export const FeedPurchaseKeys: string[] = [];
 export const SupplyKeys: string[] = [];
 export const EmptyKeys: string[] = [];
 
-export const AnimalProjectTypeKeysFromUder: { [key: string]: string[] } = {
+export const AnimalProjectTypeKeysFromUser: { [key: string]: string[] } = {
   Animal: AnimalKeys,
   DailyFeed: DailyFeedKeys,
   Expense: ExpenseKeys,
@@ -332,6 +346,48 @@ export const fetchSubpageEntriesByProject = async <T>(
           "Type is not supported by fetchSubpageEntriesByProject function"
         );
     }
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const postSubpageEntry = async <T>(
+  endpoint: string,
+  project_id: string,
+  input: string
+) => {
+  // return type for after backend is updated to return created entry
+  // ): Promise<T> => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/${endpoint}`,
+      {
+        method: "POST",
+        credentials: "include",
+        body: input,
+      }
+    );
+    // code for after backend is updated to return created entry
+    // const data = await response.json();
+    // if (!response.ok) {
+    //   throw new Error(data.message || "Unexpected error occurred");
+    // }
+    // switch (endpoint) {
+    //   case AnimalProjectTypeEndpoints.Animal:
+    //     return data.animals as T[];
+    //   case AnimalProjectTypeEndpoints.Expense:
+    //     return data.expenses as T[];
+    //   case AnimalProjectTypeEndpoints.Feed:
+    //     return data.feeds as T[];
+    //   case AnimalProjectTypeEndpoints.FeedPurchase:
+    //     return data.feed_purchases as T[];
+    //   case AnimalProjectTypeEndpoints.Supply:
+    //     return data.supplies as T[];
+    //   default:
+    //     throw new Error(
+    //       "Type is not supported by fetchSubpageEntriesByProject function"
+    //     );
+    // }
   } catch (error) {
     throw error;
   }

@@ -13,7 +13,9 @@ import {
   AnimalProjectTypes,
   isExpense,
   emptyAnimalProjectEntry,
-} from "../../API/ProjectAPI";
+  postSubpageEntry,
+  EndpointByDynamicPathSuffix,
+} from "@/API/ProjectAPI";
 
 interface PopUpProps {
   subpage: string;
@@ -23,6 +25,7 @@ interface PopUpProps {
   handleModalClose: () => void;
   handleOpen: (currEntry: AnimalProjectTypes, purpose: string) => void;
   purpose: string;
+  project_id: string;
 }
 
 export default function DynamicPopUp({
@@ -33,6 +36,7 @@ export default function DynamicPopUp({
   priorEntries,
   handleModalClose,
   handleOpen,
+  project_id,
 }: PopUpProps) {
   // map to store key value pairs for body of request
   const [mapState, setMapState] = useState(new Map());
@@ -46,7 +50,7 @@ export default function DynamicPopUp({
       // input fields will override exsisting key values when they are changed
       useEffect(() => {
         switch (subpage) {
-          case "1":
+          case "expense":
             if (isExpense(subpageEntry)) {
               updateMap("cost", subpageEntry.cost);
               updateMap("date", subpageEntry.date);
@@ -168,24 +172,33 @@ export default function DynamicPopUp({
         </Card>
       );
     case "create":
+      // effect to store entry's values that are not user generated in
+      useEffect(() => {
+        updateMap("project_id", project_id);
+      }, []);
+
       // function to send POST create request to backend
       const handleCreate = async () => {
-        // console.log(JSON.stringify(Object.fromEntries(mapState)));
-        // const postData = async () => {
-        //   try {
-        //     const sectionData = await postSection<AnimalProjectTypes>(
-        //       sectionPlusNumber,
-        //       JSON.stringify(Object.fromEntries(mapState))
-        //     );
-        //     console.log(sectionData);
-        //     setSections([...priorEntries, sectionData]);
-        //     handleModalClose();
-        //     // handleNotificationOpen();
-        //   } catch (error) {
-        //     console.error(error);
-        //   }
-        // };
-        // postData();
+        var endpoint: string = EndpointByDynamicPathSuffix(subpage);
+        console.log(JSON.stringify(Object.fromEntries(mapState)));
+        const postData = async () => {
+          try {
+            // const sectionData =
+            await postSubpageEntry<AnimalProjectTypes>(
+              endpoint,
+              project_id,
+              JSON.stringify(Object.fromEntries(mapState))
+            );
+            // console.log(sectionData);
+            // setSections([...priorEntries, sectionData]);
+            handleModalClose();
+            window.location.reload();
+            // handleNotificationOpen();
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        postData();
       };
 
       return (

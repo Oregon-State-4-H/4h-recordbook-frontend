@@ -17,6 +17,7 @@ import ProjectTableRow from "../../../../../components/Projects/TableRow";
 import CreateButton from "../../../../../components/Projects/CreateIconButton";
 import { BookmarkHeader } from "@/components/BookmarkButton";
 import DynamicPopUp from "@/components/Projects/DynamicPopUp";
+import { EndpointByDynamicPathSuffix } from "@/API/ProjectAPI";
 
 import {
   Project,
@@ -109,29 +110,11 @@ export default function Section() {
     if (!router.isReady) return;
 
     const getData = async () => {
-      var subpageTypeEndpoint = "";
       var subpagePathSuffix = router.asPath.substring(
         router.asPath.lastIndexOf("/") + 1
       );
-      switch (subpagePathSuffix) {
-        case "Animals":
-          subpageTypeEndpoint = AnimalProjectTypeEndpoints.Animal;
-          displayAsLinks();
-          break;
-        case "Expense":
-          subpageTypeEndpoint = AnimalProjectTypeEndpoints.Expense;
-          displayAsDetail();
-          break;
-        case "Feeds":
-          subpageTypeEndpoint = AnimalProjectTypeEndpoints.Feed;
-          displayAsDetail();
-          break;
-        case "Supplies":
-          subpageTypeEndpoint = AnimalProjectTypeEndpoints.Supply;
-          displayAsDetail();
-          break;
-      }
-
+      var subpageTypeEndpoint: string =
+        EndpointByDynamicPathSuffix(subpagePathSuffix);
       console.log("subpagePathSuffix: ", subpagePathSuffix);
       console.log("subpageTypeEndpoint: ", subpageTypeEndpoint);
       try {
@@ -268,6 +251,7 @@ export default function Section() {
             handleModalClose={handleinputModalClose}
             purpose={inputModalPurpose}
             handleOpen={handleinputModalOpen}
+            project_id={projectId}
           />
         </Modal>
         <MobileBottomNav />

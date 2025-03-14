@@ -1,15 +1,16 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AnimalProjectTypes, isExpense } from "../../API/ProjectAPI";
-// import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-// import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-// import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-// import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { toDayJSType, DayJSTypetoRFC3339 } from "@/components/Date";
+import dayjs from "dayjs";
 
 interface DynamicInputProps {
   inputFieldJSON: { [key: string]: any };
@@ -37,7 +38,7 @@ export default function ResumeCreateModalContent({
   var originalValue: string = "";
 
   switch (subpage) {
-    case "Expense":
+    case "expense":
       if (isExpense(originalToUpdate)) {
         switch (originalValueKey) {
           case "cost":
@@ -177,20 +178,28 @@ export default function ResumeCreateModalContent({
         </Box>
       );
       break;
-    // case "date":
-    //   if (typeof inputFieldJSON.label == "string") {
-    //     return (
-    //       <LocalizationProvider dateAdapter={AdapterDayjs}>
-    //         <DemoContainer components={["DatePicker"]}>
-    //           <DatePicker
-    //             label={inputFieldJSON.label}
-    //             defaultValue={originalValue}
-    //           />
-    //         </DemoContainer>
-    //       </LocalizationProvider>
-    //     );
-    //   }
-    //   break;
+    case "date":
+      // set store default value in case user does not change date
+      useEffect(() => {
+        updateMap(inputFieldJSON.name, DayJSTypetoRFC3339(dayjs()));
+      }, []);
+
+      if (typeof inputFieldJSON.label == "string") {
+        return (
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              label={inputFieldJSON.label}
+              sx={{ width: "100%" }}
+              name={inputFieldJSON.name}
+              defaultValue={toDayJSType(originalValue)}
+              onChange={(newValue) =>
+                updateMap(inputFieldJSON.name, DayJSTypetoRFC3339(newValue))
+              }
+            />
+          </LocalizationProvider>
+        );
+      }
+      break;
     default:
       break;
   }
