@@ -139,10 +139,7 @@ function Resume() {
       </Box>
 
       {showPreview && (
-        <PDFPreviewModel
-          title="My 4-H Resume Preview"
-          handleClose={() => setShowPreview(false)}
-        >
+        <PDFPreviewModel title="" handleClose={() => setShowPreview(false)}>
           <PDFFile userData={user} resumeData={resume} />
         </PDFPreviewModel>
       )}
