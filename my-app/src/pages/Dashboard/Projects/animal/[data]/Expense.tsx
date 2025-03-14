@@ -18,30 +18,13 @@ import CreateButton from "../../../../../components/Projects/CreateIconButton";
 import { BookmarkHeader } from "@/components/BookmarkButton";
 import DynamicPopUp from "@/components/Projects/DynamicPopUp";
 import { EndpointByDynamicPathSuffix } from "@/API/ProjectAPI";
+import subpageOutline from "../../SubpageOutline.json";
 
 import {
-  Project,
-  isProject,
-  fetchProject,
-  AnimalProjectFields,
-  DailyFeedProjectFields,
-  ExpenseProjectFields,
-  FeedProjectFields,
-  FeedPurchaseProjectFields,
-  SupplyProjectFields,
-  Animal,
-  DailyFeed,
   Expense,
-  ExpenseHeaders,
-  Feed,
-  FeedPurchase,
-  Supply,
-  AutoProjectFields,
   AnimalProjectTypes,
-  AnimalProjectTypeEndpoints,
   fetchSubpageEntriesByProject,
   emptyExpense,
-  Empty,
 } from "../../../../../API/ProjectAPI";
 import SubpageCard from "../../../../../components/Projects/SubpageCard";
 import Grid from "@mui/material/Grid2";
@@ -205,7 +188,7 @@ export default function Section() {
               <TableHead>
                 {/* in the first row of the table, make a cell for each collumn, holding the label */}
                 <TableRow>
-                  {ExpenseHeaders.map((item, index) => (
+                  {subpageOutline.expense.headers.map((item, index) => (
                     <TableCell
                       key={index}
                       align="right"

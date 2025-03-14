@@ -1,7 +1,7 @@
 import * as React from "react";
 import TableCell from "@mui/material/TableCell";
 import { StyledTableRow } from "../StyledTableRow";
-// import ResumeTableDeleteButton from "./DeleteIconButton";
+import DeleteIconButton from "./DeleteIconButton";
 // import ResumeEdit from "./EditIconButton";
 import { AnimalProjectTypes, isExpense } from "../../API/ProjectAPI";
 import { toDDMMYY } from "../../components/Date";
@@ -46,10 +46,10 @@ export default function ResumeTableCells({
             </TableCell>
             {/* <TableCell>
               <ResumeEdit projectEntry={projectEntry} handleOpen={handleOpen} />
-            </TableCell>
-            <TableCell>
-              <ResumeTableDeleteButton id={projectEntry.id} />
             </TableCell> */}
+            <TableCell>
+              <DeleteIconButton id={projectEntry.id} subpage={subpage} />
+            </TableCell>
           </StyledTableRow>
         );
       }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CardContent from "@mui/material/CardContent";
-import subpageOutline from "../../pages/Dashboard/Projects/InputOutline.json";
+import subpageOutline from "../../pages/Dashboard/Projects/SubpageOutline.json";
 
 import DynamicInput from "./DynamicInput";
 import { AnimalProjectTypes } from "../../API/ProjectAPI";

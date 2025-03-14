@@ -24,24 +24,6 @@ export function EndpointByDynamicPathSuffix(subpagePathSuffix: string): string {
   return "";
 }
 
-export const AnimalHeaders: string[] = [];
-export const DailyFeedHeaders: string[] = [];
-export const ExpenseHeaders: string[] = ["Cost", "Date", "Items", "Quantity"];
-export const FeedHeaders: string[] = [];
-export const FeedPurchaseHeaders: string[] = [];
-export const SupplyHeaders: string[] = [];
-export const EmptyHeaders: string[] = [];
-
-export const AnimalProjectTypeHeaders: { [key: string]: string[] } = {
-  Animal: AnimalHeaders,
-  DailyFeed: DailyFeedHeaders,
-  Expense: ExpenseHeaders,
-  Feed: FeedHeaders,
-  FeedPurchase: FeedPurchaseHeaders,
-  Supply: SupplyHeaders,
-  Empty: EmptyHeaders,
-};
-
 export const AnimalKeys: string[] = [];
 export const DailyFeedKeys: string[] = [];
 export const ExpenseKeys: string[] = ["cost", "date", "items", "quantity"];
@@ -351,11 +333,7 @@ export const fetchSubpageEntriesByProject = async <T>(
   }
 };
 
-export const postSubpageEntry = async <T>(
-  endpoint: string,
-  project_id: string,
-  input: string
-) => {
+export const postSubpageEntry = async <T>(endpoint: string, input: string) => {
   // return type for after backend is updated to return created entry
   // ): Promise<T> => {
   try {
@@ -388,6 +366,28 @@ export const postSubpageEntry = async <T>(
     //       "Type is not supported by fetchSubpageEntriesByProject function"
     //     );
     // }
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteSubpageEntry = async <T>(endpoint: string, id: string) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/${endpoint}/${id}`,
+      {
+        method: "DELETE",
+        credentials: "include",
+      }
+    );
+    switch (response.status) {
+      case 204:
+        return true;
+      case 404:
+        throw new Error("Entry not found");
+      default:
+        throw new Error(`Error: status ${response.status}`);
+    }
   } catch (error) {
     throw error;
   }

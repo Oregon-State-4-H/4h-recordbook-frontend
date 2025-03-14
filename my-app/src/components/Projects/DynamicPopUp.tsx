@@ -186,7 +186,6 @@ export default function DynamicPopUp({
             // const sectionData =
             await postSubpageEntry<AnimalProjectTypes>(
               endpoint,
-              project_id,
               JSON.stringify(Object.fromEntries(mapState))
             );
             // console.log(sectionData);

@@ -1,5 +1,6 @@
 {
   "expense": {
+    "headers": ["Cost", "Date", "Items", "Quantity", ""],
     "form": [
       {
         "type": "number",
