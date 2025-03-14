@@ -14,7 +14,10 @@ import NavBarSignedIn from "../../../../../components/NavbarSignedIn";
 import MobileBottomNav from "../../../../../components/MobileBottomNav";
 import TitleOnly from "../../../../../components/Projects/TitleOnly";
 import ProjectTableRow from "../../../../../components/Projects/TableRow";
+import CreateButton from "../../../../../components/Projects/CreateIconButton";
 import { BookmarkHeader } from "@/components/BookmarkButton";
+import DynamicPopUp from "@/components/Projects/DynamicPopUp";
+
 import {
   Project,
   isProject,
@@ -88,20 +91,6 @@ export default function Section() {
     setinputModal(true);
     setinputModalEntry(currinputModalEntry);
     setinputModalPurpose(purpose);
-    handleReadModalClose();
-  };
-
-  // state for mobile read detail modal
-  const [readModal, setReadModal] = React.useState(false);
-  let [readModalEntry, setReadModalEntry] = useState<Expense>(emptyExpense);
-  const handleReadModalClose = () => {
-    setReadModal(false);
-    setReadModalEntry(emptyExpense);
-  };
-  const handleReadModalOpen = (currModalEntry: Expense, purpose: string) => {
-    setReadModal(true);
-    setReadModalEntry(currModalEntry);
-    handleinputModalClose();
   };
 
   // state for multipurpose snackbar alert
@@ -200,6 +189,25 @@ export default function Section() {
         >
           {router.asPath.substring(router.asPath.lastIndexOf("/") + 1)}
         </Typography>
+        <Box
+          sx={{
+            width: "90%",
+            marginLeft: "5%",
+            marginRight: "5%",
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          {/* first box is placeholder for component that will have preview and download resume pdf */}
+          <Box
+            sx={{
+              width: "50%",
+              margin: "0px",
+              padding: "0px",
+            }}
+          ></Box>
+          <CreateButton handleOpen={handleinputModalOpen} />
+        </Box>
         <Paper
           sx={{
             width: "90%",
@@ -243,6 +251,25 @@ export default function Section() {
             </Table>
           </TableContainer>
         </Paper>
+
+        <Modal
+          open={inputModal}
+          onClose={handleinputModalClose}
+          aria-labelledby="input-modal-title"
+          aria-describedby="input-modal-description"
+        >
+          <DynamicPopUp
+            subpage={router.asPath.substring(
+              router.asPath.lastIndexOf("/") + 1
+            )}
+            // setSections={setAllSubpageEntries}
+            priorEntries={allSubpageEntries}
+            subpageEntry={inputModalEntry}
+            handleModalClose={handleinputModalClose}
+            purpose={inputModalPurpose}
+            handleOpen={handleinputModalOpen}
+          />
+        </Modal>
         <MobileBottomNav />
       </Box>
     );

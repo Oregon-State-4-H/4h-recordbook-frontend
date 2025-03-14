@@ -1,23 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import { SectionEmpty, SectionAny } from "../../API/ResumeAPI";
+import {
+  AnimalProjectTypes,
+  emptyAnimalProjectEntry,
+} from "../../API/ProjectAPI";
 
 interface ResumeActionButtonProps {
-  handleOpen: (currEntry: SectionAny, purpose: string) => void;
+  handleOpen: (currEntry: AnimalProjectTypes, purpose: string) => void;
 }
 
 export default function Section({ handleOpen }: ResumeActionButtonProps) {
-  const empty: SectionEmpty = {
-    id: "",
-    section: -1,
-    user_id: "",
-    created: "",
-    updated: "",
-  };
-
-  const openModal = () => handleOpen(empty, "create");
+  const openModal = () => handleOpen(emptyAnimalProjectEntry, "create");
 
   return (
     <Box

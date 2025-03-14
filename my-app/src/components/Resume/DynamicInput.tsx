@@ -22,7 +22,7 @@ import {
   isS12,
   isS13,
   isS14,
-} from "../API/ResumeAPI";
+} from "../../API/ResumeAPI";
 
 interface DynamicInputProps {
   inputFieldJSON: { [key: string]: any };

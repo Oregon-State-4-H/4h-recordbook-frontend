@@ -12,7 +12,7 @@ export enum AnimalProjectTypeEndpoints {
 
 export const AnimalHeaders: string[] = [];
 export const DailyFeedHeaders: string[] = [];
-export const ExpenseHeaders: string[] = ["cost", "date", "items", "quantity"];
+export const ExpenseHeaders: string[] = ["Cost", "Date", "Items", "Quantity"];
 export const FeedHeaders: string[] = [];
 export const FeedPurchaseHeaders: string[] = [];
 export const SupplyHeaders: string[] = [];
@@ -26,6 +26,24 @@ export const AnimalProjectTypeHeaders: { [key: string]: string[] } = {
   FeedPurchase: FeedPurchaseHeaders,
   Supply: SupplyHeaders,
   Empty: EmptyHeaders,
+};
+
+export const AnimalKeys: string[] = [];
+export const DailyFeedKeys: string[] = [];
+export const ExpenseKeys: string[] = ["cost", "date", "items", "quantity"];
+export const FeedKeys: string[] = [];
+export const FeedPurchaseKeys: string[] = [];
+export const SupplyKeys: string[] = [];
+export const EmptyKeys: string[] = [];
+
+export const AnimalProjectTypeKeysFromUder: { [key: string]: string[] } = {
+  Animal: AnimalKeys,
+  DailyFeed: DailyFeedKeys,
+  Expense: ExpenseKeys,
+  Feed: FeedKeys,
+  FeedPurchase: FeedPurchaseKeys,
+  Supply: SupplyKeys,
+  Empty: EmptyKeys,
 };
 
 export interface CustomProjectFields {

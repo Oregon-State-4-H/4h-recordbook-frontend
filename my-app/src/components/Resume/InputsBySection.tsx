@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CardContent from "@mui/material/CardContent";
 import sectionOutline from "../../pages/Dashboard/Resume/Section/SectionOutline.json";
-import DynamicInput from "../DynamicInput";
+import DynamicInput from "./DynamicInput";
 import { SectionAny } from "../../API/ResumeAPI";
 
 interface ResumeModalProps {
