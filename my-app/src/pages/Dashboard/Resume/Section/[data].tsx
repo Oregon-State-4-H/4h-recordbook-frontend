@@ -19,6 +19,7 @@ import DynamicPopUp from "../../../../components/Resume/DynamicPopUp";
 import MobileReadPopUp from "../../../../components/Resume/MobileReadPopUp";
 import CloverLoader from "../../../../components/CloverLoader";
 import sectionOutline from "./SectionOutline.json";
+import { StyledTableHeader } from "@/components/StyledTableRow";
 import { Button } from "@mui/material";
 import { PDFDownloadButton } from "@/components/PDFDownloadButton";
 import PDFPreviewModel from "@/components/Models/PDFPreviewModel";
@@ -320,7 +321,7 @@ export default function Section() {
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               {/* in the first row of the table, make a cell for each collumn, holding the label */}
-              <TableRow>
+              <StyledTableHeader>
                 {Fields.map((item, index) => (
                   <TableCell
                     key={index}
@@ -330,7 +331,7 @@ export default function Section() {
                     {item.name}
                   </TableCell>
                 ))}
-              </TableRow>
+              </StyledTableHeader>
             </TableHead>
             <TableBody>
               {!isLoading &&

@@ -19,3 +19,7 @@ export const StyledTableRow = styled(TableRow)(({}) => ({
     border: 0,
   },
 }));
+
+export const StyledTableHeader = styled(TableRow)(({}) => ({
+  backgroundColor: "rgba(255,255,255,1)",
+}));

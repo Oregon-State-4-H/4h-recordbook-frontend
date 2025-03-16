@@ -333,6 +333,45 @@ export const fetchSubpageEntriesByProject = async <T>(
   }
 };
 
+export const fetchSubpageEntryById = async <T>(
+  endpoint: string,
+  id: string
+): Promise<T> => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/${endpoint}/${id}`,
+      {
+        method: "GET",
+        credentials: "include",
+      }
+    );
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message || "Unexpected error occurred");
+    }
+    switch (endpoint) {
+      case AnimalProjectTypeEndpoints.Animal:
+        return data.animal as T;
+      case AnimalProjectTypeEndpoints.Expense:
+        return data.expense as T;
+      case AnimalProjectTypeEndpoints.Feed:
+        return data.feed as T;
+      case AnimalProjectTypeEndpoints.FeedPurchase:
+        return data.feed_purchase as T;
+      case AnimalProjectTypeEndpoints.Supply:
+        return data.supply as T;
+      case AnimalProjectTypeEndpoints.DailyFeed:
+        return data.daily_feed as T;
+      default:
+        throw new Error(
+          "Type is not supported by fetchSubpageEntryById  function"
+        );
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const postSubpageEntry = async <T>(endpoint: string, input: string) => {
   // return type for after backend is updated to return created entry
   // ): Promise<T> => {
