@@ -38,7 +38,7 @@ import Section11Report from "@/components/Reports/Resume/Section11";
 import Section12Report from "@/components/Reports/Resume/Section12";
 import Section13Report from "@/components/Reports/Resume/Section13";
 import Section14Report from "@/components/Reports/Resume/Section14";
-import { BookmarkHeader } from "@/components/BookmarkButton";
+import { BookmarkHeader } from "@/components/Bookmarks";
 
 import {
   fetchSectionData,

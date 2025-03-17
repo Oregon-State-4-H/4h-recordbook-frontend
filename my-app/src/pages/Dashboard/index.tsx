@@ -6,7 +6,7 @@ import BookmarksMenu from "../../components/Dashboard/BookmarksMenu";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { BookmarkHeader } from "@/components/BookmarkButton";
+import { DashboardBookmarkHeader } from "@/components/Bookmarks";
 import { Bookmark, fetchAllBookmarks } from "@/API/BookmarkAPI";
 
 function Dashboard() {
@@ -37,7 +37,10 @@ function Dashboard() {
           [theme.breakpoints.up("xl")]: { height: "50px" },
         })}
       ></Box>
-      <BookmarkHeader />
+      <DashboardBookmarkHeader
+        bookmarks={bookmarks}
+        setDashboardBookmarks={setBookmarks}
+      />
 
       <Box>
         <Typography

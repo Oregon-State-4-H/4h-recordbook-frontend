@@ -11,7 +11,7 @@ import PDFPreviewModel from "@/components/Models/PDFPreviewModel";
 import PDFFile from "@/components/Reports/Resume/Resume";
 import { fetchUser, User } from "@/API/UserAPI";
 import { PDFDownloadButton } from "@/components/PDFDownloadButton";
-import { BookmarkHeader } from "@/components/BookmarkButton";
+import { BookmarkHeader } from "@/components/Bookmarks";
 
 const Sections = [
   {

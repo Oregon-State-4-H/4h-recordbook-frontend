@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid2";
 import MobileBottomNav from "../../../components/MobileBottomNav";
 import PreviewCard from "../../../components/Projects/PreviewCard";
 import { Project, fetchAllProjects } from "../../../API/ProjectAPI";
-import { BookmarkHeader } from "@/components/BookmarkButton";
+import { BookmarkHeader } from "@/components/Bookmarks";
 
 function Projects() {
   const router = useRouter();

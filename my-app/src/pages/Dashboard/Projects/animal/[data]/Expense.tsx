@@ -15,7 +15,7 @@ import MobileBottomNav from "../../../../../components/MobileBottomNav";
 import TitleOnly from "../../../../../components/Projects/TitleOnly";
 import ProjectTableRow from "../../../../../components/Projects/TableRow";
 import CreateButton from "../../../../../components/Projects/CreateIconButton";
-import { BookmarkHeader } from "@/components/BookmarkButton";
+import { BookmarkHeader } from "@/components/Bookmarks";
 import DynamicPopUp from "@/components/Projects/DynamicPopUp";
 import { EndpointByDynamicPathSuffix } from "@/API/ProjectAPI";
 import subpageOutline from "../../SubpageOutline.json";

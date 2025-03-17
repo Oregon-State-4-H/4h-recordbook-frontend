@@ -13,7 +13,7 @@ import Modal from "@mui/material/Modal";
 import NavBarSignedIn from "../../../../../components/NavbarSignedIn";
 import MobileBottomNav from "../../../../../components/MobileBottomNav";
 import TitleOnly from "../../../../../components/Projects/TitleOnly";
-import { BookmarkHeader } from "@/components/BookmarkButton";
+import { BookmarkHeader } from "@/components/Bookmarks";
 
 import {
   Project,

@@ -12,7 +12,7 @@ import {
 } from "../../../../../API/ProjectAPI";
 import SubpageCard from "../../../../../components/Projects/SubpageCard";
 import Grid from "@mui/material/Grid2";
-import { BookmarkHeader } from "@/components/BookmarkButton";
+import { BookmarkHeader } from "@/components/Bookmarks";
 
 export default function Section() {
   const router = useRouter();
