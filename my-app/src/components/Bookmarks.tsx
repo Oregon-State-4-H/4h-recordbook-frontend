@@ -18,8 +18,9 @@ interface DashboardBookmarksProps {
   bookmarks: Bookmark[];
 }
 
-export function BookmarkButton({ disableBack = false }) {
+export function BookmarkButton() {
   const router = useRouter();
+  const [bookmark, setBookmark] = useState<Bookmark | undefined>();
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
   const [isBookmarked, setIsBookmarked] = useState(false);
   var pathname = "";
@@ -34,6 +35,7 @@ export function BookmarkButton({ disableBack = false }) {
         setBookmarks(bookmarks);
         console.log("bookmarks: ", bookmarks);
         console.log("currentUrl: ", currentUrl);
+        setBookmark(bookmarks.find((b) => b.link === currentUrl));
         setIsBookmarked(
           bookmarks.find((b) => b.link === currentUrl) ? true : false
         );
@@ -47,28 +49,24 @@ export function BookmarkButton({ disableBack = false }) {
   const handleBookmarkToggle = async () => {
     pathname = router.asPath.slice(1); //get rid of '/' at the beginning since it messes with the api
     const currentUrl = `${pathname}${searchParams.toString()}`;
-    const encodedUrl = encodeURIComponent(currentUrl);
     if (isBookmarked) {
       if (!confirm("Are you sure you want to remove this bookmark?")) {
         return;
       }
-      let bookmarkID: string = "";
-      try {
-        const bookmark = await fetchBookmark(encodedUrl);
-        bookmarkID = bookmark.id;
-      } catch (error) {
-        console.error(error);
-      }
-      try {
-        const deleteSucceeded = await deleteBookmark(bookmarkID);
-        if (deleteSucceeded) {
-          setBookmarks((prevBookmarks) =>
-            prevBookmarks.filter((bookmark) => bookmark.id !== bookmarkID)
-          );
-          setIsBookmarked(false);
+      if (typeof bookmark != "undefined") {
+        try {
+          const deleteSucceeded = await deleteBookmark(bookmark.id);
+          if (deleteSucceeded) {
+            setBookmarks((prevBookmarks) =>
+              prevBookmarks.filter(
+                (curr_bookmark) => curr_bookmark.id !== bookmark.id
+              )
+            );
+            setIsBookmarked(false);
+          }
+        } catch (error) {
+          console.error(error);
         }
-      } catch (error) {
-        console.error(error);
       }
     } else {
       const label = prompt("Enter bookmark label:");
@@ -100,7 +98,7 @@ export function BookmarkButton({ disableBack = false }) {
   );
 }
 
-export function BookmarkHeader({ disableBack = false }) {
+export function BookmarkHeader() {
   return (
     <Box
       sx={{
