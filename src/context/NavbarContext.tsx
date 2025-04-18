@@ -14,11 +14,11 @@ export const navbarLandingLinks: NavbarLink[] = [
   //   href: "/Auth",
   //   linkIcon: "none",
   // },
-  {
-    label: "Sign Up / Sign In",
-    href: "/dummySignIn",
-    linkIcon: "none",
-  },
+  // {
+  //   label: "Sign Up / Sign In",
+  //   href: "/dummySignIn",
+  //   linkIcon: "none",
+  // },
   {
     label: "Docs",
     href: "https://record-books-docs.vercel.app/",

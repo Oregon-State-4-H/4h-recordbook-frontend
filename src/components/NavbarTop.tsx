@@ -11,6 +11,7 @@ import Box from "@mui/material/Box";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { useNavbar } from "@/context/NavbarContext";
+import { useUser } from "@auth0/nextjs-auth0";
 
 export default function NavbarTop() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -21,6 +22,7 @@ export default function NavbarTop() {
   );
 
   const { currNavbarValues } = useNavbar();
+  const { user, isLoading } = useUser();
 
   return (
     <Box
@@ -112,6 +114,25 @@ export default function NavbarTop() {
                 },
               }}
             >
+              {user ? (
+                <>
+                  <Button
+                    href="/auth/logout"
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    Log out, {user.name}
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    href="/auth/login"
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    Sign Up/Sign In
+                  </Button>
+                </>
+              )}
               {currNavbarValues.NavbarLinks.map((item, index) => (
                 <Button
                   href={item.href}
