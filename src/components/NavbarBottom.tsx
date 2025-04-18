@@ -13,7 +13,7 @@ export default function NavbarBottom() {
   return (
     <BottomNavigation
       sx={{
-        display: { xs: "flex", s: "flex", md: "none" },
+        display: { xs: "flex", sm: "flex", md: "none" },
         position: "fixed",
         bottom: 0,
         left: 0,

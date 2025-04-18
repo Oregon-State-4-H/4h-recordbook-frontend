@@ -10,10 +10,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import DescriptionIcon from "@mui/icons-material/Description";
-import { useContext, createContext, useState } from "react";
-import {
-  useNavbar,
-} from "@/context/NavbarContext";
+import { useNavbar } from "@/context/NavbarContext";
 
 export default function NavbarTop() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -46,7 +43,7 @@ export default function NavbarTop() {
               href={currNavbarValues.hrefTitle}
               sx={{
                 mr: 2,
-                display: { xs: "none", s: "none", md: "flex" },
+                display: { xs: "none", sm: "none", md: "flex" },
                 fontFamily: "monospace",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
@@ -63,7 +60,7 @@ export default function NavbarTop() {
                 width: "100%",
                 justifyContent: "space-between",
                 alignItems: "center",
-                display: { xs: "flex", s: "flex", md: "none" },
+                display: { xs: "flex", sm: "flex", md: "none" },
               }}
             >
               {/* <BackButton /> */}

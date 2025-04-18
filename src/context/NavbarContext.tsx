@@ -1,3 +1,5 @@
+"use client";
+
 import React, { createContext, useContext, useState } from "react";
 
 export interface NavbarLink {
@@ -36,7 +38,7 @@ export const navbarLandingLinks: NavbarLink[] = [
     label: "About",
     href: "#aboutSection",
     linkIcon: "none",
-  }
+  },
 ];
 
 export interface NavbarValues {
