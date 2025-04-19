@@ -36,9 +36,9 @@ export default function RootLayout({
                   sx={(theme) => ({
                     [theme.breakpoints.up("xs")]: { height: "45px" },
                     [theme.breakpoints.up("sm")]: { height: "45px" },
-                    [theme.breakpoints.up("md")]: { height: "50px" },
-                    [theme.breakpoints.up("lg")]: { height: "50px" },
-                    [theme.breakpoints.up("xl")]: { height: "50px" },
+                    [theme.breakpoints.up("md")]: { height: "70px" },
+                    [theme.breakpoints.up("lg")]: { height: "70px" },
+                    [theme.breakpoints.up("xl")]: { height: "70px" },
                   })}
                 ></Box>
                 {children}
