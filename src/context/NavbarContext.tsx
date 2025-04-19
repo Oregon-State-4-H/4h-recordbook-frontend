@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState } from "react";
+import { Bookmark } from "@/API/BookmarkAPI";
 
 export interface NavbarLink {
   label: string;
@@ -9,16 +10,6 @@ export interface NavbarLink {
 }
 
 export const navbarLandingLinks: NavbarLink[] = [
-  // {
-  //   label: "Sign Up / Sign In",
-  //   href: "/Auth",
-  //   linkIcon: "none",
-  // },
-  // {
-  //   label: "Sign Up / Sign In",
-  //   href: "/dummySignIn",
-  //   linkIcon: "none",
-  // },
   {
     label: "Docs",
     href: "https://record-books-docs.vercel.app/",
@@ -47,6 +38,7 @@ export interface NavbarValues {
   hrefTitle: string;
   mobileTopIcon: string;
   NavbarLinks: NavbarLink[];
+  Bookmarks: Bookmark[];
 }
 
 export interface NavbarProp {
@@ -60,6 +52,7 @@ export const navbarContextDefaultValues: NavbarValues = {
   hrefTitle: "",
   mobileTopIcon: "",
   NavbarLinks: [],
+  Bookmarks: [],
 };
 
 export const navbarContextDefaultProp: NavbarProp = {
