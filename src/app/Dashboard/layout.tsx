@@ -30,6 +30,7 @@ export default function SignedInLayout({
   return (
     <Box>
       <DashboardBookmarkHeader
+        jwt={currUserJwt}
         bookmarks={bookmarks}
         setDashboardBookmarks={setBookmarks}
       />
