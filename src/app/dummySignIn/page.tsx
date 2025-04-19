@@ -20,6 +20,7 @@ export default function DummySignIn() {
       hrefTitle: "/",
       mobileTopIcon: "none",
       NavbarLinks: [],
+      Bookmarks: [],
     };
 
     updateFunction(navbarContextPageValues);
