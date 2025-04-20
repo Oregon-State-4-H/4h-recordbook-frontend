@@ -53,7 +53,7 @@ export default function NavbarTop() {
                 textDecoration: "none",
               }}
             >
-              {currNavbarValues.desktopTitle}
+              4-H Record Books
             </Typography>
 
             <Stack

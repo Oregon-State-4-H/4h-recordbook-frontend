@@ -3,9 +3,14 @@
 import React, { useEffect, useState } from "react";
 import { DashboardBookmarkHeader } from "@/components/Bookmarks";
 import { Bookmark, fetchAllBookmarks } from "@/API/BookmarkAPI";
-import { getAccessToken } from "@auth0/nextjs-auth0"
-
+import { getAccessToken } from "@auth0/nextjs-auth0";
+import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import {
+  useNavbar,
+  NavbarValues,
+  navbarAppLinks,
+} from "@/context/NavbarContext";
 
 export default function SignedInLayout({
   children,
@@ -14,6 +19,7 @@ export default function SignedInLayout({
 }>) {
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
   const [accessToken, setAccessToken] = useState("");
+  const { currNavbarValues, updateFunction } = useNavbar();
 
   useEffect(() => {
     const getBookmarks = async () => {
@@ -27,7 +33,6 @@ export default function SignedInLayout({
       }
     };
     getBookmarks();
-
   }, []);
 
   return (
@@ -37,6 +42,19 @@ export default function SignedInLayout({
         bookmarks={bookmarks}
         setDashboardBookmarks={setBookmarks}
       />
+      <Box>
+        <Typography
+          variant="h4"
+          sx={{
+            display: { xs: "none", md: "block" },
+            Width: "100%",
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
+        >
+          {currNavbarValues.desktopTitle}
+        </Typography>
+      </Box>
       {children}
     </Box>
   );
