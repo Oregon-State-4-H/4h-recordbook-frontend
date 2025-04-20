@@ -2,11 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import ResourcesMenu from "@/components/Dashboard/ResourcesMenu";
-import BookmarksMenu from "../../components/Dashboard/BookmarksMenu";
+import BookmarksMenu from "@/components/Dashboard/BookmarksMenu";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { useNavbar, NavbarValues, navbarAppLinks } from "@/context/NavbarContext";
+import {
+  useNavbar,
+  NavbarValues,
+  navbarAppLinks,
+} from "@/context/NavbarContext";
 
 function Dashboard() {
   const { currNavbarValues, updateFunction } = useNavbar();

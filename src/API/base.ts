@@ -4,5 +4,6 @@ export function buildBaseUrl() {
     return "";
   }
 
-  return "https://recordbooks-api-dev.azurewebsites.net/";
+  // return "https://recordbooks-api-dev.azurewebsites.net/";
+  return "http://localhost:8080/";
 }
