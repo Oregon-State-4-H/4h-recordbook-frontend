@@ -1,14 +1,13 @@
+"use client";
+
 import * as React from "react";
 import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import HomeIcon from "@mui/icons-material/Home";
-import DescriptionIcon from "@mui/icons-material/Description";
-import ContentPasteIcon from "@mui/icons-material/ContentPaste";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import NavbarIconButton from "./NavbarIconButton";
 import { useNavbar } from "@/context/NavbarContext";
 
 export default function NavbarBottom() {
   const { currNavbarValues } = useNavbar();
+  const [value, setValue] = React.useState(0);
 
   return (
     <BottomNavigation
@@ -19,22 +18,15 @@ export default function NavbarBottom() {
         left: 0,
         right: 0,
         zIndex: 1000,
-        flexDirection: "row-reverse",
+      }}
+      value={value}
+      onChange={(event, newValue) => {
+        setValue(newValue);
       }}
       showLabels
     >
       {currNavbarValues.NavbarLinks.map((item, index) => (
-        <BottomNavigationAction
-          href={item.href}
-          label={item.label}
-          key={index}
-          sx={{
-            textAlign: "center",
-            my: 1,
-            color: "white",
-            display: "block",
-          }}
-        />
+        <NavbarIconButton item={item} key={index} />
       ))}
     </BottomNavigation>
   );

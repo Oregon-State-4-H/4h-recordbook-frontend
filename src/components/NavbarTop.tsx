@@ -22,7 +22,7 @@ export default function NavbarTop() {
   );
 
   const { currNavbarValues } = useNavbar();
-  const { user, isLoading } = useUser();
+  const { user } = useUser();
 
   return (
     <Box
@@ -110,29 +110,11 @@ export default function NavbarTop() {
                   xs: "none",
                   s: "none",
                   md: "flex",
-                  flexDirection: "row-reverse",
+                  // flexDirection: "row-reverse",
+                  justifyContent: "flex-end",
                 },
               }}
             >
-              {user ? (
-                <>
-                  <Button
-                    href="/auth/logout"
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    Log out, {user.name}
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Button
-                    href="/auth/login"
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    Sign Up/Sign In
-                  </Button>
-                </>
-              )}
               {currNavbarValues.NavbarLinks.map((item, index) => (
                 <Button
                   href={item.href}
@@ -142,6 +124,22 @@ export default function NavbarTop() {
                   {item.label}
                 </Button>
               ))}
+              {user && currNavbarValues.mobileTitle == "4-H Record Books" && (
+                <Button
+                  href="/auth/logout"
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  Log out, {user.name}
+                </Button>
+              )}
+              {!user && currNavbarValues.mobileTitle == "4-H Record Books" && (
+                <Button
+                  href="/auth/login"
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  Sign Up/Sign In
+                </Button>
+              )}
             </Box>
           </Toolbar>
         </Container>

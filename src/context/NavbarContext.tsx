@@ -6,55 +6,45 @@ import { Bookmark } from "@/API/BookmarkAPI";
 export interface NavbarLink {
   label: string;
   href: string;
-  linkIcon: string;
 }
 
 export const navbarLandingLinks: NavbarLink[] = [
   {
-    label: "Docs",
-    href: "https://record-books-docs.vercel.app/",
-    linkIcon: "none",
-  },
-  {
-    label: "Contact Us",
-    href: "#contactSection",
-    linkIcon: "none",
+    label: "About",
+    href: "#aboutSection",
   },
   {
     label: "Meet the Team",
     href: "#teamSection",
-    linkIcon: "none",
   },
   {
-    label: "About",
-    href: "#aboutSection",
-    linkIcon: "none",
+    label: "Contact Us",
+    href: "#contactSection",
+  },
+  {
+    label: "Docs",
+    href: "https://record-books-docs.vercel.app/",
   },
 ];
 
 export const navbarAppLinks: NavbarLink[] = [
   {
-    label: "Docs",
-    href: "https://record-books-docs.vercel.app/",
-    linkIcon: "none",
+    label: "Home",
+    href: "/Dashboard",
   },
   {
-    label: "Contact Us",
-    href: "#contactSection",
-    linkIcon: "none",
+    label: "4-H Resume",
+    href: "/Dashboard/Resume",
   },
   {
-    label: "Meet the Team",
-    href: "#teamSection",
-    linkIcon: "none",
+    label: "My Projects",
+    href: "/Dashboard/Projects",
   },
   {
-    label: "About",
-    href: "#aboutSection",
-    linkIcon: "none",
+    label: "Account",
+    href: "/Dashboard/Account",
   },
 ];
-
 
 export interface NavbarValues {
   mobileTitle: string;

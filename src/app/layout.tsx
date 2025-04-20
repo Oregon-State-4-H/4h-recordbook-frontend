@@ -34,8 +34,8 @@ export default function RootLayout({
                 <NavbarTop />
                 <Box
                   sx={(theme) => ({
-                    [theme.breakpoints.up("xs")]: { height: "45px" },
-                    [theme.breakpoints.up("sm")]: { height: "45px" },
+                    [theme.breakpoints.up("xs")]: { height: "55px" },
+                    [theme.breakpoints.up("sm")]: { height: "55px" },
                     [theme.breakpoints.up("md")]: { height: "70px" },
                     [theme.breakpoints.up("lg")]: { height: "70px" },
                     [theme.breakpoints.up("xl")]: { height: "70px" },
