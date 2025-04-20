@@ -9,12 +9,9 @@ import IntroAbout from "@/components/Landing/IntroAbout";
 import IntroTeam from "@/components/Landing/IntroTeam";
 import IntroContact from "@/components/Landing/IntroContact";
 import Box from "@mui/material/Box";
-import { dummySignIn } from "@/API/UserAPI";
 import {
   useNavbar,
-  NavbarLink,
   NavbarValues,
-  NavbarProp,
   navbarLandingLinks,
 } from "@/context/NavbarContext";
 
@@ -39,6 +36,7 @@ export default function Home() {
       hrefTitle: "/",
       mobileTopIcon: "none",
       NavbarLinks: navbarLandingLinks,
+      Bookmarks: [],
     };
 
     updateFunction(navbarContextPageValues);

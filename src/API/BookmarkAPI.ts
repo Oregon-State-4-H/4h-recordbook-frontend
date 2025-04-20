@@ -15,11 +15,11 @@ export type Bookmark = CustomBookmarkFields & {
 
 export const fetchAllBookmarks = async (jwt: string): Promise<Bookmark[]> => {
   try {
+    console.log("jwt in fetchAllBookmarks: ", jwt);
     const response = await fetch(`${buildBaseUrl()}bookmarks`, {
       method: "GET",
       headers: {
         'Authorization': `Bearer ${jwt}`,
-        'Cache-Control': `no-cache`,
       },
     });
 

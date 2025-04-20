@@ -32,6 +32,30 @@ export const navbarLandingLinks: NavbarLink[] = [
   },
 ];
 
+export const navbarAppLinks: NavbarLink[] = [
+  {
+    label: "Docs",
+    href: "https://record-books-docs.vercel.app/",
+    linkIcon: "none",
+  },
+  {
+    label: "Contact Us",
+    href: "#contactSection",
+    linkIcon: "none",
+  },
+  {
+    label: "Meet the Team",
+    href: "#teamSection",
+    linkIcon: "none",
+  },
+  {
+    label: "About",
+    href: "#aboutSection",
+    linkIcon: "none",
+  },
+];
+
+
 export interface NavbarValues {
   mobileTitle: string;
   desktopTitle: string;
