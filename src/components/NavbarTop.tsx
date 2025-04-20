@@ -126,16 +126,18 @@ export default function NavbarTop() {
               ))}
               {user && currNavbarValues.mobileTitle == "4-H Record Books" && (
                 <Button
-                  href="/auth/logout"
+                  href="/Dashboard"
                   sx={{ my: 2, color: "white", display: "block" }}
+                  variant="outlined"
                 >
-                  Log out, {user.name}
+                  Go To Dashboard
                 </Button>
               )}
               {!user && currNavbarValues.mobileTitle == "4-H Record Books" && (
                 <Button
                   href="/auth/login"
                   sx={{ my: 2, color: "white", display: "block" }}
+                  variant="outlined"
                 >
                   Sign Up/Sign In
                 </Button>
