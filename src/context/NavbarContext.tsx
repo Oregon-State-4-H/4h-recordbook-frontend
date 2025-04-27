@@ -1,7 +1,6 @@
 "use client";
 
 import React, { createContext, useContext, useState } from "react";
-import { Bookmark } from "@/API/BookmarkAPI";
 
 export interface NavbarLink {
   label: string;
@@ -52,7 +51,6 @@ export interface NavbarValues {
   hrefTitle: string;
   mobileTopIcon: string;
   NavbarLinks: NavbarLink[];
-  Bookmarks: Bookmark[];
 }
 
 export interface NavbarProp {
@@ -66,7 +64,6 @@ export const navbarContextDefaultValues: NavbarValues = {
   hrefTitle: "",
   mobileTopIcon: "",
   NavbarLinks: [],
-  Bookmarks: [],
 };
 
 export const navbarContextDefaultProp: NavbarProp = {

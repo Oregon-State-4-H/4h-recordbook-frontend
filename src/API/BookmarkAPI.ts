@@ -1,5 +1,4 @@
 import { buildBaseUrl } from "@/API/base";
-import { useUser } from "@/context/UserContext";
 
 export interface CustomBookmarkFields {
   link: string;
@@ -19,12 +18,12 @@ export const fetchAllBookmarks = async (jwt: string): Promise<Bookmark[]> => {
     const response = await fetch(`${buildBaseUrl()}bookmarks`, {
       method: "GET",
       headers: {
-        'Authorization': `Bearer ${jwt}`,
+        Authorization: `Bearer ${jwt}`,
       },
     });
 
     const data = await response.json();
-    console.log(data);
+    console.log(data.bookmarks);
     if (!response.ok) {
       throw new Error(data.message || "Unexpected error occurred");
     }

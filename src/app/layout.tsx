@@ -4,12 +4,12 @@ import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { Roboto } from "next/font/google";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "../theme";
+import theme from "@/theme";
 import NavbarTop from "@/components/NavbarTop";
 import NavbarBottom from "@/components/NavbarBottom";
 import { createContext, useContext, useState } from "react";
 import { NavbarProvider } from "@/context/NavbarContext";
-import { UserProvider } from "@/context/UserContext";
+import { BookmarkProvider } from "@/context/BookmarkContext";
 import Box from "@mui/material/Box";
 
 const roboto = Roboto({
@@ -29,7 +29,7 @@ export default function RootLayout({
       <body>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
-            <UserProvider>
+            <BookmarkProvider>
               <NavbarProvider>
                 <NavbarTop />
                 <Box
@@ -53,7 +53,7 @@ export default function RootLayout({
                 ></Box>
                 <NavbarBottom />
               </NavbarProvider>
-            </UserProvider>
+            </BookmarkProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>

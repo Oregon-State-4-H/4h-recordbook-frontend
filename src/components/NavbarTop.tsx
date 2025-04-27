@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -14,15 +15,16 @@ import { useNavbar } from "@/context/NavbarContext";
 import { useUser } from "@auth0/nextjs-auth0";
 
 export default function NavbarTop() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+  // const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+  //   null
+  // );
+  // const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+  //   null
+  // );
 
   const { currNavbarValues } = useNavbar();
   const { user } = useUser();
+  const router = useRouter();
 
   return (
     <Box
@@ -42,7 +44,7 @@ export default function NavbarTop() {
               variant="h6"
               noWrap
               component="a"
-              href={currNavbarValues.hrefTitle}
+              onClick={() => router.push(currNavbarValues.hrefTitle)}
               sx={{
                 mr: 2,
                 display: { xs: "none", sm: "none", md: "flex" },
@@ -117,7 +119,7 @@ export default function NavbarTop() {
             >
               {currNavbarValues.NavbarLinks.map((item, index) => (
                 <Button
-                  href={item.href}
+                  onClick={() => router.push(item.href)}
                   sx={{ my: 2, color: "white", display: "block" }}
                   key={index}
                 >
@@ -126,7 +128,7 @@ export default function NavbarTop() {
               ))}
               {user && currNavbarValues.mobileTitle == "4-H Record Books" && (
                 <Button
-                  href="/Dashboard"
+                  onClick={() => router.push("/Dashboard")}
                   sx={{ my: 2, color: "white", display: "block" }}
                   variant="outlined"
                 >

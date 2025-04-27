@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useState, useEffect } from "react";
 
@@ -26,9 +26,8 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
-
   // update context for nav/app bars
-  const { updateFunction } = useNavbar();
+  const { currNavbarValues, updateFunction } = useNavbar();
   useEffect(() => {
     var navbarContextPageValues: NavbarValues = {
       mobileTitle: "4-H Record Books",
@@ -36,10 +35,10 @@ export default function Home() {
       hrefTitle: "/",
       mobileTopIcon: "none",
       NavbarLinks: navbarLandingLinks,
-      Bookmarks: [],
     };
 
     updateFunction(navbarContextPageValues);
+    console.log();
   }, []);
 
   return (
