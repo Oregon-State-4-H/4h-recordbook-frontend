@@ -306,11 +306,14 @@ export function isSectionValid(
   return (sectionData as SectionEmpty).section > 0;
 }
 
-export const fetchResume = async (): Promise<ResumeSections> => {
+export const fetchResume = async (jwt: string): Promise<ResumeSections> => {
   try {
     const response = await fetch(`${buildBaseUrl()}resume`, {
       method: "GET",
-      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Adjust if needed
+      },
     });
     const data = await response.json();
     if (!response.ok) {
@@ -322,11 +325,17 @@ export const fetchResume = async (): Promise<ResumeSections> => {
   }
 };
 
-export const fetchSectionData = async <T>(section: string): Promise<T[]> => {
+export const fetchSectionData = async <T>(
+  jwt: string,
+  section: string
+): Promise<T[]> => {
   try {
     const response = await fetch(`${buildBaseUrl()}${section}`, {
       method: "GET",
-      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Adjust if needed
+      },
     });
     const data = await response.json();
     if (!response.ok) {
@@ -370,13 +379,17 @@ export const fetchSectionData = async <T>(section: string): Promise<T[]> => {
 };
 
 export const postSection = async <T>(
+  jwt: string,
   section: string,
   input: string
 ): Promise<T> => {
   try {
     const response = await fetch(`${buildBaseUrl()}${section}`, {
       method: "POST",
-      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Adjust if needed
+      },
       body: input,
     });
     const data = await response.json();
@@ -421,6 +434,7 @@ export const postSection = async <T>(
 };
 
 export const updateSection = async <T>(
+  jwt: string,
   section: string,
   id: string,
   input: string
@@ -428,7 +442,10 @@ export const updateSection = async <T>(
   try {
     const response = await fetch(`${buildBaseUrl()}${section}/${id}`, {
       method: "PUT",
-      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Adjust if needed
+      },
       body: input,
     });
     const data = await response.json();
@@ -472,11 +489,14 @@ export const updateSection = async <T>(
   }
 };
 
-export const deleteSection = async (sectionID: string) => {
+export const deleteSection = async (jwt: string, sectionID: string) => {
   try {
     const response = await fetch(`${buildBaseUrl()}section/${sectionID}`, {
       method: "DELETE",
-      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Adjust if needed
+      },
     });
 
     switch (response.status) {

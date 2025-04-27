@@ -195,11 +195,14 @@ export function isExpense(data: AnimalProjectTypes): data is Expense {
   return (data as Expense).cost != undefined;
 }
 
-export const fetchAllProjects = async (): Promise<Project[]> => {
+export const fetchAllProjects = async (jwt: string): Promise<Project[]> => {
   try {
     const response = await fetch(`${buildBaseUrl()}project`, {
       method: "GET",
-      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Adjust if needed
+      },
     });
 
     const data = await response.json();
@@ -213,12 +216,16 @@ export const fetchAllProjects = async (): Promise<Project[]> => {
 };
 
 export const fetchProject = async (
+  jwt: string,
   projectID: string
 ): Promise<Project | string> => {
   try {
     const response = await fetch(`${buildBaseUrl()}project/${projectID}`, {
       method: "GET",
-      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Adjust if needed
+      },
     });
 
     const data = await response.json();
@@ -232,11 +239,17 @@ export const fetchProject = async (
   }
 };
 
-export const postProject = async (project: CustomProjectFields) => {
+export const postProject = async (
+  jwt: string,
+  project: CustomProjectFields
+) => {
   try {
     const response = await fetch(`${buildBaseUrl()}project`, {
       method: "POST",
-      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Adjust if needed
+      },
       body: JSON.stringify(project),
     });
 
@@ -251,13 +264,17 @@ export const postProject = async (project: CustomProjectFields) => {
 };
 
 export const updateProject = async (
+  jwt: string,
   projectID: string,
   project: CustomProjectFields
 ) => {
   try {
     const response = await fetch(`${buildBaseUrl()}project/${projectID}`, {
       method: "PUT",
-      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Adjust if needed
+      },
       body: JSON.stringify(project),
     });
 
@@ -271,11 +288,14 @@ export const updateProject = async (
   }
 };
 
-export const deleteProject = async (projectID: string) => {
+export const deleteProject = async (jwt: string, projectID: string) => {
   try {
     const response = await fetch(`${buildBaseUrl()}project/${projectID}`, {
       method: "DELETE",
-      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Adjust if needed
+      },
     });
 
     const data = await response.json();
@@ -289,6 +309,7 @@ export const deleteProject = async (projectID: string) => {
 };
 
 export const fetchSubpageEntriesByProject = async <T>(
+  jwt: string,
   endpoint: string,
   project_id: string
 ): Promise<T[]> => {
@@ -297,7 +318,10 @@ export const fetchSubpageEntriesByProject = async <T>(
       `${buildBaseUrl()}${endpoint}?projectID=${project_id}`,
       {
         method: "GET",
-        credentials: "include",
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+          "Content-Type": "application/json", // Adjust if needed
+        },
       }
     );
     const data = await response.json();
@@ -326,13 +350,17 @@ export const fetchSubpageEntriesByProject = async <T>(
 };
 
 export const fetchSubpageEntryById = async <T>(
+  jwt: string,
   endpoint: string,
   id: string
 ): Promise<T> => {
   try {
     const response = await fetch(`${buildBaseUrl()}${endpoint}/${id}`, {
       method: "GET",
-      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Adjust if needed
+      },
     });
     const data = await response.json();
     if (!response.ok) {
@@ -361,13 +389,20 @@ export const fetchSubpageEntryById = async <T>(
   }
 };
 
-export const postSubpageEntry = async <T>(endpoint: string, input: string) => {
+export const postSubpageEntry = async <T>(
+  jwt: string,
+  endpoint: string,
+  input: string
+) => {
   // return type for after backend is updated to return created entry
   // ): Promise<T> => {
   try {
     const response = await fetch(`${buildBaseUrl()}${endpoint}`, {
       method: "POST",
-      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Adjust if needed
+      },
       body: input,
     });
     // code for after backend is updated to return created entry
@@ -397,6 +432,7 @@ export const postSubpageEntry = async <T>(endpoint: string, input: string) => {
 };
 
 export const updateSubpageEntry = async <T>(
+  jwt: string,
   endpoint: string,
   id: string,
   input: string
@@ -406,7 +442,10 @@ export const updateSubpageEntry = async <T>(
   try {
     const response = await fetch(`${buildBaseUrl()}${endpoint}/${id}`, {
       method: "PUT",
-      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Adjust if needed
+      },
       body: input,
     });
     // code for after backend is updated to return created entry
@@ -435,11 +474,18 @@ export const updateSubpageEntry = async <T>(
   }
 };
 
-export const deleteSubpageEntry = async <T>(endpoint: string, id: string) => {
+export const deleteSubpageEntry = async <T>(
+  jwt: string,
+  endpoint: string,
+  id: string
+) => {
   try {
     const response = await fetch(`${buildBaseUrl()}${endpoint}/${id}`, {
       method: "DELETE",
-      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Adjust if needed
+      },
     });
     switch (response.status) {
       case 204:
