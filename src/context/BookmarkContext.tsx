@@ -42,7 +42,6 @@ export function BookmarkProvider({ children }: Props) {
     } else {
       setCurrBookmarkContext(updatedNavBarValues);
       setIsPopulated(true);
-      setIsReloaded(true);
     }
   };
 

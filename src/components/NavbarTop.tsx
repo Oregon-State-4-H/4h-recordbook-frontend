@@ -128,6 +128,7 @@ export default function NavbarTop() {
               ))}
               {user && currNavbarValues.mobileTitle == "4-H Record Books" && (
                 <Button
+                  key={currNavbarValues.NavbarLinks.length + 1}
                   onClick={() => router.push("/Dashboard")}
                   sx={{ my: 2, color: "white", display: "block" }}
                   variant="outlined"
@@ -137,6 +138,7 @@ export default function NavbarTop() {
               )}
               {!user && currNavbarValues.mobileTitle == "4-H Record Books" && (
                 <Button
+                  key={currNavbarValues.NavbarLinks.length + 1}
                   href="/auth/login"
                   sx={{ my: 2, color: "white", display: "block" }}
                   variant="outlined"

@@ -16,19 +16,17 @@ export default function SignedInLayout({
   return (
     <Box>
       <BookmarkHeader />
-      <Box>
-        <Typography
-          variant="h4"
-          sx={{
-            display: { xs: "none", md: "block" },
-            Width: "100%",
-            textAlign: "center",
-            fontWeight: "bold",
-          }}
-        >
-          {currNavbarValues.desktopTitle}
-        </Typography>
-      </Box>
+      <Typography
+        variant="h4"
+        sx={{
+          display: { xs: "none", md: "block" },
+          Width: "100%",
+          textAlign: "center",
+          fontWeight: "bold",
+        }}
+      >
+        {currNavbarValues.desktopTitle}
+      </Typography>
       {children}
     </Box>
   );

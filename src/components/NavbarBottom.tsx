@@ -104,6 +104,7 @@ export default function NavbarBottom() {
         currNavbarValues.hrefTitle == "/" &&
         currNavbarValues.mobileTitle == "4-H Record Books" && (
           <BottomNavigationAction
+            key={currNavbarValues.NavbarLinks.length + 1}
             onClick={() => router.push("/Dashboard")}
             label="Dashboard"
             sx={{
@@ -116,6 +117,7 @@ export default function NavbarBottom() {
         currNavbarValues.hrefTitle == "/" &&
         currNavbarValues.mobileTitle == "4-H Record Books" && (
           <BottomNavigationAction
+            key={currNavbarValues.NavbarLinks.length + 1}
             href="/auth/login"
             label="Sign Up/Sign In"
             sx={{

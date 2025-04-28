@@ -41,7 +41,7 @@ export function BookmarkButton() {
           setAccessToken(token);
           const bookmarks = await fetchAllBookmarks(token);
           updateBookmarks(bookmarks);
-          console.log("populated: ", populated);
+          // console.log("populated: ", populated);
         } catch (error) {
           console.error(error);
         }
@@ -50,19 +50,21 @@ export function BookmarkButton() {
     }
   }, []);
 
-  // once bookmarks context is populated, check if curr page is bookmarked
+  // check if curr page is bookmarked if bookmarks context is populated
   useEffect(() => {
-    // update if the bookmarks icon should be filled in or not
-    setIsBookmarked(
-      currBookmarkValues.find((b) => b.link === pathname) ? true : false
-    );
+    if (populated == true) {
+      // update if the bookmarks icon should be filled in or not
+      setIsBookmarked(
+        currBookmarkValues.find((b) => b.link === pathname) ? true : false
+      );
 
-    // set reloaded context variable to false, since pages can toggle it
-    // to true to trigger the useEffect to rerender for soft navigation
-    updateBookmarks(false);
+      // set reloaded context variable to false, since pages can toggle it
+      // to true to trigger the useEffect to rerender for soft navigation
+      updateBookmarks(false);
 
-    console.log(currBookmarkValues);
-    console.log("populated: ", populated);
+      console.log(currBookmarkValues);
+      console.log("populated: ", populated);
+    }
   }, [populated, reloaded]);
 
   const handleBookmarkToggle = async () => {

@@ -107,6 +107,7 @@ export default function Dashboard() {
           >
             {Sections.map((item, index) => (
               <Box
+                key={index}
                 sx={{
                   flex: 1,
                   position: "relative",
@@ -139,6 +140,7 @@ export default function Dashboard() {
         >
           {Sections.map((item, index) => (
             <Box
+              key={index}
               sx={{
                 width: "29%",
                 justifyContent: "center",
