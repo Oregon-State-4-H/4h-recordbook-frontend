@@ -238,6 +238,42 @@ export type ResumeSections = {
   section_14_data: Section14[];
 };
 
+export const emptyResumeSections: ResumeSections = {
+  section_1_data: [],
+  section_2_data: [],
+  section_3_data: [],
+  section_4_data: [],
+  section_5_data: [],
+  section_6_data: [],
+  section_7_data: [],
+  section_8_data: [],
+  section_9_data: [],
+  section_10_data: [],
+  section_11_data: [],
+  section_12_data: [],
+  section_13_data: [],
+  section_14_data: [],
+};
+
+export function isResumeSections(data: any): data is ResumeSections {
+  return (
+    (data as ResumeSections).section_1_data != null &&
+    (data as ResumeSections).section_2_data != null &&
+    (data as ResumeSections).section_3_data != null &&
+    (data as ResumeSections).section_4_data != null &&
+    (data as ResumeSections).section_5_data != null &&
+    (data as ResumeSections).section_6_data != null &&
+    (data as ResumeSections).section_7_data != null &&
+    (data as ResumeSections).section_8_data != null &&
+    (data as ResumeSections).section_9_data != null &&
+    (data as ResumeSections).section_10_data != null &&
+    (data as ResumeSections).section_11_data != null &&
+    (data as ResumeSections).section_12_data != null &&
+    (data as ResumeSections).section_13_data != null &&
+    (data as ResumeSections).section_14_data != null
+  );
+}
+
 export function isS1(sectionData: SectionAny): sectionData is Section1 {
   return (sectionData as Section1).section == 1;
 }

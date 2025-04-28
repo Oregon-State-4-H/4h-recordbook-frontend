@@ -7,9 +7,9 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/theme";
 import NavbarTop from "@/components/NavbarTop";
 import NavbarBottom from "@/components/NavbarBottom";
-import { createContext, useContext, useState } from "react";
 import { NavbarProvider } from "@/context/NavbarContext";
 import { BookmarkProvider } from "@/context/BookmarkContext";
+import { ResumeProvider } from "@/context/ResumeContext";
 import Box from "@mui/material/Box";
 
 const roboto = Roboto({
@@ -31,27 +31,29 @@ export default function RootLayout({
           <ThemeProvider theme={theme}>
             <BookmarkProvider>
               <NavbarProvider>
-                <NavbarTop />
-                <Box
-                  sx={(theme) => ({
-                    [theme.breakpoints.up("xs")]: { height: "55px" },
-                    [theme.breakpoints.up("sm")]: { height: "55px" },
-                    [theme.breakpoints.up("md")]: { height: "70px" },
-                    [theme.breakpoints.up("lg")]: { height: "70px" },
-                    [theme.breakpoints.up("xl")]: { height: "70px" },
-                  })}
-                ></Box>
-                {children}
-                <Box
-                  sx={(theme) => ({
-                    [theme.breakpoints.up("xs")]: { height: "45px" },
-                    [theme.breakpoints.up("sm")]: { height: "45px" },
-                    [theme.breakpoints.up("md")]: { height: "20px" },
-                    [theme.breakpoints.up("lg")]: { height: "20px" },
-                    [theme.breakpoints.up("xl")]: { height: "20px" },
-                  })}
-                ></Box>
-                <NavbarBottom />
+                <ResumeProvider>
+                  <NavbarTop />
+                  <Box
+                    sx={(theme) => ({
+                      [theme.breakpoints.up("xs")]: { height: "55px" },
+                      [theme.breakpoints.up("sm")]: { height: "55px" },
+                      [theme.breakpoints.up("md")]: { height: "70px" },
+                      [theme.breakpoints.up("lg")]: { height: "70px" },
+                      [theme.breakpoints.up("xl")]: { height: "70px" },
+                    })}
+                  ></Box>
+                  {children}
+                  <Box
+                    sx={(theme) => ({
+                      [theme.breakpoints.up("xs")]: { height: "45px" },
+                      [theme.breakpoints.up("sm")]: { height: "45px" },
+                      [theme.breakpoints.up("md")]: { height: "20px" },
+                      [theme.breakpoints.up("lg")]: { height: "20px" },
+                      [theme.breakpoints.up("xl")]: { height: "20px" },
+                    })}
+                  ></Box>
+                  <NavbarBottom />
+                </ResumeProvider>
               </NavbarProvider>
             </BookmarkProvider>
           </ThemeProvider>
