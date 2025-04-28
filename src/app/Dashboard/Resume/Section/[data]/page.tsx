@@ -18,6 +18,7 @@ import {
   navbarAppLinks,
 } from "@/context/NavbarContext";
 import { useBookmark } from "@/context/BookmarkContext";
+import { useResume, ResumeValues } from "@/context/ResumeContext";
 import sectionOutline from "@/components/Resume/SectionOutline.json";
 import { fetchSectionData, SectionAny, SectionEmpty } from "@/API/ResumeAPI";
 import CreateIconButton from "@/components/Resume/CreateIconButton";
@@ -30,12 +31,23 @@ import { StyledTableHeader } from "@/components/StyledTableRow";
 export default function Dashboard() {
   const { currNavbarValues, updateFunction } = useNavbar();
   const { updateBookmarks } = useBookmark();
+  const { updateResume, Sections, SAll, SAllPopulated } = useResume();
   const params = useParams<{ tag: string; item: string }>();
   const { data }: any = params;
-  let [allSections, setSections] = useState<SectionAny[]>([]);
   let [Title, setTitle] = useState<string>("");
   let [Fields, setFields] = useState<{ [key: string]: string }[]>([]);
   const [accessToken, setAccessToken] = useState("");
+  let [allSectionEntries, setSectionEntries] = useState<SectionAny[]>(
+    Sections[data].SectionData
+  );
+  const setSections = (SectionEntries: SectionAny[]) => {
+    setSectionEntries(SectionEntries);
+    var newResumeValues: ResumeValues = {
+      ResumeData: SectionEntries,
+      section: data,
+    };
+    updateResume(newResumeValues);
+  };
 
   useEffect(() => {
     // get section specific values
@@ -118,22 +130,29 @@ export default function Dashboard() {
 
   // get auth0 jwt and section entries
   useEffect(() => {
-    if (accessToken == "") {
-      const getSectionData = async () => {
-        try {
+    const getSectionData = async () => {
+      try {
+        if (accessToken == "") {
           const token = await getAccessToken();
           setAccessToken(token);
+        }
+        console.log("section number string: ", data);
+        console.log(
+          "data exsists for section?",
+          Sections[data].SectionPopulated
+        );
+        if (!Sections[data].SectionPopulated) {
           const sectionData = await fetchSectionData<SectionAny>(
-            token,
+            accessToken,
             `section${data}`
           );
           setSections(sectionData);
-        } catch (error) {
-          console.error(error);
         }
-      };
-      getSectionData();
-    }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getSectionData();
   }, []);
 
   const empty: SectionEmpty = {
@@ -251,7 +270,7 @@ export default function Dashboard() {
               </StyledTableHeader>
             </TableHead>
             <TableBody>
-              {allSections.map((item, index) => (
+              {allSectionEntries.map((item, index) => (
                 <ResumeTableRow
                   key={index}
                   jwt={accessToken}
@@ -259,7 +278,7 @@ export default function Dashboard() {
                   resumeEntry={item}
                   sectionNumber={data}
                   setSections={setSections}
-                  priorEntries={allSections}
+                  priorEntries={allSectionEntries}
                   handleOpen={handleinputModalOpen}
                 />
               ))}
@@ -278,8 +297,8 @@ export default function Dashboard() {
           paddingBottom: "50px",
         }}
       >
-        {allSections.length > 0 &&
-          allSections.map((item, index) => (
+        {allSectionEntries.length > 0 &&
+          allSectionEntries.map((item, index) => (
             <Box
               key={index}
               sx={{
@@ -305,7 +324,7 @@ export default function Dashboard() {
           jwt={accessToken}
           sectionNumber={data}
           setSections={setSections}
-          priorEntries={allSections}
+          priorEntries={allSectionEntries}
           resumeEntry={inputModalEntry}
           handleModalClose={handleinputModalClose}
           purpose={inputModalPurpose}

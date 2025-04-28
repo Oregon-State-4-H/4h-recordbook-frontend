@@ -366,6 +366,7 @@ export const fetchSectionData = async <T>(
   section: string
 ): Promise<T[]> => {
   try {
+    console.log("fetching ", section);
     const response = await fetch(`${buildBaseUrl()}${section}`, {
       method: "GET",
       headers: {
