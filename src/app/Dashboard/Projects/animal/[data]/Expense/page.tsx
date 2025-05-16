@@ -141,9 +141,9 @@ function Dashboard() {
   if (!validId) {
     console.log("Invalid project id else statement");
     return <TitleOnly title="Project Not Found" cloverLoader={false} />;
-    // } else if (validId && !projectLoaded) {
-    //   console.log("Loading project else statement");
-    //   return <TitleOnly title="Loading..." cloverLoader={true} />;
+  } else if (validId && !subpageDataLoaded) {
+    console.log("Loading project else statement");
+    return <TitleOnly title="Loading..." cloverLoader={true} />;
     // } else if (validId && projectLoaded && typeof currProject == "undefined") {
     //   console.log("undefined project else statement");
     //   return <TitleOnly title="Error (Joy to fix)" cloverLoader={false} />;
@@ -201,6 +201,7 @@ function Dashboard() {
               <TableBody>
                 {allSubpageEntries.map((item, index) => (
                   <ProjectTableRow
+                    key={index}
                     index={index}
                     projectEntry={item}
                     subpage="Expense"
