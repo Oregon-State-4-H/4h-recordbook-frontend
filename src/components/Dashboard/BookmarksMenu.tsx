@@ -2,7 +2,6 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -11,6 +10,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useBookmark } from "@/context/BookmarkContext";
+import LinkButton from "@/components/LinkButton";
 
 export default function BookmarksMenu() {
   const { currBookmarkValues } = useBookmark();
@@ -45,17 +45,14 @@ export default function BookmarksMenu() {
               key={index}
             >
               <TableCell>
-                <Button
-                  style={{
-                    width: "100%",
-                    padding: ".5em 1.5em .5em 1.5em",
-                    textDecoration: "none",
-                    textAlign: "center",
-                  }}
-                  onClick={() => router.push(item.link)}
-                >
-                  {item.label}
-                </Button>
+                <LinkButton
+                  href={item.link}
+                  label={item.label}
+                  width="100%"
+                  padding=".5em 1.5em .5em 1.5em"
+                  textDecoration="none"
+                  textAlign="center"
+                />
               </TableCell>
             </TableRow>
           ))}

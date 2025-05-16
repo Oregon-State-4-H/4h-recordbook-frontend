@@ -7,12 +7,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { useNavbar } from "@/context/NavbarContext";
 import { useUser } from "@auth0/nextjs-auth0";
+import LinkButton from "@/components/LinkButton";
 
 export default function NavbarTop() {
   // const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -118,33 +119,33 @@ export default function NavbarTop() {
               }}
             >
               {currNavbarValues.NavbarLinks.map((item, index) => (
-                <Button
-                  onClick={() => router.push(item.href)}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                <LinkButton
                   key={index}
-                >
-                  {item.label}
-                </Button>
+                  my="2"
+                  color="white"
+                  display="block"
+                  href={item.href}
+                  label={item.label}
+                />
               ))}
               {user && currNavbarValues.mobileTitle == "4-H Record Books" && (
-                <Button
-                  key={currNavbarValues.NavbarLinks.length + 1}
-                  onClick={() => router.push("/Dashboard")}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                  variant="outlined"
-                >
-                  Go To Dashboard
-                </Button>
+                <LinkButton
+                  my="2"
+                  color="white"
+                  display="block"
+                  href="/Dashboard"
+                  label="Go To Dashboard"
+                />
               )}
               {!user && currNavbarValues.mobileTitle == "4-H Record Books" && (
-                <Button
+                <LinkButton
                   key={currNavbarValues.NavbarLinks.length + 1}
+                  my="2"
+                  color="white"
+                  display="block"
                   href="/auth/login"
-                  sx={{ my: 2, color: "white", display: "block" }}
-                  variant="outlined"
-                >
-                  Sign Up/Sign In
-                </Button>
+                  label="Sign Up/Sign In"
+                />
               )}
             </Box>
           </Toolbar>

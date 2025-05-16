@@ -3,8 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { getAccessToken } from "@auth0/nextjs-auth0";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import {
   useNavbar,
@@ -15,16 +13,13 @@ import { useBookmark } from "@/context/BookmarkContext";
 import { useProject } from "@/context/ProjectContext";
 import { Project, fetchAllProjects } from "@/API/ProjectAPI";
 import PreviewCard from "@/components/Projects/PreviewCard";
-import { useParams, usePathname } from "next/navigation";
-import { popoverClasses } from "@mui/material";
+import { usePathname } from "next/navigation";
 
 function Dashboard() {
   const pathname = usePathname();
   const { currNavbarValues, updateFunction } = useNavbar();
   const { updateBookmarks } = useBookmark();
   const { updateProjects, currProjectValues, populated } = useProject();
-  const params = useParams<{ tag: string; item: string }>();
-  const { data }: any = params;
   const [accessToken, setAccessToken] = useState("");
   let [allProjects, setAllProjects] = useState<Project[]>(currProjectValues);
   const setProjects = (Projects: Project[]) => {

@@ -5,12 +5,7 @@ import { getAccessToken } from "@auth0/nextjs-auth0";
 import { useParams, usePathname } from "next/navigation";
 import Box from "@mui/material/Box";
 import TitleOnly from "@/components/Projects/TitleOnly";
-import {
-  Project,
-  isProject,
-  fetchAllProjects,
-  fetchProject,
-} from "@/API/ProjectAPI";
+import { Project, isProject, fetchProject } from "@/API/ProjectAPI";
 import SubpageCard from "@/components/Projects/SubpageCard";
 import Grid from "@mui/material/Grid";
 import {
@@ -38,50 +33,23 @@ function Dashboard() {
       try {
         // if the array of all projects is not populated, get project from backend
         if (!populated) {
-          console.log("not populated, setting accessToken");
           if (accessToken == "") {
             const token = await getAccessToken();
             setAccessToken(token);
-            const projectData = await fetchAllProjects(token);
-            updateProjects(projectData);
-            var foundProject = projectData.find(
-              (element) => element.id == data
-            );
-            if (typeof foundProject != "undefined") {
-              setProject(foundProject);
+            const projectData = await fetchProject(token, data);
+            if (typeof projectData == "string") {
+              setValidId(false);
+            } else {
+              setProject(projectData);
               setProjectLoaded(true);
-            }
-            // if project not found in array, double check backend
-            else {
-              const projectData = await fetchProject(token, data);
-              if (typeof projectData == "string") {
-                setValidId(false);
-                setProjectLoaded(true);
-              } else {
-                setProject(projectData);
-                setProjectLoaded(true);
-              }
             }
           } else {
-            const projectData = await fetchAllProjects(accessToken);
-            updateProjects(projectData);
-            var foundProject = projectData.find(
-              (element) => element.id == data
-            );
-            if (typeof foundProject != "undefined") {
-              setProject(foundProject);
+            const projectData = await fetchProject(accessToken, data);
+            if (typeof projectData == "string") {
+              setValidId(false);
+            } else {
+              setProject(projectData);
               setProjectLoaded(true);
-            }
-            // if project not found in array, double check backend
-            else {
-              const projectData = await fetchProject(accessToken, data);
-              if (typeof projectData == "string") {
-                setValidId(false);
-                setProjectLoaded(true);
-              } else {
-                setProject(projectData);
-                setProjectLoaded(true);
-              }
             }
           }
         }

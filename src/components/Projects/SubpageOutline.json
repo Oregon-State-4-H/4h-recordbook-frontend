@@ -1,0 +1,35 @@
+{
+  "expense": {
+    "headers": ["Cost", "Date", "Items", "Quantity", ""],
+    "form": [
+      {
+        "type": "number",
+        "label": "Cost",
+        "name": "cost",
+        "required": "yes",
+        "placeholder": "Ex. 2"
+      },
+      {
+        "type": "date",
+        "label": "Date",
+        "name": "date",
+        "required": "yes",
+        "placeholder": ""
+      },
+      {
+        "type": "text",
+        "label": "Items",
+        "name": "items",
+        "required": "yes",
+        "placeholder": "ruler"
+      },
+      {
+        "type": "number",
+        "label": "Quanitity",
+        "name": "quantity",
+        "required": "yes",
+        "placeholder": "4"
+      }
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BookmarkHeader } from "@/components/Bookmarks";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
