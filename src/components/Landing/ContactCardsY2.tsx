@@ -83,7 +83,7 @@ function ContactCards() {
             <Container maxWidth="sm">
               <Avatar
                 sx={{ width: "100%", height: "100%" }}
-                // src="/photos/javier_profile.jpeg"
+                src="/photos/zach.jpg"
                 alt="Zachary Wallace"
               ></Avatar>
             </Container>

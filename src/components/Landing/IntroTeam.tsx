@@ -62,7 +62,7 @@ function IntroTeam() {
             paddingTop: "50px",
           }}
         >
-          Second Year Team (2023-2024)
+          Second Year Team (2024-2025)
         </Typography>
         <ContactCardsY2 />
       </div>

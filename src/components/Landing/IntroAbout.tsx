@@ -1,6 +1,8 @@
 "use client";
 
+import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
 
 function IntroAbout() {
   const blurb: string =
@@ -103,6 +105,111 @@ function IntroAbout() {
           goal would be to have a system that can can generate reports for all
           major 4-H projects categories. Currently, we working to support the
           4-H Resume and General Animal Science projects.
+        </Typography>
+      </div>
+      <div>
+        <Typography
+          variant="h4"
+          sx={{
+            textAlign: "center",
+            maxWidth: "90%",
+            marginLeft: "5%",
+            marginRight: "5%",
+          }}
+          color="#D73F09"
+        >
+          Status and Technical Implementation
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            textAlign: "center",
+            width: "100%",
+            paddingBottom: "20px",
+          }}
+        >
+          The second year project is a NextJS frontend and a separate Golang
+          backend, with support for a few of the many project types that are a
+          part of 4-H. Future year projects may include support for more project
+          types or a native mobile frontend. The separation of the frontend and
+          backend supports the multiyear aspiration of having devoloping a
+          native mobile frontend, since the same backend can be reused.
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            textAlign: "center",
+            width: "100%",
+            paddingBottom: "50px",
+          }}
+        >
+          The second year project's frontend is developed with Google's MUI
+          components for stability and responsiveness to varying screen sizes.
+          Like the first year project, the second year project follows the
+          client server architecture pattern.
+        </Typography>
+        <Container maxWidth="md">
+          <Avatar
+            variant="square"
+            src="/photos/demo.png"
+            alt="Dashboard Mobile and Desktop"
+            sx={{ width: "100%", height: "100%", paddingBottom: "50px" }}
+          />
+        </Container>
+      </div>
+      <div>
+        <Typography
+          variant="h4"
+          sx={{
+            textAlign: "center",
+            maxWidth: "90%",
+            marginLeft: "5%",
+            marginRight: "5%",
+          }}
+          color="#D73F09"
+        >
+          How to Use 4-H Recordbooks
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            textAlign: "center",
+            width: "100%",
+            paddingBottom: "5px",
+          }}
+        >
+          Access to the second year application is coming soon! In the interim,
+          the first year application can be accessed at:
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            textAlign: "center",
+            width: "100%",
+            paddingBottom: "20px",
+          }}
+        >
+          https://record-books.vercel.app/
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            textAlign: "center",
+            width: "100%",
+            paddingBottom: "5px",
+          }}
+        >
+          For documentation, please see the user guide accessible at:
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            textAlign: "center",
+            width: "100%",
+            paddingBottom: "20px",
+          }}
+        >
+          https://record-books-docs.vercel.app/
         </Typography>
       </div>
     </div>

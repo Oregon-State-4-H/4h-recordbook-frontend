@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -36,7 +36,7 @@ function IntroBanner() {
           >
             <Typography
               variant="h2"
-              width="70vw"
+              width="100%"
               color="#D73F09"
               sx={{
                 paddingTop: "90px",
@@ -89,7 +89,7 @@ function IntroBanner() {
             <Container>
               <Typography
                 variant="h2"
-                width="70vw"
+                width="100%"
                 color="#D73F09"
                 sx={{
                   paddingTop: "90px",
