@@ -12,7 +12,7 @@ import Box from "@mui/material/Box";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { useNavbar } from "@/context/NavbarContext";
-import { useUser } from "@auth0/nextjs-auth0";
+// import { useUser } from "@auth0/nextjs-auth0";
 import LinkButton from "@/components/LinkButton";
 
 export default function NavbarTop() {
@@ -24,7 +24,7 @@ export default function NavbarTop() {
   // );
 
   const { currNavbarValues } = useNavbar();
-  const { user } = useUser();
+  // const { user } = useUser();
   const router = useRouter();
 
   return (
@@ -128,7 +128,7 @@ export default function NavbarTop() {
                   label={item.label}
                 />
               ))}
-              {user && currNavbarValues.mobileTitle == "4-H Record Books" && (
+              {/* {user && currNavbarValues.mobileTitle == "4-H Record Books" && (
                 <LinkButton
                   my="2"
                   color="white"
@@ -146,7 +146,7 @@ export default function NavbarTop() {
                   href="/auth/login"
                   label="Sign Up/Sign In"
                 />
-              )}
+              )} */}
             </Box>
           </Toolbar>
         </Container>

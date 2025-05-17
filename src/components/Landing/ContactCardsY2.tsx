@@ -53,7 +53,7 @@ function ContactCards() {
           <Container maxWidth="sm" sx={{ paddingTop: "10%" }}>
             <Container maxWidth="sm">
               <Avatar
-                // src="/photos/michelle_profile.jpeg"
+                src="/photos/joy.jpg"
                 alt="Joy Jin"
                 sx={{ width: "100%", height: "100%" }}
               ></Avatar>

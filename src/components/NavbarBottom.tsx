@@ -9,11 +9,11 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import { useUser } from "@auth0/nextjs-auth0";
+// import { useUser } from "@auth0/nextjs-auth0";
 
 export default function NavbarBottom() {
   const { currNavbarValues } = useNavbar();
-  const { user } = useUser();
+  // const { user } = useUser();
   const router = useRouter();
 
   return (
@@ -99,7 +99,7 @@ export default function NavbarBottom() {
           );
         }
       })}
-      {user &&
+      {/* {user &&
         currNavbarValues.hrefTitle == "/" &&
         currNavbarValues.mobileTitle == "4-H Record Books" && (
           <BottomNavigationAction
@@ -124,7 +124,7 @@ export default function NavbarBottom() {
               color: "white",
             }}
           />
-        )}
+        )} */}
     </BottomNavigation>
   );
 }
