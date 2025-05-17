@@ -26,7 +26,7 @@ export default function Home() {
 
     updateFunction(navbarContextPageValues);
     console.log();
-  }, []);
+  });
 
   return (
     <Box className="App">

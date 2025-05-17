@@ -7,6 +7,8 @@ import Container from "@mui/material/Container";
 function IntroAbout() {
   const blurb: string =
     "4-H Record Books is a logging and report software that tracks a youth's journey through the 4-H program. Record books digitizes current handwritten reports to give youth a new modern approach to record keeping. This software allows youth to log their progress and then automatically generate formatted PDF reports. Record Books allows users to track their 4-H resume and General Animal Science projects.";
+  const blurb2: string =
+    " The second year project's frontend is developed with Google's MUI components for stability and responsiveness to varying screen sizes. Like the first year project, the second year project follows the client server architecture pattern.";
   return (
     <div
       id="aboutSection"
@@ -143,10 +145,7 @@ function IntroAbout() {
             paddingBottom: "50px",
           }}
         >
-          The second year project's frontend is developed with Google's MUI
-          components for stability and responsiveness to varying screen sizes.
-          Like the first year project, the second year project follows the
-          client server architecture pattern.
+          {blurb2}
         </Typography>
         <Container maxWidth="md">
           <Avatar
