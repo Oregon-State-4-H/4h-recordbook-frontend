@@ -255,7 +255,9 @@ export const emptyResumeSections: ResumeSections = {
   section_14_data: [],
 };
 
-export function isResumeSections(data: any): data is ResumeSections {
+export function isResumeSections(
+  data: ResumeSections | SectionAny[]
+): data is ResumeSections {
   return (
     (data as ResumeSections).section_1_data != null &&
     (data as ResumeSections).section_2_data != null &&

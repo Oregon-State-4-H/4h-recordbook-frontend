@@ -1,8 +1,10 @@
-'use client'
+"use client";
 
 import Typography from "@mui/material/Typography";
 
 function IntroAbout() {
+  const string1: string =
+    "4-H Record Books is a logging and report software that tracks a youth's journey through the 4-H program. Record books digitizes current handwritten reports to give youth a new modern approach to record keeping. This software allows youth to log their progress and then automatically generate formatted PDF reports. Record Books allows users to track their 4-H resume and General Animal Science projects.";
   return (
     <div
       id="aboutSection"
@@ -10,7 +12,6 @@ function IntroAbout() {
         border: "70px solid transparent",
         margin: "-70px 0px 0px 0px",
       }}
-      // sx={{ flexWrap: "wrap", padding: "15vh", maxWidth: "80%" }}
     >
       {/* <video
           plays
@@ -43,12 +44,7 @@ function IntroAbout() {
             paddingBottom: "50px",
           }}
         >
-          4-H Record Books is a logging and report software that tracks a
-          youth's journey through the 4-H program. Record books digitizes
-          current handwritten reports to give youth a new modern approach to
-          record keeping. This software allows youth to log their progress and
-          then automatically generate formatted PDF reports. Record Books allows
-          users to track their 4-H resume and General Animal Science projects.
+          {string1}
         </Typography>
       </div>
       <div>

@@ -22,11 +22,12 @@ import {
   isS13,
   isS14,
 } from "@/API/ResumeAPI";
+import { formField, isFieldOption, isFieldTextOrNumber } from "@/API/JSON";
 
 interface DynamicInputProps {
-  inputFieldJSON: { [key: string]: any };
+  inputFieldJSON: formField;
   sectionNumber: string;
-  updateMap: (key: string, value: any) => void;
+  updateMap: (key: string, value: string | number) => void;
   originalToUpdate: SectionAny;
 }
 
@@ -45,8 +46,8 @@ export default function ResumeCreateModalContent({
     }
   };
 
-  var originalValueKey: string = inputFieldJSON.name;
-  var originalValue: string = "";
+  const originalValueKey: string = inputFieldJSON.name;
+  let originalValue: string = "";
 
   switch (sectionNumber) {
     case "1":
@@ -353,9 +354,20 @@ export default function ResumeCreateModalContent({
       break;
   }
 
+  const [selected, setSelected] = React.useState("");
+
+  const handleSelect = (event: SelectChangeEvent) => {
+    setSelected(event.target.value as string);
+    const { name, value } = event.target;
+    updateMap(name, value);
+  };
+
   switch (inputFieldJSON.type) {
     case "text":
-      if (typeof inputFieldJSON.label == "string") {
+      if (
+        typeof inputFieldJSON.label == "string" &&
+        isFieldTextOrNumber(inputFieldJSON)
+      ) {
         // case for create
         return (
           <Box
@@ -380,7 +392,10 @@ export default function ResumeCreateModalContent({
       }
       break;
     case "text-long":
-      if (typeof inputFieldJSON.label == "string") {
+      if (
+        typeof inputFieldJSON.label == "string" &&
+        isFieldTextOrNumber(inputFieldJSON)
+      ) {
         return (
           <Box
             component="form"
@@ -406,7 +421,10 @@ export default function ResumeCreateModalContent({
       }
       break;
     case "number":
-      if (typeof inputFieldJSON.label == "string") {
+      if (
+        typeof inputFieldJSON.label == "string" &&
+        isFieldTextOrNumber(inputFieldJSON)
+      ) {
         return (
           <Box
             component="form"
@@ -436,40 +454,39 @@ export default function ResumeCreateModalContent({
       }
       break;
     case "select":
-      const [selected, setSelected] = React.useState("");
-
-      const handleSelect = (event: SelectChangeEvent) => {
-        setSelected(event.target.value as string);
-        const { name, value } = event.target;
-        updateMap(name, value);
-      };
-
-      return (
-        <Box sx={{ width: "100%" }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">
-              {inputFieldJSON.label}
-            </InputLabel>
-            <Select
-              className="formInput"
-              fullWidth
-              defaultValue={originalValue}
-              labelId={
-                inputFieldJSON.label + "InputSection" + sectionNumber + "Label"
-              }
-              name={inputFieldJSON.name}
-              id={inputFieldJSON.label + "InputSection" + sectionNumber}
-              value={selected}
-              label={inputFieldJSON.label}
-              onChange={handleSelect}
-            >
-              {inputFieldJSON.options.map((item: any) => (
-                <MenuItem value={item.label}>{item.label}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Box>
-      );
+      if (isFieldOption(inputFieldJSON)) {
+        return (
+          <Box sx={{ width: "100%" }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">
+                {inputFieldJSON.label}
+              </InputLabel>
+              <Select
+                className="formInput"
+                fullWidth
+                defaultValue={originalValue}
+                labelId={
+                  inputFieldJSON.label +
+                  "InputSection" +
+                  sectionNumber +
+                  "Label"
+                }
+                name={inputFieldJSON.name}
+                id={inputFieldJSON.label + "InputSection" + sectionNumber}
+                value={selected}
+                label={inputFieldJSON.label}
+                onChange={handleSelect}
+              >
+                {inputFieldJSON.options.map((item, index) => (
+                  <MenuItem value={item.label} key={index}>
+                    {item.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
+        );
+      }
       break;
     default:
       break;

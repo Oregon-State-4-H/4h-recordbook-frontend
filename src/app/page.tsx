@@ -1,9 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+import React, { useEffect } from "react";
 import IntroBanner from "@/components/Landing/IntroBanner";
 import IntroAbout from "@/components/Landing/IntroAbout";
 import IntroTeam from "@/components/Landing/IntroTeam";
@@ -15,21 +12,11 @@ import {
   navbarLandingLinks,
 } from "@/context/NavbarContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export default function Home() {
   // update context for nav/app bars
-  const { currNavbarValues, updateFunction } = useNavbar();
+  const { updateFunction } = useNavbar();
   useEffect(() => {
-    var navbarContextPageValues: NavbarValues = {
+    const navbarContextPageValues: NavbarValues = {
       mobileTitle: "4-H Record Books",
       desktopTitle: "4-H Record Books",
       hrefTitle: "/",
@@ -39,7 +26,7 @@ export default function Home() {
 
     updateFunction(navbarContextPageValues);
     console.log();
-  }, []);
+  });
 
   return (
     <Box className="App">

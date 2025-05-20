@@ -1,5 +1,4 @@
 import { buildBaseUrl } from "@/API/base";
-import Head from "next/head";
 
 export enum AnimalProjectTypeEndpoints {
   Animal = "animal",
@@ -234,8 +233,7 @@ export const fetchProject = async (
     }
     return data.project as Project;
   } catch (error) {
-    const err: string = "error";
-    return err;
+    throw error;
   }
 };
 

@@ -1,9 +1,8 @@
 import * as React from "react";
 import TableCell from "@mui/material/TableCell";
 import { StyledTableRow } from "../StyledTableRow";
-import DeleteIconButton from "./DeleteIconButton";
+import { DeleteIconButton } from "@/components/Projects/DeleteButtons";
 import EditIconButton from "./EditIconButton";
-// import ResumeEdit from "./EditIconButton";
 import { AnimalProjectTypes, isExpense } from "../../API/ProjectAPI";
 import { toDDMMYY } from "@/components/Date";
 import Stack from "@mui/material/Stack";
@@ -11,10 +10,8 @@ import Stack from "@mui/material/Stack";
 interface ResumeRowProps {
   index: number;
   projectEntry: AnimalProjectTypes;
-  // sectionNumber: string;
-  // sectionPlusNumber: string;
-  // setEntries: (allEntries: AnimalProjectTypes[]) => void;
-  // priorEntries: AnimalProjectTypes[];
+  setEntries: (allEntries: AnimalProjectTypes[]) => void;
+  priorEntries: AnimalProjectTypes[];
   handleOpen: (currEntry: AnimalProjectTypes, purpose: string) => void;
   subpage: string;
 }
@@ -22,10 +19,8 @@ interface ResumeRowProps {
 export default function ResumeTableCells({
   index,
   projectEntry,
-  // sectionNumber,
-  // sectionPlusNumber,
-  // setEntries,
-  // priorEntries,
+  setEntries,
+  priorEntries,
   handleOpen,
   subpage,
 }: ResumeRowProps) {
@@ -59,7 +54,12 @@ export default function ResumeTableCells({
                   animalProjectEntry={projectEntry}
                   handleOpen={handleOpen}
                 />
-                <DeleteIconButton id={projectEntry.id} subpage={subpage} />
+                <DeleteIconButton
+                  id={projectEntry.id}
+                  subpage={subpage}
+                  allEntries={priorEntries}
+                  setEntries={setEntries}
+                />
               </Stack>
             </TableCell>
           </StyledTableRow>

@@ -1,13 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import { useParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { MdBookmarkBorder, MdBookmark } from "react-icons/md";
 import { getAccessToken } from "@auth0/nextjs-auth0";
 import Box from "@mui/material/Box";
 import {
-  Bookmark,
   CustomBookmarkFields,
   deleteBookmark,
   fetchAllBookmarks,
@@ -17,20 +15,12 @@ import { useBookmark } from "@/context/BookmarkContext";
 
 import IconButton from "@mui/material/IconButton";
 
-interface DashboardBookmarksProps {
-  jwt: string;
-}
-
-interface BookmarksProps {
-  jwt: string;
-}
-
 export function BookmarkButton() {
   const { currBookmarkValues, populated, reloaded, updateBookmarks } =
     useBookmark();
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [accessToken, setAccessToken] = useState("");
-  var pathname = usePathname().substring(1);
+  const pathname = usePathname().substring(1);
 
   // if bookmarks context is not populated, send request to backend
   useEffect(() => {
@@ -48,7 +38,7 @@ export function BookmarkButton() {
       };
       getBookmarks();
     }
-  }, []);
+  });
 
   // check if curr page is bookmarked if bookmarks context is populated
   useEffect(() => {
@@ -65,7 +55,7 @@ export function BookmarkButton() {
       console.log(currBookmarkValues);
       console.log("populated: ", populated);
     }
-  }, [populated, reloaded]);
+  }, [populated, reloaded, currBookmarkValues, pathname, updateBookmarks]);
 
   const handleBookmarkToggle = async () => {
     if (isBookmarked) {
@@ -73,7 +63,7 @@ export function BookmarkButton() {
         return;
       }
       let bookmarkID: string = "";
-      var currBookmark = currBookmarkValues.find(
+      const currBookmark = currBookmarkValues.find(
         (element) => element.link == pathname
       );
       if (currBookmark) {

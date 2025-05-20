@@ -3,10 +3,11 @@ import CardContent from "@mui/material/CardContent";
 import sectionOutline from "@/components/Resume/SectionOutline.json";
 import DynamicInput from "@/components/Resume/DynamicInput";
 import { SectionAny } from "@/API/ResumeAPI";
+import { formFields } from "@/API/JSON";
 
 interface ResumeModalProps {
   sectionNumber: string;
-  updateMap: (key: string, value: any) => void;
+  updateMap: (key: string, value: number | string) => void;
   resumeEntry: SectionAny;
 }
 
@@ -15,7 +16,7 @@ export default function ResumeCreateModalContent({
   updateMap,
   resumeEntry,
 }: ResumeModalProps) {
-  var Fields: { [key: string]: any }[] = [];
+  let Fields: formFields = [];
 
   switch (sectionNumber) {
     case "1":

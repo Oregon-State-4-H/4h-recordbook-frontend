@@ -46,7 +46,9 @@ function Dashboard() {
   const { updateProjects, currProjectValues, populated } = useProject();
   const pathname = usePathname();
   // states for all subpage entries
-  let [allSubpageEntries, setAllSubpageEntries] = useState<Expense[]>([]);
+  let [allSubpageEntries, setAllSubpageEntries] = useState<
+    AnimalProjectTypes[]
+  >([]);
   const [validSubpage, setValidSubpage] = useState(true);
   const [subpageDataLoaded, setSubpageDataLoaded] = useState(false);
 
@@ -206,6 +208,8 @@ function Dashboard() {
                     projectEntry={item}
                     subpage="Expense"
                     handleOpen={handleinputModalOpen}
+                    priorEntries={allSubpageEntries}
+                    setEntries={setAllSubpageEntries}
                   />
                 ))}
               </TableBody>
@@ -220,11 +224,9 @@ function Dashboard() {
         >
           <DynamicPopUp
             subpage="Expense"
-            priorEntries={allSubpageEntries}
             subpageEntry={inputModalEntry}
             handleModalClose={handleinputModalClose}
             purpose={inputModalPurpose}
-            handleOpen={handleinputModalOpen}
             project_id={data}
           />
         </Modal>

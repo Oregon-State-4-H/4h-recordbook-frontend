@@ -5,6 +5,8 @@ import ContactCardsY1 from "./ContactCardsY1";
 import ContactCardsY2 from "./ContactCardsY2";
 
 function IntroTeam() {
+  const string1: string =
+    "Record Books was initially developed as a senior capstone project in 2024 by a group of students at Oregon State University, and development is being continued as a senior capstone project in 2025. Meet each year's team.";
   return (
     <div
       id="teamSection"
@@ -33,10 +35,7 @@ function IntroTeam() {
             paddingBottom: "50px",
           }}
         >
-          Record Books was initially developed as a senior capstone project in
-          2024 by a group of students at Oregon State University, and
-          development is being continued as a senior capstone project in 2025.
-          Meet each year's team.
+          {string1}
         </Typography>
       </div>
       <div>

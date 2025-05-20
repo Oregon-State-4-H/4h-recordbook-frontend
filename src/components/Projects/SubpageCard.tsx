@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useRouter } from "next/navigation";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -15,8 +14,6 @@ export default function ResumeCardPreviewContent({
   label,
   path,
 }: ProjectCardProps) {
-  const router = useRouter();
-
   return (
     <Box
       sx={{

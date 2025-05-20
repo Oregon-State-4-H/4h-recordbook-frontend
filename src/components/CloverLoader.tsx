@@ -1,7 +1,6 @@
-import CircularProgress, {
-  CircularProgressProps,
-} from "@mui/material/CircularProgress";
+import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import Image from "next/image";
 
 declare module "*.png";
 
@@ -21,10 +20,7 @@ export default function CloverLoader() {
           justifyContent: "center",
         }}
       >
-        <img
-          style={{ width: "60%", height: "60%" }}
-          src="/photos/400x400.png"
-        />
+        <Image width={60} height={60} src="/photos/400x400.png" alt="4-H" />
       </Box>
     </Box>
   );

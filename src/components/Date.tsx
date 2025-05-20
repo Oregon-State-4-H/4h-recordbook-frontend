@@ -8,8 +8,8 @@ export function isDateString(str: string) {
 
 export function toDDMMYY(str: string) {
   if (isDateString(str)) {
-    var date = dayjs(str);
-    var datestring = date.format("MM/DD/YYYY");
+    const date = dayjs(str);
+    const datestring = date.format("MM/DD/YYYY");
     return datestring;
   }
   return str;

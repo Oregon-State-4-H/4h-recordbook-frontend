@@ -1,7 +1,8 @@
 import * as React from "react";
 import TableCell from "@mui/material/TableCell";
 import { StyledTableRow } from "../StyledTableRow";
-import ResumeTableDeleteButton from "@/components/Resume/DeleteIconButton";
+import { DeleteIconButton } from "@/components/Resume/DeleteButtons";
+
 import ResumeEdit from "@/components/Resume/EditIconButton";
 import {
   SectionAny,
@@ -25,7 +26,6 @@ interface ResumeRowProps {
   jwt: string;
   index: number;
   resumeEntry: SectionAny;
-  sectionNumber: string;
   setSections: (allEntries: SectionAny[]) => void;
   priorEntries: SectionAny[];
   handleOpen: (currEntry: SectionAny, purpose: string) => void;
@@ -35,7 +35,6 @@ export default function ResumeTableCells({
   jwt,
   index,
   resumeEntry,
-  sectionNumber,
   setSections,
   priorEntries,
   handleOpen,
@@ -69,7 +68,12 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <ResumeTableDeleteButton jwt={jwt} id={resumeEntry.id} />
+              <DeleteIconButton
+                jwt={jwt}
+                id={resumeEntry.id}
+                setSections={setSections}
+                allSections={priorEntries}
+              />
             </TableCell>
           </StyledTableRow>
         );
@@ -92,7 +96,12 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <ResumeTableDeleteButton jwt={jwt} id={resumeEntry.id} />
+              <DeleteIconButton
+                jwt={jwt}
+                id={resumeEntry.id}
+                setSections={setSections}
+                allSections={priorEntries}
+              />
             </TableCell>
           </StyledTableRow>
         );
@@ -121,7 +130,12 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <ResumeTableDeleteButton jwt={jwt} id={resumeEntry.id} />
+              <DeleteIconButton
+                jwt={jwt}
+                id={resumeEntry.id}
+                setSections={setSections}
+                allSections={priorEntries}
+              />
             </TableCell>
           </StyledTableRow>
         );
@@ -150,7 +164,12 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <ResumeTableDeleteButton jwt={jwt} id={resumeEntry.id} />
+              <DeleteIconButton
+                jwt={jwt}
+                id={resumeEntry.id}
+                setSections={setSections}
+                allSections={priorEntries}
+              />
             </TableCell>
           </StyledTableRow>
         );
@@ -179,7 +198,12 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <ResumeTableDeleteButton jwt={jwt} id={resumeEntry.id} />
+              <DeleteIconButton
+                jwt={jwt}
+                id={resumeEntry.id}
+                setSections={setSections}
+                allSections={priorEntries}
+              />
             </TableCell>
           </StyledTableRow>
         );
@@ -211,7 +235,12 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <ResumeTableDeleteButton jwt={jwt} id={resumeEntry.id} />
+              <DeleteIconButton
+                jwt={jwt}
+                id={resumeEntry.id}
+                setSections={setSections}
+                allSections={priorEntries}
+              />
             </TableCell>
           </StyledTableRow>
         );
@@ -240,7 +269,12 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <ResumeTableDeleteButton jwt={jwt} id={resumeEntry.id} />
+              <DeleteIconButton
+                jwt={jwt}
+                id={resumeEntry.id}
+                setSections={setSections}
+                allSections={priorEntries}
+              />
             </TableCell>
           </StyledTableRow>
         );
@@ -269,7 +303,12 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <ResumeTableDeleteButton jwt={jwt} id={resumeEntry.id} />
+              <DeleteIconButton
+                jwt={jwt}
+                id={resumeEntry.id}
+                setSections={setSections}
+                allSections={priorEntries}
+              />
             </TableCell>
           </StyledTableRow>
         );
@@ -304,7 +343,12 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <ResumeTableDeleteButton jwt={jwt} id={resumeEntry.id} />
+              <DeleteIconButton
+                jwt={jwt}
+                id={resumeEntry.id}
+                setSections={setSections}
+                allSections={priorEntries}
+              />
             </TableCell>
           </StyledTableRow>
         );
@@ -339,7 +383,12 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <ResumeTableDeleteButton jwt={jwt} id={resumeEntry.id} />
+              <DeleteIconButton
+                jwt={jwt}
+                id={resumeEntry.id}
+                setSections={setSections}
+                allSections={priorEntries}
+              />
             </TableCell>
           </StyledTableRow>
         );
@@ -368,7 +417,12 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <ResumeTableDeleteButton jwt={jwt} id={resumeEntry.id} />
+              <DeleteIconButton
+                jwt={jwt}
+                id={resumeEntry.id}
+                setSections={setSections}
+                allSections={priorEntries}
+              />
             </TableCell>
           </StyledTableRow>
         );
@@ -397,7 +451,12 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <ResumeTableDeleteButton jwt={jwt} id={resumeEntry.id} />
+              <DeleteIconButton
+                jwt={jwt}
+                id={resumeEntry.id}
+                setSections={setSections}
+                allSections={priorEntries}
+              />
             </TableCell>
           </StyledTableRow>
         );
@@ -420,7 +479,12 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <ResumeTableDeleteButton jwt={jwt} id={resumeEntry.id} />
+              <DeleteIconButton
+                jwt={jwt}
+                id={resumeEntry.id}
+                setSections={setSections}
+                allSections={priorEntries}
+              />
             </TableCell>
           </StyledTableRow>
         );
@@ -443,7 +507,12 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <ResumeTableDeleteButton jwt={jwt} id={resumeEntry.id} />
+              <DeleteIconButton
+                jwt={jwt}
+                id={resumeEntry.id}
+                setSections={setSections}
+                allSections={priorEntries}
+              />
             </TableCell>
           </StyledTableRow>
         );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import CloverLoader from "@/components/CloverLoader";
 import {
@@ -6,7 +6,6 @@ import {
   NavbarValues,
   navbarAppLinks,
 } from "@/context/NavbarContext";
-import { useBookmark } from "@/context/BookmarkContext";
 
 interface TitleOnlyProps {
   title: string;
@@ -14,11 +13,10 @@ interface TitleOnlyProps {
 }
 
 export default function NotFound({ title, cloverLoader }: TitleOnlyProps) {
-  const { currNavbarValues, updateFunction } = useNavbar();
-  const { updateBookmarks } = useBookmark();
+  const { updateFunction } = useNavbar();
 
   useEffect(() => {
-    var navbarContextPageValues: NavbarValues = {
+    const navbarContextPageValues: NavbarValues = {
       mobileTitle: title,
       desktopTitle: title,
       hrefTitle: "/Dashboard",
@@ -26,7 +24,7 @@ export default function NotFound({ title, cloverLoader }: TitleOnlyProps) {
       NavbarLinks: navbarAppLinks,
     };
     updateFunction(navbarContextPageValues);
-  }, []);
+  });
 
   return (
     <Box className="App">

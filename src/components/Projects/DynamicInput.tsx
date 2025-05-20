@@ -11,11 +11,12 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AnimalProjectTypes, isExpense } from "../../API/ProjectAPI";
 import { DayJSTypetoRFC3339 } from "@/components/Date";
 import dayjs from "dayjs";
+import { formField, isFieldTextOrNumber, isFieldOption } from "@/API/JSON";
 
 interface DynamicInputProps {
-  inputFieldJSON: { [key: string]: any };
+  inputFieldJSON: formField;
   subpage: string;
-  updateMap: (key: string, value: any) => void;
+  updateMap: (key: string, value: string | number) => void;
   originalToUpdate: AnimalProjectTypes;
 }
 
@@ -25,6 +26,8 @@ export default function ResumeCreateModalContent({
   updateMap,
   originalToUpdate,
 }: DynamicInputProps) {
+  const [selected, setSelected] = React.useState("");
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = event.target;
     if (type == "number") {
@@ -34,8 +37,15 @@ export default function ResumeCreateModalContent({
     }
   };
 
-  var originalValueKey: string = inputFieldJSON.name;
-  var originalValue: string = "";
+  const originalValueKey: string = inputFieldJSON.name;
+  let originalValue: string = "";
+
+  useEffect(() => {
+    // set store default value in case user does not change date
+    if (inputFieldJSON.type == "date") {
+      updateMap(inputFieldJSON.name, DayJSTypetoRFC3339(dayjs()));
+    }
+  }, [inputFieldJSON.name, inputFieldJSON.type, updateMap]);
 
   switch (subpage) {
     case "Expense":
@@ -67,7 +77,10 @@ export default function ResumeCreateModalContent({
 
   switch (inputFieldJSON.type) {
     case "text":
-      if (typeof inputFieldJSON.label == "string") {
+      if (
+        typeof inputFieldJSON.label == "string" &&
+        isFieldTextOrNumber(inputFieldJSON)
+      ) {
         // case for create
         return (
           <Box
@@ -92,7 +105,10 @@ export default function ResumeCreateModalContent({
       }
       break;
     case "text-long":
-      if (typeof inputFieldJSON.label == "string") {
+      if (
+        typeof inputFieldJSON.label == "string" &&
+        isFieldTextOrNumber(inputFieldJSON)
+      ) {
         return (
           <Box
             component="form"
@@ -118,7 +134,10 @@ export default function ResumeCreateModalContent({
       }
       break;
     case "number":
-      if (typeof inputFieldJSON.label == "string") {
+      if (
+        typeof inputFieldJSON.label == "string" &&
+        isFieldTextOrNumber(inputFieldJSON)
+      ) {
         return (
           <Box
             component="form"
@@ -148,47 +167,44 @@ export default function ResumeCreateModalContent({
       }
       break;
     case "select":
-      const [selected, setSelected] = React.useState("");
-
       const handleSelect = (event: SelectChangeEvent) => {
         setSelected(event.target.value as string);
         const { name, value } = event.target;
         updateMap(name, value);
       };
 
-      return (
-        <Box sx={{ width: "100%" }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">
-              {inputFieldJSON.label}
-            </InputLabel>
-            <Select
-              className="formInput"
-              fullWidth
-              defaultValue={originalValue}
-              labelId={
-                inputFieldJSON.label + "InputSection" + subpage + "Label"
-              }
-              name={inputFieldJSON.name}
-              id={inputFieldJSON.label + "InputSection" + subpage}
-              value={selected}
-              label={inputFieldJSON.label}
-              onChange={handleSelect}
-            >
-              {inputFieldJSON.options.map((item: any) => (
-                <MenuItem value={item.label}>{item.label}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Box>
-      );
+      if (isFieldOption(inputFieldJSON)) {
+        return (
+          <Box sx={{ width: "100%" }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">
+                {inputFieldJSON.label}
+              </InputLabel>
+              <Select
+                className="formInput"
+                fullWidth
+                defaultValue={originalValue}
+                labelId={
+                  inputFieldJSON.label + "InputSection" + subpage + "Label"
+                }
+                name={inputFieldJSON.name}
+                id={inputFieldJSON.label + "InputSection" + subpage}
+                value={selected}
+                label={inputFieldJSON.label}
+                onChange={handleSelect}
+              >
+                {inputFieldJSON.options.map((item, index) => (
+                  <MenuItem value={item.label} key={index}>
+                    {item.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
+        );
+      }
       break;
     case "date":
-      // set store default value in case user does not change date
-      useEffect(() => {
-        updateMap(inputFieldJSON.name, DayJSTypetoRFC3339(dayjs()));
-      }, []);
-
       if (typeof inputFieldJSON.label == "string") {
         if (originalValue == "") {
           return (

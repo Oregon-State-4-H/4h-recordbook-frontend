@@ -11,7 +11,7 @@ export default function SignedInLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { currNavbarValues, updateFunction } = useNavbar();
+  const { currNavbarValues } = useNavbar();
 
   return (
     <Box>
