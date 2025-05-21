@@ -1,7 +1,6 @@
 // Component adapted from: https://mui.com/material-ui/react-table/#system-BasicTable.js
 import React from "react";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";

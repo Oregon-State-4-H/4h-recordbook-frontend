@@ -24,110 +24,118 @@ import { useProject } from "@/context/ProjectContext";
 export default function ProjectDetail() {
   const { updateFunction } = useNavbar();
   const { updateBookmarks } = useBookmark();
-  const params = useParams<{ tag: string; item: string }>();
-  const { data }: any = params;
+  const { data } = useParams<{ data: string }>();
   const [validId, setValidId] = useState(true);
   const [projectLoaded, setProjectLoaded] = useState(false);
-  let [currProject, setProject] = useState<Project>();
+  const [currProject, setProject] = useState<Project>();
   const [accessToken, setAccessToken] = useState("");
   const { updateProjects, currProjectValues, populated } = useProject();
   const pathname = usePathname();
-  const hasRun = useRef(false);
+  const hasRun1 = useRef(false);
+  const hasRun2 = useRef(false);
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        // if the array of all projects is not populated, get project from backend
-        if (!populated) {
-          console.log("not populated, setting accessToken");
-          if (accessToken == "") {
-            const token = await getAccessToken();
-            setAccessToken(token);
-            const projectData = await fetchAllProjects(token);
-            updateProjects(projectData);
-            var foundProject = projectData.find(
-              (element) => element.id == data
-            );
-            if (typeof foundProject != "undefined") {
-              setProject(foundProject);
-              setProjectLoaded(true);
-            }
-            // if project not found in array, double check backend
-            else {
-              const projectData = await fetchProject(token, data);
-              if (typeof projectData == "string") {
-                setValidId(false);
-                setProjectLoaded(true);
-              } else {
-                setProject(projectData);
-                setProjectLoaded(true);
-              }
-            }
-          } else {
-            const projectData = await fetchAllProjects(accessToken);
-            updateProjects(projectData);
-            var foundProject = projectData.find(
-              (element) => element.id == data
-            );
-            if (typeof foundProject != "undefined") {
-              setProject(foundProject);
-              setProjectLoaded(true);
-            }
-            // if project not found in array, double check backend
-            else {
-              const projectData = await fetchProject(accessToken, data);
-              if (typeof projectData == "string") {
-                setValidId(false);
-                setProjectLoaded(true);
-              } else {
-                setProject(projectData);
-                setProjectLoaded(true);
-              }
-            }
-          }
-        }
-        // else the array of all projects is populated, search for project in array
-        else {
-          var foundProject = currProjectValues.find(
-            (element) => element.id == data
-          );
-          if (typeof foundProject != "undefined") {
-            setProject(foundProject);
-            setProjectLoaded(true);
-          }
-          // if project not found in array, double check backend
-          else {
+    if (!hasRun1.current) {
+      const getData = async () => {
+        try {
+          // if the array of all projects is not populated, get project from backend
+          if (!populated) {
+            console.log("not populated, setting accessToken");
             if (accessToken == "") {
               const token = await getAccessToken();
               setAccessToken(token);
-              const projectData = await fetchProject(token, data);
-              if (typeof projectData == "string") {
-                setValidId(false);
-              } else {
-                setProject(projectData);
+              const projectData = await fetchAllProjects(token);
+              updateProjects(projectData);
+              const foundProject = projectData.find(
+                (element) => element.id == data
+              );
+              if (typeof foundProject != "undefined") {
+                setProject(foundProject);
                 setProjectLoaded(true);
               }
+              // if project not found in array, double check backend
+              else {
+                const projectData = await fetchProject(token, data);
+                if (typeof projectData == "string") {
+                  setValidId(false);
+                  setProjectLoaded(true);
+                } else {
+                  setProject(projectData);
+                  setProjectLoaded(true);
+                }
+              }
             } else {
-              const projectData = await fetchProject(accessToken, data);
-              if (typeof projectData == "string") {
-                setValidId(false);
-              } else {
-                setProject(projectData);
+              const projectData = await fetchAllProjects(accessToken);
+              updateProjects(projectData);
+              const foundProject = projectData.find(
+                (element) => element.id == data
+              );
+              if (typeof foundProject != "undefined") {
+                setProject(foundProject);
                 setProjectLoaded(true);
+              }
+              // if project not found in array, double check backend
+              else {
+                const projectData = await fetchProject(accessToken, data);
+                if (typeof projectData == "string") {
+                  setValidId(false);
+                  setProjectLoaded(true);
+                } else {
+                  setProject(projectData);
+                  setProjectLoaded(true);
+                }
               }
             }
           }
+          // else the array of all projects is populated, search for project in array
+          else {
+            const foundProject = currProjectValues.find(
+              (element) => element.id == data
+            );
+            if (typeof foundProject != "undefined") {
+              setProject(foundProject);
+              setProjectLoaded(true);
+            }
+            // if project not found in array, double check backend
+            else {
+              if (accessToken == "") {
+                const token = await getAccessToken();
+                setAccessToken(token);
+                const projectData = await fetchProject(token, data);
+                if (typeof projectData == "string") {
+                  setValidId(false);
+                } else {
+                  setProject(projectData);
+                  setProjectLoaded(true);
+                }
+              } else {
+                const projectData = await fetchProject(accessToken, data);
+                if (typeof projectData == "string") {
+                  setValidId(false);
+                } else {
+                  setProject(projectData);
+                  setProjectLoaded(true);
+                }
+              }
+            }
+          }
+        } catch (error) {
+          console.log(error);
         }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getData();
-  }, []);
+      };
+      getData();
+      hasRun1.current = true;
+    }
+  });
 
   // when page is loaded, update title
   useEffect(() => {
-    if (!hasRun.current && projectLoaded && validId && isProject(currProject)) {
+    if (
+      !hasRun2.current &&
+      projectLoaded &&
+      validId &&
+      isProject(currProject)
+    ) {
       const navbarContextPageValues: NavbarValues = {
         mobileTitle: "Project Overview",
         desktopTitle: "Project Overview",
@@ -139,7 +147,7 @@ export default function ProjectDetail() {
 
       // toggle to trigger bookmarks icon to check if page is bookmarked
       updateBookmarks(true);
-      hasRun.current = true;
+      hasRun2.current = true;
     }
   });
 
@@ -147,20 +155,13 @@ export default function ProjectDetail() {
   if (!validId) {
     return <TitleOnly title="Project Not Found" cloverLoader={false} />;
   } else if (projectLoaded && validId && isProject(currProject)) {
-    var Subpages: string[] = [];
-    switch (currProject.type) {
-      case "animal":
-        Subpages = [
-          "Animals",
-          "Feed Record",
-          "Feed Inventory",
-          "Expense",
-          "Supplies",
-        ];
-        break;
-      default:
-        break;
-    }
+    const Subpages = [
+      "Animals",
+      "Feed Record",
+      "Feed Inventory",
+      "Expense",
+      "Supplies",
+    ];
 
     return (
       <Box className="App">

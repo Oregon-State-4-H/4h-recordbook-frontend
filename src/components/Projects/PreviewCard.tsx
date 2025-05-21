@@ -5,7 +5,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import { Project } from "@/API/ProjectAPI";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface ProjectCardProps {
@@ -17,8 +16,6 @@ export default function ResumeCardPreviewContent({
   project,
   path,
 }: ProjectCardProps) {
-  const router = useRouter();
-
   return (
     <Box
       sx={{
