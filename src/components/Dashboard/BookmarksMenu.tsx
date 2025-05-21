@@ -67,6 +67,7 @@ export default function BookmarksMenu() {
                       padding: ".5em 1.5em .5em 1.5em",
                       textDecoration: "none",
                       textAlign: "center",
+                      textTransform: "none",
                     }}
                   >
                     {item.label}
