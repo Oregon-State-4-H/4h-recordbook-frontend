@@ -33,6 +33,7 @@ export function isFieldTextOrNumber(
   return (
     (formFieldAny as formFieldTextOrNumber).type == "text-number" ||
     (formFieldAny as formFieldTextOrNumber).type == "text-long" ||
-    (formFieldAny as formFieldTextOrNumber).type == "text"
+    (formFieldAny as formFieldTextOrNumber).type == "text" ||
+    (formFieldAny as formFieldTextOrNumber).type == "number"
   );
 }

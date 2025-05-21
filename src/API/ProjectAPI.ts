@@ -229,6 +229,9 @@ export const fetchProject = async (
 
     const data = await response.json();
     if (!response.ok) {
+      if (response.status == 404) {
+        return data.message as string;
+      }
       throw new Error(data.message || "Unexpected error occurred");
     }
     return data.project as Project;
@@ -313,7 +316,7 @@ export const fetchSubpageEntriesByProject = async <T>(
 ): Promise<T[]> => {
   try {
     const response = await fetch(
-      `${buildBaseUrl()}${endpoint}?projectID=${project_id}`,
+      `${buildBaseUrl()}project/${project_id}/${endpoint}`,
       {
         method: "GET",
         headers: {
