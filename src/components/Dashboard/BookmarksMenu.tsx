@@ -9,7 +9,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useBookmark } from "@/context/BookmarkContext";
-import LinkButton from "@/components/LinkButton";
+import Link from "next/link";
+import Button from "@mui/material/Button";
 
 export default function BookmarksMenu() {
   const { currBookmarkValues } = useBookmark();
@@ -42,15 +43,35 @@ export default function BookmarksMenu() {
               }}
               key={index}
             >
-              <TableCell>
-                <LinkButton
+              <TableCell
+                sx={{
+                  width: "100%",
+                  height: { xs: "4em", s: "4em", md: "6.5em", lg: "4em" },
+                  padding: "0px",
+                }}
+              >
+                {/* <LinkButton
                   href={item.link}
                   label={item.label}
                   width="100%"
+                  height="100%"
                   padding=".5em 1.5em .5em 1.5em"
                   textDecoration="none"
                   textAlign="center"
-                />
+                /> */}
+                <Link href={item.link} passHref>
+                  <Button
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      padding: ".5em 1.5em .5em 1.5em",
+                      textDecoration: "none",
+                      textAlign: "center",
+                    }}
+                  >
+                    {item.label}
+                  </Button>
+                </Link>
               </TableCell>
             </TableRow>
           ))}

@@ -17,7 +17,13 @@ function ResourcesMenu() {
       <Table sx={{ minWidth: 250, maxWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>
+            <TableCell
+              sx={{
+                width: "100%",
+                height: { xs: "4em", s: "4em", md: "6.5em", lg: "4em" },
+                padding: "0px",
+              }}
+            >
               <Typography
                 variant="h6"
                 style={{
@@ -37,10 +43,17 @@ function ResourcesMenu() {
               backgroundColor: "#f7fbf9",
             }}
           >
-            <TableCell>
+            <TableCell
+              sx={{
+                width: "100%",
+                height: { xs: "4em", s: "4em", md: "6.5em", lg: "4em" },
+                padding: "0px",
+              }}
+            >
               <Button
                 style={{
                   width: "100%",
+                  height: "100%",
                   padding: ".5em 1.5em .5em 1.5em",
                   textDecoration: "none",
                   textAlign: "center",
@@ -57,10 +70,17 @@ function ResourcesMenu() {
               backgroundColor: "#f7fbf9",
             }}
           >
-            <TableCell>
+            <TableCell
+              sx={{
+                width: "100%",
+                height: { xs: "4em", s: "4em", md: "6.5em", lg: "4em" },
+                padding: "0px",
+              }}
+            >
               <Button
                 style={{
                   width: "100%",
+                  height: "100%",
                   padding: ".5em 1.5em .5em 1.5em",
                   textDecoration: "none",
                   textAlign: "center",
@@ -77,10 +97,17 @@ function ResourcesMenu() {
               backgroundColor: "#f7fbf9",
             }}
           >
-            <TableCell>
+            <TableCell
+              sx={{
+                width: "100%",
+                height: { xs: "4em", s: "4em", md: "6.5em", lg: "4em" },
+                padding: "0px",
+              }}
+            >
               <Button
                 style={{
                   width: "100%",
+                  height: "100%",
                   padding: ".5em 1.5em .5em 1.5em",
                   textDecoration: "none",
                   textAlign: "center",
@@ -97,10 +124,17 @@ function ResourcesMenu() {
               backgroundColor: "#f7fbf9",
             }}
           >
-            <TableCell>
+            <TableCell
+              sx={{
+                width: "100%",
+                height: { xs: "4em", s: "4em", md: "6.5em", lg: "4em" },
+                padding: "0px",
+              }}
+            >
               <Button
                 style={{
                   width: "100%",
+                  height: "100%",
                   padding: ".5em 1.5em .5em 1.5em",
                   textDecoration: "none",
                   textAlign: "center",
@@ -117,10 +151,17 @@ function ResourcesMenu() {
               backgroundColor: "#f7fbf9",
             }}
           >
-            <TableCell>
+            <TableCell
+              sx={{
+                width: "100%",
+                height: { xs: "4em", s: "4em", md: "6.5em", lg: "4em" },
+                padding: "0px",
+              }}
+            >
               <Button
                 style={{
                   width: "100%",
+                  height: "100%",
                   padding: ".5em 1.5em .5em 1.5em",
                   textDecoration: "none",
                   textAlign: "center",
@@ -137,10 +178,17 @@ function ResourcesMenu() {
               backgroundColor: "#f7fbf9",
             }}
           >
-            <TableCell>
+            <TableCell
+              sx={{
+                width: "100%",
+                height: { xs: "4em", s: "4em", md: "6.5em", lg: "4em" },
+                padding: "0px",
+              }}
+            >
               <Button
                 style={{
                   width: "100%",
+                  height: "100%",
                   padding: ".5em 1.5em .5em 1.5em",
                   textDecoration: "none",
                   textAlign: "center",
@@ -157,10 +205,17 @@ function ResourcesMenu() {
               backgroundColor: "#f7fbf9",
             }}
           >
-            <TableCell>
+            <TableCell
+              sx={{
+                width: "100%",
+                height: { xs: "4em", s: "4em", md: "6.5em", lg: "4em" },
+                padding: "0px",
+              }}
+            >
               <Button
                 style={{
                   width: "100%",
+                  height: "100%",
                   padding: ".5em 1.5em .5em 1.5em",
                   textDecoration: "none",
                   textAlign: "center",
@@ -177,10 +232,17 @@ function ResourcesMenu() {
               backgroundColor: "#f7fbf9",
             }}
           >
-            <TableCell>
+            <TableCell
+              sx={{
+                width: "100%",
+                height: { xs: "4em", s: "4em", md: "6.5em", lg: "4em" },
+                padding: "0px",
+              }}
+            >
               <Button
                 style={{
                   width: "100%",
+                  height: "100%",
                   padding: ".5em 1.5em .5em 1.5em",
                   textDecoration: "none",
                   textAlign: "center",
