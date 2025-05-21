@@ -6,6 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import { Project } from "@/API/ProjectAPI";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface ProjectCardProps {
   project: Project;
@@ -29,45 +30,46 @@ export default function ResumeCardPreviewContent({
         paddingBottom: "20px",
       }}
     >
-      <Button
-        sx={{
-          width: "100%",
-          padding: "0px",
-          textTransform: "none",
-        }}
-        onClick={() => router.push(path)}
-      >
-        <Card
+      <Link href={path} passHref>
+        <Button
           sx={{
-            backgroundColor: "rgba(255,255,255,1)",
-            borderRadius: 1,
-            boxShadow: 5,
-            p: 4,
             width: "100%",
-            height: "100%",
+            padding: "0px",
+            textTransform: "none",
           }}
         >
-          <CardContent>
-            <Typography gutterBottom sx={{ fontSize: 14, width: "100%" }}>
-              {project.year}
-            </Typography>
-            <Typography
-              gutterBottom
-              variant="h5"
-              sx={{
-                width: "100%",
-                fontWeight: "medium",
-                color: "rgba(51, 153, 102, 1)",
-              }}
-            >
-              {project.name}
-            </Typography>
-            <Typography gutterBottom sx={{ fontSize: 12, width: "100%" }}>
-              {project.description}
-            </Typography>
-          </CardContent>
-        </Card>
-      </Button>
+          <Card
+            sx={{
+              backgroundColor: "rgba(255,255,255,1)",
+              borderRadius: 1,
+              boxShadow: 5,
+              p: 4,
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <CardContent>
+              <Typography gutterBottom sx={{ fontSize: 14, width: "100%" }}>
+                {project.year}
+              </Typography>
+              <Typography
+                gutterBottom
+                variant="h5"
+                sx={{
+                  width: "100%",
+                  fontWeight: "medium",
+                  color: "rgba(51, 153, 102, 1)",
+                }}
+              >
+                {project.name}
+              </Typography>
+              <Typography gutterBottom sx={{ fontSize: 12, width: "100%" }}>
+                {project.description}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Button>
+      </Link>
     </Box>
   );
 }

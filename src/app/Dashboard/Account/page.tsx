@@ -10,7 +10,7 @@ import {
 import { useBookmark } from "@/context/BookmarkContext";
 
 export default function Account() {
-  const { currNavbarValues, updateFunction } = useNavbar();
+  const { updateFunction } = useNavbar();
   const { updateBookmarks } = useBookmark();
   const hasRun = useRef(false);
 

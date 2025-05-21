@@ -10,56 +10,57 @@ import {
   navbarAppLinks,
 } from "@/context/NavbarContext";
 import { useBookmark } from "@/context/BookmarkContext";
+import sectionOutline from "@/components/Resume/SectionOutline.json";
 
 const Sections = [
   {
     category: "Involvement Summary",
     section_number_1: "1",
     section_number_2: "2",
-    section_description_1: "Involvement",
-    section_description_2: "4-H Project/Program Summary",
+    section_description_1: sectionOutline.section1.title,
+    section_description_2: sectionOutline.section2.title,
   },
   {
     category: "Participation",
     section_number_1: "3",
     section_number_2: "4",
-    section_description_1: "Activities/Events",
-    section_description_2: "Other Community Activities/Events",
+    section_description_1: sectionOutline.section3.title,
+    section_description_2: sectionOutline.section4.title,
   },
   {
     category: "Leadership",
     section_number_1: "5",
     section_number_2: "6",
-    section_description_1: "",
-    section_description_2: "Other Organizations",
+    section_description_1: sectionOutline.section5.title,
+    section_description_2: sectionOutline.section6.title,
   },
   {
     category: "Citizenship/Community Service",
     section_number_1: "7",
     section_number_2: "8",
-    section_description_1: "Participation",
-    section_description_2: "Other Participation",
+    section_description_1: sectionOutline.section7.title,
+    section_description_2: sectionOutline.section8.title,
   },
   {
     category: "Communications",
     section_number_1: "9",
     section_number_2: "10",
-    section_description_1: "",
-    section_description_2: "Other Organizations",
+    section_description_1: sectionOutline.section9.title,
+    section_description_2: sectionOutline.section10.title,
   },
   {
     category: "Contests/Competitions",
     section_number_1: "11",
     section_number_2: "12",
-    section_description_1: "Participation",
-    section_description_2: "Other Participation",
+    section_description_1: sectionOutline.section11.title,
+    section_description_2: sectionOutline.section12.title,
   },
   {
     category: "Recognitions",
     section_number_1: "13",
     section_number_2: "14",
-    section_description_1: "",
-    section_description_2: "Other",
+    section_description_1: sectionOutline.section13.title,
+    section_description_2: sectionOutline.section14.title,
   },
 ];
 
