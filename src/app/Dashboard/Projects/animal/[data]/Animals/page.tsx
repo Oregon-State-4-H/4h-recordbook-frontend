@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { getAccessToken } from "@auth0/nextjs-auth0";
+// import { getAccessToken } from "@auth0/nextjs-auth0";
+import { getAccessToken } from "@/components/DummyUser";
 import { useParams, usePathname } from "next/navigation";
 import Box from "@mui/material/Box";
 import TitleOnly from "@/components/TitleOnly";

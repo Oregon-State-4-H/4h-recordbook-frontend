@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
-import { getAccessToken } from "@auth0/nextjs-auth0";
+// import { getAccessToken } from "@auth0/nextjs-auth0";
+import { getAccessToken } from "@/components/DummyUser";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
@@ -132,21 +133,29 @@ export default function Dashboard() {
       // get auth0 jwt and section entries
       const getSectionData = async () => {
         try {
-          if (accessToken == "") {
-            const token = await getAccessToken();
-            setAccessToken(token);
-          }
           console.log("section number string: ", data);
           console.log(
             "data exsists for section?",
             Sections[data].SectionPopulated
           );
-          if (!Sections[data].SectionPopulated) {
-            const sectionData = await fetchSectionData<SectionAny>(
-              accessToken,
-              `section${data}`
-            );
-            setSections(sectionData);
+          if (accessToken == "") {
+            const token = await getAccessToken();
+            setAccessToken(token);
+            if (!Sections[data].SectionPopulated) {
+              const sectionData = await fetchSectionData<SectionAny>(
+                token,
+                `section${data}`
+              );
+              setSections(sectionData);
+            }
+          } else {
+            if (!Sections[data].SectionPopulated) {
+              const sectionData = await fetchSectionData<SectionAny>(
+                accessToken,
+                `section${data}`
+              );
+              setSections(sectionData);
+            }
           }
         } catch (error) {
           console.error(error);

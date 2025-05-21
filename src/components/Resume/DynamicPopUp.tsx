@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { getAccessToken } from "@auth0/nextjs-auth0";
+// import { getAccessToken } from "@auth0/nextjs-auth0";
+import { getAccessToken } from "@/components/DummyUser";
 import Button from "@mui/material/Button";
 import CardActions from "@mui/material/CardActions";
 import Card from "@mui/material/Card";
@@ -335,6 +336,9 @@ export default function DynamicPopUp({
             if (accessToken == "") {
               const token = await getAccessToken();
               setAccessToken(token);
+              console.log(token);
+              console.log(`section${sectionNumber}`);
+              console.log(JSON.stringify(Object.fromEntries(mapState)));
               const sectionData = await postSection<SectionAny>(
                 token,
                 `section${sectionNumber}`,
