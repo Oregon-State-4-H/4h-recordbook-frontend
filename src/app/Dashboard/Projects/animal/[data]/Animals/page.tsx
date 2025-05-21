@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { getAccessToken } from "@auth0/nextjs-auth0";
 import { useParams, usePathname } from "next/navigation";
 import Box from "@mui/material/Box";
-import TitleOnly from "@/components/Projects/TitleOnly";
+import TitleOnly from "@/components/TitleOnly";
 import { Project } from "@/API/ProjectAPI";
 import AnimalCard from "@/components/Projects/AnimalCard";
 import Grid from "@mui/material/Grid";

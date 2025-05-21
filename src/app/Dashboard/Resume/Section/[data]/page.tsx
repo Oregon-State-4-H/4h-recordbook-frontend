@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
 import { getAccessToken } from "@auth0/nextjs-auth0";
 import Box from "@mui/material/Box";
@@ -29,6 +29,7 @@ import MobileReadPopUp from "@/components/Resume/MobileReadPopUp";
 import { StyledTableHeader } from "@/components/StyledTableRow";
 
 export default function Dashboard() {
+  const hasRun = useRef(false);
   const { updateFunction } = useNavbar();
   const { updateBookmarks } = useBookmark();
   const { updateResume, Sections } = useResume();
@@ -115,47 +116,47 @@ export default function Dashboard() {
   }, [data]);
 
   useEffect(() => {
-    // Update values of components in layout
-    const navbarContextPageValues: NavbarValues = {
-      mobileTitle: `Section ${data}`,
-      desktopTitle: `Section ${data}`,
-      hrefTitle: "/Dashboard",
-      mobileTopIcon: "none",
-      NavbarLinks: navbarAppLinks,
-    };
-    updateFunction(navbarContextPageValues);
+    if (!hasRun.current) {
+      // Update values of components in layout
+      const navbarContextPageValues: NavbarValues = {
+        mobileTitle: `Section ${data}`,
+        desktopTitle: `Section ${data}`,
+        hrefTitle: "/Dashboard",
+        mobileTopIcon: "none",
+        NavbarLinks: navbarAppLinks,
+      };
+      updateFunction(navbarContextPageValues);
+      // toggle to trigger bookmarks icon to check if page is bookmarked
+      updateBookmarks(true);
 
-    // toggle to trigger bookmarks icon to check if page is bookmarked
-    updateBookmarks(true);
-  });
-
-  // get auth0 jwt and section entries
-  useEffect(() => {
-    const getSectionData = async () => {
-      try {
-        if (accessToken == "") {
-          const token = await getAccessToken();
-          setAccessToken(token);
-        }
-        console.log("section number string: ", data);
-        console.log(
-          "data exsists for section?",
-          Sections[data].SectionPopulated
-        );
-        if (!Sections[data].SectionPopulated) {
-          const sectionData = await fetchSectionData<SectionAny>(
-            accessToken,
-            `section${data}`
+      // get auth0 jwt and section entries
+      const getSectionData = async () => {
+        try {
+          if (accessToken == "") {
+            const token = await getAccessToken();
+            setAccessToken(token);
+          }
+          console.log("section number string: ", data);
+          console.log(
+            "data exsists for section?",
+            Sections[data].SectionPopulated
           );
-          setSections(sectionData);
+          if (!Sections[data].SectionPopulated) {
+            const sectionData = await fetchSectionData<SectionAny>(
+              accessToken,
+              `section${data}`
+            );
+            setSections(sectionData);
+          }
+        } catch (error) {
+          console.error(error);
         }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getSectionData();
+      };
+      getSectionData();
+
+      hasRun.current = true;
+    }
   });
-  // }, [Sections, accessToken, data, setSections]);
 
   const empty: SectionEmpty = {
     id: "",

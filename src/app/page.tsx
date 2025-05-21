@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import IntroBanner from "@/components/Landing/IntroBanner";
 import IntroAbout from "@/components/Landing/IntroAbout";
 import IntroTeam from "@/components/Landing/IntroTeam";
@@ -14,19 +14,22 @@ import {
 
 export default function Home() {
   // update context for nav/app bars
+  const hasRun = useRef(false);
   const { updateFunction } = useNavbar();
   useEffect(() => {
-    const navbarContextPageValues: NavbarValues = {
-      mobileTitle: "4-H Record Books",
-      desktopTitle: "4-H Record Books",
-      hrefTitle: "/",
-      mobileTopIcon: "none",
-      NavbarLinks: navbarLandingLinks,
-    };
+    if (!hasRun.current) {
+      const navbarContextPageValues: NavbarValues = {
+        mobileTitle: "4-H Record Books",
+        desktopTitle: "4-H Record Books",
+        hrefTitle: "/",
+        mobileTopIcon: "none",
+        NavbarLinks: navbarLandingLinks,
+      };
 
-    updateFunction(navbarContextPageValues);
-    console.log();
-  });
+      updateFunction(navbarContextPageValues);
+      hasRun.current = true;
+    }
+  }, [updateFunction]);
 
   return (
     <Box className="App">

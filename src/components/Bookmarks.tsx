@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+
 import { usePathname } from "next/navigation";
 import { MdBookmarkBorder, MdBookmark } from "react-icons/md";
 import { getAccessToken } from "@auth0/nextjs-auth0";
@@ -16,6 +17,8 @@ import { useBookmark } from "@/context/BookmarkContext";
 import IconButton from "@mui/material/IconButton";
 
 export function BookmarkButton() {
+  const hasRun = useRef(false);
+
   const { currBookmarkValues, populated, reloaded, updateBookmarks } =
     useBookmark();
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -24,25 +27,25 @@ export function BookmarkButton() {
 
   // if bookmarks context is not populated, send request to backend
   useEffect(() => {
-    if (populated == false) {
+    if (!hasRun.current && !populated) {
       const getBookmarks = async () => {
         try {
           const token = await getAccessToken();
           setAccessToken(token);
           const bookmarks = await fetchAllBookmarks(token);
           updateBookmarks(bookmarks);
-          // console.log("populated: ", populated);
+          hasRun.current = true;
         } catch (error) {
           console.error(error);
         }
       };
       getBookmarks();
     }
-  });
+  }, [updateBookmarks, populated]);
 
   // check if curr page is bookmarked if bookmarks context is populated
   useEffect(() => {
-    if (populated == true) {
+    if (populated && reloaded) {
       // update if the bookmarks icon should be filled in or not
       setIsBookmarked(
         currBookmarkValues.find((b) => b.link === pathname) ? true : false
