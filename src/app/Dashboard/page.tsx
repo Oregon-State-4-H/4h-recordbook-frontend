@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import ResourcesMenu from "@/components/Dashboard/ResourcesMenu";
+import MenuOfLinks from "@/components/MenuOfLinks";
 import BookmarksMenu from "@/components/Dashboard/BookmarksMenu";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,6 +16,23 @@ function Dashboard() {
   const { updateFunction } = useNavbar();
   const { updateBookmarks } = useBookmark();
   const hasRun = useRef(false);
+
+  const externalResources: [string, string][] = [
+    ["https://extension.oregonstate.edu/4h", "4-H Youth Development"],
+    ["https://extension.oregonstate.edu/program/all/4h/events", "Events"],
+    [
+      "https://extension.oregonstate.edu/program/all/4h/local-programs",
+      "Local 4-H Program Finder",
+    ],
+    ["https://extension.oregonstate.edu/4h/about-4-h", "About 4-H"],
+    ["https://extension.oregonstate.edu/4h/summer-camps", "4-H Summer Camps"],
+    ["https://extension.oregonstate.edu/4h/projects", "4-H Projects"],
+    [
+      "https://extension.oregonstate.edu/4h/volunteer-training-manuals",
+      "Volunteer Resources",
+    ],
+    ["https://extension.oregonstate.edu/4h/support-4-h", "Support 4-H"],
+  ];
 
   useEffect(() => {
     if (!hasRun.current) {
@@ -69,7 +86,10 @@ function Dashboard() {
                 paddingBottom: "50px",
               }}
             >
-              <ResourcesMenu />
+              <MenuOfLinks
+                array={externalResources}
+                menuTitle="4-H Resources"
+              />
             </Box>
             <Box
               sx={{
@@ -102,7 +122,7 @@ function Dashboard() {
               paddingTop: "15px",
             }}
           >
-            <ResourcesMenu />
+            <MenuOfLinks array={externalResources} menuTitle="4-H Resources" />
           </Box>
           <Box
             sx={{

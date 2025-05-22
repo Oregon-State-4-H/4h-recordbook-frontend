@@ -23,6 +23,8 @@ interface PopUpProps {
   handleModalClose: () => void;
   purpose: string;
   project_id: string;
+  setSubpageEntries: (allEntries: AnimalProjectTypes[]) => void;
+  priorSubpageEntries: AnimalProjectTypes[];
 }
 
 export default function DynamicPopUp({
@@ -31,6 +33,8 @@ export default function DynamicPopUp({
   subpageEntry,
   handleModalClose,
   project_id,
+  setSubpageEntries,
+  priorSubpageEntries,
 }: PopUpProps) {
   const [accessToken, setAccessToken] = useState("");
   // map to store key value pairs for body of request
