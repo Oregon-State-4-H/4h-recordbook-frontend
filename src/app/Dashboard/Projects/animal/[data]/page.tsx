@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { getAccessToken } from "@auth0/nextjs-auth0";
+// import { getAccessToken } from "@auth0/nextjs-auth0";
+import { getAccessToken } from "@/components/DummyUser";
 import { useParams, usePathname } from "next/navigation";
 import Box from "@mui/material/Box";
 import TitleOnly from "@/components/TitleOnly";
@@ -40,8 +41,8 @@ export default function ProjectDetail() {
         try {
           // if the array of all projects is not populated, get project from backend
           if (!populated) {
-            console.log("not populated, setting accessToken");
             if (accessToken == "") {
+              console.log("not populated, setting accessToken");
               const token = await getAccessToken();
               setAccessToken(token);
               const projectData = await fetchAllProjects(token);
@@ -122,9 +123,9 @@ export default function ProjectDetail() {
         } catch (error) {
           console.log(error);
         }
+        hasRun1.current = true;
       };
       getData();
-      hasRun1.current = true;
     }
   });
 

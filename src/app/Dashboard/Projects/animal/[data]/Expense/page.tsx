@@ -43,6 +43,7 @@ export default function AnimalExpenses() {
   const [accessToken, setAccessToken] = useState("");
   const { updateProjects, currProjectValues, populated } = useProject();
   const pathname = usePathname();
+
   // states for all subpage entries
   let [allSubpageEntries, setAllSubpageEntries] = useState<
     AnimalProjectTypes[]
@@ -141,6 +142,7 @@ export default function AnimalExpenses() {
         } catch (error) {
           console.log(error);
         }
+        hasRun.current = true;
       };
       var navbarContextPageValues: NavbarValues = {
         mobileTitle: "Project Expense",
@@ -149,8 +151,6 @@ export default function AnimalExpenses() {
         mobileTopIcon: "none",
         NavbarLinks: navbarAppLinks,
       };
-
-      hasRun.current = true;
 
       updateFunction(navbarContextPageValues);
       getData();
@@ -239,11 +239,11 @@ export default function AnimalExpenses() {
             handleModalClose={handleinputModalClose}
             purpose={inputModalPurpose}
             project_id={data}
-            setSections={setAllSubpageEntries}
-            priorEntries={allSubpageEntries}
+            setSubpageEntries={setAllSubpageEntries}
+            priorSubpageEntries={allSubpageEntries}
           />
         </Modal>
-        <Modal
+        {/* <Modal
           open={readModal}
           onClose={handleReadModalClose}
           aria-labelledby="read-modal-title"
@@ -257,7 +257,7 @@ export default function AnimalExpenses() {
             setSections={setSections}
             allSections={allSectionEntries}
           />
-        </Modal>
+        </Modal> */}
       </Box>
     );
   }

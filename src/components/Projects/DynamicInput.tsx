@@ -16,14 +16,14 @@ import { formField, isFieldTextOrNumber, isFieldOption } from "@/API/JSON";
 interface DynamicInputProps {
   inputFieldJSON: formField;
   subpage: string;
-  updateMap: (key: string, value: string | number) => void;
+  setMapState: (value: React.SetStateAction<Map<any, any>>) => void;
   originalToUpdate: AnimalProjectTypes;
 }
 
 export default function ResumeCreateModalContent({
   inputFieldJSON,
   subpage,
-  updateMap,
+  setMapState,
   originalToUpdate,
 }: DynamicInputProps) {
   const [selected, setSelected] = React.useState("");
@@ -31,9 +31,9 @@ export default function ResumeCreateModalContent({
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = event.target;
     if (type == "number") {
-      updateMap(name, parseFloat(value));
+      setMapState((map) => new Map(map.set(name, parseFloat(value))));
     } else {
-      updateMap(name, value);
+      setMapState((map) => new Map(map.set(name, value)));
     }
   };
 
@@ -43,9 +43,12 @@ export default function ResumeCreateModalContent({
   useEffect(() => {
     // set store default value in case user does not change date
     if (inputFieldJSON.type == "date") {
-      updateMap(inputFieldJSON.name, DayJSTypetoRFC3339(dayjs()));
+      const defaultDateString = DayJSTypetoRFC3339(dayjs());
+      setMapState(
+        (map) => new Map(map.set(inputFieldJSON.name, defaultDateString))
+      );
     }
-  }, [inputFieldJSON.name, inputFieldJSON.type, updateMap]);
+  }, [inputFieldJSON.name, inputFieldJSON.type, setMapState]);
 
   switch (subpage) {
     case "Expense":
@@ -170,7 +173,7 @@ export default function ResumeCreateModalContent({
       const handleSelect = (event: SelectChangeEvent) => {
         setSelected(event.target.value as string);
         const { name, value } = event.target;
-        updateMap(name, value);
+        setMapState((map) => new Map(map.set(name, value)));
       };
 
       if (isFieldOption(inputFieldJSON)) {
@@ -214,7 +217,15 @@ export default function ResumeCreateModalContent({
                 sx={{ width: "100%" }}
                 name={inputFieldJSON.name}
                 onChange={(newValue) =>
-                  updateMap(inputFieldJSON.name, DayJSTypetoRFC3339(newValue))
+                  setMapState(
+                    (map) =>
+                      new Map(
+                        map.set(
+                          inputFieldJSON.name,
+                          DayJSTypetoRFC3339(newValue)
+                        )
+                      )
+                  )
                 }
               />
             </LocalizationProvider>
@@ -228,7 +239,12 @@ export default function ResumeCreateModalContent({
               name={inputFieldJSON.name}
               defaultValue={dayjs(originalValue)}
               onChange={(newValue) =>
-                updateMap(inputFieldJSON.name, DayJSTypetoRFC3339(newValue))
+                setMapState(
+                  (map) =>
+                    new Map(
+                      map.set(inputFieldJSON.name, DayJSTypetoRFC3339(newValue))
+                    )
+                )
               }
             />
           </LocalizationProvider>

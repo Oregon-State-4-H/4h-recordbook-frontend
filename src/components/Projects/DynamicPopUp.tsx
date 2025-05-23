@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 // import { getAccessToken } from "@auth0/nextjs-auth0";
 import { getAccessToken } from "@/components/DummyUser";
 import Button from "@mui/material/Button";
@@ -39,29 +39,36 @@ export default function DynamicPopUp({
   const [accessToken, setAccessToken] = useState("");
   // map to store key value pairs for body of request
   const [mapState, setMapState] = useState(new Map());
-  const updateMap = (key: string, value: string | number) => {
-    setMapState((map) => new Map(map.set(key, value)));
-  };
+  const hasRun = useRef(false);
 
   useEffect(() => {
-    if (purpose == "edit") {
-      console.log("subpage for edit: ", subpage);
-      switch (subpage) {
-        case "Expense":
-          if (isExpense(subpageEntry)) {
-            updateMap("cost", subpageEntry.cost);
-            updateMap("date", subpageEntry.date);
-            updateMap("items", subpageEntry.items);
-            updateMap("project_id", subpageEntry.project_id);
-            updateMap("quantity", subpageEntry.quantity);
-          }
-          break;
-        default:
-          break;
+    if (!hasRun.current) {
+      if (purpose == "edit") {
+        console.log("subpage for edit: ", subpage);
+        switch (subpage) {
+          case "Expense":
+            if (isExpense(subpageEntry)) {
+              setMapState((map) => new Map(map.set("cost", subpageEntry.cost)));
+              setMapState((map) => new Map(map.set("date", subpageEntry.date)));
+              setMapState(
+                (map) => new Map(map.set("items", subpageEntry.items))
+              );
+              setMapState(
+                (map) => new Map(map.set("project_id", subpageEntry.project_id))
+              );
+              setMapState(
+                (map) => new Map(map.set("quantity", subpageEntry.quantity))
+              );
+            }
+            break;
+          default:
+            break;
+        }
+      } else if (purpose == "create") {
+        // effect to store entry's values that are not user generated in
+        setMapState((map) => new Map(map.set("project_id", project_id)));
       }
-    } else if (purpose == "create") {
-      // effect to store entry's values that are not user generated in
-      updateMap("project_id", project_id);
+      hasRun.current = true;
     }
   }, [purpose, subpage, subpageEntry, project_id]);
 
@@ -79,19 +86,31 @@ export default function DynamicPopUp({
             if (accessToken == "") {
               const token = await getAccessToken();
               setAccessToken(token);
-              await updateSubpageEntry<AnimalProjectTypes>(
+              const entryData = await updateSubpageEntry<AnimalProjectTypes>(
                 token,
                 endpoint,
                 subpageEntry.id,
                 JSON.stringify(Object.fromEntries(mapState))
               );
+              setSubpageEntries(
+                priorSubpageEntries.map((item) =>
+                  item.id === entryData.id ? entryData : item
+                )
+              );
+              handleModalClose();
             } else {
-              await updateSubpageEntry<AnimalProjectTypes>(
+              const entryData = await updateSubpageEntry<AnimalProjectTypes>(
                 accessToken,
                 endpoint,
                 subpageEntry.id,
                 JSON.stringify(Object.fromEntries(mapState))
               );
+              setSubpageEntries(
+                priorSubpageEntries.map((item) =>
+                  item.id === entryData.id ? entryData : item
+                )
+              );
+              handleModalClose();
             }
           } catch (error) {
             console.error(error);
@@ -152,7 +171,7 @@ export default function DynamicPopUp({
             </IconButton>
           </CardActions>
           <InputsBySubpage
-            updateMap={updateMap}
+            setMapState={setMapState}
             subpage={subpage}
             subpageEntry={subpageEntry}
           />
@@ -192,21 +211,21 @@ export default function DynamicPopUp({
             if (accessToken == "") {
               const token = await getAccessToken();
               setAccessToken(token);
-              await postSubpageEntry<AnimalProjectTypes>(
+              const entryData = await postSubpageEntry<AnimalProjectTypes>(
                 token,
                 endpoint,
                 JSON.stringify(Object.fromEntries(mapState))
               );
+              setSubpageEntries([...priorSubpageEntries, entryData]);
               handleModalClose();
-              window.location.reload();
             } else {
-              await postSubpageEntry<AnimalProjectTypes>(
+              const entryData = await postSubpageEntry<AnimalProjectTypes>(
                 accessToken,
                 endpoint,
                 JSON.stringify(Object.fromEntries(mapState))
               );
+              setSubpageEntries([...priorSubpageEntries, entryData]);
               handleModalClose();
-              window.location.reload();
             }
           } catch (error) {
             console.error(error);
@@ -267,7 +286,7 @@ export default function DynamicPopUp({
             </IconButton>
           </CardActions>
           <InputsBySubpage
-            updateMap={updateMap}
+            setMapState={setMapState}
             subpage={subpage}
             subpageEntry={emptyAnimalProjectEntry}
           />

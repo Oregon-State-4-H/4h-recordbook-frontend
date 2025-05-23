@@ -7,13 +7,13 @@ import { formFields } from "@/API/JSON";
 
 interface ResumeModalProps {
   subpage: string;
-  updateMap: (key: string, value: number | string) => void;
+  setMapState: (value: React.SetStateAction<Map<any, any>>) => void;
   subpageEntry: AnimalProjectTypes;
 }
 
 export default function ResumeCreateModalContent({
   subpage,
-  updateMap,
+  setMapState,
   subpageEntry,
 }: ResumeModalProps) {
   let Fields: formFields = [];
@@ -34,7 +34,7 @@ export default function ResumeCreateModalContent({
         <DynamicInput
           key={index}
           subpage={subpage}
-          updateMap={updateMap}
+          setMapState={setMapState}
           inputFieldJSON={item}
           originalToUpdate={subpageEntry}
         />
