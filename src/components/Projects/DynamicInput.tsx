@@ -59,6 +59,7 @@ export default function ResumeCreateModalContent({
             break;
           case "date":
             originalValue = originalToUpdate.date;
+            console.log("originalToUpdate", originalToUpdate);
             console.log("originalToUpdate.date", originalToUpdate.date);
             console.log(
               "day js originalToUpdate.date",

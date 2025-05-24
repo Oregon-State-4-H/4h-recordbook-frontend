@@ -23,12 +23,13 @@ export function BookmarkButton() {
     useBookmark();
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [accessToken, setAccessToken] = useState("");
-  const pathname = usePathname().substring(1);
+  const pathname = "/" + usePathname().substring(1);
 
   // if bookmarks context is not populated, send request to backend
   useEffect(() => {
     if (!hasRun.current && !populated) {
       const getBookmarks = async () => {
+        hasRun.current = true;
         try {
           const token = await getAccessToken();
           setAccessToken(token);
@@ -47,6 +48,7 @@ export function BookmarkButton() {
   useEffect(() => {
     if (populated && reloaded) {
       // update if the bookmarks icon should be filled in or not
+      console.log(pathname);
       setIsBookmarked(
         currBookmarkValues.find((b) => b.link === pathname) ? true : false
       );
@@ -57,6 +59,7 @@ export function BookmarkButton() {
 
       console.log(currBookmarkValues);
       console.log("populated: ", populated);
+      console.log("reloaded: ", reloaded);
     }
   }, [populated, reloaded, currBookmarkValues, pathname, updateBookmarks]);
 

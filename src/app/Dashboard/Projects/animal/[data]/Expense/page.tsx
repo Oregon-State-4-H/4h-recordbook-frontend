@@ -24,6 +24,8 @@ import { useProject } from "@/context/ProjectContext";
 import ProjectTableRow from "@/components/Projects/TableRow";
 import CreateButton from "@/components/Projects/CreateIconButton";
 import DynamicPopUp from "@/components/Projects/DynamicPopUp";
+import MobileCard from "@/components/Projects/MobileCard";
+import MobileReadPopUp from "@/components/Projects/MobileReadPopUp";
 import subpageOutline from "@/components/Projects/SubpageOutline.json";
 import {
   Expense,
@@ -48,31 +50,30 @@ export default function AnimalExpenses() {
   let [allSubpageEntries, setAllSubpageEntries] = useState<
     AnimalProjectTypes[]
   >([]);
-  const [validSubpage, setValidSubpage] = useState(true);
   const [subpageDataLoaded, setSubpageDataLoaded] = useState(false);
-
-  // states for how entry data should be displayed
-  const [displayLinks, setDisplayLinks] = useState(false);
-  const [displayDetail, setDisplayDetail] = useState(false);
-  const displayAsLinks = () => {
-    setDisplayLinks(true);
-    setDisplayDetail(false);
-  };
-  const displayAsDetail = () => {
-    setDisplayLinks(false);
-    setDisplayDetail(true);
-  };
 
   // state for multipurpose input modal
   const [inputModal, setinputModal] = React.useState(false);
   let [inputModalEntry, setinputModalEntry] =
     useState<AnimalProjectTypes>(emptyExpense);
   let [inputModalPurpose, setinputModalPurpose] = useState<string>("");
+
+  // state for mobile read detail modal
+  const [readModal, setReadModal] = React.useState(false);
+  const [readModalEntry, setReadModalEntry] =
+    useState<AnimalProjectTypes>(emptyExpense);
+
+  const handleReadModalClose = () => {
+    setReadModal(false);
+    setReadModalEntry(emptyExpense);
+  };
+
   const handleinputModalClose = () => {
     setinputModal(false);
     setinputModalEntry(emptyExpense);
     setinputModalPurpose("");
   };
+
   const handleinputModalOpen = (
     currinputModalEntry: AnimalProjectTypes,
     purpose: string
@@ -80,23 +81,20 @@ export default function AnimalExpenses() {
     setinputModal(true);
     setinputModalEntry(currinputModalEntry);
     setinputModalPurpose(purpose);
+    handleReadModalClose();
   };
 
-  // // state for multipurpose snackbar alert
-  // const [alert, setAlert] = React.useState(false);
-  // let [alertText, setAlertText] = useState<String>("");
-  // const handleAlertClose = () => {
-  //   setAlert(false);
-  //   setAlertText("");
-  // };
-  // const handleAlertOpen = (currAlertText: string) => {
-  //   setAlert(true);
-  //   setAlertText(currAlertText);
-  // };
+  const handleReadModalOpen = (currModalEntry: AnimalProjectTypes) => {
+    setReadModal(true);
+    setReadModalEntry(currModalEntry);
+    handleinputModalClose();
+  };
 
   useEffect(() => {
     if (!hasRun.current) {
       const getData = async () => {
+        hasRun.current = true;
+
         try {
           // if the array of all projects is not populated, get project from backend
           if (accessToken == "") {
@@ -142,7 +140,6 @@ export default function AnimalExpenses() {
         } catch (error) {
           console.log(error);
         }
-        hasRun.current = true;
       };
       var navbarContextPageValues: NavbarValues = {
         mobileTitle: "Project Expense",
@@ -190,6 +187,7 @@ export default function AnimalExpenses() {
             marginLeft: "5%",
             marginRight: "5%",
             marginTop: "15px",
+            display: { xs: "none", md: "flex" },
           }}
         >
           <TableContainer sx={{ maxHeight: 440 }}>
@@ -227,6 +225,37 @@ export default function AnimalExpenses() {
             </Table>
           </TableContainer>
         </Paper>
+
+        {/* mobile view resume entries */}
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: { xs: "flex", md: "none" },
+            width: "100%",
+            flexDirection: "column",
+            paddingBottom: "50px",
+          }}
+        >
+          {allSubpageEntries.length > 0 &&
+            allSubpageEntries.map((item, index) => (
+              <Box
+                key={index}
+                sx={{
+                  flex: 1,
+                  position: "relative",
+                  Width: "80%",
+                  paddingLeft: "10%",
+                  paddingRight: "10%",
+                  paddingBottom: "20px",
+                }}
+              >
+                <MobileCard
+                  projectSubentry={item}
+                  handleOpen={handleReadModalOpen}
+                />
+              </Box>
+            ))}
+        </Box>
         <Modal
           open={inputModal}
           onClose={handleinputModalClose}
@@ -243,7 +272,7 @@ export default function AnimalExpenses() {
             priorSubpageEntries={allSubpageEntries}
           />
         </Modal>
-        {/* <Modal
+        <Modal
           open={readModal}
           onClose={handleReadModalClose}
           aria-labelledby="read-modal-title"
@@ -251,13 +280,14 @@ export default function AnimalExpenses() {
         >
           <MobileReadPopUp
             jwt={accessToken}
-            resumeEntry={readModalEntry}
+            endpoint="expense"
+            projectSubentry={readModalEntry}
             handleModalClose={handleReadModalClose}
             handleOpen={handleinputModalOpen}
-            setSections={setSections}
-            allSections={allSectionEntries}
+            setSubentries={setAllSubpageEntries}
+            allSubentries={allSubpageEntries}
           />
-        </Modal> */}
+        </Modal>
       </Box>
     );
   }

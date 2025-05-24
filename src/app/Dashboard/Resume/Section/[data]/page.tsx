@@ -179,11 +179,32 @@ export default function Dashboard() {
   const [inputModal, setinputModal] = React.useState(false);
   const [inputModalEntry, setinputModalEntry] = useState<SectionAny>(empty);
   const [inputModalPurpose, setinputModalPurpose] = useState<string>("");
+
+  // state for mobile read detail modal
+  const [readModal, setReadModal] = React.useState(false);
+  const [readModalEntry, setReadModalEntry] = useState<SectionAny>(empty);
+
+  const handleReadModalClose = () => {
+    setReadModal(false);
+    setReadModalEntry(empty);
+  };
   const handleinputModalClose = () => {
+    console.log(inputModalPurpose);
+
+    if (inputModalPurpose == "edit") {
+      const foundUpdated: SectionAny | undefined = allSectionEntries.find(
+        (entry) => entry.id == inputModalEntry.id
+      );
+      if (typeof foundUpdated != "undefined") {
+        console.log(foundUpdated);
+        setReadModalEntry(foundUpdated);
+      }
+    }
     setinputModal(false);
     setinputModalEntry(empty);
     setinputModalPurpose("");
   };
+
   const handleinputModalOpen = (
     currinputModalEntry: SectionAny,
     purpose: string
@@ -191,16 +212,8 @@ export default function Dashboard() {
     setinputModal(true);
     setinputModalEntry(currinputModalEntry);
     setinputModalPurpose(purpose);
-    handleReadModalClose();
   };
 
-  // state for mobile read detail modal
-  const [readModal, setReadModal] = React.useState(false);
-  const [readModalEntry, setReadModalEntry] = useState<SectionAny>(empty);
-  const handleReadModalClose = () => {
-    setReadModal(false);
-    setReadModalEntry(empty);
-  };
   const handleReadModalOpen = (currModalEntry: SectionAny) => {
     setReadModal(true);
     setReadModalEntry(currModalEntry);

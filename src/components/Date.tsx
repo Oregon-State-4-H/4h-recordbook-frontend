@@ -25,7 +25,10 @@ function isDayJs(dateDayJs: dayjs.Dayjs | null): dateDayJs is dayjs.Dayjs {
 
 export function DayJSTypetoRFC3339(dateDayJs: dayjs.Dayjs | null) {
   if (isDayJs(dateDayJs)) {
-    return dateDayJs.toISOString();
+    if (dateDayJs.isValid()) {
+      console.log(dateDayJs);
+      return dateDayJs.toISOString();
+    }
   }
   return "";
 }

@@ -48,6 +48,7 @@ export default function DynamicPopUp({
         switch (subpage) {
           case "Expense":
             if (isExpense(subpageEntry)) {
+              console.log("edit Expense.\n");
               setMapState((map) => new Map(map.set("cost", subpageEntry.cost)));
               setMapState((map) => new Map(map.set("date", subpageEntry.date)));
               setMapState(
@@ -66,6 +67,7 @@ export default function DynamicPopUp({
         }
       } else if (purpose == "create") {
         // effect to store entry's values that are not user generated in
+        console.log("create subpage entry.\n");
         setMapState((map) => new Map(map.set("project_id", project_id)));
       }
       hasRun.current = true;
@@ -204,11 +206,15 @@ export default function DynamicPopUp({
     case "create":
       // function to send POST create request to backend
       const handleCreate = async () => {
+        console.log("handle create function.\n");
+
         const endpoint: string = EndpointByDynamicPathSuffix(subpage);
         console.log(JSON.stringify(Object.fromEntries(mapState)));
         const postData = async () => {
           try {
             if (accessToken == "") {
+              console.log("get fresh access token.\n");
+
               const token = await getAccessToken();
               setAccessToken(token);
               const entryData = await postSubpageEntry<AnimalProjectTypes>(
@@ -216,15 +222,25 @@ export default function DynamicPopUp({
                 endpoint,
                 JSON.stringify(Object.fromEntries(mapState))
               );
+              console.log("post request done.\n");
+
               setSubpageEntries([...priorSubpageEntries, entryData]);
+              console.log("updated state array.\n");
+
               handleModalClose();
             } else {
+              console.log("use exsisting access token.\n");
+
               const entryData = await postSubpageEntry<AnimalProjectTypes>(
                 accessToken,
                 endpoint,
                 JSON.stringify(Object.fromEntries(mapState))
               );
+              console.log("post request done.\n");
+
               setSubpageEntries([...priorSubpageEntries, entryData]);
+              console.log("updated state array.\n");
+
               handleModalClose();
             }
           } catch (error) {
@@ -232,6 +248,7 @@ export default function DynamicPopUp({
           }
         };
         postData();
+        console.log("end handler function.\n");
       };
 
       return (
