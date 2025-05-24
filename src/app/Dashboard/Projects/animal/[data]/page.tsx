@@ -12,7 +12,7 @@ import {
   fetchAllProjects,
   fetchProject,
 } from "@/API/ProjectAPI";
-import SubpageCard from "@/components/Projects/SubpageCard";
+import SubpageCard from "@/components/LinkCard";
 import Grid from "@mui/material/Grid";
 import {
   useNavbar,

@@ -194,8 +194,14 @@ export function isExpense(data: AnimalProjectTypes): data is Expense {
   return (data as Expense).cost != undefined;
 }
 
+export function isAnimal(data: Animal | undefined): data is Animal {
+  return (data as Animal) != undefined;
+}
+
 export const fetchAllProjects = async (jwt: string): Promise<Project[]> => {
   try {
+    console.log("fetchAllProjects");
+
     const response = await fetch(`${buildBaseUrl()}project`, {
       method: "GET",
       headers: {
@@ -345,6 +351,32 @@ export const fetchSubpageEntriesByProject = async <T>(
           "Type is not supported by fetchSubpageEntriesByProject function"
         );
     }
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchAnimal = async (
+  jwt: string,
+  animalID: string
+): Promise<Animal | string> => {
+  try {
+    const response = await fetch(`${buildBaseUrl()}animal/${animalID}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Adjust if needed
+      },
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      if (response.status == 404) {
+        return data.message as string;
+      }
+      throw new Error(data.message || "Unexpected error occurred");
+    }
+    return data.animal as Animal;
   } catch (error) {
     throw error;
   }
