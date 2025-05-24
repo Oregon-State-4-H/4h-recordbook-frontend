@@ -287,6 +287,7 @@ export default function Dashboard() {
                   key={index}
                   jwt={accessToken}
                   index={index}
+                  handleModalClose={handleinputModalClose}
                   resumeEntry={item}
                   setSections={setSections}
                   priorEntries={allSectionEntries}

@@ -415,7 +415,7 @@ export const postSubpageEntry = async <T>(
       case AnimalProjectTypeEndpoints.Animal:
         return data.animals as T;
       case AnimalProjectTypeEndpoints.Expense:
-        return data.expense as T;
+        return data.expenses as T;
       case AnimalProjectTypeEndpoints.Feed:
         return data.feeds as T;
       case AnimalProjectTypeEndpoints.FeedPurchase:
@@ -458,7 +458,7 @@ export const updateSubpageEntry = async <T>(
       case AnimalProjectTypeEndpoints.Animal:
         return data.animals as T;
       case AnimalProjectTypeEndpoints.Expense:
-        return data.expense as T;
+        return data.expenses as T;
       case AnimalProjectTypeEndpoints.Feed:
         return data.feeds as T;
       case AnimalProjectTypeEndpoints.FeedPurchase:

@@ -5,8 +5,8 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import MobileReadDetail from "./MobileReadDetail";
 import EditMobileButton from "./EditMobileButton";
-import { DeleteMobileButton } from "@/components/Resume/DeleteButtons";
-import { SectionAny } from "../../API/ResumeAPI";
+import { ResumeDeleteMobileButton } from "@/components/DeleteButtons";
+import { SectionAny } from "@/API/ResumeAPI";
 
 interface PopUpProps {
   jwt: string;
@@ -50,9 +50,10 @@ export default function MobileReadPopUp({
       <MobileReadDetail resumeEntry={resumeEntry} />
       <CardActions>
         <EditMobileButton handleOpen={handleOpen} resumeEntry={resumeEntry} />
-        <DeleteMobileButton
+        <ResumeDeleteMobileButton
           jwt={jwt}
           id={resumeEntry.id}
+          handleModalClose={handleModalClose}
           setSections={setSections}
           allSections={allSections}
         />

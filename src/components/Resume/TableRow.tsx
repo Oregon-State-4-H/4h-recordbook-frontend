@@ -1,7 +1,7 @@
 import * as React from "react";
 import TableCell from "@mui/material/TableCell";
-import { StyledTableRow } from "../StyledTableRow";
-import { DeleteIconButton } from "@/components/Resume/DeleteButtons";
+import { StyledTableRow } from "@/components//StyledTableRow";
+import { ResumeDeleteIconButton } from "@/components/DeleteButtons";
 
 import ResumeEdit from "@/components/Resume/EditIconButton";
 import {
@@ -26,6 +26,7 @@ interface ResumeRowProps {
   jwt: string;
   index: number;
   resumeEntry: SectionAny;
+  handleModalClose: () => void;
   setSections: (allEntries: SectionAny[]) => void;
   priorEntries: SectionAny[];
   handleOpen: (currEntry: SectionAny, purpose: string) => void;
@@ -35,6 +36,7 @@ export default function ResumeTableCells({
   jwt,
   index,
   resumeEntry,
+  handleModalClose,
   setSections,
   priorEntries,
   handleOpen,
@@ -68,9 +70,10 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <DeleteIconButton
+              <ResumeDeleteIconButton
                 jwt={jwt}
                 id={resumeEntry.id}
+                handleModalClose={handleModalClose}
                 setSections={setSections}
                 allSections={priorEntries}
               />
@@ -96,9 +99,10 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <DeleteIconButton
+              <ResumeDeleteIconButton
                 jwt={jwt}
                 id={resumeEntry.id}
+                handleModalClose={handleModalClose}
                 setSections={setSections}
                 allSections={priorEntries}
               />
@@ -130,9 +134,10 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <DeleteIconButton
+              <ResumeDeleteIconButton
                 jwt={jwt}
                 id={resumeEntry.id}
+                handleModalClose={handleModalClose}
                 setSections={setSections}
                 allSections={priorEntries}
               />
@@ -164,9 +169,10 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <DeleteIconButton
+              <ResumeDeleteIconButton
                 jwt={jwt}
                 id={resumeEntry.id}
+                handleModalClose={handleModalClose}
                 setSections={setSections}
                 allSections={priorEntries}
               />
@@ -198,9 +204,10 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <DeleteIconButton
+              <ResumeDeleteIconButton
                 jwt={jwt}
                 id={resumeEntry.id}
+                handleModalClose={handleModalClose}
                 setSections={setSections}
                 allSections={priorEntries}
               />
@@ -235,9 +242,10 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <DeleteIconButton
+              <ResumeDeleteIconButton
                 jwt={jwt}
                 id={resumeEntry.id}
+                handleModalClose={handleModalClose}
                 setSections={setSections}
                 allSections={priorEntries}
               />
@@ -269,9 +277,10 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <DeleteIconButton
+              <ResumeDeleteIconButton
                 jwt={jwt}
                 id={resumeEntry.id}
+                handleModalClose={handleModalClose}
                 setSections={setSections}
                 allSections={priorEntries}
               />
@@ -303,9 +312,10 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <DeleteIconButton
+              <ResumeDeleteIconButton
                 jwt={jwt}
                 id={resumeEntry.id}
+                handleModalClose={handleModalClose}
                 setSections={setSections}
                 allSections={priorEntries}
               />
@@ -343,9 +353,10 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <DeleteIconButton
+              <ResumeDeleteIconButton
                 jwt={jwt}
                 id={resumeEntry.id}
+                handleModalClose={handleModalClose}
                 setSections={setSections}
                 allSections={priorEntries}
               />
@@ -383,9 +394,10 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <DeleteIconButton
+              <ResumeDeleteIconButton
                 jwt={jwt}
                 id={resumeEntry.id}
+                handleModalClose={handleModalClose}
                 setSections={setSections}
                 allSections={priorEntries}
               />
@@ -417,9 +429,10 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <DeleteIconButton
+              <ResumeDeleteIconButton
                 jwt={jwt}
                 id={resumeEntry.id}
+                handleModalClose={handleModalClose}
                 setSections={setSections}
                 allSections={priorEntries}
               />
@@ -451,9 +464,10 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <DeleteIconButton
+              <ResumeDeleteIconButton
                 jwt={jwt}
                 id={resumeEntry.id}
+                handleModalClose={handleModalClose}
                 setSections={setSections}
                 allSections={priorEntries}
               />
@@ -479,9 +493,10 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <DeleteIconButton
+              <ResumeDeleteIconButton
                 jwt={jwt}
                 id={resumeEntry.id}
+                handleModalClose={handleModalClose}
                 setSections={setSections}
                 allSections={priorEntries}
               />
@@ -507,9 +522,10 @@ export default function ResumeTableCells({
               <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
             </TableCell>
             <TableCell>
-              <DeleteIconButton
+              <ResumeDeleteIconButton
                 jwt={jwt}
                 id={resumeEntry.id}
+                handleModalClose={handleModalClose}
                 setSections={setSections}
                 allSections={priorEntries}
               />
