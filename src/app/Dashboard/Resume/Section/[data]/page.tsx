@@ -189,17 +189,6 @@ export default function Dashboard() {
     setReadModalEntry(empty);
   };
   const handleinputModalClose = () => {
-    console.log(inputModalPurpose);
-
-    if (inputModalPurpose == "edit") {
-      const foundUpdated: SectionAny | undefined = allSectionEntries.find(
-        (entry) => entry.id == inputModalEntry.id
-      );
-      if (typeof foundUpdated != "undefined") {
-        console.log(foundUpdated);
-        setReadModalEntry(foundUpdated);
-      }
-    }
     setinputModal(false);
     setinputModalEntry(empty);
     setinputModalPurpose("");
@@ -212,6 +201,7 @@ export default function Dashboard() {
     setinputModal(true);
     setinputModalEntry(currinputModalEntry);
     setinputModalPurpose(purpose);
+    handleReadModalClose();
   };
 
   const handleReadModalOpen = (currModalEntry: SectionAny) => {
