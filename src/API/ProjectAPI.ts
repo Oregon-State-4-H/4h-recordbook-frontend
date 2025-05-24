@@ -11,8 +11,9 @@ export enum AnimalProjectTypeEndpoints {
 }
 
 export function EndpointByDynamicPathSuffix(subpagePathSuffix: string): string {
+  console.log(subpagePathSuffix);
   switch (subpagePathSuffix) {
-    case "Animals":
+    case "Animal":
       return AnimalProjectTypeEndpoints.Animal;
     case "Expense":
       return AnimalProjectTypeEndpoints.Expense;
@@ -194,8 +195,33 @@ export function isExpense(data: AnimalProjectTypes): data is Expense {
   return (data as Expense).cost != undefined;
 }
 
-export function isAnimal(data: Animal | undefined): data is Animal {
-  return (data as Animal) != undefined;
+export function isAnimal(
+  data: Animal | undefined | AnimalProjectTypes
+): data is Animal {
+  if (isAnimalProjectTypes(data)) {
+    return (data as Animal).animal_cost != undefined;
+  } else {
+    return false;
+  }
+}
+
+export function isAnimalProjectTypes(
+  data: undefined | AnimalProjectTypes
+): data is AnimalProjectTypes {
+  return (data as AnimalProjectTypes) != undefined;
+}
+
+export function arrToUnionType(
+  data:
+    | Animal[]
+    | DailyFeed[]
+    | Expense[]
+    | Feed[]
+    | FeedPurchase[]
+    | Supply[]
+    | Empty[]
+): data is AnimalProjectTypes[] {
+  return (data as Animal[]) != undefined;
 }
 
 export const fetchAllProjects = async (jwt: string): Promise<Project[]> => {
@@ -430,6 +456,7 @@ export const postSubpageEntry = async <T>(
   // return type for after backend is updated to return created entry
   // ): Promise<T> => {
   try {
+    console.log(endpoint);
     const response = await fetch(`${buildBaseUrl()}${endpoint}`, {
       method: "POST",
       headers: {

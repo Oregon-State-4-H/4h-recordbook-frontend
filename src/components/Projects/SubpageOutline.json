@@ -31,5 +31,92 @@
         "placeholder": "4"
       }
     ]
+  },
+  "animal": {
+    "headers": [
+      "Cost ",
+      "Birth Date",
+      "Dam Breed",
+      "Name",
+      "purchase_date",
+      "quality_grade",
+      "sale_price",
+      "sire_breed",
+      "species",
+      "yield_grade",
+      ""
+    ],
+    "form": [
+      {
+        "type": "number",
+        "label": "Cost",
+        "name": "animal_cost",
+        "required": "yes",
+        "placeholder": "Ex. 2"
+      },
+      {
+        "type": "date",
+        "label": "Birth Date",
+        "name": "birth_date",
+        "required": "yes",
+        "placeholder": ""
+      },
+      {
+        "type": "text",
+        "label": "Dam Breed",
+        "name": "dam_breed",
+        "required": "yes",
+        "placeholder": "ruler"
+      },
+      {
+        "type": "text",
+        "label": "Name",
+        "name": "name",
+        "required": "yes",
+        "placeholder": "4"
+      },
+      {
+        "type": "date",
+        "label": "Purchase Date",
+        "name": "purchase_date",
+        "required": "yes",
+        "placeholder": ""
+      },
+      {
+        "type": "text",
+        "label": "Quality Grade",
+        "name": "quality_grade",
+        "required": "yes",
+        "placeholder": ""
+      },
+      {
+        "type": "number",
+        "label": "Sale Price",
+        "name": "sale_price",
+        "required": "yes",
+        "placeholder": ""
+      },
+      {
+        "type": "text",
+        "label": "Sire Breed",
+        "name": "sire_breed",
+        "required": "yes",
+        "placeholder": ""
+      },
+      {
+        "type": "text",
+        "label": "Species",
+        "name": "species",
+        "required": "yes",
+        "placeholder": ""
+      },
+      {
+        "type": "text",
+        "label": "Yield Grade",
+        "name": "yield_grade",
+        "required": "yes",
+        "placeholder": ""
+      }
+    ]
   }
 }

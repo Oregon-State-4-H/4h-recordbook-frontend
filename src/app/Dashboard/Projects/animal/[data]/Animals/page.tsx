@@ -4,9 +4,11 @@ import React, { useState, useEffect, useRef } from "react";
 // import { getAccessToken } from "@auth0/nextjs-auth0";
 import { getAccessToken } from "@/components/DummyUser";
 import { useParams, usePathname } from "next/navigation";
+import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import AnimalCard from "@/components/Projects/AnimalCard";
 import SubpageCard from "@/components/LinkCard";
+import CreateButton from "@/components/Projects/CreateIconButton";
+import DynamicPopUp from "@/components/Projects/DynamicPopUp";
 import Grid from "@mui/material/Grid";
 import {
   useNavbar,
@@ -14,7 +16,13 @@ import {
   navbarAppLinks,
 } from "@/context/NavbarContext";
 import { useBookmark } from "@/context/BookmarkContext";
-import { Animal, fetchSubpageEntriesByProject } from "@/API/ProjectAPI";
+import {
+  Animal,
+  fetchSubpageEntriesByProject,
+  AnimalProjectTypes,
+  emptyAnimal,
+  isAnimal,
+} from "@/API/ProjectAPI";
 
 function Dashboard() {
   const { updateFunction } = useNavbar();
@@ -28,8 +36,38 @@ function Dashboard() {
   const [subpageDataLoaded, setSubpageDataLoaded] = useState(false);
   const hasRun = useRef(false);
   const hasRun2 = useRef(false);
-
   const pathname = usePathname();
+
+  const updateAnimalArr = (updatedArr: AnimalProjectTypes[]) => {
+    const animalSubset: Animal[] = updatedArr.filter((item) => isAnimal(item));
+    setAllSubpageEntries(animalSubset);
+  };
+
+  // state for multipurpose input modal
+  const [inputModal, setinputModal] = React.useState(false);
+  let [inputModalEntry, setinputModalEntry] =
+    useState<AnimalProjectTypes>(emptyAnimal);
+  let [inputModalPurpose, setinputModalPurpose] = useState<string>("");
+
+  // state for mobile read detail modal
+  const [readModal, setReadModal] = React.useState(false);
+  const [readModalEntry, setReadModalEntry] =
+    useState<AnimalProjectTypes>(emptyAnimal);
+
+  const handleinputModalClose = () => {
+    setinputModal(false);
+    setinputModalEntry(emptyAnimal);
+    setinputModalPurpose("");
+  };
+
+  const handleinputModalOpen = (
+    currinputModalEntry: AnimalProjectTypes,
+    purpose: string
+  ) => {
+    setinputModal(true);
+    setinputModalEntry(currinputModalEntry);
+    setinputModalPurpose(purpose);
+  };
 
   useEffect(() => {
     if (!hasRun.current) {
@@ -104,6 +142,25 @@ function Dashboard() {
     console.log(allSubpageEntries);
     return (
       <Box className="App">
+        <Box
+          sx={{
+            width: "90%",
+            marginLeft: "5%",
+            marginRight: "5%",
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          {/* first box is placeholder for component that will have preview and download resume pdf */}
+          <Box
+            sx={{
+              width: "50%",
+              margin: "0px",
+              padding: "0px",
+            }}
+          ></Box>
+          <CreateButton handleOpen={handleinputModalOpen} />
+        </Box>
         {/* For every subpage, generate a clickable card */}
         <Box
           sx={{
@@ -153,6 +210,23 @@ function Dashboard() {
               ))}
           </Grid>
         </Box>
+
+        <Modal
+          open={inputModal}
+          onClose={handleinputModalClose}
+          aria-labelledby="input-modal-title"
+          aria-describedby="input-modal-description"
+        >
+          <DynamicPopUp
+            subpage="Animal"
+            subpageEntry={inputModalEntry}
+            handleModalClose={handleinputModalClose}
+            purpose={inputModalPurpose}
+            project_id={data}
+            setSubpageEntries={updateAnimalArr}
+            priorSubpageEntries={allSubpageEntries}
+          />
+        </Modal>
       </Box>
     );
   }

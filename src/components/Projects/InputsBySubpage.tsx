@@ -22,6 +22,9 @@ export default function ResumeCreateModalContent({
     case "Expense":
       Fields = subpageOutline.expense.form;
       break;
+    case "Animal":
+      Fields = subpageOutline.animal.form;
+      break;
     default:
       break;
   }

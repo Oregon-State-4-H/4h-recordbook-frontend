@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -27,6 +27,7 @@ export default function ResumeCreateModalContent({
   originalToUpdate,
 }: DynamicInputProps) {
   const [selected, setSelected] = React.useState("");
+  const hasRun = useRef(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = event.target;
@@ -41,12 +42,15 @@ export default function ResumeCreateModalContent({
   let originalValue: string = "";
 
   useEffect(() => {
-    // set store default value in case user does not change date
-    if (inputFieldJSON.type == "date") {
-      const defaultDateString = DayJSTypetoRFC3339(dayjs());
-      setMapState(
-        (map) => new Map(map.set(inputFieldJSON.name, defaultDateString))
-      );
+    if (!hasRun.current) {
+      hasRun.current = true;
+      // set store default value in case user does not change date
+      if (inputFieldJSON.type == "date") {
+        const defaultDateString = DayJSTypetoRFC3339(dayjs());
+        setMapState(
+          (map) => new Map(map.set(inputFieldJSON.name, defaultDateString))
+        );
+      }
     }
   }, [inputFieldJSON.name, inputFieldJSON.type, setMapState]);
 
