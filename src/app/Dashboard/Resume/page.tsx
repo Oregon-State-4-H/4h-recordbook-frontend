@@ -71,18 +71,17 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!hasRun.current) {
+      hasRun.current = true;
       const navbarContextPageValues: NavbarValues = {
         mobileTitle: "Resume",
         desktopTitle: "My 4-H Resume",
         hrefTitle: "/Dashboard",
-        mobileTopIcon: "none",
         NavbarLinks: navbarAppLinks,
       };
       updateFunction(navbarContextPageValues);
 
       // toggle to trigger bookmarks icon to check if page is bookmarked
       updateBookmarks(true);
-      hasRun.current = true;
     }
   }, [updateFunction, updateBookmarks]);
 

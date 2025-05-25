@@ -68,7 +68,6 @@ function Dashboard() {
         mobileTitle: "Dashboard",
         desktopTitle: "Dashboard",
         hrefTitle: "/Dashboard",
-        mobileTopIcon: "none",
         NavbarLinks: navbarAppLinks,
       };
       updateFunction(navbarContextPageValues);

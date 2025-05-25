@@ -69,7 +69,6 @@ export default function ProjectDetail() {
           mobileTitle: title,
           desktopTitle: title,
           hrefTitle: "/Dashboard",
-          mobileTopIcon: "none",
           NavbarLinks: navbarAppLinks,
         };
         updateFunction(navbarContextPageValues);
@@ -81,7 +80,6 @@ export default function ProjectDetail() {
           mobileTitle: "Animal Not Found",
           desktopTitle: "Animal Not Found",
           hrefTitle: "/Dashboard",
-          mobileTopIcon: "none",
           NavbarLinks: navbarAppLinks,
         };
         updateFunction(navbarContextPageValues);

@@ -49,7 +49,6 @@ export interface NavbarValues {
   mobileTitle: string;
   desktopTitle: string;
   hrefTitle: string;
-  mobileTopIcon: string;
   NavbarLinks: NavbarLink[];
 }
 
@@ -62,7 +61,6 @@ export const navbarContextDefaultValues: NavbarValues = {
   mobileTitle: "",
   desktopTitle: "",
   hrefTitle: "",
-  mobileTopIcon: "",
   NavbarLinks: [],
 };
 

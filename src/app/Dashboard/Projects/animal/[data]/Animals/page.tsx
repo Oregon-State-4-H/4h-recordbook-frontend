@@ -67,6 +67,8 @@ function Dashboard() {
     if (!hasRun.current) {
       const getData = async () => {
         try {
+          hasRun.current = true;
+
           if (accessToken == "") {
             const token = await getAccessToken();
             setAccessToken(token);
@@ -97,8 +99,6 @@ function Dashboard() {
         } catch (error) {
           console.log(error);
         }
-
-        hasRun.current = true;
       };
       getData();
     }
@@ -109,10 +109,9 @@ function Dashboard() {
     if (!hasRun2.current && (subpageDataLoaded || !validId)) {
       if (validId) {
         const navbarContextPageValues: NavbarValues = {
-          mobileTitle: "Project Animals",
+          mobileTitle: "Animals",
           desktopTitle: "Project Animals",
           hrefTitle: "/Dashboard",
-          mobileTopIcon: "none",
           NavbarLinks: navbarAppLinks,
         };
         updateFunction(navbarContextPageValues);
@@ -124,7 +123,6 @@ function Dashboard() {
           mobileTitle: "Animal Not Found",
           desktopTitle: "Animal Not Found",
           hrefTitle: "/Dashboard",
-          mobileTopIcon: "none",
           NavbarLinks: navbarAppLinks,
         };
         updateFunction(navbarContextPageValues);

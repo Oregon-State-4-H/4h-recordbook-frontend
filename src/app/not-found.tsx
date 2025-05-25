@@ -19,7 +19,6 @@ function Dashboard() {
         mobileTitle: "Page Not Found",
         desktopTitle: "404: Page Not Found",
         hrefTitle: "/",
-        mobileTopIcon: "none",
         NavbarLinks: navbarAppLinks,
       };
 

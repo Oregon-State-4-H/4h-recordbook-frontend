@@ -118,12 +118,13 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!hasRun.current) {
+      hasRun.current = true;
+
       // Update values of components in layout
       const navbarContextPageValues: NavbarValues = {
         mobileTitle: `Section ${data}`,
         desktopTitle: `Section ${data}`,
         hrefTitle: "/Dashboard",
-        mobileTopIcon: "none",
         NavbarLinks: navbarAppLinks,
       };
       updateFunction(navbarContextPageValues);
@@ -162,8 +163,6 @@ export default function Dashboard() {
         }
       };
       getSectionData();
-
-      hasRun.current = true;
     }
   });
 

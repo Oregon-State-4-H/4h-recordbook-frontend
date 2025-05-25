@@ -33,23 +33,24 @@ function Dashboard() {
   // get auth0 jwt and projects
   useEffect(() => {
     if (!hasRun1.current) {
+      hasRun1.current = true;
+
       const navbarContextPageValues: NavbarValues = {
         mobileTitle: "Projects",
-        desktopTitle: "This Year's Projects",
+        desktopTitle: "All Projects",
         hrefTitle: "/Dashboard",
-        mobileTopIcon: "none",
         NavbarLinks: navbarAppLinks,
       };
       updateFunction(navbarContextPageValues);
 
       // toggle to trigger bookmarks icon to check if page is bookmarked
       updateBookmarks(true);
-      hasRun1.current = true;
     }
 
     if (!hasRun2.current) {
       const getProjectData = async () => {
         try {
+          hasRun2.current = true;
           console.log("data exsists for projects?", populated);
           if (!populated) {
             if (accessToken == "") {
@@ -67,7 +68,6 @@ function Dashboard() {
         }
       };
       getProjectData();
-      hasRun2.current = true;
     }
   });
 

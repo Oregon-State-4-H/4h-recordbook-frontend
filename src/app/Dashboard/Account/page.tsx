@@ -59,7 +59,6 @@ export default function Account() {
         mobileTitle: "Account",
         desktopTitle: "My Account",
         hrefTitle: "/Dashboard",
-        mobileTopIcon: "none",
         NavbarLinks: navbarAppLinks,
       };
       updateFunction(navbarContextPageValues);

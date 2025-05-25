@@ -22,7 +22,6 @@ export default function Home() {
         mobileTitle: "4-H Record Books",
         desktopTitle: "4-H Record Books",
         hrefTitle: "/",
-        mobileTopIcon: "none",
         NavbarLinks: navbarLandingLinks,
       };
 
