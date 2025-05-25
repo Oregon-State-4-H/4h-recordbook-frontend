@@ -1,0 +1,55 @@
+{
+  "headers": [
+    "birthdate",
+    "county_name",
+    "email",
+    "first_name",
+    "last_name_initial",
+    "middle_name_initial",
+    ""
+  ],
+  "form": [
+    {
+      "type": "date",
+      "label": "Birthdate",
+      "name": "birthdate",
+      "required": "yes",
+      "placeholder": ""
+    },
+    {
+      "type": "text",
+      "label": "County Name",
+      "name": "county_name",
+      "required": "yes",
+      "placeholder": ""
+    },
+    {
+      "type": "text",
+      "label": "Email",
+      "name": "email",
+      "required": "yes",
+      "placeholder": ""
+    },
+    {
+      "type": "text",
+      "label": "First Name",
+      "name": "first_name",
+      "required": "yes",
+      "placeholder": ""
+    },
+    {
+      "type": "text",
+      "label": "Last Name Initial",
+      "name": "last_name_initial",
+      "required": "yes",
+      "placeholder": ""
+    },
+    {
+      "type": "text",
+      "label": "Middle Name Initial",
+      "name": "middle_name_initial",
+      "required": "yes",
+      "placeholder": ""
+    }
+  ]
+}

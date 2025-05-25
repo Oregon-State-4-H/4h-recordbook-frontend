@@ -9,9 +9,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import RescourcesTableRow from "@/components/LinkMenuRow";
+import { User } from "@/API/User";
 
 interface ResourcesMenuProps {
-  array: [string, string][];
+  array: [string | ((currinputModalEntry: User) => void), string][];
   menuTitle: string;
 }
 
@@ -46,7 +47,11 @@ export default function ResourcesMenu({
         </TableHead>
         <TableBody>
           {array.map((item, index) => (
-            <RescourcesTableRow href={item[0]} label={item[1]} key={index} />
+            <RescourcesTableRow
+              hrefOrFunction={item[0]}
+              label={item[1]}
+              key={index}
+            />
           ))}
         </TableBody>
       </Table>

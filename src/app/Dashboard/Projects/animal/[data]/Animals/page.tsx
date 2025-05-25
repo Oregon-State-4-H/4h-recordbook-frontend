@@ -49,11 +49,6 @@ function Dashboard() {
     useState<AnimalProjectTypes>(emptyAnimal);
   let [inputModalPurpose, setinputModalPurpose] = useState<string>("");
 
-  // state for mobile read detail modal
-  const [readModal, setReadModal] = React.useState(false);
-  const [readModalEntry, setReadModalEntry] =
-    useState<AnimalProjectTypes>(emptyAnimal);
-
   const handleinputModalClose = () => {
     setinputModal(false);
     setinputModalEntry(emptyAnimal);
