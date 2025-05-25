@@ -7,22 +7,15 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
-// import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { useNavbar } from "@/context/NavbarContext";
 import { useUser } from "@auth0/nextjs-auth0";
 import LinkButton from "@/components/LinkButton";
+import BackButton from "@/components/BackButton";
 
 export default function NavbarTop() {
-  // const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-  //   null
-  // );
-  // const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-  //   null
-  // );
-
   const { currNavbarValues } = useNavbar();
   const { user } = useUser();
   const router = useRouter();
@@ -68,7 +61,7 @@ export default function NavbarTop() {
                 display: { xs: "flex", sm: "flex", md: "none" },
               }}
             >
-              {/* <BackButton /> */}
+              <BackButton />
               <Stack
                 direction="row"
                 spacing={1}
