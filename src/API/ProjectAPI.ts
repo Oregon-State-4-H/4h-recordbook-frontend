@@ -7,6 +7,7 @@ export enum AnimalProjectTypeEndpoints {
   Feed = "feed",
   FeedPurchase = "feed-purchase",
   Supply = "supply",
+  Gain = "rate-of-gain",
   Empty = "",
 }
 
@@ -21,20 +22,52 @@ export function EndpointByDynamicPathSuffix(subpagePathSuffix: string): string {
       return AnimalProjectTypeEndpoints.Feed;
     case "Supplies":
       return AnimalProjectTypeEndpoints.Supply;
+    case "Gain":
+      return AnimalProjectTypeEndpoints.Gain;
   }
   return "";
 }
 
-export const AnimalKeys: string[] = [];
-export const DailyFeedKeys: string[] = [];
-export const ExpenseKeys: string[] = ["cost", "date", "items", "quantity"];
-export const FeedKeys: string[] = [];
-export const FeedPurchaseKeys: string[] = [];
-export const SupplyKeys: string[] = [];
-export const EmptyKeys: string[] = [];
+export type AnimalKey = keyof Animal;
+export type GainKey = keyof Gain;
+export type DailyFeedKey = keyof DailyFeed;
+export type ExpenseKey = keyof Expense;
+export type FeedKey = keyof Feed;
+export type FeedPurchaseKey = keyof FeedPurchase;
+export type SupplyKey = keyof Supply;
+export type EmptyKey = keyof Empty;
+
+export const AnimalKeys: AnimalKey[] = [
+  "animal_cost",
+  "birth_date",
+  "dam_breed",
+  "name",
+  "project_id",
+  "purchase_date",
+  "quality_grade",
+  "sale_price",
+  "sire_breed",
+  "species",
+  "yield_grade",
+];
+
+export const GainKeys: GainKey[] = [
+  "beginning_date",
+  "beginning_weight",
+  "end_date",
+  "end_weight",
+];
+
+export const DailyFeedKeys: DailyFeedKey[] = [];
+export const ExpenseKeys: ExpenseKey[] = ["cost", "date", "items", "quantity"];
+export const FeedKeys: FeedKey[] = [];
+export const FeedPurchaseKeys: FeedPurchaseKey[] = [];
+export const SupplyKeys: SupplyKey[] = [];
+export const EmptyKeys: EmptyKey[] = [];
 
 export const AnimalProjectTypeKeysFromUser: { [key: string]: string[] } = {
   Animal: AnimalKeys,
+  Gain: GainKeys,
   DailyFeed: DailyFeedKeys,
   Expense: ExpenseKeys,
   Feed: FeedKeys,
@@ -42,6 +75,34 @@ export const AnimalProjectTypeKeysFromUser: { [key: string]: string[] } = {
   Supply: SupplyKeys,
   Empty: EmptyKeys,
 };
+
+export function isAnimalKey(key: string): key is AnimalKey {
+  return key in emptyAnimal;
+}
+
+export function isGainKey(key: string): key is GainKey {
+  return key in emptyGain;
+}
+
+export function isExpenseKey(key: string): key is ExpenseKey {
+  return key in emptyExpense;
+}
+
+// export function isDailyFeedKey(key: string): key is DailyFeedKey {
+//   return key in emptyDailyFeed;
+// }
+
+// export function isFeedKey(key: string): key is FeedKey {
+//   return key in emptyFeed;
+// }
+
+// export function isFeedPurchaseKey(key: string): key is FeedPurchaseKey {
+//   return key in emptyFeedPurchase;
+// }
+
+// export function isSupplyKey(key: string): key is SupplyKey {
+//   return key in emptySupply;
+// }
 
 export interface CustomProjectFields {
   description: string;
@@ -127,7 +188,15 @@ export type SupplyProjectFields = {
 };
 
 export type Supply = AutoProjectFields & SupplyProjectFields;
+
 export type Empty = AutoProjectFields;
+
+export type Gain = {
+  beginning_date: string;
+  beginning_weight: number;
+  end_date: string;
+  end_weight: number;
+};
 
 export type AnimalProjectTypes =
   | Animal
@@ -177,6 +246,13 @@ export const emptyExpense: Expense = {
   date: "",
   items: "",
   quantity: -1,
+};
+
+export const emptyGain: Gain = {
+  beginning_date: "",
+  beginning_weight: -1,
+  end_date: "",
+  end_weight: -1,
 };
 
 // export const empty...: ... = {
@@ -375,6 +451,7 @@ export const fetchSubpageEntriesByProject = async <T>(
         return data.feed_purchases as T[];
       case AnimalProjectTypeEndpoints.Supply:
         return data.supplies as T[];
+
       default:
         throw new Error(
           "Type is not supported by fetchSubpageEntriesByProject function"
@@ -392,6 +469,32 @@ export const fetchAnimal = async (
   try {
     const response = await fetch(`${buildBaseUrl()}animal/${animalID}`, {
       method: "GET",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json", // Adjust if needed
+      },
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      if (response.status == 404) {
+        return data.message as string;
+      }
+      throw new Error(data.message || "Unexpected error occurred");
+    }
+    return data.animal as Animal;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateGain = async (
+  jwt: string,
+  animalID: string
+): Promise<Animal | string> => {
+  try {
+    const response = await fetch(`${buildBaseUrl()}rate-of-gain/${animalID}`, {
+      method: "PUT",
       headers: {
         Authorization: `Bearer ${jwt}`,
         "Content-Type": "application/json", // Adjust if needed
@@ -521,19 +624,19 @@ export const updateSubpageEntry = async <T>(
     }
     switch (endpoint) {
       case AnimalProjectTypeEndpoints.Animal:
-        return data.animals as T;
+        return data.animal as T;
       case AnimalProjectTypeEndpoints.Expense:
         return data.expense as T;
       case AnimalProjectTypeEndpoints.Feed:
-        return data.feeds as T;
+        return data.feed as T;
       case AnimalProjectTypeEndpoints.FeedPurchase:
-        return data.feed_purchases as T;
+        return data.feed_purchase as T;
       case AnimalProjectTypeEndpoints.Supply:
-        return data.supplies as T;
+        return data.supply as T;
+      case AnimalProjectTypeEndpoints.Gain:
+        return data.animal as T;
       default:
-        throw new Error(
-          "Type is not supported by fetchSubpageEntriesByProject function"
-        );
+        throw new Error("Type is not supported by updateSubpageEntry function");
     }
   } catch (error) {
     throw error;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import dayjs from "dayjs";
 // import { getAccessToken } from "@auth0/nextjs-auth0";
 import { getAccessToken } from "@/components/DummyUser";
 import Button from "@mui/material/Button";
@@ -8,6 +9,10 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
 import InputsBySubpage from "./InputsBySubpage";
+import subpageOutline from "@/components/Projects/SubpageOutline.json";
+import { formFields } from "@/API/JSON";
+import { DayJSTypetoRFC3339 } from "@/components/Date";
+
 import {
   AnimalProjectTypes,
   isExpense,
@@ -15,6 +20,9 @@ import {
   postSubpageEntry,
   updateSubpageEntry,
   EndpointByDynamicPathSuffix,
+  AnimalKeys,
+  isAnimal,
+  GainKeys,
 } from "@/API/ProjectAPI";
 
 interface PopUpProps {
@@ -40,6 +48,21 @@ export default function DynamicPopUp({
   // map to store key value pairs for body of request
   const [mapState, setMapState] = useState(new Map());
   const hasRun = useRef(false);
+  let Fields: formFields = [];
+
+  switch (subpage) {
+    case "Expense":
+      Fields = subpageOutline.expense.form;
+      break;
+    case "Animal":
+      Fields = subpageOutline.animal.form;
+      break;
+    case "Gain":
+      Fields = subpageOutline.gain.form;
+      break;
+    default:
+      break;
+  }
 
   useEffect(() => {
     if (!hasRun.current) {
@@ -60,6 +83,54 @@ export default function DynamicPopUp({
               setMapState(
                 (map) => new Map(map.set("quantity", subpageEntry.quantity))
               );
+            }
+            break;
+          case "Animal":
+            if (isAnimal(subpageEntry)) {
+              console.log("edit Animal.\n");
+              AnimalKeys.forEach(function (key) {
+                // if date is empty set intialize at current date
+                if (
+                  Fields.find((object) => object.name === key)?.type ==
+                    "date" &&
+                  subpageEntry[key] == ""
+                ) {
+                  const defaultDateString = DayJSTypetoRFC3339(dayjs());
+                  setMapState(
+                    (map: Map<string, number | string>) =>
+                      new Map(map.set(key, defaultDateString))
+                  );
+                } else {
+                  setMapState(
+                    (map: Map<string, number | string>) =>
+                      new Map(map.set(key, subpageEntry[key]))
+                  );
+                }
+              });
+            }
+            break;
+          case "Gain":
+            if (isAnimal(subpageEntry)) {
+              console.log("edit Gain.\n");
+              GainKeys.forEach(function (key) {
+                // if date is empty set intialize at current date
+                if (
+                  Fields.find((object) => object.name === key)?.type ==
+                    "date" &&
+                  subpageEntry[key] == ""
+                ) {
+                  const defaultDateString = DayJSTypetoRFC3339(dayjs());
+                  setMapState(
+                    (map: Map<string, number | string>) =>
+                      new Map(map.set(key, defaultDateString))
+                  );
+                } else {
+                  setMapState(
+                    (map: Map<string, number | string>) =>
+                      new Map(map.set(key, subpageEntry[key]))
+                  );
+                }
+              });
             }
             break;
           default:

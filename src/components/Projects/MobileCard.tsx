@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import { AnimalProjectTypes, isExpense } from "@/API/ProjectAPI";
-import ResumeCardPreviewContent from "@/components/MobileReadPreview";
+import ResumeCardPreviewContent from "@/components/Resume/MobileReadPreview";
 
 interface ResumeCardProps {
   projectSubentry: AnimalProjectTypes;

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -19,6 +19,7 @@ export default function NavbarTop() {
   const { currNavbarValues } = useNavbar();
   const { user } = useUser();
   const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <Box
@@ -90,12 +91,8 @@ export default function NavbarTop() {
                 >
                   {currNavbarValues.mobileTitle}
                 </Typography>
-                {currNavbarValues.desktopTitle.includes("Project") && (
-                  <ContentPasteIcon />
-                )}
-                {currNavbarValues.desktopTitle.includes("Resume") && (
-                  <DescriptionIcon />
-                )}
+                {pathname.includes("Project") && <ContentPasteIcon />}
+                {pathname.includes("Resume") && <DescriptionIcon />}
               </Stack>
             </Stack>
 

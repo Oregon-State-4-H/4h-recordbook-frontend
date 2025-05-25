@@ -3,29 +3,85 @@
 import React, { useState, useEffect, useRef } from "react";
 // import { getAccessToken } from "@auth0/nextjs-auth0";
 import { getAccessToken } from "@/components/DummyUser";
-import { useParams, usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
 import Box from "@mui/material/Box";
-import { isAnimal, fetchAnimal, Animal } from "@/API/ProjectAPI";
-import SubpageCard from "@/components/LinkCard";
-import Grid from "@mui/material/Grid";
+import Modal from "@mui/material/Modal";
+import Toolbar from "@mui/material/Toolbar";
+import {
+  isAnimal,
+  fetchAnimal,
+  Animal,
+  emptyAnimal,
+  AnimalProjectTypes,
+} from "@/API/ProjectAPI";
 import {
   useNavbar,
   NavbarValues,
   navbarAppLinks,
 } from "@/context/NavbarContext";
+import ReadCard from "@/components/Projects/MobileReadCard";
+import DynamicPopUp from "@/components/Projects/DynamicPopUp";
 import { useBookmark } from "@/context/BookmarkContext";
 
 export default function ProjectDetail() {
   const { updateFunction } = useNavbar();
   const { updateBookmarks } = useBookmark();
+  const { data } = useParams<{ data: string }>();
   const { slug } = useParams<{ slug: string }>();
   const [validId, setValidId] = useState(true);
   const [animalLoaded, setAnimalLoaded] = useState(false);
   const [currAnimal, setAnimal] = useState<Animal>();
+  const [gainLoaded, setGainLoaded] = useState(false);
+  const [currGain, setGain] = useState<Animal>();
   const [accessToken, setAccessToken] = useState("");
-  const pathname = usePathname();
   const hasRun1 = useRef(false);
   const hasRun2 = useRef(false);
+  const hasRun3 = useRef(false);
+
+  // state for multipurpose input modal
+  const [inputModal, setinputModal] = React.useState(false);
+  const [inputModalEntry, setinputModalEntry] =
+    useState<AnimalProjectTypes>(emptyAnimal);
+  const [inputModalPurpose, setinputModalPurpose] = useState<string>("");
+  const [subpage, setSubpage] = useState<string>("");
+
+  const handleinputModalClose = () => {
+    setinputModal(false);
+    setinputModalEntry(emptyAnimal);
+    setinputModalPurpose("");
+  };
+
+  const handleinputModalOpenAnimal = (
+    currinputModalEntry: AnimalProjectTypes,
+    purpose: string
+  ) => {
+    setinputModal(true);
+    setinputModalEntry(currinputModalEntry);
+    setinputModalPurpose(purpose);
+    setSubpage("Animal");
+  };
+
+  const handleinputModalOpenGain = (
+    currinputModalEntry: AnimalProjectTypes,
+    purpose: string
+  ) => {
+    setinputModal(true);
+    setinputModalEntry(currinputModalEntry);
+    setinputModalPurpose(purpose);
+    setSubpage("Gain");
+  };
+
+  const updateAnimal = (updatedAnimal: AnimalProjectTypes) => {
+    if (isAnimal(updatedAnimal)) {
+      setAnimal(updatedAnimal);
+    }
+  };
+
+  const updateAnimalFromArr = (updatedAnimalArr: AnimalProjectTypes[]) => {
+    if (isAnimal(updatedAnimalArr[0])) {
+      setAnimal(updatedAnimalArr[0]);
+    }
+  };
 
   useEffect(() => {
     if (!hasRun1.current) {
@@ -95,65 +151,128 @@ export default function ProjectDetail() {
   if (!validId) {
     return <Box className="App"></Box>;
   } else if (animalLoaded && validId && isAnimal(currAnimal)) {
-    const Subpages = [
-      "Animals",
-      "Feed Record",
-      "Feed Inventory",
-      "Expense",
-      "Supplies",
-    ];
-
     return (
-      <Box className="App">
-        {/* For every subpage, generate a clickable card */}
-        <Box
+      <Box>
+        <Toolbar
+          disableGutters
           sx={{
-            flexGrow: 1,
-            display: { xs: "flex", md: "none" },
-            width: "100%",
-            flexDirection: "column",
-            paddingBottom: "50px",
+            display: { xs: "flex" },
+            flexDirection: "row",
+            justifyContent: "space-between",
           }}
         >
-          {Subpages &&
-            Subpages.length > 0 &&
-            Subpages.map((item, index) => (
-              <SubpageCard
-                key={index}
-                label={item}
-                path={pathname + "/" + item.replaceAll(" ", "")}
-              />
-            ))}
-        </Box>
-        <Box
-          sx={{
-            width: "90%",
-            display: { xs: "none", md: "block" },
-            marginLeft: "5%",
-            marginRight: "5%",
-            marginTop: "15px",
-          }}
-        >
-          <Grid
-            container
-            rowSpacing={1}
-            columnSpacing={0}
+          <Box
             sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
               width: "100%",
             }}
           >
-            {Subpages &&
-              Subpages.length > 0 &&
-              Subpages.map((item, index) => (
-                <Grid size={6} key={index}>
-                  <SubpageCard
-                    label={item}
-                    path={pathname + "/" + item.replaceAll(" ", "")}
-                  />
-                </Grid>
-              ))}
-          </Grid>
-        </Box>
+            <Box
+              sx={{
+                width: "100%",
+              }}
+            >
+              <Box
+                sx={{
+                  flex: 1,
+                  position: "relative",
+                  padding: "20px",
+                  Width: "80%",
+                  paddingLeft: "10%",
+                  paddingRight: "10%",
+                  paddingBottom: "50px",
+                }}
+              >
+                <ReadCard
+                  jwt={accessToken}
+                  endpoint="animal"
+                  projectSubentry={currAnimal}
+                  handleOpenInput={handleinputModalOpenAnimal}
+                  deleteButton={true}
+                />
+              </Box>
+              <Box
+                sx={{
+                  flex: 1,
+                  position: "relative",
+                  padding: "20px",
+                  Width: "80%",
+                  paddingLeft: "10%",
+                  paddingRight: "10%",
+                  paddingBottom: "50px",
+                }}
+              >
+                <ReadCard
+                  jwt={accessToken}
+                  endpoint="gain"
+                  projectSubentry={currAnimal}
+                  handleOpenInput={handleinputModalOpenGain}
+                  deleteButton={false}
+                />
+              </Box>
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              width: "100%",
+            }}
+          >
+            <Box
+              sx={{
+                flex: 1,
+                position: "relative",
+                paddingLeft: "5%",
+                paddingRight: "5%",
+                paddingTop: "15px",
+              }}
+            >
+              <ReadCard
+                jwt={accessToken}
+                endpoint="animal"
+                projectSubentry={currAnimal}
+                handleOpenInput={handleinputModalOpenAnimal}
+                deleteButton={true}
+              />
+            </Box>
+            <Box
+              sx={{
+                flex: 1,
+                position: "relative",
+                Width: "40%",
+                paddingLeft: "5%",
+                paddingRight: "5%",
+                paddingTop: "15px",
+              }}
+            >
+              <ReadCard
+                jwt={accessToken}
+                endpoint="gain"
+                projectSubentry={currAnimal}
+                handleOpenInput={handleinputModalOpenGain}
+                deleteButton={false}
+              />
+            </Box>
+          </Box>
+        </Toolbar>
+        <Modal
+          open={inputModal}
+          onClose={handleinputModalClose}
+          aria-labelledby="input-modal-title"
+          aria-describedby="input-modal-description"
+        >
+          <DynamicPopUp
+            subpage={subpage}
+            subpageEntry={inputModalEntry}
+            handleModalClose={handleinputModalClose}
+            purpose={inputModalPurpose}
+            project_id={data}
+            setSubpageEntries={updateAnimalFromArr}
+            priorSubpageEntries={[currAnimal]}
+          />
+        </Modal>
       </Box>
     );
   }

@@ -8,10 +8,19 @@ import TextField from "@mui/material/TextField";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AnimalProjectTypes, isExpense } from "../../API/ProjectAPI";
 import { DayJSTypetoRFC3339 } from "@/components/Date";
 import dayjs from "dayjs";
 import { formField, isFieldTextOrNumber, isFieldOption } from "@/API/JSON";
+import {
+  AnimalProjectTypes,
+  isExpense,
+  isAnimal,
+  AnimalKeys,
+  AnimalKey,
+  isAnimalKey,
+  isExpenseKey,
+  isGainKey,
+} from "@/API/ProjectAPI";
 
 interface DynamicInputProps {
   inputFieldJSON: formField;
@@ -58,26 +67,37 @@ export default function ResumeCreateModalContent({
 
   switch (subpage) {
     case "Expense":
-      if (isExpense(originalToUpdate)) {
-        switch (originalValueKey) {
-          case "cost":
-            originalValue = originalToUpdate.cost.toString();
-            break;
-          case "date":
-            originalValue = originalToUpdate.date;
-            console.log("originalToUpdate", originalToUpdate);
-            console.log("originalToUpdate.date", originalToUpdate.date);
-            console.log(
-              "day js originalToUpdate.date",
-              dayjs(originalToUpdate.date)
-            );
-            break;
-          case "items":
-            originalValue = originalToUpdate.items;
-            break;
-          case "quantity":
-            originalValue = originalToUpdate.quantity.toString();
-            break;
+      if (isExpense(originalToUpdate) && isExpenseKey(originalValueKey)) {
+        const originalValueStringOrNumber: string | number =
+          originalToUpdate[originalValueKey];
+
+        if (typeof originalValueStringOrNumber == "string") {
+          originalValue = originalValueStringOrNumber;
+        } else {
+          originalValue = originalValueStringOrNumber.toString();
+        }
+      }
+    case "Animal":
+      if (isAnimal(originalToUpdate) && isAnimalKey(originalValueKey)) {
+        const originalValueStringOrNumber: string | number =
+          originalToUpdate[originalValueKey];
+
+        if (typeof originalValueStringOrNumber == "string") {
+          originalValue = originalValueStringOrNumber;
+        } else {
+          originalValue = originalValueStringOrNumber.toString();
+        }
+      }
+      break;
+    case "Gain":
+      if (isAnimal(originalToUpdate) && isGainKey(originalValueKey)) {
+        const originalValueStringOrNumber: string | number =
+          originalToUpdate[originalValueKey];
+
+        if (typeof originalValueStringOrNumber == "string") {
+          originalValue = originalValueStringOrNumber;
+        } else {
+          originalValue = originalValueStringOrNumber.toString();
         }
       }
       break;
