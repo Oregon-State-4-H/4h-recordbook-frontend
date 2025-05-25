@@ -7,7 +7,9 @@ import { formFields } from "@/API/JSON";
 
 interface ResumeModalProps {
   subpage: string;
-  setMapState: (value: React.SetStateAction<Map<any, any>>) => void;
+  setMapState: (
+    value: React.SetStateAction<Map<string, string | number>>
+  ) => void;
   subpageEntry: AnimalProjectTypes;
 }
 

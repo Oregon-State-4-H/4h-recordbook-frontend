@@ -345,7 +345,7 @@ export const fetchSubpageEntriesByProject = async <T>(
   jwt: string,
   endpoint: string,
   project_id: string
-): Promise<T[]> => {
+): Promise<T[] | string> => {
   try {
     const response = await fetch(
       `${buildBaseUrl()}project/${project_id}/${endpoint}`,
@@ -359,6 +359,9 @@ export const fetchSubpageEntriesByProject = async <T>(
     );
     const data = await response.json();
     if (!response.ok) {
+      if (response.status == 404) {
+        return data.message as string;
+      }
       throw new Error(data.message || "Unexpected error occurred");
     }
     switch (endpoint) {
@@ -412,7 +415,7 @@ export const fetchSubpageEntryById = async <T>(
   jwt: string,
   endpoint: string,
   id: string
-): Promise<T> => {
+): Promise<T | string> => {
   try {
     const response = await fetch(`${buildBaseUrl()}${endpoint}/${id}`, {
       method: "GET",
@@ -423,6 +426,9 @@ export const fetchSubpageEntryById = async <T>(
     });
     const data = await response.json();
     if (!response.ok) {
+      if (response.status == 404) {
+        return data.message as string;
+      }
       throw new Error(data.message || "Unexpected error occurred");
     }
     switch (endpoint) {
@@ -534,7 +540,7 @@ export const updateSubpageEntry = async <T>(
   }
 };
 
-export const deleteSubpageEntry = async <T>(
+export const deleteSubpageEntry = async (
   jwt: string,
   endpoint: string,
   id: string

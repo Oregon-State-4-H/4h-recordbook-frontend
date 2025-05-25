@@ -6,7 +6,9 @@ import { User } from "@/API/User";
 import { formFields } from "@/API/JSON";
 
 interface ResumeModalProps {
-  setMapState: (value: React.SetStateAction<Map<any, any>>) => void;
+  setMapState: (
+    value: React.SetStateAction<Map<string, string | number>>
+  ) => void;
   currUser: User;
 }
 
@@ -14,7 +16,7 @@ export default function ResumeCreateModalContent({
   setMapState,
   currUser,
 }: ResumeModalProps) {
-  let Fields: formFields = Outline.form;
+  const Fields: formFields = Outline.form;
 
   return (
     <CardContent

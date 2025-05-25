@@ -1,7 +1,7 @@
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
-import { AnimalProjectTypes, isExpense, isAnimal } from "@/API/ProjectAPI";
+import { AnimalProjectTypes, isExpense } from "@/API/ProjectAPI";
 
 interface ResumeRowProps {
   projectSubentry: AnimalProjectTypes;

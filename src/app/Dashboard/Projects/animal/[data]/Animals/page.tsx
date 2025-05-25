@@ -27,12 +27,11 @@ import {
 function Dashboard() {
   const { updateFunction } = useNavbar();
   const { updateBookmarks } = useBookmark();
-  const params = useParams<{ tag: string; item: string }>();
-  const { data }: any = params;
+  const { data } = useParams<{ data: string }>();
   const [validId, setValidId] = useState(true);
   // const [projectLoaded, setProjectLoaded] = useState(false);
   const [accessToken, setAccessToken] = useState("");
-  let [allSubpageEntries, setAllSubpageEntries] = useState<Animal[]>([]);
+  const [allSubpageEntries, setAllSubpageEntries] = useState<Animal[]>([]);
   const [subpageDataLoaded, setSubpageDataLoaded] = useState(false);
   const hasRun = useRef(false);
   const hasRun2 = useRef(false);
@@ -45,9 +44,9 @@ function Dashboard() {
 
   // state for multipurpose input modal
   const [inputModal, setinputModal] = React.useState(false);
-  let [inputModalEntry, setinputModalEntry] =
+  const [inputModalEntry, setinputModalEntry] =
     useState<AnimalProjectTypes>(emptyAnimal);
-  let [inputModalPurpose, setinputModalPurpose] = useState<string>("");
+  const [inputModalPurpose, setinputModalPurpose] = useState<string>("");
 
   const handleinputModalClose = () => {
     setinputModal(false);
@@ -76,16 +75,24 @@ function Dashboard() {
               "animal",
               data
             );
-            setAllSubpageEntries(subpageData);
-            setSubpageDataLoaded(true);
+            if (typeof subpageData == "string") {
+              setValidId(false);
+            } else {
+              setAllSubpageEntries(subpageData);
+              setSubpageDataLoaded(true);
+            }
           } else {
             const subpageData = await fetchSubpageEntriesByProject<Animal>(
               accessToken,
               "animal",
               data
             );
-            setAllSubpageEntries(subpageData);
-            setSubpageDataLoaded(true);
+            if (typeof subpageData == "string") {
+              setValidId(false);
+            } else {
+              setAllSubpageEntries(subpageData);
+              setSubpageDataLoaded(true);
+            }
           }
         } catch (error) {
           console.log(error);

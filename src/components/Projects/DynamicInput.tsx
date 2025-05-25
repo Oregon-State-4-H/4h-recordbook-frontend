@@ -16,7 +16,9 @@ import { formField, isFieldTextOrNumber, isFieldOption } from "@/API/JSON";
 interface DynamicInputProps {
   inputFieldJSON: formField;
   subpage: string;
-  setMapState: (value: React.SetStateAction<Map<any, any>>) => void;
+  setMapState: (
+    value: React.SetStateAction<Map<string, string | number>>
+  ) => void;
   originalToUpdate: AnimalProjectTypes;
 }
 

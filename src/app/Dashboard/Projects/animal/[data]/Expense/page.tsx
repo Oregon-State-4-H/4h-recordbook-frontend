@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 // import { getAccessToken } from "@auth0/nextjs-auth0";
 import { getAccessToken } from "@/components/DummyUser";
-import { useParams, usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
 import Box from "@mui/material/Box";
 import TitleOnly from "@/components/TitleOnly";
 import Paper from "@mui/material/Paper";
@@ -20,7 +20,6 @@ import {
   navbarAppLinks,
 } from "@/context/NavbarContext";
 import { useBookmark } from "@/context/BookmarkContext";
-import { useProject } from "@/context/ProjectContext";
 import ProjectTableRow from "@/components/Projects/TableRow";
 import CreateButton from "@/components/Projects/CreateIconButton";
 import DynamicPopUp from "@/components/Projects/DynamicPopUp";
@@ -43,20 +42,18 @@ export default function AnimalExpenses() {
   const { data } = useParams<{ data: string }>();
   const [validId, setValidId] = useState(true);
   const [accessToken, setAccessToken] = useState("");
-  const { updateProjects, currProjectValues, populated } = useProject();
-  const pathname = usePathname();
 
   // states for all subpage entries
-  let [allSubpageEntries, setAllSubpageEntries] = useState<
+  const [allSubpageEntries, setAllSubpageEntries] = useState<
     AnimalProjectTypes[]
   >([]);
   const [subpageDataLoaded, setSubpageDataLoaded] = useState(false);
 
   // state for multipurpose input modal
   const [inputModal, setinputModal] = React.useState(false);
-  let [inputModalEntry, setinputModalEntry] =
+  const [inputModalEntry, setinputModalEntry] =
     useState<AnimalProjectTypes>(emptyExpense);
-  let [inputModalPurpose, setinputModalPurpose] = useState<string>("");
+  const [inputModalPurpose, setinputModalPurpose] = useState<string>("");
 
   // state for mobile read detail modal
   const [readModal, setReadModal] = React.useState(false);
@@ -113,10 +110,12 @@ export default function AnimalExpenses() {
                 "expense",
                 data
               );
-              setAllSubpageEntries(subpageData);
-              setSubpageDataLoaded(true);
-              // toggle to trigger bookmarks icon to check if page is bookmarked
-              updateBookmarks(true);
+              if (typeof subpageData != "string") {
+                setAllSubpageEntries(subpageData);
+                setSubpageDataLoaded(true);
+                // toggle to trigger bookmarks icon to check if page is bookmarked
+                updateBookmarks(true);
+              }
             }
           } else {
             // check if project id is valid
@@ -131,17 +130,19 @@ export default function AnimalExpenses() {
                 "expense",
                 data
               );
-              setAllSubpageEntries(subpageData);
-              setSubpageDataLoaded(true);
-              // toggle to trigger bookmarks icon to check if page is bookmarked
-              updateBookmarks(true);
+              if (typeof subpageData != "string") {
+                setAllSubpageEntries(subpageData);
+                setSubpageDataLoaded(true);
+                // toggle to trigger bookmarks icon to check if page is bookmarked
+                updateBookmarks(true);
+              }
             }
           }
         } catch (error) {
           console.log(error);
         }
       };
-      var navbarContextPageValues: NavbarValues = {
+      const navbarContextPageValues: NavbarValues = {
         mobileTitle: "Project Expense",
         desktopTitle: "Project Expense",
         hrefTitle: "/Dashboard",

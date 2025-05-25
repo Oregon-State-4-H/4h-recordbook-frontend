@@ -37,3 +37,9 @@ export function isFieldTextOrNumber(
     (formFieldAny as formFieldTextOrNumber).type == "number"
   );
 }
+
+export interface ClickableTableRowProps {
+  hrefOrFunction: string | (() => void);
+  label: string;
+  externalLink: boolean;
+}
