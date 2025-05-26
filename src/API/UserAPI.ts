@@ -1,6 +1,6 @@
 import { buildBaseUrl } from "@/API/base";
 
-export interface User {
+export interface UserInput {
   birthdate: string;
   county_name: string;
   email: string;
@@ -9,7 +9,7 @@ export interface User {
   middle_name_initial: string;
 }
 
-export const emptyUser: User = {
+export const emptyUser: UserInput = {
   birthdate: "",
   county_name: "",
   email: "",
@@ -17,6 +17,16 @@ export const emptyUser: User = {
   last_name_initial: "",
   middle_name_initial: "",
 };
+
+export interface User {
+  birthdate: string;
+  county_name: string;
+  email: string;
+  first_name: string;
+  last_name_initial: string;
+  middle_name_initial: string;
+  created: string;
+}
 
 export const updateUser = async (jwt: string, input: string) => {
   try {

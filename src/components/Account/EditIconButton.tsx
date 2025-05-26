@@ -2,7 +2,7 @@ import React from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import { User } from "@/API/User";
+import { User } from "@/API/UserAPI";
 
 interface ResumeActionButtonProps {
   handleOpen: (currEntry: User, purpose: string) => void;

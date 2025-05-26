@@ -2,7 +2,7 @@ import React from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import { User, emptyUser } from "@/API/User";
+import { User, emptyUser } from "@/API/UserAPI";
 
 interface ResumeActionButtonProps {
   handleOpen: (currEntry: User, purpose: string) => void;

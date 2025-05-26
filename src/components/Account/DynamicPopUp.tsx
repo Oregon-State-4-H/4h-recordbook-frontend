@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
 import InputsBySubpage from "@/components/Account/InputsBySubpage";
-import { User, updateUser } from "@/API/User";
+import { User, updateUser } from "@/API/UserAPI";
 
 interface PopUpProps {
   currUser: User;

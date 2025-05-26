@@ -2,7 +2,7 @@ import React from "react";
 import CardContent from "@mui/material/CardContent";
 import Outline from "@/components/Account/Outline.json";
 import DynamicInput from "@/components/Account/DynamicInput";
-import { User } from "@/API/User";
+import { User } from "@/API/UserAPI";
 import { formFields } from "@/API/JSON";
 
 interface ResumeModalProps {

@@ -14,7 +14,7 @@ import {
   navbarAppLinks,
 } from "@/context/NavbarContext";
 import { useBookmark } from "@/context/BookmarkContext";
-import { User, emptyUser, getUser } from "@/API/User";
+import { User, emptyUser, getUser } from "@/API/UserAPI";
 import { ClickableTableRowProps } from "@/API/JSON";
 
 export default function Account() {

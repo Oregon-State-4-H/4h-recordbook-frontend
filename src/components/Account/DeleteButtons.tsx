@@ -4,7 +4,7 @@ import { getAccessToken } from "@/components/DummyUser";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
-import { deleteUser } from "@/API/User";
+import { deleteUser } from "@/API/UserAPI";
 import { redirect } from "next/navigation";
 
 async function handleDelete() {

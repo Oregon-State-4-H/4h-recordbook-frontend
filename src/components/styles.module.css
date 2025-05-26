@@ -1,0 +1,126 @@
+.table {
+    width: 100%;
+    background-color: var(--bg-secondary);
+}
+
+.table th {
+    text-align: center;
+    background-color: var(--beaver-orange);
+    color: white;
+}
+  
+.table th, .table td {
+    border: 1px solid lightgrey;
+    padding: 10px;
+}
+
+.table li {
+    padding: 5px;
+}
+
+.actionIcon {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    color: var(--text-primary);
+}
+
+.actionIcon:hover {
+    color: var(--beaver-orange);
+}
+
+.actionCell {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0px;
+    flex-grow: 1;
+}
+
+.actionButton {
+    font-size: 18px;
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    color: var(--text-primary);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.actionButton:hover {
+    color: var(--beaver-orange);
+    background-color: var(--bg-secondary);
+}
+
+.actionButtonText {
+    margin-left: 5px;
+}
+
+.actionButtonIcon {
+    font-size: 1.25rem;
+    margin-right: 5px;
+}
+
+
+.addInfoContainer {
+    font-size: 18px;
+    padding-top: 10px;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    right: 0;
+    left: 0;
+}
+
+.infoSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    width: 60vw;
+    height: 60vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: var(--bg-secondary);
+    border-radius: 20px;
+}
+
+.infoSectionHeader {
+    color: var(--beaver-orange);
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.infoSectionBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--beaver-orange);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.infoSectionBtn:hover {
+    background-color: lightgrey;
+}
+
+@media screen and (max-width: 480px) {
+    .children {
+        padding-top: 20px;
+    }
+
+    .infoSection {
+        width: 90vw;
+        height: 300px;
+    }
+}

@@ -20,7 +20,7 @@ interface SectionMap {
 export interface ResumeValues {
   ResumeData: SectionAny[] | ResumeSections;
 
-  // section value should be 0 for ResumeSection type
+  // section value should be 0 for ResumeSections type
   // section value should be 1-14 for ResumeAny type
   section: string;
 }
