@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 // import { getAccessToken } from "@auth0/nextjs-auth0";
 import { getAccessToken } from "@/components/DummyUser";
 import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 import Toolbar from "@mui/material/Toolbar";
 import MenuOfSections from "@/components/Resume/MenuOfSections";
 import { Button } from "@mui/material";
@@ -154,9 +155,16 @@ export default function Dashboard() {
         )}
 
         {showPreview && typeof user != "undefined" && SAllPopulated && (
-          <PDFPreviewModel title="" handleClose={() => setShowPreview(false)}>
-            <PDFFile userData={user} resumeData={SAll} />
-          </PDFPreviewModel>
+          <Modal
+            open={showPreview}
+            onClose={() => setShowPreview(false)}
+            aria-labelledby="preview-modal-title"
+            aria-describedby="preview-modal-description"
+          >
+            <PDFPreviewModel title="" handleClose={() => setShowPreview(false)}>
+              <PDFFile userData={user} resumeData={SAll} />
+            </PDFPreviewModel>
+          </Modal>
         )}
         {/* CreateIconButton returns content in a simularly styled box */}
       </Box>

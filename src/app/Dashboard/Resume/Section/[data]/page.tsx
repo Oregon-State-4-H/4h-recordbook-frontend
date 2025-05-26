@@ -334,11 +334,21 @@ export default function Dashboard() {
           )}
 
           {showPreview && typeof user != "undefined" && SAllPopulated && (
-            <PDFPreviewModel title="" handleClose={() => setShowPreview(false)}>
-              <Document>
-                <PDFDoc tableData={allSectionEntries} />
-              </Document>
-            </PDFPreviewModel>
+            <Modal
+              open={showPreview}
+              onClose={() => setShowPreview(false)}
+              aria-labelledby="preview-modal-title"
+              aria-describedby="preview-modal-description"
+            >
+              <PDFPreviewModel
+                title=""
+                handleClose={() => setShowPreview(false)}
+              >
+                <Document>
+                  <PDFDoc tableData={allSectionEntries} />
+                </Document>
+              </PDFPreviewModel>
+            </Modal>
           )}
           {/* CreateIconButton returns content in a simularly styled box */}
           <CreateIconButton handleOpen={handleinputModalOpen} />
