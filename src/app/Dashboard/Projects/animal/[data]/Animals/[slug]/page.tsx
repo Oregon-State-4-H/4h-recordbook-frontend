@@ -31,12 +31,9 @@ export default function ProjectDetail() {
   const [validId, setValidId] = useState(true);
   const [animalLoaded, setAnimalLoaded] = useState(false);
   const [currAnimal, setAnimal] = useState<Animal>();
-  const [gainLoaded, setGainLoaded] = useState(false);
-  const [currGain, setGain] = useState<Animal>();
   const [accessToken, setAccessToken] = useState("");
   const hasRun1 = useRef(false);
   const hasRun2 = useRef(false);
-  const hasRun3 = useRef(false);
 
   // state for multipurpose input modal
   const [inputModal, setinputModal] = React.useState(false);
@@ -69,12 +66,6 @@ export default function ProjectDetail() {
     setinputModalEntry(currinputModalEntry);
     setinputModalPurpose(purpose);
     setSubpage("Gain");
-  };
-
-  const updateAnimal = (updatedAnimal: AnimalProjectTypes) => {
-    if (isAnimal(updatedAnimal)) {
-      setAnimal(updatedAnimal);
-    }
   };
 
   const updateAnimalFromArr = (updatedAnimalArr: AnimalProjectTypes[]) => {

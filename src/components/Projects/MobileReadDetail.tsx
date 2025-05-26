@@ -1,5 +1,4 @@
 import * as React from "react";
-import dayjs from "dayjs";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";

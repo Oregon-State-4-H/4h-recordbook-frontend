@@ -15,8 +15,6 @@ import {
   AnimalProjectTypes,
   isExpense,
   isAnimal,
-  AnimalKeys,
-  AnimalKey,
   isAnimalKey,
   isExpenseKey,
   isGainKey,

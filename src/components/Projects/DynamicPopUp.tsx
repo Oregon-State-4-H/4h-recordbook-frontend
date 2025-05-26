@@ -143,7 +143,7 @@ export default function DynamicPopUp({
       }
       hasRun.current = true;
     }
-  }, [purpose, subpage, subpageEntry, project_id]);
+  }, [purpose, subpage, subpageEntry, project_id, Fields]);
 
   switch (purpose) {
     case "edit":

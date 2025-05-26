@@ -49,7 +49,7 @@ export default function MobileReadPopUp({
       >
         <CloseIcon />
       </IconButton>
-      <MobileReadDetail projectSubentry={projectSubentry} />
+      <MobileReadDetail projectSubentry={projectSubentry} endpoint={endpoint} />
       <CardActions>
         <EditMobileButton
           handleOpen={handleOpen}
