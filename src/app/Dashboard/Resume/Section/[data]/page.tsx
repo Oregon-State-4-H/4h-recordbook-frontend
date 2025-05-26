@@ -36,372 +36,424 @@ import MobileReadPopUp from "@/components/Resume/MobileReadPopUp";
 import { StyledTableHeader } from "@/components/StyledTableRow";
 import PDFPreviewModel from "@/components/Models/PDFPreviewModel";
 import PDFFile from "@/components/Reports/Resume/Resume";
-import S1File from "@/components/Reports/Resume/Section1";
 import { PDFDownloadButton } from "@/components/PDFDownloadButton";
 import { getUser, User } from "@/API/UserAPI";
+import Section1 from "@/components/Reports/Resume/Section1";
+import Section2 from "@/components/Reports/Resume/Section2";
+import Section3 from "@/components/Reports/Resume/Section3";
+import Section4 from "@/components/Reports/Resume/Section4";
+import Section5 from "@/components/Reports/Resume/Section5";
+import Section6 from "@/components/Reports/Resume/Section6";
+import Section7 from "@/components/Reports/Resume/Section7";
+import Section8 from "@/components/Reports/Resume/Section8";
+import Section9 from "@/components/Reports/Resume/Section9";
+import Section10 from "@/components/Reports/Resume/Section10";
+import Section11 from "@/components/Reports/Resume/Section11";
+import Section12 from "@/components/Reports/Resume/Section12";
+import Section13 from "@/components/Reports/Resume/Section13";
+import Section14 from "@/components/Reports/Resume/Section14";
+import { Document } from "@react-pdf/renderer";
+
+const sectionComponents = {
+  "1": Section1,
+  "2": Section2,
+  "3": Section3,
+  "4": Section4,
+  "5": Section5,
+  "6": Section6,
+  "7": Section7,
+  "8": Section8,
+  "9": Section9,
+  "10": Section10,
+  "11": Section11,
+  "12": Section12,
+  "13": Section13,
+  "14": Section14,
+};
+
+type SectionKey = keyof typeof sectionComponents;
+
+function isSectionKey(key: string): key is SectionKey {
+  return key in sectionComponents;
+}
 
 export default function Dashboard() {
-  const hasRun = useRef(false);
-  const hasRun2 = useRef(false);
-  const { updateFunction } = useNavbar();
-  const { updateBookmarks } = useBookmark();
-  const { updateResume, Sections, SAll, SAllPopulated } = useResume();
   const { data } = useParams<{ data: string }>();
-  const [user, setUser] = useState<User>();
-  const [showPreview, setShowPreview] = useState(false);
-  const [Title, setTitle] = useState<string>("");
-  const [Fields, setFields] = useState<{ [key: string]: string }[]>([]);
-  const [accessToken, setAccessToken] = useState("");
-  const [allSectionEntries, setSectionEntries] = useState<SectionAny[]>(
-    Sections[data].SectionData
-  );
-  const setSections = (SectionEntries: SectionAny[]) => {
-    setSectionEntries(SectionEntries);
-    const newResumeValues: ResumeValues = {
-      ResumeData: SectionEntries,
-      section: data,
+  if (isSectionKey(data)) {
+    const hasRun = useRef(false);
+    const hasRun2 = useRef(false);
+    const { updateFunction } = useNavbar();
+    const { updateBookmarks } = useBookmark();
+    const { updateResume, Sections, SAll, SAllPopulated } = useResume();
+    const [user, setUser] = useState<User>();
+    const [showPreview, setShowPreview] = useState(false);
+    const [Title, setTitle] = useState<string>("");
+    const [Fields, setFields] = useState<{ [key: string]: string }[]>([]);
+    const [accessToken, setAccessToken] = useState("");
+    const [allSectionEntries, setSectionEntries] = useState<SectionAny[]>(
+      Sections[data].SectionData
+    );
+    const PDFDoc = sectionComponents[data];
+    const setSections = (SectionEntries: SectionAny[]) => {
+      setSectionEntries(SectionEntries);
+      const newResumeValues: ResumeValues = {
+        ResumeData: SectionEntries,
+        section: data,
+      };
+      updateResume(newResumeValues);
     };
-    updateResume(newResumeValues);
-  };
 
-  // set section specific JSON for title and Headers
-  useEffect(() => {
-    // get section specific values
-    switch (data) {
-      case "1":
-        setTitle(sectionOutline.section1.title);
-        setFields(sectionOutline.section1.headers);
-        break;
-      case "2":
-        setTitle(sectionOutline.section2.title);
-        setFields(sectionOutline.section2.headers);
-        break;
-      case "3":
-        setTitle(sectionOutline.section3.title);
-        setFields(sectionOutline.section3.headers);
-        break;
-      case "4":
-        setTitle(sectionOutline.section4.title);
-        setFields(sectionOutline.section4.headers);
-        break;
-      case "5":
-        setTitle(sectionOutline.section5.title);
-        setFields(sectionOutline.section5.headers);
-        break;
-      case "6":
-        setTitle(sectionOutline.section6.title);
-        setFields(sectionOutline.section6.headers);
-        break;
-      case "7":
-        setTitle(sectionOutline.section7.title);
-        setFields(sectionOutline.section7.headers);
-        break;
-      case "8":
-        setTitle(sectionOutline.section8.title);
-        setFields(sectionOutline.section8.headers);
-        break;
-      case "9":
-        setTitle(sectionOutline.section9.title);
-        setFields(sectionOutline.section9.headers);
-        break;
-      case "10":
-        setTitle(sectionOutline.section10.title);
-        setFields(sectionOutline.section10.headers);
-        break;
-      case "11":
-        setTitle(sectionOutline.section11.title);
-        setFields(sectionOutline.section11.headers);
-        break;
-      case "12":
-        setTitle(sectionOutline.section12.title);
-        setFields(sectionOutline.section12.headers);
-        break;
-      case "13":
-        setTitle(sectionOutline.section13.title);
-        setFields(sectionOutline.section13.headers);
-        break;
-      case "14":
-        setTitle(sectionOutline.section14.title);
-        setFields(sectionOutline.section14.headers);
-        break;
-      default:
-        setTitle("");
-        setFields([]);
-        break;
-    }
-  }, [data]);
+    // set section specific JSON for title and Headers
+    useEffect(() => {
+      // get section specific values
+      switch (data) {
+        case "1":
+          setTitle(sectionOutline.section1.title);
+          setFields(sectionOutline.section1.headers);
+          break;
+        case "2":
+          setTitle(sectionOutline.section2.title);
+          setFields(sectionOutline.section2.headers);
+          break;
+        case "3":
+          setTitle(sectionOutline.section3.title);
+          setFields(sectionOutline.section3.headers);
+          break;
+        case "4":
+          setTitle(sectionOutline.section4.title);
+          setFields(sectionOutline.section4.headers);
+          break;
+        case "5":
+          setTitle(sectionOutline.section5.title);
+          setFields(sectionOutline.section5.headers);
+          break;
+        case "6":
+          setTitle(sectionOutline.section6.title);
+          setFields(sectionOutline.section6.headers);
+          break;
+        case "7":
+          setTitle(sectionOutline.section7.title);
+          setFields(sectionOutline.section7.headers);
+          break;
+        case "8":
+          setTitle(sectionOutline.section8.title);
+          setFields(sectionOutline.section8.headers);
+          break;
+        case "9":
+          setTitle(sectionOutline.section9.title);
+          setFields(sectionOutline.section9.headers);
+          break;
+        case "10":
+          setTitle(sectionOutline.section10.title);
+          setFields(sectionOutline.section10.headers);
+          break;
+        case "11":
+          setTitle(sectionOutline.section11.title);
+          setFields(sectionOutline.section11.headers);
+          break;
+        case "12":
+          setTitle(sectionOutline.section12.title);
+          setFields(sectionOutline.section12.headers);
+          break;
+        case "13":
+          setTitle(sectionOutline.section13.title);
+          setFields(sectionOutline.section13.headers);
+          break;
+        case "14":
+          setTitle(sectionOutline.section14.title);
+          setFields(sectionOutline.section14.headers);
+          break;
+        default:
+          setTitle("");
+          setFields([]);
+          break;
+      }
+    }, [data]);
 
-  // update title in Navbar and get section specific data
-  useEffect(() => {
-    if (!hasRun.current) {
-      hasRun.current = true;
+    // update title in Navbar and get section specific data
+    useEffect(() => {
+      if (!hasRun.current) {
+        hasRun.current = true;
 
-      // Update values of components in layout
-      const navbarContextPageValues: NavbarValues = {
-        mobileTitle: `Section ${data}`,
-        desktopTitle: `Section ${data}`,
-        hrefTitle: "/Dashboard",
-        NavbarLinks: navbarAppLinks,
-      };
-      updateFunction(navbarContextPageValues);
-      // toggle to trigger bookmarks icon to check if page is bookmarked
-      updateBookmarks(true);
+        // Update values of components in layout
+        const navbarContextPageValues: NavbarValues = {
+          mobileTitle: `Section ${data}`,
+          desktopTitle: `Section ${data}`,
+          hrefTitle: "/Dashboard",
+          NavbarLinks: navbarAppLinks,
+        };
+        updateFunction(navbarContextPageValues);
+        // toggle to trigger bookmarks icon to check if page is bookmarked
+        updateBookmarks(true);
 
-      // get auth0 jwt and section entries
-      const getSectionData = async () => {
-        try {
-          console.log("section number string: ", data);
-          console.log(
-            "data exsists for section?",
-            Sections[data].SectionPopulated
-          );
-          if (accessToken == "") {
-            const token = await getAccessToken();
-            setAccessToken(token);
-            if (!Sections[data].SectionPopulated) {
-              const sectionData = await fetchSectionData<SectionAny>(
-                token,
-                `section${data}`
-              );
-              setSections(sectionData);
+        // get auth0 jwt and section entries
+        const getSectionData = async () => {
+          try {
+            console.log("section number string: ", data);
+            console.log(
+              "data exsists for section?",
+              Sections[data].SectionPopulated
+            );
+            if (accessToken == "") {
+              const token = await getAccessToken();
+              setAccessToken(token);
+              if (!Sections[data].SectionPopulated) {
+                const sectionData = await fetchSectionData<SectionAny>(
+                  token,
+                  `section${data}`
+                );
+                setSections(sectionData);
+              }
+            } else {
+              if (!Sections[data].SectionPopulated) {
+                const sectionData = await fetchSectionData<SectionAny>(
+                  accessToken,
+                  `section${data}`
+                );
+                setSections(sectionData);
+              }
             }
-          } else {
-            if (!Sections[data].SectionPopulated) {
-              const sectionData = await fetchSectionData<SectionAny>(
-                accessToken,
-                `section${data}`
-              );
-              setSections(sectionData);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        getSectionData();
+      }
+    });
+
+    // get user and resume data for resume preview/download
+    useEffect(() => {
+      if (!hasRun2.current) {
+        hasRun2.current = true;
+
+        const getData = async () => {
+          try {
+            if (accessToken == "") {
+              const token = await getAccessToken();
+              setAccessToken(token);
+
+              const userData = await getUser(token);
+              setUser(userData);
+
+              const resumeData = await fetchResume(token);
+              updateResume({ ResumeData: resumeData, section: "0" });
+            } else {
+              const userData = await getUser(accessToken);
+              setUser(userData);
+
+              const resumeData = await fetchResume(accessToken);
+              updateResume({ ResumeData: resumeData, section: "0" });
             }
+          } catch (error) {
+            console.error(error);
           }
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      getSectionData();
-    }
-  });
+        };
+        getData();
+      }
+    });
 
-  // get user and resume data for resume preview/download
-  useEffect(() => {
-    if (!hasRun2.current) {
-      hasRun2.current = true;
+    const empty: SectionEmpty = {
+      id: "",
+      section: -1,
+      user_id: "",
+      created: "",
+      updated: "",
+    };
 
-      const getData = async () => {
-        try {
-          if (accessToken == "") {
-            const token = await getAccessToken();
-            setAccessToken(token);
+    // state for multipurpose input modal
+    const [inputModal, setinputModal] = React.useState(false);
+    const [inputModalEntry, setinputModalEntry] = useState<SectionAny>(empty);
+    const [inputModalPurpose, setinputModalPurpose] = useState<string>("");
 
-            const userData = await getUser(token);
-            setUser(userData);
+    // state for mobile read detail modal
+    const [readModal, setReadModal] = React.useState(false);
+    const [readModalEntry, setReadModalEntry] = useState<SectionAny>(empty);
 
-            const resumeData = await fetchResume(token);
-            updateResume({ ResumeData: resumeData, section: "0" });
-          } else {
-            const userData = await getUser(accessToken);
-            setUser(userData);
+    const handleReadModalClose = () => {
+      setReadModal(false);
+      setReadModalEntry(empty);
+    };
+    const handleinputModalClose = () => {
+      setinputModal(false);
+      setinputModalEntry(empty);
+      setinputModalPurpose("");
+    };
 
-            const resumeData = await fetchResume(accessToken);
-            updateResume({ ResumeData: resumeData, section: "0" });
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      getData();
-    }
-  });
+    const handleinputModalOpen = (
+      currinputModalEntry: SectionAny,
+      purpose: string
+    ) => {
+      setinputModal(true);
+      setinputModalEntry(currinputModalEntry);
+      setinputModalPurpose(purpose);
+      handleReadModalClose();
+    };
 
-  const empty: SectionEmpty = {
-    id: "",
-    section: -1,
-    user_id: "",
-    created: "",
-    updated: "",
-  };
+    const handleReadModalOpen = (currModalEntry: SectionAny) => {
+      setReadModal(true);
+      setReadModalEntry(currModalEntry);
+      handleinputModalClose();
+    };
 
-  // state for multipurpose input modal
-  const [inputModal, setinputModal] = React.useState(false);
-  const [inputModalEntry, setinputModalEntry] = useState<SectionAny>(empty);
-  const [inputModalPurpose, setinputModalPurpose] = useState<string>("");
+    //goes in body tag, per autogenerated index.html file in public folder
+    return (
+      <Box className="App">
+        <Typography
+          variant="h4"
+          sx={{
+            display: { xs: "none", md: "block" },
+            Width: "100%",
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
+        >
+          {Title}
+        </Typography>
+        <Box
+          sx={{
+            width: "90%",
+            marginLeft: "5%",
+            marginRight: "5%",
+            display: "flex",
+            justifyContent: "center",
 
-  // state for mobile read detail modal
-  const [readModal, setReadModal] = React.useState(false);
-  const [readModalEntry, setReadModalEntry] = useState<SectionAny>(empty);
+            flexDirection: "row",
+          }}
+        >
+          {/* first box is placeholder for component that will have preview and download resume pdf */}
+          <Button onClick={() => setShowPreview(true)}>Preview Resume</Button>
+          {typeof user != "undefined" && SAllPopulated && (
+            <PDFDownloadButton
+              document={
+                <Document>
+                  <PDFDoc tableData={allSectionEntries} />
+                </Document>
+              }
+              fileName={"My 4-H Resume.pdf"}
+            />
+          )}
 
-  const handleReadModalClose = () => {
-    setReadModal(false);
-    setReadModalEntry(empty);
-  };
-  const handleinputModalClose = () => {
-    setinputModal(false);
-    setinputModalEntry(empty);
-    setinputModalPurpose("");
-  };
+          {showPreview && typeof user != "undefined" && SAllPopulated && (
+            <PDFPreviewModel title="" handleClose={() => setShowPreview(false)}>
+              <Document>
+                <PDFDoc tableData={allSectionEntries} />
+              </Document>
+            </PDFPreviewModel>
+          )}
+          {/* CreateIconButton returns content in a simularly styled box */}
+          <CreateIconButton handleOpen={handleinputModalOpen} />
+        </Box>
 
-  const handleinputModalOpen = (
-    currinputModalEntry: SectionAny,
-    purpose: string
-  ) => {
-    setinputModal(true);
-    setinputModalEntry(currinputModalEntry);
-    setinputModalPurpose(purpose);
-    handleReadModalClose();
-  };
-
-  const handleReadModalOpen = (currModalEntry: SectionAny) => {
-    setReadModal(true);
-    setReadModalEntry(currModalEntry);
-    handleinputModalClose();
-  };
-
-  //goes in body tag, per autogenerated index.html file in public folder
-  return (
-    <Box className="App">
-      <Typography
-        variant="h4"
-        sx={{
-          display: { xs: "none", md: "block" },
-          Width: "100%",
-          textAlign: "center",
-          fontWeight: "bold",
-        }}
-      >
-        {Title}
-      </Typography>
-      <Box
-        sx={{
-          width: "90%",
-          marginLeft: "5%",
-          marginRight: "5%",
-          display: "flex",
-          justifyContent: "center",
-
-          flexDirection: "row",
-        }}
-      >
-        {/* first box is placeholder for component that will have preview and download resume pdf */}
-        <Button onClick={() => setShowPreview(true)}>Preview Resume</Button>
-        {typeof user != "undefined" && SAllPopulated && (
-          <PDFDownloadButton
-            document={<PDFFile userData={user} resumeData={SAll} />}
-            fileName={"My 4-H Resume.pdf"}
-          />
-        )}
-
-        {showPreview && typeof user != "undefined" && SAllPopulated && (
-          <PDFPreviewModel title="" handleClose={() => setShowPreview(false)}>
-            <PDFFile userData={user} resumeData={SAll} />
-          </PDFPreviewModel>
-        )}
-        {/* CreateIconButton returns content in a simularly styled box */}
-        <CreateIconButton handleOpen={handleinputModalOpen} />
-      </Box>
-
-      {/* desktop view resume entries */}
-      <Paper
-        sx={{
-          width: "90%",
-          overflow: "hidden",
-          display: { xs: "none", md: "flex" },
-          marginLeft: "5%",
-          marginRight: "5%",
-          marginTop: "15px",
-        }}
-      >
-        <TableContainer sx={{ maxHeight: 440 }}>
-          <Table stickyHeader aria-label="sticky table">
-            <TableHead>
-              {/* in the first row of the table, make a cell for each collumn, holding the label */}
-              <StyledTableHeader>
-                {Fields.map((item, index) => (
-                  <TableCell
+        {/* desktop view resume entries */}
+        <Paper
+          sx={{
+            width: "90%",
+            overflow: "hidden",
+            display: { xs: "none", md: "flex" },
+            marginLeft: "5%",
+            marginRight: "5%",
+            marginTop: "15px",
+          }}
+        >
+          <TableContainer sx={{ maxHeight: 440 }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                {/* in the first row of the table, make a cell for each collumn, holding the label */}
+                <StyledTableHeader>
+                  {Fields.map((item, index) => (
+                    <TableCell
+                      key={index}
+                      align="right"
+                      sx={{
+                        textAlign: "center",
+                        minWidth: 0.5 / Fields.length,
+                      }}
+                    >
+                      {item.name}
+                    </TableCell>
+                  ))}
+                </StyledTableHeader>
+              </TableHead>
+              <TableBody>
+                {allSectionEntries.map((item, index) => (
+                  <ResumeTableRow
                     key={index}
-                    align="right"
-                    sx={{ textAlign: "center", minWidth: 0.5 / Fields.length }}
-                  >
-                    {item.name}
-                  </TableCell>
+                    jwt={accessToken}
+                    index={index}
+                    handleModalClose={handleinputModalClose}
+                    resumeEntry={item}
+                    setSections={setSections}
+                    priorEntries={allSectionEntries}
+                    handleOpen={handleinputModalOpen}
+                  />
                 ))}
-              </StyledTableHeader>
-            </TableHead>
-            <TableBody>
-              {allSectionEntries.map((item, index) => (
-                <ResumeTableRow
-                  key={index}
-                  jwt={accessToken}
-                  index={index}
-                  handleModalClose={handleinputModalClose}
-                  resumeEntry={item}
-                  setSections={setSections}
-                  priorEntries={allSectionEntries}
-                  handleOpen={handleinputModalOpen}
-                />
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Paper>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
 
-      {/* mobile view resume entries */}
-      <Box
-        sx={{
-          flexGrow: 1,
-          display: { xs: "flex", md: "none" },
-          width: "100%",
-          flexDirection: "column",
-          paddingBottom: "50px",
-        }}
-      >
-        {allSectionEntries.length > 0 &&
-          allSectionEntries.map((item, index) => (
-            <Box
-              key={index}
-              sx={{
-                flex: 1,
-                position: "relative",
-                Width: "80%",
-                paddingLeft: "10%",
-                paddingRight: "10%",
-                paddingBottom: "20px",
-              }}
-            >
-              <ResumeCard resumeEntry={item} handleOpen={handleReadModalOpen} />
-            </Box>
-          ))}
+        {/* mobile view resume entries */}
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: { xs: "flex", md: "none" },
+            width: "100%",
+            flexDirection: "column",
+            paddingBottom: "50px",
+          }}
+        >
+          {allSectionEntries.length > 0 &&
+            allSectionEntries.map((item, index) => (
+              <Box
+                key={index}
+                sx={{
+                  flex: 1,
+                  position: "relative",
+                  Width: "80%",
+                  paddingLeft: "10%",
+                  paddingRight: "10%",
+                  paddingBottom: "20px",
+                }}
+              >
+                <ResumeCard
+                  resumeEntry={item}
+                  handleOpen={handleReadModalOpen}
+                />
+              </Box>
+            ))}
+        </Box>
+        <Modal
+          open={inputModal}
+          onClose={handleinputModalClose}
+          aria-labelledby="input-modal-title"
+          aria-describedby="input-modal-description"
+        >
+          <DynamicPopUp
+            sectionNumber={data}
+            setSections={setSections}
+            priorEntries={allSectionEntries}
+            resumeEntry={inputModalEntry}
+            handleModalClose={handleinputModalClose}
+            purpose={inputModalPurpose}
+            handleOpen={handleinputModalOpen}
+          />
+        </Modal>
+        <Modal
+          open={readModal}
+          onClose={handleReadModalClose}
+          aria-labelledby="read-modal-title"
+          aria-describedby="read-modal-description"
+        >
+          <MobileReadPopUp
+            jwt={accessToken}
+            resumeEntry={readModalEntry}
+            handleModalClose={handleReadModalClose}
+            handleOpen={handleinputModalOpen}
+            setSections={setSections}
+            allSections={allSectionEntries}
+          />
+        </Modal>
       </Box>
-      <Modal
-        open={inputModal}
-        onClose={handleinputModalClose}
-        aria-labelledby="input-modal-title"
-        aria-describedby="input-modal-description"
-      >
-        <DynamicPopUp
-          sectionNumber={data}
-          setSections={setSections}
-          priorEntries={allSectionEntries}
-          resumeEntry={inputModalEntry}
-          handleModalClose={handleinputModalClose}
-          purpose={inputModalPurpose}
-          handleOpen={handleinputModalOpen}
-        />
-      </Modal>
-      <Modal
-        open={readModal}
-        onClose={handleReadModalClose}
-        aria-labelledby="read-modal-title"
-        aria-describedby="read-modal-description"
-      >
-        <MobileReadPopUp
-          jwt={accessToken}
-          resumeEntry={readModalEntry}
-          handleModalClose={handleReadModalClose}
-          handleOpen={handleinputModalOpen}
-          setSections={setSections}
-          allSections={allSectionEntries}
-        />
-      </Modal>
-    </Box>
-  );
+    );
+  }
 }
