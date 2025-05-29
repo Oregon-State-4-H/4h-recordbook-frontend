@@ -9,13 +9,14 @@ export interface UserInput {
   middle_name_initial: string;
 }
 
-export const emptyUser: UserInput = {
+export const emptyUser: User = {
   birthdate: "",
   county_name: "",
   email: "",
   first_name: "",
   last_name_initial: "",
   middle_name_initial: "",
+  created: "",
 };
 
 export interface User {
@@ -38,9 +39,9 @@ export const updateUser = async (jwt: string, input: string) => {
       },
       body: input,
     });
-    const data = await response.json();
+    const data = await response;
     if (!response.ok) {
-      throw new Error(data.message || "Unexpected error occurred");
+      throw new Error("Unexpected error occurred");
     }
     return true;
   } catch (error) {
