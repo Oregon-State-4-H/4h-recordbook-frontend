@@ -1,4 +1,7 @@
-import styles from './styles.module.css';
+import React from "react";
+import Card from "@mui/material/Card";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 /**
  * OverlayModel component
@@ -8,20 +11,62 @@ import styles from './styles.module.css';
  */
 
 interface OverlayModelProps {
-  children: any,
-  handleClose: any,
-  frameStyles: any,
-  title: string,
+  children: any;
+  handleClose: any;
 }
 
-export function OverlayModel({ children, handleClose, frameStyles, title }: OverlayModelProps) {
+export function OverlayModel({ children, handleClose }: OverlayModelProps) {
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modelFrame} style={frameStyles}>
-        <button id={styles.closeBtn} onClick={handleClose}>X</button>
-        <h2 id={styles.modelTitle}>{title}</h2>
-        {children}
-      </div>
-    </div>
-  )
+    <Card
+      sx={{
+        maxWidth: "90%",
+        minWidth: 275,
+        backgroundColor: "rgba(255,255,255,1)",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        borderRadius: 1,
+        boxShadow: 5,
+        p: 4,
+      }}
+    >
+      <IconButton
+        sx={{ position: "absolute", right: "4%", top: "4%" }}
+        onClick={handleClose}
+        size="small"
+      >
+        <CloseIcon />
+      </IconButton>
+      {children}
+    </Card>
+  );
+}
+
+export function OverlayModelPDF({ children, handleClose }: OverlayModelProps) {
+  return (
+    <Card
+      sx={{
+        width: "90vw",
+        height: "90vh",
+        backgroundColor: "rgba(255,255,255,1)",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        borderRadius: 1,
+        boxShadow: 5,
+        p: 4,
+      }}
+    >
+      <IconButton
+        sx={{ position: "absolute", right: "4%", top: "4%" }}
+        onClick={handleClose}
+        size="small"
+      >
+        <CloseIcon />
+      </IconButton>
+      {children}
+    </Card>
+  );
 }

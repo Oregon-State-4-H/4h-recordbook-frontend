@@ -1,4 +1,4 @@
-import { Document, Page, Text } from "@react-pdf/renderer";
+import { Document } from "@react-pdf/renderer";
 import Section0Report from "./Section0";
 import Section1Report from "./Section1";
 import Section2Report from "./Section2";
@@ -26,21 +26,21 @@ export default function PDFFile(props: any) {
   const resumeData: ResumeSections = props.resumeData;
   return (
     <Document>
-        <Section0Report userData={userData}/> 
-        <Section1Report tableData={resumeData.section_1_data}/>
-        <Section2Report tableData={resumeData.section_2_data}/>
-        <Section3Report tableData={resumeData.section_3_data}/>
-        <Section4Report tableData={resumeData.section_4_data}/>
-        <Section5Report tableData={resumeData.section_5_data}/>
-        <Section6Report tableData={resumeData.section_6_data}/>
-        <Section7Report tableData={resumeData.section_7_data}/>
-        <Section8Report tableData={resumeData.section_8_data}/>
-        <Section9Report tableData={resumeData.section_9_data}/>
-        <Section10Report tableData={resumeData.section_10_data}/>
-        <Section11Report tableData={resumeData.section_11_data}/>  
-        <Section12Report tableData={resumeData.section_12_data}/>
-        <Section13Report tableData={resumeData.section_13_data}/>
-        <Section14Report tableData={resumeData.section_14_data}/>
+      <Section0Report userData={userData} />
+      <Section1Report tableData={resumeData.section_1_data} />
+      <Section2Report tableData={resumeData.section_2_data} />
+      <Section3Report tableData={resumeData.section_3_data} />
+      <Section4Report tableData={resumeData.section_4_data} />
+      <Section5Report tableData={resumeData.section_5_data} />
+      <Section6Report tableData={resumeData.section_6_data} />
+      <Section7Report tableData={resumeData.section_7_data} />
+      <Section8Report tableData={resumeData.section_8_data} />
+      <Section9Report tableData={resumeData.section_9_data} />
+      <Section10Report tableData={resumeData.section_10_data} />
+      <Section11Report tableData={resumeData.section_11_data} />
+      <Section12Report tableData={resumeData.section_12_data} />
+      <Section13Report tableData={resumeData.section_13_data} />
+      <Section14Report tableData={resumeData.section_14_data} />
     </Document>
-  )
-};
+  );
+}
