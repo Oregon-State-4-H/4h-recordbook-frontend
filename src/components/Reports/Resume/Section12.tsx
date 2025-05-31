@@ -2,12 +2,17 @@ import React from "react";
 import { Text, View, StyleSheet, Page } from "@react-pdf/renderer";
 import ReportStyles from "../ReportStyles";
 import Footer from "../Footer";
-import { Section12 } from "@/API/ResumeAPI";
+import {
+  Section12,
+  isS12,
+  ResumePDFProps,
+  ResumePDFTableHeaderProps,
+} from "@/API/ResumeAPI";
 
-let col1Flex = 1;
-let col2Flex = 2;
-let col3Flex = 2;
-let col4Flex = 1;
+const col1Flex = 1;
+const col2Flex = 2;
+const col3Flex = 2;
+const col4Flex = 1;
 
 const styles = StyleSheet.create({
   headerRow: {
@@ -54,11 +59,11 @@ const styles = StyleSheet.create({
   },
 });
 
-function TableHeader(props: any) {
+function TableHeader(props: ResumePDFTableHeaderProps) {
   const headerKey = props.headerKey;
   const isBreak = props.isBreak;
 
-  if(isBreak === false){
+  if (isBreak === false) {
     return (
       <View key={headerKey} style={styles.headerRow}>
         <View style={[styles.col1, ReportStyles.tableColAlignCenter]}>
@@ -74,7 +79,7 @@ function TableHeader(props: any) {
           <Text>Region</Text>
         </View>
       </View>
-    )
+    );
   } else {
     return (
       <View key={headerKey} style={styles.headerRow} break>
@@ -91,23 +96,26 @@ function TableHeader(props: any) {
           <Text>Region</Text>
         </View>
       </View>
-    )
+    );
   }
 }
 
-var rows: React.JSX.Element[] = [];
+let rows: React.JSX.Element[] = [];
 
 function addPageBreaks() {
-  var i = 21;
-  var count = 1
+  let i = 21;
+  let count = 1;
 
   while (i < rows.length) {
-    rows.splice(i, 0, <TableHeader key={"Sec12Head-" + count} isBreak={true} />);
+    rows.splice(
+      i,
+      0,
+      <TableHeader headerKey={"Sec12Head-" + count} isBreak={true} />
+    );
     i += 25;
     count++;
   }
 }
-
 
 /**
  * PDF page for Section 12 of the 4-H Resume
@@ -116,8 +124,8 @@ function addPageBreaks() {
  * @see {@link 'src/app/_db/models/resumeSections/section12Model'} for object structure
  * @example <Section12 tableData={section12Data}/>
  */
-export default function Section12Report(props: any) {
-  const tableData: Section12[] = props.tableData;
+export default function Section12Report(props: ResumePDFProps) {
+  const tableData: Section12[] = props.tableData.filter((item) => isS12(item));
   rows = tableData?.map((row, index) => {
     return (
       <View key={index} style={styles.tableRow}>
@@ -134,23 +142,28 @@ export default function Section12Report(props: any) {
           <Text>{row.level}</Text>
         </View>
       </View>
-    )
+    );
   });
 
-  if (tableData?.length > 23)
-    addPageBreaks();
+  if (tableData?.length > 23) addPageBreaks();
 
   return (
     <Page size="LETTER" style={ReportStyles.body} wrap>
-        <Text style={ReportStyles.h1}>Section 12: Participation in Other Contests/Competitions</Text>
-        <Text style={ReportStyles.tableHeaading}>List of all contests/competitions entered outside of 4-H.</Text>
-  
-        <TableHeader headerKey={"Sec12Head-0"} isBreak={false} />
+      <Text style={ReportStyles.h1}>
+        Section 12: Participation in Other Contests/Competitions
+      </Text>
+      <Text style={ReportStyles.tableHeaading}>
+        List of all contests/competitions entered outside of 4-H.
+      </Text>
 
-        {rows}
+      <TableHeader headerKey={"Sec12Head-0"} isBreak={false} />
 
-        { (!rows || rows.length == 0) && <Text style={ReportStyles.noData}>No data available</Text> }
+      {rows}
+
+      {(!rows || rows.length == 0) && (
+        <Text style={ReportStyles.noData}>No data available</Text>
+      )}
       <Footer />
     </Page>
-  )
-};
+  );
+}

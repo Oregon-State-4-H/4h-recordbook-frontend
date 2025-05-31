@@ -1,7 +1,6 @@
 "use client";
 
 import classes from "./styles.module.css";
-import { FaDownload } from "react-icons/fa";
 import dynamic from "next/dynamic";
 
 const PDFDownloadLink = dynamic(

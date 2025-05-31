@@ -16,7 +16,7 @@ import Section11Report from "./Section11";
 import Section12Report from "./Section12";
 import Section13Report from "./Section13";
 import Section14Report from "./Section14";
-import { ResumeSections, SectionAny } from "@/API/ResumeAPI";
+import { ResumeSections } from "@/API/ResumeAPI";
 import { User } from "@/API/UserAPI";
 
 /**

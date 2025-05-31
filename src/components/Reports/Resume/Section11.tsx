@@ -2,12 +2,17 @@ import React from "react";
 import { Text, View, StyleSheet, Page } from "@react-pdf/renderer";
 import ReportStyles from "../ReportStyles";
 import Footer from "../Footer";
-import { Section11 } from "@/API/ResumeAPI";
+import {
+  Section11,
+  isS11,
+  ResumePDFProps,
+  ResumePDFTableHeaderProps,
+} from "@/API/ResumeAPI";
 
-let col1Flex = 1;
-let col2Flex = 3;
-let col3Flex = 5;
-let col4Flex = 3;
+const col1Flex = 1;
+const col2Flex = 3;
+const col3Flex = 5;
+const col4Flex = 3;
 
 const styles = StyleSheet.create({
   headerRow: {
@@ -54,11 +59,11 @@ const styles = StyleSheet.create({
   },
 });
 
-function TableHeader(props: any) {
+function TableHeader(props: ResumePDFTableHeaderProps) {
   const headerKey = props.headerKey;
   const isBreak = props.isBreak;
 
-  if(isBreak === false){
+  if (isBreak === false) {
     return (
       <View key={headerKey} style={styles.headerRow}>
         <View style={[styles.col1, ReportStyles.tableColAlignCenter]}>
@@ -74,7 +79,7 @@ function TableHeader(props: any) {
           <Text>Ribbon(s) Received or Placings</Text>
         </View>
       </View>
-    )
+    );
   } else {
     return (
       <View key={headerKey} style={styles.headerRow} break>
@@ -91,23 +96,26 @@ function TableHeader(props: any) {
           <Text>Ribbon(s) Received or Placings</Text>
         </View>
       </View>
-    )
+    );
   }
 }
 
-var rows: React.JSX.Element[] = [];
+let rows: React.JSX.Element[] = [];
 
 function addPageBreaks() {
-  var i = 21;
-  var count = 1
+  let i = 21;
+  let count = 1;
 
   while (i < rows.length) {
-    rows.splice(i, 0, <TableHeader key={"Sec11Head-" + count} isBreak={true} />);
+    rows.splice(
+      i,
+      0,
+      <TableHeader headerKey={"Sec11Head-" + count} isBreak={true} />
+    );
     i += 25;
     count++;
   }
 }
-
 
 /**
  * PDF page for Section 11 of the 4-H Resume
@@ -116,8 +124,8 @@ function addPageBreaks() {
  * @see {@link 'src/app/_db/models/resumeSections/section11Model'} for object structure
  * @example <Section11 tableData={section11Data}/>
  */
-export default function Section11Report(props: any) {
-  const tableData: Section11[] = props.tableData;
+export default function Section11Report(props: ResumePDFProps) {
+  const tableData: Section11[] = props.tableData.filter((item) => isS11(item));
   rows = tableData?.map((row, index) => {
     return (
       <View key={index} style={styles.tableRow}>
@@ -134,24 +142,29 @@ export default function Section11Report(props: any) {
           <Text>{row.ribbon_or_placings}</Text>
         </View>
       </View>
-    )
+    );
   });
 
-  if (tableData?.length > 23)
-    addPageBreaks();
+  if (tableData?.length > 23) addPageBreaks();
 
   return (
     <Page size="LETTER" style={ReportStyles.body} wrap>
-        <Text style={ReportStyles.h1}>Section 11: Participation in 4-H Contests/Competitions</Text>
-        <Text style={ReportStyles.tableHeaading}>List of all contests/competitions you entered in 4-H</Text>
-  
-        <TableHeader headerKey={"Sec11Head-0"} isBreak={false} />
+      <Text style={ReportStyles.h1}>
+        Section 11: Participation in 4-H Contests/Competitions
+      </Text>
+      <Text style={ReportStyles.tableHeaading}>
+        List of all contests/competitions you entered in 4-H
+      </Text>
 
-        {rows}
+      <TableHeader headerKey={"Sec11Head-0"} isBreak={false} />
 
-        { (!rows || rows.length == 0) && <Text style={ReportStyles.noData}>No data available</Text> }
-        
+      {rows}
+
+      {(!rows || rows.length == 0) && (
+        <Text style={ReportStyles.noData}>No data available</Text>
+      )}
+
       <Footer />
     </Page>
-  )
-};
+  );
+}

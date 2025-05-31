@@ -1,8 +1,8 @@
 // import '../../_fonts/fonts';
 import { StyleSheet } from "@react-pdf/renderer";
 
-var pageMargin = 60;
-var beavOrange = "#D73F09"
+const pageMargin = 60;
+const beavOrange = "#D73F09";
 
 const styles = StyleSheet.create({
   body: {
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     color: beavOrange,
     // fontFamily: "Stratum2",
-    fontWeight: "light"
+    fontWeight: "light",
   },
   h1: {
     fontSize: 18,
@@ -42,11 +42,11 @@ const styles = StyleSheet.create({
     // fontFamily: "Stratum2"
   },
   bold: {
-    fontWeight: "bold" 
+    fontWeight: "bold",
   },
   fillableForm: {
     padding: 10,
-    borderColor: 'black',
+    borderColor: "black",
     borderWidth: 1,
     marginBottom: 15,
   },
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   fillableFormInput: {
     flex: 1,
-    borderBottomColor: 'black',
+    borderBottomColor: "black",
     borderBottomWidth: 1,
     fontWeight: "bold",
   },
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   noData: {
     alignSelf: "center",
     marginTop: 10,
-  }
+  },
 });
 
 export default styles;

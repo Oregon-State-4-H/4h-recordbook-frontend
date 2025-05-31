@@ -13,7 +13,7 @@ import CloseIcon from "@mui/icons-material/Close";
  */
 
 interface OverlayModelProps {
-  handleClose: any;
+  handleClose: () => void;
 }
 
 export function OverlayModel(props: PropsWithChildren<OverlayModelProps>) {

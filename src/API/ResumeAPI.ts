@@ -550,3 +550,12 @@ export const deleteSection = async (jwt: string, sectionID: string) => {
     throw error;
   }
 };
+
+export interface ResumePDFProps {
+  tableData: SectionAny[];
+}
+
+export interface ResumePDFTableHeaderProps {
+  headerKey: string;
+  isBreak: boolean;
+}

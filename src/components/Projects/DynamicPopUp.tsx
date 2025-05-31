@@ -47,24 +47,24 @@ export default function DynamicPopUp({
   // map to store key value pairs for body of request
   const [mapState, setMapState] = useState(new Map());
   const hasRun = useRef(false);
-  let Fields: formFields = [];
-
-  switch (subpage) {
-    case "Expense":
-      Fields = subpageOutline.expense.form;
-      break;
-    case "Animal":
-      Fields = subpageOutline.animal.form;
-      break;
-    case "Gain":
-      Fields = subpageOutline.gain.form;
-      break;
-    default:
-      break;
-  }
+  const [Fields, updateFields] = useState<formFields>([]);
 
   useEffect(() => {
     if (!hasRun.current) {
+      switch (subpage) {
+        case "Expense":
+          updateFields(subpageOutline.expense.form);
+          break;
+        case "Animal":
+          updateFields(subpageOutline.animal.form);
+          break;
+        case "Gain":
+          updateFields(subpageOutline.gain.form);
+          break;
+        default:
+          break;
+      }
+
       if (purpose == "edit") {
         console.log("subpage for edit: ", subpage);
         switch (subpage) {

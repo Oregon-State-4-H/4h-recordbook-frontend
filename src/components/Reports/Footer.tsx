@@ -2,10 +2,11 @@ import React from "react";
 import { Text, Image, StyleSheet, View } from "@react-pdf/renderer";
 //import '../../_fonts/fonts';
 
-var logo = "/photos/logo_osu4h.png";
+const logo = "/photos/logo_osu4h.png";
 
-var footerText = "OSU Extension Service prohibits discrimination in all its programs, services, activities, and materials. This publication will be made available in an accessible alternative format upon request. Please contact the OSU Extension 4-H Office at 541-737-7428. This document was updated in March 2023.";
-var footerMargin = 30;
+const footerText =
+  "OSU Extension Service prohibits discrimination in all its programs, services, activities, and materials. This publication will be made available in an accessible alternative format upon request. Please contact the OSU Extension 4-H Office at 541-737-7428. This document was updated in March 2023.";
+const footerMargin = 30;
 
 const styles = StyleSheet.create({
   footer: {
@@ -38,8 +39,12 @@ const styles = StyleSheet.create({
 export default function Footer() {
   return (
     <View style={styles.footer} fixed>
-        <Text style={styles.footerText}>{footerText}</Text>
-        <Image style={styles.footerImage} src={logo} /*alt="OSU Extension Service Logo"*//>
+      <Text style={styles.footerText}>{footerText}</Text>
+      <Image
+        style={styles.footerImage}
+        src={logo}
+        // alt="OSU Extension Service Logo"
+      />
     </View>
-  )
-};
+  );
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { PropsWithChildren } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import { OverlayModelPDF } from "./OverlayModel";
 import { PDFViewer } from "@react-pdf/renderer";
@@ -13,17 +13,16 @@ import { PDFViewer } from "@react-pdf/renderer";
  */
 
 interface PDFPreviewModelProps {
-  handleClose: any;
+  handleClose: () => void;
+  doc: React.JSX.Element;
 }
 
-export default function PDFPreviewModel(
-  props: PropsWithChildren<PDFPreviewModelProps>
-) {
+export default function PDFPreviewModel(props: PDFPreviewModelProps) {
   return (
     <OverlayModelPDF handleClose={props.handleClose}>
       <Box height={"5%"} />
       <PDFViewer width="100%" height="95%">
-        {props.children}
+        {props.doc}
       </PDFViewer>
     </OverlayModelPDF>
   );

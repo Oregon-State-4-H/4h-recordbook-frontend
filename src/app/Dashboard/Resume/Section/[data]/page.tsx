@@ -92,12 +92,12 @@ export default function Dashboard() {
       Sections[data].SectionData
     );
     const PDFDoc = sectionComponents[data];
-    const MyDoc = (
+    const EmptyDoc = (
       <Document>
         <PDFDoc tableData={allSectionEntries} />
       </Document>
     );
-    const [currDoc, setCurrDoc] = usePDF({ document: MyDoc });
+    const [currDoc, setCurrDoc] = useState(EmptyDoc);
     const setSections = (SectionEntries: SectionAny[]) => {
       setSectionEntries(SectionEntries);
       const newResumeValues: ResumeValues = {
@@ -105,6 +105,15 @@ export default function Dashboard() {
         section: data,
       };
       updateResume(newResumeValues);
+
+      const NewDoc = (
+        <Document>
+          <PDFDoc tableData={SectionEntries} />
+        </Document>
+      );
+      console.log(NewDoc);
+      console.log(currDoc);
+      setCurrDoc(NewDoc);
     };
 
     // set section specific JSON for title and Headers
@@ -331,16 +340,23 @@ export default function Dashboard() {
           }}
         >
           {/* first box is placeholder for component that will have preview and download resume pdf */}
-          <Button onClick={handlePDFModalOpen}>Preview Resume</Button>
+          <Button
+            onClick={handlePDFModalOpen}
+            sx={{
+              display: { xs: "none", md: "flex" },
+            }}
+          >
+            Preview Resume
+          </Button>
           {typeof user != "undefined" && Sections[data].SectionPopulated && (
+            // typeof currDoc.url == "string" &&
             <PDFDownloadButton
-              document={
-                <Document>
-                  <PDFDoc tableData={allSectionEntries} />
-                </Document>
-              }
+              document={currDoc}
               fileName={"My 4-H Resume.pdf"}
             />
+            // <a href={currDoc.url} download="test.pdf">
+            //   Download
+            // </a>
           )}
 
           {showPreview &&
@@ -352,11 +368,10 @@ export default function Dashboard() {
                 aria-labelledby="preview-modal-title"
                 aria-describedby="preview-modal-description"
               >
-                <PDFPreviewModel handleClose={() => setShowPreview(false)}>
-                  <Document>
-                    <PDFDoc tableData={allSectionEntries} />
-                  </Document>
-                </PDFPreviewModel>
+                <PDFPreviewModel
+                  handleClose={() => setShowPreview(false)}
+                  doc={currDoc}
+                />
               </Modal>
             )}
           {/* CreateIconButton returns content in a simularly styled box */}

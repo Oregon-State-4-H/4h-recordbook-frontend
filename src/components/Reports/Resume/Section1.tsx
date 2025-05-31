@@ -2,15 +2,20 @@ import React from "react";
 import { Text, View, StyleSheet, Page } from "@react-pdf/renderer";
 import ReportStyles from "../ReportStyles";
 import Footer from "../Footer";
-import { Section1 } from "@/API/ResumeAPI";
+import {
+  Section1,
+  isS1,
+  ResumePDFProps,
+  ResumePDFTableHeaderProps,
+} from "@/API/ResumeAPI";
 
-let col1Flex = 1.25;
-let col2Flex = 1;
-let col3Flex = 3;
-let col4Flex = 1.75;
-let col5Flex = 3;
-let col6Flex = 1;
-let col7Flex = 1.5;
+const col1Flex = 1.25;
+const col2Flex = 1;
+const col3Flex = 3;
+const col4Flex = 1.75;
+const col5Flex = 3;
+const col6Flex = 1;
+const col7Flex = 1.5;
 
 const styles = StyleSheet.create({
   headerRow: {
@@ -69,7 +74,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function TableHeader(props: any) {
+function TableHeader(props: ResumePDFTableHeaderProps) {
   const headerKey = props.headerKey;
   const isBreak = props.isBreak;
 
@@ -122,14 +127,18 @@ function TableHeader(props: any) {
   }
 }
 
-var rows: React.JSX.Element[] = [];
+let rows: React.JSX.Element[] = [];
 
 function addPageBreaks() {
-  var i = 21;
-  var count = 1;
+  let i = 21;
+  let count = 1;
 
   while (i < rows.length) {
-    rows.splice(i, 0, <TableHeader key={"Sec1Head-" + count} isBreak={true} />);
+    rows.splice(
+      i,
+      0,
+      <TableHeader headerKey={"Sec1Head-" + count} isBreak={true} />
+    );
     i += 25;
     count++;
   }
@@ -142,8 +151,8 @@ function addPageBreaks() {
  * @see {@link 'src/app/_db/models/resumeSections/section1Model'} for object structure
  * @example <Section1 tableData={section1Data}/>
  */
-export default function Section1Report(props: any) {
-  const tableData: Section1[] = props.tableData;
+export default function Section1Report(props: ResumePDFProps) {
+  const tableData: Section1[] = props.tableData.filter((item) => isS1(item));
   rows = tableData?.map((row, index) => {
     return (
       <View key={index} style={styles.tableRow}>
