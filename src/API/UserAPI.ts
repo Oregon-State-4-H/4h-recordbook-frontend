@@ -39,7 +39,7 @@ export const updateUser = async (jwt: string, input: string) => {
       },
       body: input,
     });
-    const data = await response;
+    await response;
     if (!response.ok) {
       throw new Error("Unexpected error occurred");
     }

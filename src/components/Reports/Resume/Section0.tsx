@@ -55,13 +55,17 @@ export default function Section0({ userData }: S0Props) {
       userData?.middle_name_initial +
       " " +
       userData?.last_name_initial || "";
-  const dob = userData?.birthdate
-    ? new Date(userData?.birthdate).toISOString().split("T")[0]
-    : "";
+  let dob: string | Date = userData?.birthdate;
+  if (dob != "TODO") {
+    dob = dob ? new Date(userData?.birthdate).toISOString().split("T")[0] : "";
+  }
   const county = userData?.county_name || "";
-  const dateJoined = userData?.created
-    ? new Date(userData?.created).toISOString().split("T")[0]
-    : "";
+  let dateJoined: string | Date = userData?.created;
+  if (dateJoined != "TODO") {
+    dateJoined = dateJoined
+      ? new Date(userData?.created).toISOString().split("T")[0]
+      : "";
+  }
 
   return (
     <Page size="LETTER" style={ReportStyles.body}>
