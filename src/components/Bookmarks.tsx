@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { MdBookmarkBorder, MdBookmark } from "react-icons/md";
-// import { getAccessToken } from "@auth0/nextjs-auth0";
-import { getAccessToken } from "@/components/DummyUser";
+import { getAccessToken } from "@auth0/nextjs-auth0";
+// import { getAccessToken } from "@/components/DummyUser";
 import Box from "@mui/material/Box";
 import {
   CustomBookmarkFields,

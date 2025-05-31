@@ -73,7 +73,7 @@ function TableHeader(props: any) {
   const headerKey = props.headerKey;
   const isBreak = props.isBreak;
 
-  if(isBreak === false){
+  if (isBreak === false) {
     return (
       <View key={headerKey} style={styles.headerRow}>
         <View style={[styles.col1, ReportStyles.tableColAlignCenter]}>
@@ -95,7 +95,7 @@ function TableHeader(props: any) {
           <Text>Meetings Attended</Text>
         </View>
       </View>
-    )
+    );
   } else {
     return (
       <View key={headerKey} style={styles.headerRow} break>
@@ -118,7 +118,7 @@ function TableHeader(props: any) {
           <Text>Meetings Attended</Text>
         </View>
       </View>
-    )
+    );
   }
 }
 
@@ -126,7 +126,7 @@ var rows: React.JSX.Element[] = [];
 
 function addPageBreaks() {
   var i = 21;
-  var count = 1
+  var count = 1;
 
   while (i < rows.length) {
     rows.splice(i, 0, <TableHeader key={"Sec1Head-" + count} isBreak={true} />);
@@ -163,27 +163,32 @@ export default function Section1Report(props: any) {
           <Text>{row.club_leader}</Text>
         </View>
         <View style={[styles.col7, ReportStyles.tableColAlignCenter]}>
-          <Text>{row.meetings_attended} / {row.meetings_held}</Text>
+          <Text>
+            {row.meetings_attended} / {row.meetings_held}
+          </Text>
         </View>
       </View>
-    )
+    );
   });
 
-  if (tableData?.length > 23)
-    addPageBreaks();
+  if (tableData?.length > 23) addPageBreaks();
 
   return (
     <Page size="LETTER" style={ReportStyles.body} wrap>
-        <Text style={ReportStyles.h1}>Section 1: 4-H Involvement Summary</Text>
-        <Text style={ReportStyles.tableHeaading}>List of all of the clubs/groups I have participated in.</Text>
-  
-        <TableHeader headerKey={"Sec1Head-0"} isBreak={false} />
+      <Text style={ReportStyles.h1}>Section 1: 4-H Involvement Summary</Text>
+      <Text style={ReportStyles.tableHeaading}>
+        List of all of the clubs/groups I have participated in.
+      </Text>
 
-        {rows}
+      <TableHeader headerKey={"Sec1Head-0"} isBreak={false} />
 
-        { (!rows || rows.length == 0) && <Text style={ReportStyles.noData}>No data available</Text> }
+      {rows}
+
+      {(!rows || rows.length == 0) && (
+        <Text style={ReportStyles.noData}>No data available</Text>
+      )}
 
       <Footer />
     </Page>
-  )
-};
+  );
+}

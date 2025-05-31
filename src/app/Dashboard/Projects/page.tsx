@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-// import { getAccessToken } from "@auth0/nextjs-auth0";
-import { getAccessToken } from "@/components/DummyUser";
+import { getAccessToken } from "@auth0/nextjs-auth0";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import {

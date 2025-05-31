@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { PropsWithChildren } from "react";
 import Card from "@mui/material/Card";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
@@ -11,11 +13,10 @@ import CloseIcon from "@mui/icons-material/Close";
  */
 
 interface OverlayModelProps {
-  children: any;
   handleClose: any;
 }
 
-export function OverlayModel({ children, handleClose }: OverlayModelProps) {
+export function OverlayModel(props: PropsWithChildren<OverlayModelProps>) {
   return (
     <Card
       sx={{
@@ -33,17 +34,17 @@ export function OverlayModel({ children, handleClose }: OverlayModelProps) {
     >
       <IconButton
         sx={{ position: "absolute", right: "4%", top: "4%" }}
-        onClick={handleClose}
+        onClick={props.handleClose}
         size="small"
       >
         <CloseIcon />
       </IconButton>
-      {children}
+      {props.children}
     </Card>
   );
 }
 
-export function OverlayModelPDF({ children, handleClose }: OverlayModelProps) {
+export function OverlayModelPDF(props: PropsWithChildren<OverlayModelProps>) {
   return (
     <Card
       sx={{
@@ -61,12 +62,12 @@ export function OverlayModelPDF({ children, handleClose }: OverlayModelProps) {
     >
       <IconButton
         sx={{ position: "absolute", right: "4%", top: "4%" }}
-        onClick={handleClose}
+        onClick={props.handleClose}
         size="small"
       >
         <CloseIcon />
       </IconButton>
-      {children}
+      {props.children}
     </Card>
   );
 }

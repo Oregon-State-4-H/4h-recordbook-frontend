@@ -1,3 +1,5 @@
+"use client";
+
 import { Document } from "@react-pdf/renderer";
 import Section0Report from "./Section0";
 import Section1Report from "./Section1";
@@ -14,14 +16,21 @@ import Section11Report from "./Section11";
 import Section12Report from "./Section12";
 import Section13Report from "./Section13";
 import Section14Report from "./Section14";
-import { ResumeSections } from "@/API/ResumeAPI";
+import { ResumeSections, SectionAny } from "@/API/ResumeAPI";
+import { User } from "@/API/UserAPI";
 
 /**
  * Complete PDF file for the 4-H resume
  * @param {Object} resumeData - resume data for all 14 sections
  * @returns {JSX.Element}
  */
-export default function PDFFile(props: any) {
+
+export interface ResumePDFProps {
+  userData: User;
+  resumeData: ResumeSections;
+}
+
+export default function PDFFile(props: ResumePDFProps) {
   const userData = props.userData;
   const resumeData: ResumeSections = props.resumeData;
   return (

@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
-// import { getAccessToken } from "@auth0/nextjs-auth0";
-import { getAccessToken } from "@/components/DummyUser";
+import { getAccessToken } from "@auth0/nextjs-auth0";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
@@ -51,7 +50,7 @@ import Section11 from "@/components/Reports/Resume/Section11";
 import Section12 from "@/components/Reports/Resume/Section12";
 import Section13 from "@/components/Reports/Resume/Section13";
 import Section14 from "@/components/Reports/Resume/Section14";
-import { Document } from "@react-pdf/renderer";
+import { Document, usePDF } from "@react-pdf/renderer";
 
 const sectionComponents = {
   "1": Section1,
@@ -93,6 +92,12 @@ export default function Dashboard() {
       Sections[data].SectionData
     );
     const PDFDoc = sectionComponents[data];
+    const MyDoc = (
+      <Document>
+        <PDFDoc tableData={allSectionEntries} />
+      </Document>
+    );
+    const [currDoc, setCurrDoc] = usePDF({ document: MyDoc });
     const setSections = (SectionEntries: SectionAny[]) => {
       setSectionEntries(SectionEntries);
       const newResumeValues: ResumeValues = {

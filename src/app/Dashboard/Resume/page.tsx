@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-// import { getAccessToken } from "@auth0/nextjs-auth0";
-import { getAccessToken } from "@/components/DummyUser";
+import { getAccessToken } from "@auth0/nextjs-auth0";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Toolbar from "@mui/material/Toolbar";
@@ -161,7 +160,7 @@ export default function Dashboard() {
             aria-labelledby="preview-modal-title"
             aria-describedby="preview-modal-description"
           >
-            <PDFPreviewModel title="" handleClose={() => setShowPreview(false)}>
+            <PDFPreviewModel handleClose={() => setShowPreview(false)}>
               <PDFFile userData={user} resumeData={SAll} />
             </PDFPreviewModel>
           </Modal>

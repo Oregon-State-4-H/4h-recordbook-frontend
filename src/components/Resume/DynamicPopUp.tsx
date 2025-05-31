@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { getAccessToken } from "@auth0/nextjs-auth0";
-import { getAccessToken } from "@/components/DummyUser";
+import { getAccessToken } from "@auth0/nextjs-auth0";
 import Button from "@mui/material/Button";
 import CardActions from "@mui/material/CardActions";
 import Card from "@mui/material/Card";
