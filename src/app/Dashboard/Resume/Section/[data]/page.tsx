@@ -22,8 +22,13 @@ import {
 import { useBookmark } from "@/context/BookmarkContext";
 import { useResume, ResumeValues } from "@/context/ResumeContext";
 import sectionOutline from "@/components/Resume/SectionOutline.json";
-import { fetchSectionData, SectionAny, SectionEmpty } from "@/API/ResumeAPI";
-import CreateIconButton from "@/components/Resume/CreateIconButton";
+import {
+  fetchSectionData,
+  SectionAny,
+  SectionEmpty,
+  emptySection,
+} from "@/API/ResumeAPI";
+import CreateIconButton from "@/components/CreateIconButton";
 import DynamicPopUp from "@/components/Resume/DynamicPopUp";
 import ResumeTableRow from "@/components/Resume/TableRow";
 import ResumeCard from "@/components/Resume/MobileCard";
@@ -389,7 +394,9 @@ export default function Dashboard() {
         </Stack>
 
         {/* CreateIconButton returns content in a simularly styled box */}
-        <CreateIconButton handleOpen={handleinputModalOpen} />
+        <CreateIconButton
+          handleOpen={() => handleinputModalOpen(emptySection, "create")}
+        />
       </Box>
 
       {/* desktop view resume entries */}

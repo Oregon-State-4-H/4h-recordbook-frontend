@@ -6,7 +6,7 @@ import { useParams, usePathname } from "next/navigation";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import SubpageCard from "@/components/LinkCard";
-import CreateButton from "@/components/Projects/CreateIconButton";
+import CreateButton from "@/components/CreateIconButton";
 import DynamicPopUp from "@/components/Projects/DynamicPopUp";
 import Grid from "@mui/material/Grid";
 import {
@@ -158,7 +158,11 @@ function Dashboard() {
               padding: "0px",
             }}
           ></Box>
-          <CreateButton handleOpen={handleinputModalOpen} />
+          <CreateButton
+            handleOpen={() => {
+              handleinputModalOpen(emptyAnimal, "create");
+            }}
+          />
         </Box>
         {/* For every subpage, generate a clickable card */}
         <Box

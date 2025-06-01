@@ -338,6 +338,14 @@ export function isSectionEmpty(
   return (sectionData as SectionEmpty).section == -1;
 }
 
+export const emptySection: SectionEmpty = {
+  id: "",
+  section: -1,
+  user_id: "",
+  created: "",
+  updated: "",
+};
+
 export function isSectionValid(
   sectionData: SectionAny
 ): sectionData is SectionValid {

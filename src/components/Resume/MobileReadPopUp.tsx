@@ -1,6 +1,6 @@
 import React from "react";
 import CardActions from "@mui/material/CardActions";
-import { OverlayModel } from "@/components/Resume/OverlayModal";
+import { OverlayModel } from "@/components/OverlayModal";
 import MobileReadDetail from "@/components/Resume/MobileReadDetail";
 import EditMobileButton from "@/components/Resume/EditMobileButton";
 import { ResumeDeleteMobileButton } from "@/components/DeleteButtons";

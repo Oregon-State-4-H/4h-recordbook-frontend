@@ -19,7 +19,7 @@ import {
 } from "@/context/NavbarContext";
 import { useBookmark } from "@/context/BookmarkContext";
 import ProjectTableRow from "@/components/Projects/TableRow";
-import CreateButton from "@/components/Projects/CreateIconButton";
+import CreateButton from "@/components/CreateIconButton";
 import DynamicPopUp from "@/components/Projects/DynamicPopUp";
 import MobileCard from "@/components/Projects/MobileCard";
 import MobileReadPopUp from "@/components/Projects/MobileReadPopUp";
@@ -197,7 +197,11 @@ export default function AnimalExpenses() {
               padding: "0px",
             }}
           ></Box>
-          <CreateButton handleOpen={handleinputModalOpen} />
+          <CreateButton
+            handleOpen={() => {
+              handleinputModalOpen(emptyExpense, "create");
+            }}
+          />
         </Box>
         <Paper
           sx={{

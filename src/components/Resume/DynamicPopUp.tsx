@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAccessToken } from "@auth0/nextjs-auth0";
 import InputsBySection from "@/components/Resume/InputsBySection";
-import { OverlayModelCRUD } from "@/components/Resume/OverlayModal";
+import { OverlayModelCRUD } from "@/components/OverlayModal";
 import {
   SectionAny,
   updateSection,

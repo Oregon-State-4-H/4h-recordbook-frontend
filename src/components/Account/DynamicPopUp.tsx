@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getAccessToken } from "@auth0/nextjs-auth0";
 import InputsBySubpage from "@/components/Account/InputsBySubpage";
-import { OverlayModelCRUD } from "@/components/Resume/OverlayModal";
+import { OverlayModelCRUD } from "@/components/OverlayModal";
 import { User, updateUser } from "@/API/UserAPI";
 
 interface PopUpProps {

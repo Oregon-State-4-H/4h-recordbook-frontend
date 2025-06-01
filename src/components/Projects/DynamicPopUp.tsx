@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import dayjs from "dayjs";
 import { getAccessToken } from "@auth0/nextjs-auth0";
 import InputsBySubpage from "./InputsBySubpage";
-import { OverlayModelCRUD } from "@/components/Resume/OverlayModal";
+import { OverlayModelCRUD } from "@/components/OverlayModal";
 import subpageOutline from "@/components/Projects/SubpageOutline.json";
 import { formFields } from "@/API/JSON";
 import { DayJSTypetoRFC3339 } from "@/components/Date";

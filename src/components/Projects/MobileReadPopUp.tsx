@@ -3,7 +3,7 @@ import CardActions from "@mui/material/CardActions";
 import MobileReadDetail from "@/components/Projects/MobileReadDetail";
 import EditMobileButton from "@/components/Projects/EditMobileButton";
 import { ProjectSubEntryDeleteMobileButton } from "@/components/DeleteButtons";
-import { OverlayModel } from "@/components/Resume/OverlayModal";
+import { OverlayModel } from "@/components/OverlayModal";
 import { AnimalProjectTypes } from "@/API/ProjectAPI";
 
 interface PopUpProps {
