@@ -1,7 +1,7 @@
 import React from "react";
 import CardContent from "@mui/material/CardContent";
 import subpageOutline from "@/components/Projects/SubpageOutline.json";
-import DynamicInput from "./DynamicInput";
+import { DynamicInputSubpage } from "./DynamicInput";
 import { AnimalProjectTypes } from "@/API/ProjectAPI";
 import { formFields } from "@/API/JSON";
 
@@ -39,7 +39,7 @@ export default function ResumeCreateModalContent({
       sx={{ backgroundColor: "rgba(255,255,255,0.87)", margin: "20px" }}
     >
       {Fields.map((item, index) => (
-        <DynamicInput
+        <DynamicInputSubpage
           key={index}
           subpage={subpage}
           setMapState={setMapState}

@@ -1,4 +1,50 @@
 {
+  "project": {
+    "headers": [],
+    "form": [
+      {
+        "type": "text",
+        "label": "year",
+        "name": "year",
+        "required": "yes",
+        "placeholder": "ex: 2024-25"
+      },
+      {
+        "type": "text",
+        "label": "Name",
+        "name": "name",
+        "required": "yes",
+        "placeholder": ""
+      },
+      {
+        "type": "select",
+        "label": "Type",
+        "name": "type",
+        "options": [{ "label": "Animal", "value": "animal" }]
+      },
+      {
+        "type": "text-long",
+        "label": "Description",
+        "name": "description",
+        "required": "yes",
+        "placeholder": ""
+      },
+      {
+        "type": "date",
+        "label": "Start Date",
+        "name": "start_date",
+        "required": "yes",
+        "placeholder": ""
+      },
+      {
+        "type": "date",
+        "label": "End Date",
+        "name": "end_date",
+        "required": "yes",
+        "placeholder": ""
+      }
+    ]
+  },
   "expense": {
     "headers": ["Cost", "Date", "Items", "Quantity", ""],
     "form": [

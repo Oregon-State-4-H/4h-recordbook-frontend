@@ -59,7 +59,7 @@ export const GainKeys: GainKey[] = [
 ];
 
 export const DailyFeedKeys: DailyFeedKey[] = [];
-export const ExpenseKeys: ExpenseKey[] = ["cost", "date", "items", "quantity"];
+export const ExpenseKeys: ExpenseKey[] = [];
 export const FeedKeys: FeedKey[] = [];
 export const FeedPurchaseKeys: FeedPurchaseKey[] = [];
 export const SupplyKeys: SupplyKey[] = [];
@@ -121,6 +121,19 @@ export type AutoProjectFields = {
 };
 
 export type Project = CustomProjectFields & AutoProjectFields;
+
+export const emptyProject: Project = {
+  id: "-1",
+  user_id: "-1",
+  created: "",
+  updated: "",
+  description: "",
+  end_date: new Date(),
+  name: "",
+  start_date: new Date(),
+  type: "",
+  year: "",
+};
 
 export type AnimalProjectFields = {
   animal_cost: string;
@@ -348,10 +361,7 @@ export const fetchProject = async (
   }
 };
 
-export const postProject = async (
-  jwt: string,
-  project: CustomProjectFields
-) => {
+export const postProject = async (jwt: string, project: string) => {
   try {
     const response = await fetch(`${buildBaseUrl()}project`, {
       method: "POST",
@@ -359,14 +369,14 @@ export const postProject = async (
         Authorization: `Bearer ${jwt}`,
         "Content-Type": "application/json", // Adjust if needed
       },
-      body: JSON.stringify(project),
+      body: project,
     });
 
     const data = await response.json();
     if (!response.ok) {
       throw new Error(data.message || "Unexpected error occurred");
     }
-    return true;
+    return data.project as Project;
   } catch (error) {
     throw error;
   }
@@ -562,8 +572,6 @@ export const postSubpageEntry = async <T>(
   endpoint: string,
   input: string
 ) => {
-  // return type for after backend is updated to return created entry
-  // ): Promise<T> => {
   try {
     console.log(endpoint);
     const response = await fetch(`${buildBaseUrl()}${endpoint}`, {

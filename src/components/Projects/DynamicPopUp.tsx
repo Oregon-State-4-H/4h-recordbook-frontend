@@ -1,25 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
 import dayjs from "dayjs";
 import { getAccessToken } from "@auth0/nextjs-auth0";
-import InputsBySubpage from "./InputsBySubpage";
+import CardContent from "@mui/material/CardContent";
+import { DynamicInputProject } from "@/components/Projects/DynamicInput";
+import InputsBySubpage from "@/components/Projects/InputsBySubpage";
 import { OverlayModelCRUD } from "@/components/OverlayModal";
 import subpageOutline from "@/components/Projects/SubpageOutline.json";
 import { formFields } from "@/API/JSON";
 import { DayJSTypetoRFC3339 } from "@/components/Date";
-
 import {
   AnimalProjectTypes,
   isExpense,
   emptyAnimalProjectEntry,
   postSubpageEntry,
+  postProject,
   updateSubpageEntry,
   EndpointByDynamicPathSuffix,
   AnimalKeys,
   isAnimal,
   GainKeys,
+  Project,
 } from "@/API/ProjectAPI";
 
-interface PopUpProps {
+interface PopUpPropsSubpage {
   subpage: string;
   subpageEntry: AnimalProjectTypes;
   handleModalClose: () => void;
@@ -29,7 +32,7 @@ interface PopUpProps {
   priorSubpageEntries: AnimalProjectTypes[];
 }
 
-export default function DynamicPopUp({
+export function DynamicPopUpSubpage({
   purpose,
   subpage,
   subpageEntry,
@@ -37,7 +40,7 @@ export default function DynamicPopUp({
   project_id,
   setSubpageEntries,
   priorSubpageEntries,
-}: PopUpProps) {
+}: PopUpPropsSubpage) {
   const [accessToken, setAccessToken] = useState("");
   // map to store key value pairs for body of request
   const [mapState, setMapState] = useState(new Map());
@@ -263,4 +266,84 @@ export default function DynamicPopUp({
     default:
       break;
   }
+}
+
+interface PopUpPropsProject {
+  handleModalClose: () => void;
+  setAllProjects: (allProjects: Project[]) => void;
+  priorProjects: Project[];
+}
+
+export function DynamicPopUpProject({
+  handleModalClose,
+  setAllProjects,
+  priorProjects,
+}: PopUpPropsProject) {
+  const [accessToken, setAccessToken] = useState("");
+  // map to store key value pairs for body of request
+  const [mapState, setMapState] = useState(new Map());
+  const Fields = subpageOutline.project.form;
+
+  // function to send POST create request to backend
+  const handleCreate = async () => {
+    console.log("handle create function.\n");
+    console.log(JSON.stringify(Object.fromEntries(mapState)));
+    const postData = async () => {
+      try {
+        if (accessToken == "") {
+          console.log("get fresh access token.\n");
+
+          const token = await getAccessToken();
+          setAccessToken(token);
+          const entryData = await postProject(
+            token,
+            JSON.stringify(Object.fromEntries(mapState))
+          );
+          console.log("post request done.\n");
+
+          setAllProjects([...priorProjects, entryData]);
+          console.log("updated state array.\n");
+
+          handleModalClose();
+        } else {
+          console.log("use exsisting access token.\n");
+
+          const entryData = await postProject(
+            accessToken,
+            JSON.stringify(Object.fromEntries(mapState))
+          );
+          console.log("post request done.\n");
+
+          setAllProjects([...priorProjects, entryData]);
+          console.log("updated state array.\n");
+
+          handleModalClose();
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    postData();
+    console.log("end handler function.\n");
+  };
+
+  return (
+    <OverlayModelCRUD
+      handleClose={handleModalClose}
+      handleCRUD={handleCreate}
+      title="CREATE"
+    >
+      <CardContent
+        sx={{ backgroundColor: "rgba(255,255,255,0.87)", margin: "20px" }}
+      >
+        {Fields.map((item, index) => (
+          <DynamicInputProject
+            key={index}
+            setMapState={setMapState}
+            inputFieldJSON={item}
+          />
+        ))}
+      </CardContent>
+    </OverlayModelCRUD>
+  );
 }

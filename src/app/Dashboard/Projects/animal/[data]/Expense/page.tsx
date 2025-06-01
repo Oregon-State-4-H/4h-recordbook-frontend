@@ -20,7 +20,7 @@ import {
 import { useBookmark } from "@/context/BookmarkContext";
 import ProjectTableRow from "@/components/Projects/TableRow";
 import CreateButton from "@/components/CreateIconButton";
-import DynamicPopUp from "@/components/Projects/DynamicPopUp";
+import { DynamicPopUpSubpage } from "@/components/Projects/DynamicPopUp";
 import MobileCard from "@/components/Projects/MobileCard";
 import MobileReadPopUp from "@/components/Projects/MobileReadPopUp";
 import subpageOutline from "@/components/Projects/SubpageOutline.json";
@@ -287,7 +287,7 @@ export default function AnimalExpenses() {
           aria-labelledby="input-modal-title"
           aria-describedby="input-modal-description"
         >
-          <DynamicPopUp
+          <DynamicPopUpSubpage
             subpage="Expense"
             subpageEntry={inputModalEntry}
             handleModalClose={handleinputModalClose}

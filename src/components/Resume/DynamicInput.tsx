@@ -478,7 +478,7 @@ export default function ResumeCreateModalContent({
                 onChange={handleSelect}
               >
                 {inputFieldJSON.options.map((item, index) => (
-                  <MenuItem value={item.label} key={index}>
+                  <MenuItem value={item.value} key={index}>
                     {item.label}
                   </MenuItem>
                 ))}
