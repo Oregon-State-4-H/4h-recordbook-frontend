@@ -2,19 +2,12 @@ import React from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import { SectionAny } from "../../API/ResumeAPI";
 
-interface ResumeActionButtonProps {
-  handleOpen: (currEntry: SectionAny, purpose: string) => void;
-  resumeEntry: SectionAny;
+interface ActionButtonProps {
+  handleOpen: () => void;
 }
 
-export default function Section({
-  resumeEntry,
-  handleOpen,
-}: ResumeActionButtonProps) {
-  const openModal = () => handleOpen(resumeEntry, "edit");
-
+export default function Section(props: ActionButtonProps) {
   return (
     <Box
       sx={{
@@ -26,7 +19,7 @@ export default function Section({
       }}
     >
       <IconButton
-        onClick={openModal}
+        onClick={props.handleOpen}
         sx={{
           alignSelf: "right",
         }}

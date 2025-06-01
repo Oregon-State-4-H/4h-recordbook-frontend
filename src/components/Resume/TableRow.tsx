@@ -2,8 +2,8 @@ import * as React from "react";
 import TableCell from "@mui/material/TableCell";
 import { StyledTableRow } from "@/components//StyledTableRow";
 import { ResumeDeleteIconButton } from "@/components/DeleteButtons";
+import EditIconButton from "@/components/EditIconButton";
 
-import ResumeEdit from "@/components/Resume/EditIconButton";
 import {
   SectionAny,
   isS1,
@@ -20,7 +20,7 @@ import {
   isS12,
   isS13,
   isS14,
-} from "../../API/ResumeAPI";
+} from "@/API/ResumeAPI";
 
 interface ResumeRowProps {
   jwt: string;
@@ -30,6 +30,23 @@ interface ResumeRowProps {
   setSections: (allEntries: SectionAny[]) => void;
   priorEntries: SectionAny[];
   handleOpen: (currEntry: SectionAny, purpose: string) => void;
+}
+
+interface ResumeEditProps {
+  resumeEntry: SectionAny;
+  handleOpen: (currEntry: SectionAny, purpose: string) => void;
+}
+
+function TableRowEdit({ resumeEntry, handleOpen }: ResumeEditProps) {
+  return (
+    <TableCell>
+      <EditIconButton
+        handleOpen={() => {
+          handleOpen(resumeEntry, "edit");
+        }}
+      />
+    </TableCell>
+  );
 }
 
 export default function ResumeTableCells({
@@ -66,9 +83,7 @@ export default function ResumeTableCells({
             </TableCell>
             <TableCell>{resumeEntry.meetings_held}</TableCell>
             <TableCell>{resumeEntry.meetings_attended}</TableCell>
-            <TableCell>
-              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
-            </TableCell>
+            <TableRowEdit handleOpen={handleOpen} resumeEntry={resumeEntry} />
             <TableCell>
               <ResumeDeleteIconButton
                 jwt={jwt}
@@ -95,9 +110,7 @@ export default function ResumeTableCells({
             <TableCell sx={{ textAlign: "center" }}>
               {resumeEntry.project_scope}
             </TableCell>
-            <TableCell>
-              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
-            </TableCell>
+            <TableRowEdit handleOpen={handleOpen} resumeEntry={resumeEntry} />
             <TableCell>
               <ResumeDeleteIconButton
                 jwt={jwt}
@@ -130,9 +143,7 @@ export default function ResumeTableCells({
             <TableCell sx={{ textAlign: "center" }}>
               {resumeEntry.level}
             </TableCell>
-            <TableCell>
-              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
-            </TableCell>
+            <TableRowEdit handleOpen={handleOpen} resumeEntry={resumeEntry} />
             <TableCell>
               <ResumeDeleteIconButton
                 jwt={jwt}
@@ -165,9 +176,7 @@ export default function ResumeTableCells({
             <TableCell sx={{ textAlign: "center" }}>
               {resumeEntry.level}
             </TableCell>
-            <TableCell>
-              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
-            </TableCell>
+            <TableRowEdit handleOpen={handleOpen} resumeEntry={resumeEntry} />
             <TableCell>
               <ResumeDeleteIconButton
                 jwt={jwt}
@@ -200,9 +209,7 @@ export default function ResumeTableCells({
             <TableCell sx={{ textAlign: "center" }}>
               {resumeEntry.num_people_reached}
             </TableCell>
-            <TableCell>
-              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
-            </TableCell>
+            <TableRowEdit handleOpen={handleOpen} resumeEntry={resumeEntry} />
             <TableCell>
               <ResumeDeleteIconButton
                 jwt={jwt}
@@ -238,9 +245,7 @@ export default function ResumeTableCells({
             <TableCell sx={{ textAlign: "center" }}>
               {resumeEntry.num_people_reached}
             </TableCell>
-            <TableCell>
-              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
-            </TableCell>
+            <TableRowEdit handleOpen={handleOpen} resumeEntry={resumeEntry} />
             <TableCell>
               <ResumeDeleteIconButton
                 jwt={jwt}
@@ -273,9 +278,7 @@ export default function ResumeTableCells({
             <TableCell sx={{ textAlign: "center" }}>
               {resumeEntry.num_people_reached}
             </TableCell>
-            <TableCell>
-              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
-            </TableCell>
+            <TableRowEdit handleOpen={handleOpen} resumeEntry={resumeEntry} />
             <TableCell>
               <ResumeDeleteIconButton
                 jwt={jwt}
@@ -308,9 +311,7 @@ export default function ResumeTableCells({
             <TableCell sx={{ textAlign: "center" }}>
               {resumeEntry.num_people_reached}
             </TableCell>
-            <TableCell>
-              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
-            </TableCell>
+            <TableRowEdit handleOpen={handleOpen} resumeEntry={resumeEntry} />
             <TableCell>
               <ResumeDeleteIconButton
                 jwt={jwt}
@@ -349,9 +350,7 @@ export default function ResumeTableCells({
             <TableCell sx={{ textAlign: "center" }}>
               {resumeEntry.audience_size}
             </TableCell>
-            <TableCell>
-              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
-            </TableCell>
+            <TableRowEdit handleOpen={handleOpen} resumeEntry={resumeEntry} />
             <TableCell>
               <ResumeDeleteIconButton
                 jwt={jwt}
@@ -390,9 +389,7 @@ export default function ResumeTableCells({
             <TableCell sx={{ textAlign: "center" }}>
               {resumeEntry.audience_size}
             </TableCell>
-            <TableCell>
-              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
-            </TableCell>
+            <TableRowEdit handleOpen={handleOpen} resumeEntry={resumeEntry} />
             <TableCell>
               <ResumeDeleteIconButton
                 jwt={jwt}
@@ -425,9 +422,7 @@ export default function ResumeTableCells({
             <TableCell sx={{ textAlign: "center" }}>
               {resumeEntry.ribbon_or_placings}
             </TableCell>
-            <TableCell>
-              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
-            </TableCell>
+            <TableRowEdit handleOpen={handleOpen} resumeEntry={resumeEntry} />
             <TableCell>
               <ResumeDeleteIconButton
                 jwt={jwt}
@@ -460,9 +455,7 @@ export default function ResumeTableCells({
             <TableCell sx={{ textAlign: "center" }}>
               {resumeEntry.level}
             </TableCell>
-            <TableCell>
-              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
-            </TableCell>
+            <TableRowEdit handleOpen={handleOpen} resumeEntry={resumeEntry} />
             <TableCell>
               <ResumeDeleteIconButton
                 jwt={jwt}
@@ -489,9 +482,7 @@ export default function ResumeTableCells({
             <TableCell sx={{ textAlign: "center" }}>
               {resumeEntry.recognition_type}
             </TableCell>
-            <TableCell>
-              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
-            </TableCell>
+            <TableRowEdit handleOpen={handleOpen} resumeEntry={resumeEntry} />
             <TableCell>
               <ResumeDeleteIconButton
                 jwt={jwt}
@@ -518,9 +509,7 @@ export default function ResumeTableCells({
             <TableCell sx={{ textAlign: "center" }}>
               {resumeEntry.recognition_type}
             </TableCell>
-            <TableCell>
-              <ResumeEdit resumeEntry={resumeEntry} handleOpen={handleOpen} />
-            </TableCell>
+            <TableRowEdit handleOpen={handleOpen} resumeEntry={resumeEntry} />
             <TableCell>
               <ResumeDeleteIconButton
                 jwt={jwt}

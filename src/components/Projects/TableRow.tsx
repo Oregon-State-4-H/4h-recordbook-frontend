@@ -1,27 +1,35 @@
 import * as React from "react";
 import TableCell from "@mui/material/TableCell";
 import { StyledTableRow } from "../StyledTableRow";
-import { DeleteIconButton } from "@/components/Projects/DeleteButtons";
-import EditIconButton from "./EditIconButton";
-import { AnimalProjectTypes, isExpense } from "../../API/ProjectAPI";
+import { ProjectSubEntryDeleteIconButton } from "@/components/DeleteButtons";
+import EditIconButton from "@/components/EditIconButton";
+import {
+  AnimalProjectTypes,
+  isExpense,
+  EndpointByDynamicPathSuffix,
+} from "@/API/ProjectAPI";
 import { toDDMMYY } from "@/components/Date";
 import Stack from "@mui/material/Stack";
 
 interface ResumeRowProps {
+  jwt: string;
   index: number;
   projectEntry: AnimalProjectTypes;
   setEntries: (allEntries: AnimalProjectTypes[]) => void;
   priorEntries: AnimalProjectTypes[];
   handleOpen: (currEntry: AnimalProjectTypes, purpose: string) => void;
+  handleModalClose: () => void;
   subpage: string;
 }
 
 export default function ResumeTableCells({
   index,
   projectEntry,
+  jwt,
   setEntries,
   priorEntries,
   handleOpen,
+  handleModalClose,
   subpage,
 }: ResumeRowProps) {
   switch (subpage) {
@@ -51,14 +59,17 @@ export default function ResumeTableCells({
                 }}
               >
                 <EditIconButton
-                  animalProjectEntry={projectEntry}
-                  handleOpen={handleOpen}
+                  handleOpen={() => {
+                    handleOpen(projectEntry, "edit");
+                  }}
                 />
-                <DeleteIconButton
+                <ProjectSubEntryDeleteIconButton
                   id={projectEntry.id}
-                  subpage={subpage}
-                  allEntries={priorEntries}
-                  setEntries={setEntries}
+                  jwt={jwt}
+                  endpoint={EndpointByDynamicPathSuffix(subpage)}
+                  handleModalClose={handleModalClose}
+                  allSubentries={priorEntries}
+                  setSubentries={setEntries}
                 />
               </Stack>
             </TableCell>

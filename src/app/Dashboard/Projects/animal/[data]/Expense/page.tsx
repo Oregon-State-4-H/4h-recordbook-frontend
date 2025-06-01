@@ -235,11 +235,13 @@ export default function AnimalExpenses() {
               <TableBody>
                 {allSubpageEntries.map((item, index) => (
                   <ProjectTableRow
+                    jwt={accessToken}
                     key={index}
                     index={index}
                     projectEntry={item}
                     subpage="Expense"
                     handleOpen={handleinputModalOpen}
+                    handleModalClose={handleReadModalClose}
                     priorEntries={allSubpageEntries}
                     setEntries={setAllSubpageEntries}
                   />
