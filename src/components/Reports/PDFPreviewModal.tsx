@@ -2,7 +2,7 @@
 
 import React from "react";
 import Box from "@mui/material/Box";
-import { OverlayModelPDF } from "./OverlayModel";
+import { OverlayModelPDF } from "../Resume/OverlayModal";
 import { PDFViewer } from "@react-pdf/renderer";
 
 /**

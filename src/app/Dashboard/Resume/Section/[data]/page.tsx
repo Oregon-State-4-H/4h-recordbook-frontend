@@ -29,7 +29,7 @@ import ResumeTableRow from "@/components/Resume/TableRow";
 import ResumeCard from "@/components/Resume/MobileCard";
 import MobileReadPopUp from "@/components/Resume/MobileReadPopUp";
 import { StyledTableHeader } from "@/components/StyledTableRow";
-import PDFPreviewModel from "@/components/Models/PDFPreviewModel";
+import PDFPreviewModel from "@/components/Reports/PDFPreviewModal";
 import { getUser, User } from "@/API/UserAPI";
 import Section1 from "@/components/Reports/Resume/Section1";
 import Section2 from "@/components/Reports/Resume/Section2";

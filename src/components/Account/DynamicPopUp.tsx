@@ -1,12 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getAccessToken } from "@auth0/nextjs-auth0";
-import Button from "@mui/material/Button";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
-import Typography from "@mui/material/Typography";
 import InputsBySubpage from "@/components/Account/InputsBySubpage";
+import { OverlayModelCRUD } from "@/components/Resume/OverlayModal";
 import { User, updateUser } from "@/API/UserAPI";
 
 interface PopUpProps {
@@ -85,82 +80,13 @@ export default function DynamicPopUp({
       };
 
       return (
-        <Card
-          sx={{
-            maxWidth: "95vw",
-            minWidth: { xs: "300px", md: "30vw" },
-            maxHeight: "90vh",
-            backgroundColor: "rgba(255,255,255,1)",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            borderRadius: 1,
-            boxShadow: 5,
-            p: 4,
-            overflowY: "scroll",
-            padding: "0px",
-            margin: "0px",
-          }}
+        <OverlayModelCRUD
+          handleClose={handleModalClose}
+          handleCRUD={handleUpdate}
+          title="EDIT"
         >
-          <CardActions
-            sx={{
-              width: "100%",
-              position: "sticky",
-              top: "0%",
-              backgroundColor: "rgba(255,255,255,1)",
-              zIndex: "1000",
-            }}
-          >
-            <Typography
-              sx={{
-                paddingTop: "4px",
-                width: "100%",
-                textAlign: "center",
-                color: "rgba(51, 153, 102, 1)",
-              }}
-              variant="h5"
-            >
-              EDIT
-            </Typography>
-            <IconButton
-              onClick={handleModalClose}
-              size="small"
-              sx={{
-                position: "absolute",
-                right: 15,
-                top: 8,
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
-          </CardActions>
           <InputsBySubpage setMapState={setMapState} currUser={currUser} />
-          <CardActions
-            sx={{
-              width: "100%",
-              position: "sticky",
-              bottom: "0%",
-              backgroundColor: "rgba(255,255,255,1)",
-              zIndex: "1000",
-            }}
-          >
-            <Button
-              sx={{
-                width: "50%",
-                right: "25%",
-                left: "25%",
-                marginBottom: "10px",
-              }}
-              variant="outlined"
-              onClick={() => {
-                handleUpdate();
-              }}
-            >
-              Submit
-            </Button>
-          </CardActions>
-        </Card>
+        </OverlayModelCRUD>
       );
     default:
       break;

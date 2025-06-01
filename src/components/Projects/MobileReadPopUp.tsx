@@ -1,11 +1,9 @@
 import React from "react";
-import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
 import MobileReadDetail from "@/components/Projects/MobileReadDetail";
 import EditMobileButton from "@/components/Projects/EditMobileButton";
 import { ProjectSubEntryDeleteMobileButton } from "@/components/DeleteButtons";
+import { OverlayModel } from "@/components/Resume/OverlayModal";
 import { AnimalProjectTypes } from "@/API/ProjectAPI";
 
 interface PopUpProps {
@@ -28,27 +26,7 @@ export default function MobileReadPopUp({
   allSubentries,
 }: PopUpProps) {
   return (
-    <Card
-      sx={{
-        maxWidth: "90%",
-        minWidth: 275,
-        backgroundColor: "rgba(255,255,255,1)",
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        borderRadius: 1,
-        boxShadow: 5,
-        p: 4,
-      }}
-    >
-      <IconButton
-        sx={{ position: "absolute", right: "4%", top: "4%" }}
-        onClick={handleModalClose}
-        size="small"
-      >
-        <CloseIcon />
-      </IconButton>
+    <OverlayModel handleClose={handleModalClose}>
       <MobileReadDetail projectSubentry={projectSubentry} endpoint={endpoint} />
       <CardActions>
         <EditMobileButton
@@ -64,6 +42,6 @@ export default function MobileReadPopUp({
           allSubentries={allSubentries}
         />
       </CardActions>
-    </Card>
+    </OverlayModel>
   );
 }

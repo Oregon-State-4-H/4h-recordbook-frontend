@@ -15,7 +15,7 @@ import {
 } from "@/context/NavbarContext";
 import { useBookmark } from "@/context/BookmarkContext";
 import sectionOutline from "@/components/Resume/SectionOutline.json";
-import PDFPreviewModel from "@/components/Models/PDFPreviewModel";
+import PDFPreviewModel from "@/components/Reports/PDFPreviewModal";
 import PDFFile from "@/components/Reports/Resume/Resume";
 import { getUser, User } from "@/API/UserAPI";
 import { fetchResume, ResumeSections } from "@/API/ResumeAPI";
