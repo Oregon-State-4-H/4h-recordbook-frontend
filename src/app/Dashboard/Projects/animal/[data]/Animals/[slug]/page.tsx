@@ -19,7 +19,7 @@ import {
   navbarAppLinks,
 } from "@/context/NavbarContext";
 import ReadCard from "@/components/Projects/MobileReadCard";
-import DynamicPopUp from "@/components/Projects/DynamicPopUp";
+import { DynamicPopUpSubpage } from "@/components/Projects/DynamicPopUp";
 import { useBookmark } from "@/context/BookmarkContext";
 
 export default function ProjectDetail() {
@@ -253,7 +253,7 @@ export default function ProjectDetail() {
           aria-labelledby="input-modal-title"
           aria-describedby="input-modal-description"
         >
-          <DynamicPopUp
+          <DynamicPopUpSubpage
             subpage={subpage}
             subpageEntry={inputModalEntry}
             handleModalClose={handleinputModalClose}

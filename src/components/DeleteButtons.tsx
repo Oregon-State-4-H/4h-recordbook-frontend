@@ -3,7 +3,41 @@ import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { deleteSection, SectionAny } from "@/API/ResumeAPI";
-import { deleteSubpageEntry, AnimalProjectTypes } from "@/API/ProjectAPI";
+import {
+  deleteSubpageEntry,
+  AnimalProjectTypes,
+  deleteProject,
+  Project,
+} from "@/API/ProjectAPI";
+
+export interface ProjectDeleteButtonProps {
+  jwt: string;
+  id: string;
+  handleRedirect: () => void;
+  setProjects: (updatedProjects: Project[]) => void;
+  allProjects: Project[];
+}
+
+export async function projectHandleDelete({
+  jwt,
+  id,
+  handleRedirect,
+  setProjects,
+  allProjects,
+}: ProjectDeleteButtonProps) {
+  try {
+    const deleteSucceeded = await deleteProject(jwt, id);
+    if (deleteSucceeded) {
+      handleRedirect();
+      const remainingProjects: Project[] = allProjects.filter(
+        (project) => project.id !== id
+      );
+      setProjects(remainingProjects);
+    }
+  } catch (error) {
+    throw error;
+  }
+}
 
 interface ResumeDeleteButtonProps {
   jwt: string;

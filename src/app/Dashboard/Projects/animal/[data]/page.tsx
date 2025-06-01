@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { getAccessToken } from "@auth0/nextjs-auth0";
 import { useParams, usePathname } from "next/navigation";
 import Box from "@mui/material/Box";
@@ -11,7 +12,12 @@ import {
   fetchProject,
 } from "@/API/ProjectAPI";
 import SubpageCard from "@/components/LinkCard";
+import ButtonCard from "@/components/ButtonCard";
 import Grid from "@mui/material/Grid";
+import {
+  projectHandleDelete,
+  ProjectDeleteButtonProps,
+} from "@/components/DeleteButtons";
 import {
   useNavbar,
   NavbarValues,
@@ -21,6 +27,7 @@ import { useBookmark } from "@/context/BookmarkContext";
 import { useProject } from "@/context/ProjectContext";
 
 export default function ProjectDetail() {
+  const router = useRouter();
   const { updateFunction } = useNavbar();
   const { updateBookmarks } = useBookmark();
   const { data } = useParams<{ data: string }>();
@@ -168,6 +175,14 @@ export default function ProjectDetail() {
       "Supplies",
     ];
 
+    const deleteProps: ProjectDeleteButtonProps = {
+      jwt: accessToken,
+      id: data,
+      setProjects: updateProjects,
+      allProjects: currProjectValues,
+      handleRedirect: () => router.push("/Dashboard"),
+    };
+
     return (
       <Box className="App">
         {/* For every subpage, generate a clickable card */}
@@ -189,6 +204,13 @@ export default function ProjectDetail() {
                 path={pathname + "/" + item.replaceAll(" ", "")}
               />
             ))}
+          <ButtonCard
+            key={Subpages.length}
+            label="Delete Project"
+            handleClick={() => {
+              projectHandleDelete(deleteProps);
+            }}
+          />
         </Box>
         <Box
           sx={{
@@ -217,6 +239,15 @@ export default function ProjectDetail() {
                   />
                 </Grid>
               ))}
+            <Grid size={6} key={Subpages.length}>
+              <ButtonCard
+                key={Subpages.length}
+                label="Delete Project"
+                handleClick={() => {
+                  projectHandleDelete(deleteProps);
+                }}
+              />
+            </Grid>
           </Grid>
         </Box>
       </Box>

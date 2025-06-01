@@ -416,12 +416,14 @@ export const deleteProject = async (jwt: string, projectID: string) => {
         "Content-Type": "application/json", // Adjust if needed
       },
     });
-
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.message || "Unexpected error occurred");
+    switch (response.status) {
+      case 204:
+        return true;
+      case 404:
+        throw new Error("Entry not found");
+      default:
+        throw new Error(`Error: status ${response.status}`);
     }
-    return true;
   } catch (error) {
     throw error;
   }

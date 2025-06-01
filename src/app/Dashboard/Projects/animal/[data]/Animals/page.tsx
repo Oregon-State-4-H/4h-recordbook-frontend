@@ -7,7 +7,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import SubpageCard from "@/components/LinkCard";
 import CreateButton from "@/components/CreateIconButton";
-import DynamicPopUp from "@/components/Projects/DynamicPopUp";
+import { DynamicPopUpSubpage } from "@/components/Projects/DynamicPopUp";
 import Grid from "@mui/material/Grid";
 import {
   useNavbar,
@@ -220,7 +220,7 @@ function Dashboard() {
           aria-labelledby="input-modal-title"
           aria-describedby="input-modal-description"
         >
-          <DynamicPopUp
+          <DynamicPopUpSubpage
             subpage="Animal"
             subpageEntry={inputModalEntry}
             handleModalClose={handleinputModalClose}
