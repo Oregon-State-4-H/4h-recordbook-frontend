@@ -610,7 +610,7 @@ export const postSubpageEntry = async <T>(
     }
     switch (endpoint) {
       case AnimalProjectTypeEndpoints.Animal:
-        return data.animals as T;
+        return data.animal as T;
       case AnimalProjectTypeEndpoints.Expense:
         return data.expense as T;
       case AnimalProjectTypeEndpoints.Feed:
