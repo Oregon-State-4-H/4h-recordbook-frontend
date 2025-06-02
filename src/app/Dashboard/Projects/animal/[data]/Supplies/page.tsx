@@ -21,18 +21,18 @@ import { useBookmark } from "@/context/BookmarkContext";
 import ProjectTableRow from "@/components/Projects/TableRow";
 import CreateButton from "@/components/CreateIconButton";
 import { DynamicPopUpSubpage } from "@/components/Projects/DynamicPopUp";
-import { MobileCard } from "@/components/Projects/MobileCard";
+import { MobileCardDetail } from "@/components/Projects/MobileCard";
 import MobileReadPopUp from "@/components/Projects/MobileReadPopUp";
 import subpageOutline from "@/components/Projects/SubpageOutline.json";
 import {
-  Expense,
+  Supply,
   AnimalProjectTypes,
   fetchSubpageEntriesByProject,
-  emptyExpense,
+  emptySupply,
   fetchProject,
 } from "@/API/ProjectAPI";
 
-export default function AnimalExpenses() {
+export default function AnimalSupplies() {
   const hasRun = useRef(false);
   const hasRun2 = useRef(false);
 
@@ -51,22 +51,22 @@ export default function AnimalExpenses() {
   // state for multipurpose input modal
   const [inputModal, setinputModal] = React.useState(false);
   const [inputModalEntry, setinputModalEntry] =
-    useState<AnimalProjectTypes>(emptyExpense);
+    useState<AnimalProjectTypes>(emptySupply);
   const [inputModalPurpose, setinputModalPurpose] = useState<string>("");
 
   // state for mobile read detail modal
   const [readModal, setReadModal] = React.useState(false);
   const [readModalEntry, setReadModalEntry] =
-    useState<AnimalProjectTypes>(emptyExpense);
+    useState<AnimalProjectTypes>(emptySupply);
 
   const handleReadModalClose = () => {
     setReadModal(false);
-    setReadModalEntry(emptyExpense);
+    setReadModalEntry(emptySupply);
   };
 
   const handleinputModalClose = () => {
     setinputModal(false);
-    setinputModalEntry(emptyExpense);
+    setinputModalEntry(emptySupply);
     setinputModalPurpose("");
   };
 
@@ -103,9 +103,9 @@ export default function AnimalExpenses() {
               setValidId(false);
               setSubpageDataLoaded(true);
             } else {
-              const subpageData = await fetchSubpageEntriesByProject<Expense>(
+              const subpageData = await fetchSubpageEntriesByProject<Supply>(
                 token,
-                "expense",
+                "supply",
                 data
               );
               if (typeof subpageData != "string") {
@@ -123,9 +123,9 @@ export default function AnimalExpenses() {
               setValidId(false);
               setSubpageDataLoaded(true);
             } else {
-              const subpageData = await fetchSubpageEntriesByProject<Expense>(
+              const subpageData = await fetchSubpageEntriesByProject<Supply>(
                 accessToken,
-                "expense",
+                "supply",
                 data
               );
               if (typeof subpageData != "string") {
@@ -151,8 +151,8 @@ export default function AnimalExpenses() {
 
       if (validId) {
         const navbarContextPageValues: NavbarValues = {
-          mobileTitle: "Expense",
-          desktopTitle: "Project Expense",
+          mobileTitle: "Supply",
+          desktopTitle: "Project Supply",
           hrefTitle: "/Dashboard",
           NavbarLinks: navbarAppLinks,
         };
@@ -199,7 +199,7 @@ export default function AnimalExpenses() {
           ></Box>
           <CreateButton
             handleOpen={() => {
-              handleinputModalOpen(emptyExpense, "create");
+              handleinputModalOpen(emptySupply, "create");
             }}
           />
         </Box>
@@ -218,7 +218,7 @@ export default function AnimalExpenses() {
               <TableHead>
                 {/* in the first row of the table, make a cell for each collumn, holding the label */}
                 <TableRow>
-                  {subpageOutline.expense.headers.map((item, index) => (
+                  {subpageOutline.supply.headers.map((item, index) => (
                     <TableCell
                       key={index}
                       align="right"
@@ -239,7 +239,7 @@ export default function AnimalExpenses() {
                     key={index}
                     index={index}
                     projectEntry={item}
-                    subpage="Expense"
+                    subpage="Supply"
                     handleOpen={handleinputModalOpen}
                     handleModalClose={handleReadModalClose}
                     priorEntries={allSubpageEntries}
@@ -274,10 +274,14 @@ export default function AnimalExpenses() {
                   paddingBottom: "20px",
                 }}
               >
-                <MobileCard
+                <MobileCardDetail
+                  jwt={accessToken}
+                  endpoint="supply"
                   projectSubentry={item}
-                  handleOpen={handleReadModalOpen}
-                  subpage="Expense"
+                  handleModalClose={handleReadModalClose}
+                  handleOpen={handleinputModalOpen}
+                  setSubentries={setAllSubpageEntries}
+                  allSubentries={allSubpageEntries}
                 />
               </Box>
             ))}
@@ -289,7 +293,7 @@ export default function AnimalExpenses() {
           aria-describedby="input-modal-description"
         >
           <DynamicPopUpSubpage
-            subpage="Expense"
+            subpage="Supply"
             subpageEntry={inputModalEntry}
             handleModalClose={handleinputModalClose}
             purpose={inputModalPurpose}
@@ -306,7 +310,7 @@ export default function AnimalExpenses() {
         >
           <MobileReadPopUp
             jwt={accessToken}
-            endpoint="expense"
+            endpoint="supply"
             projectSubentry={readModalEntry}
             handleModalClose={handleReadModalClose}
             handleOpen={handleinputModalOpen}

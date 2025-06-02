@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import { SectionAny, isS2, isSectionValid } from "@/API/ResumeAPI";
-import ResumeCardPreviewContent from "@/components/Resume/MobileReadPreview";
+import ResumeCardPreviewContent from "@/components/MobileReadPreview";
 
 interface ResumeCardProps {
   resumeEntry: SectionAny;

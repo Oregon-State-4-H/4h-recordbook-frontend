@@ -20,7 +20,7 @@ export function EndpointByDynamicPathSuffix(subpagePathSuffix: string): string {
       return AnimalProjectTypeEndpoints.Expense;
     case "Feeds":
       return AnimalProjectTypeEndpoints.Feed;
-    case "Supplies":
+    case "Supply":
       return AnimalProjectTypeEndpoints.Supply;
     case "Gain":
       return AnimalProjectTypeEndpoints.Gain;
@@ -62,7 +62,11 @@ export const DailyFeedKeys: DailyFeedKey[] = [];
 export const ExpenseKeys: ExpenseKey[] = [];
 export const FeedKeys: FeedKey[] = [];
 export const FeedPurchaseKeys: FeedPurchaseKey[] = [];
-export const SupplyKeys: SupplyKey[] = [];
+export const SupplyKeys: SupplyKey[] = [
+  "description",
+  "end_value",
+  "start_value",
+];
 export const EmptyKeys: EmptyKey[] = [];
 
 export const AnimalProjectTypeKeysFromUser: { [key: string]: string[] } = {
@@ -100,9 +104,9 @@ export function isExpenseKey(key: string): key is ExpenseKey {
 //   return key in emptyFeedPurchase;
 // }
 
-// export function isSupplyKey(key: string): key is SupplyKey {
-//   return key in emptySupply;
-// }
+export function isSupplyKey(key: string): key is SupplyKey {
+  return key in emptySupply;
+}
 
 export interface CustomProjectFields {
   description: string;
@@ -261,6 +265,17 @@ export const emptyExpense: Expense = {
   quantity: -1,
 };
 
+export const emptySupply: Supply = {
+  id: "-1",
+  user_id: "-1",
+  created: "",
+  updated: "",
+  project_id: "",
+  description: "",
+  end_value: 0,
+  start_value: 0,
+};
+
 export const emptyGain: Gain = {
   beginning_date: "",
   beginning_weight: -1,
@@ -282,6 +297,10 @@ export function isProject(data: Project | undefined): data is Project {
 
 export function isExpense(data: AnimalProjectTypes): data is Expense {
   return (data as Expense).cost != undefined;
+}
+
+export function isSupply(data: AnimalProjectTypes): data is Supply {
+  return (data as Supply).description != undefined;
 }
 
 export function isAnimal(
@@ -599,7 +618,7 @@ export const postSubpageEntry = async <T>(
       case AnimalProjectTypeEndpoints.FeedPurchase:
         return data.feed_purchases as T;
       case AnimalProjectTypeEndpoints.Supply:
-        return data.supplies as T;
+        return data.supply as T;
       default:
         throw new Error(
           "Type is not supported by fetchSubpageEntriesByProject function"

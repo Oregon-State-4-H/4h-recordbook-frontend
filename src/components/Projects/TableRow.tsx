@@ -6,6 +6,7 @@ import EditIconButton from "@/components/EditIconButton";
 import {
   AnimalProjectTypes,
   isExpense,
+  isSupply,
   EndpointByDynamicPathSuffix,
 } from "@/API/ProjectAPI";
 import { toDDMMYY } from "@/components/Date";
@@ -48,6 +49,47 @@ export default function ResumeTableCells({
             </TableCell>
             <TableCell sx={{ textAlign: "center" }}>
               {projectEntry.quantity}
+            </TableCell>
+            <TableCell>
+              <Stack
+                direction="row"
+                spacing={2}
+                sx={{
+                  justifyContent: "space-evenly",
+                  alignItems: "center",
+                }}
+              >
+                <EditIconButton
+                  handleOpen={() => {
+                    handleOpen(projectEntry, "edit");
+                  }}
+                />
+                <ProjectSubEntryDeleteIconButton
+                  id={projectEntry.id}
+                  jwt={jwt}
+                  endpoint={EndpointByDynamicPathSuffix(subpage)}
+                  handleModalClose={handleModalClose}
+                  allSubentries={priorEntries}
+                  setSubentries={setEntries}
+                />
+              </Stack>
+            </TableCell>
+          </StyledTableRow>
+        );
+      }
+      break;
+    case "Supply":
+      if (isSupply(projectEntry)) {
+        return (
+          <StyledTableRow hover role="checkbox" tabIndex={-1} key={index}>
+            <TableCell sx={{ textAlign: "center" }}>
+              {projectEntry.description}
+            </TableCell>
+            <TableCell sx={{ textAlign: "center" }}>
+              {projectEntry.start_value}
+            </TableCell>
+            <TableCell sx={{ textAlign: "center" }}>
+              {projectEntry.end_value}
             </TableCell>
             <TableCell>
               <Stack

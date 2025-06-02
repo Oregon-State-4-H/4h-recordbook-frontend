@@ -19,6 +19,8 @@ import {
   isExpenseKey,
   isGainKey,
   Project,
+  isSupply,
+  isSupplyKey,
 } from "@/API/ProjectAPI";
 
 interface DynamicInputPropsSubpage {
@@ -98,6 +100,18 @@ export function DynamicInputSubpage({
       break;
     case "Gain":
       if (isAnimal(originalToUpdate) && isGainKey(originalValueKey)) {
+        const originalValueStringOrNumber: string | number =
+          originalToUpdate[originalValueKey];
+
+        if (typeof originalValueStringOrNumber == "string") {
+          originalValue = originalValueStringOrNumber;
+        } else {
+          originalValue = originalValueStringOrNumber.toString();
+        }
+      }
+      break;
+    case "Supply":
+      if (isSupply(originalToUpdate) && isSupplyKey(originalValueKey)) {
         const originalValueStringOrNumber: string | number =
           originalToUpdate[originalValueKey];
 

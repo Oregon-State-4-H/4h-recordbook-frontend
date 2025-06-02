@@ -20,6 +20,8 @@ import {
   isAnimal,
   GainKeys,
   Project,
+  SupplyKeys,
+  isSupply,
 } from "@/API/ProjectAPI";
 
 interface PopUpPropsSubpage {
@@ -47,11 +49,18 @@ export function DynamicPopUpSubpage({
   const hasRun = useRef(false);
   const [Fields, updateFields] = useState<formFields>([]);
 
+  // effect to store entry's exsiting key values in map
+  // input fields will override exsisting key values when they are changed
   useEffect(() => {
     if (!hasRun.current) {
+      hasRun.current = true;
+
       switch (subpage) {
         case "Expense":
           updateFields(subpageOutline.expense.form);
+          break;
+        case "Supply":
+          updateFields(subpageOutline.supply.form);
           break;
         case "Animal":
           updateFields(subpageOutline.animal.form);
@@ -130,6 +139,34 @@ export function DynamicPopUpSubpage({
               });
             }
             break;
+          case "Supply":
+            if (isSupply(subpageEntry)) {
+              console.log("edit Supply.\n");
+              setMapState((map) => new Map(map.set("project_id", project_id)));
+
+              SupplyKeys.forEach(function (key) {
+                // if date is empty set intialize at current date
+                if (
+                  Fields.find((object) => object.name === key)?.type ==
+                    "date" &&
+                  subpageEntry[key] == ""
+                ) {
+                  const defaultDateString = DayJSTypetoRFC3339(dayjs());
+                  setMapState(
+                    (map: Map<string, number | string>) =>
+                      new Map(map.set(key, defaultDateString))
+                  );
+                } else {
+                  console.log(key);
+                  console.log(subpageEntry[key]);
+                  setMapState(
+                    (map: Map<string, number | string>) =>
+                      new Map(map.set(key, subpageEntry[key]))
+                  );
+                }
+              });
+            }
+            break;
           default:
             break;
         }
@@ -138,15 +175,11 @@ export function DynamicPopUpSubpage({
         console.log("create subpage entry.\n");
         setMapState((map) => new Map(map.set("project_id", project_id)));
       }
-      hasRun.current = true;
     }
   }, [purpose, subpage, subpageEntry, project_id, Fields]);
 
   switch (purpose) {
     case "edit":
-      // effect to store entry's exsiting key values in map
-      // input fields will override exsisting key values when they are changed
-
       // function to send PUT update request to backend
       const handleUpdate = async () => {
         const endpoint: string = EndpointByDynamicPathSuffix(subpage);

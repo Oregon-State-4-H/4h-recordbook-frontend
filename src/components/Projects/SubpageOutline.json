@@ -78,6 +78,32 @@
       }
     ]
   },
+  "supply": {
+    "headers": ["Description", "End Value", "Start Value", ""],
+    "form": [
+      {
+        "type": "text",
+        "label": "Description",
+        "name": "description",
+        "required": "yes",
+        "placeholder": ""
+      },
+      {
+        "type": "number",
+        "label": "End Value",
+        "name": "end_value",
+        "required": "yes",
+        "placeholder": ""
+      },
+      {
+        "type": "number",
+        "label": "Start Value",
+        "name": "start_value",
+        "required": "yes",
+        "placeholder": ""
+      }
+    ]
+  },
   "animal": {
     "headers": [
       "Cost ",

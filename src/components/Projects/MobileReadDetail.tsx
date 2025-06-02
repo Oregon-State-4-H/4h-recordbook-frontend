@@ -10,6 +10,8 @@ import {
   isAnimal,
   AnimalKeys,
   GainKeys,
+  isSupply,
+  SupplyKeys,
 } from "@/API/ProjectAPI";
 import { formFields } from "@/API/JSON";
 
@@ -27,6 +29,9 @@ export default function ResumeCardModalContent({
   switch (true) {
     case isExpense(projectSubentry):
       Fields = subpageOutline.expense.form;
+      break;
+    case isSupply(projectSubentry):
+      Fields = subpageOutline.supply.form;
       break;
     case isAnimal(projectSubentry) && endpoint == "animal":
       Fields = subpageOutline.animal.form;
@@ -85,6 +90,26 @@ export default function ResumeCardModalContent({
     return (
       <CardContent sx={{ backgroundColor: "rgba(255,255,255,0.87)" }}>
         {GainKeys.map((key) => (
+          <Box key={key}>
+            <Typography variant="body2" color="text.disabled">
+              {Fields.find((object) => object.name === key)?.label}
+            </Typography>
+            <Typography variant="body1" marginBottom="10px">
+              {/* projectSubentry[key] is the value of the key in the object */}
+              {/* the logic pertaining to date is to display a human readable string instead of any RFC3339 date string */}
+              {Fields.find((object) => object.name === key)?.type == "date" &&
+              typeof projectSubentry[key] == "string"
+                ? toDDMMYY(projectSubentry[key])
+                : projectSubentry[key]}
+            </Typography>
+          </Box>
+        ))}
+      </CardContent>
+    );
+  } else if (isSupply(projectSubentry) && endpoint == "supply") {
+    return (
+      <CardContent sx={{ backgroundColor: "rgba(255,255,255,0.87)" }}>
+        {SupplyKeys.map((key) => (
           <Box key={key}>
             <Typography variant="body2" color="text.disabled">
               {Fields.find((object) => object.name === key)?.label}

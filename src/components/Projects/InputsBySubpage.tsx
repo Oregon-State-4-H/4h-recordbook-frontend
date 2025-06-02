@@ -30,6 +30,9 @@ export default function ResumeCreateModalContent({
     case "Gain":
       Fields = subpageOutline.gain.form;
       break;
+    case "Supply":
+      Fields = subpageOutline.supply.form;
+      break;
     default:
       break;
   }
