@@ -14,7 +14,7 @@ import {
 } from "@/context/NavbarContext";
 import { useBookmark } from "@/context/BookmarkContext";
 import { useProject } from "@/context/ProjectContext";
-import { Project, fetchAllProjects, emptyProject } from "@/API/ProjectAPI";
+import { Project, fetchAllProjects } from "@/API/ProjectAPI";
 import PreviewCard from "@/components/Projects/PreviewCard";
 import { usePathname } from "next/navigation";
 
@@ -34,8 +34,6 @@ function Dashboard() {
 
   // state for multipurpose input modal
   const [inputModal, setinputModal] = React.useState(false);
-  const [inputModalEntry, setinputModalEntry] = useState<Project>(emptyProject);
-  const inputModalPurpose = "create";
 
   // get auth0 jwt and projects
   useEffect(() => {
@@ -127,7 +125,7 @@ function Dashboard() {
       </Box>
       <Box
         sx={{
-          width: "100%",
+          width: "90%",
           display: { xs: "none", md: "block" },
           marginLeft: "5%",
           marginRight: "5%",
@@ -166,7 +164,7 @@ function Dashboard() {
           handleModalClose={() => {
             setinputModal(false);
           }}
-          setAllProjects={setAllProjects}
+          setAllProjects={setProjects}
           priorProjects={allProjects}
         />
       </Modal>
